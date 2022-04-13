@@ -1,17 +1,24 @@
 <div class="container-fluid sub-container p-0">
-    <div class="loader-main" *ngIf="isLoaderAdmin"><img src="../../../assets/images/sc-loader.svg" /></div>
+    <div class="loader-main" *ngIf="isLoaderAdmin"><img
+            src="../../../assets/images/sc-loader.svg" /></div>
     <div id="admin-book-appointment">
         <div class="row">
-            <div class="top-header-bar mb-3" *ngIf="revenue != null && revenue != undefined">
+            <div class="top-header-bar mb-3" *ngIf="revenue != null && revenue
+                != undefined">
                 <div class="col-lg-2 col-md-4 col-6 flex-align-center">
-                    <h6 [ngbPopover]="popContent" placement="bottom" aria-hidden="false" aria-label="Example home icon"
-                        class="mb-0 cursor-pointer today-button-text text-capitalize">
+                    <h6 [ngbPopover]="popContent" placement="bottom"
+                        aria-hidden="false" aria-label="Example home icon"
+                        class="mb-0 cursor-pointer today-button-text
+                        text-capitalize">
                         <span
-                            *ngIf="dateTypeFilter == 'today' || dateTypeFilter == 'tomorrow'">{{dateTypeFilter}}</span>
+                            *ngIf="dateTypeFilter == 'today' || dateTypeFilter
+                            == 'tomorrow'">{{dateTypeFilter}}</span>
                         <span
-                            *ngIf="dateTypeFilter == 'week' || dateTypeFilter == 'month' || dateTypeFilter == 'year'">This
+                            *ngIf="dateTypeFilter == 'week' || dateTypeFilter ==
+                            'month' || dateTypeFilter == 'year'">This
                             {{dateTypeFilter}}</span>
-                        <span *ngIf="dateTypeFilter == 'custom'">{{dateTypeFilter}} Date</span>
+                        <span *ngIf="dateTypeFilter == 'custom'">{{dateTypeFilter}}
+                            Date</span>
                         <!-- <i class="fa fa-chevron-down ml-2" aria-hidden="true"></i> -->
                         <i class="material-icons-outlined">
                             expand_more
@@ -19,62 +26,85 @@
                     </h6>
 
                     <ng-template class="popover common-popover" #popContent>
-                        <div (click)="fnChangeDateFilter('today')" class="common-text">
+                        <div (click)="fnChangeDateFilter('today')"
+                            class="common-text">
                             <a> Today </a>
                         </div>
-                        <div (click)="fnChangeDateFilter('tomorrow')" class="common-text">
+                        <div (click)="fnChangeDateFilter('tomorrow')"
+                            class="common-text">
                             <a> Tomorrow </a>
                         </div>
-                        <div (click)="fnChangeDateFilter('week')" class="common-text">
+                        <div (click)="fnChangeDateFilter('week')"
+                            class="common-text">
                             <a> This Week </a>
                         </div>
-                        <div (click)="fnChangeDateFilter('month')" class="common-text">
+                        <div (click)="fnChangeDateFilter('month')"
+                            class="common-text">
                             <a> This Month </a>
                         </div>
-                        <div (click)="fnChangeDateFilter('year')" class="common-text">
+                        <div (click)="fnChangeDateFilter('year')"
+                            class="common-text">
                             <a> This Year </a>
                         </div>
-                        <div ngxDaterangepickerMd (click)="fnChangeDateFilter('custom'); openDateRangeSelection()"
+                        <div ngxDaterangepickerMd
+                            (click)="fnChangeDateFilter('custom');
+                            openDateRangeSelection()"
                             class="common-text">
                             <a> Custom Date </a>
                         </div>
                     </ng-template>
                     <p class="font-gray pt-1 mb-0">{{dateTypeFilterView}}</p>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 left-border flex-align-center">
-                    <h6 *ngIf="selectedCategoryName == 'Services'" class="category">All</h6>
-                    <h6 *ngIf="selectedCategoryName != 'Services'" class="category">Category</h6>
+                <div class="col-lg-2 col-md-4 col-6 left-border
+                    flex-align-center">
+                    <h6 *ngIf="selectedCategoryName == 'Services'"
+                        class="category">All</h6>
+                    <h6 *ngIf="selectedCategoryName != 'Services'"
+                        class="category">Category</h6>
                     <p class="font-gray pt-1 mb-0">{{selectedCategoryName}}</p>
                 </div>
 
-                <div class="col-lg-2 col-md-4 col-6  flex-align-center left-border">
+                <div class="col-lg-2 col-md-4 col-6 flex-align-center
+                    left-border">
                     <h6 class="mb-0">{{revenue.appointments}}</h6>
                     <p class="mb-0">Appointments</p>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 flex-align-center left-border">
+                <div class="col-lg-2 col-md-4 col-6 flex-align-center
+                    left-border">
                     <h6 class="mb-0" *ngIf="currencySymbolPosition=='left'">{{currencySymbol|
                         currencySymbol:'wide'}} {{ revenue.confirmRevenue |
-                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</h6>
-                    <h6 class="mb-0" *ngIf="currencySymbolPosition=='right'">{{ revenue.confirmRevenue |
-                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }} {{currencySymbol|
+                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                        }}</h6>
+                    <h6 class="mb-0" *ngIf="currencySymbolPosition=='right'">{{
+                        revenue.confirmRevenue |
+                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                        }} {{currencySymbol|
                         currencySymbol:'wide'}}</h6>
                     <p class="mb-0">Confirmed Revenue </p>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 flex-align-center left-border">
+                <div class="col-lg-2 col-md-4 col-6 flex-align-center
+                    left-border">
                     <h6 class="mb-0" *ngIf="currencySymbolPosition=='left'">{{currencySymbol|
                         currencySymbol:'wide'}} {{ revenue.projectedRevenue |
-                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</h6>
-                    <h6 class="mb-0" *ngIf="currencySymbolPosition=='right'">{{ revenue.projectedRevenue |
-                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }} {{currencySymbol|
+                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                        }}</h6>
+                    <h6 class="mb-0" *ngIf="currencySymbolPosition=='right'">{{
+                        revenue.projectedRevenue |
+                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                        }} {{currencySymbol|
                         currencySymbol:'wide'}}</h6>
                     <p class="mb-0">Projected Revenue</p>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 flex-align-center left-border">
+                <div class="col-lg-2 col-md-4 col-6 flex-align-center
+                    left-border">
                     <h6 class="mb-0" *ngIf="currencySymbolPosition=='left'">{{currencySymbol|
                         currencySymbol:'wide'}} {{ revenue.totalEstimate |
-                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</h6>
-                    <h6 class="mb-0" *ngIf="currencySymbolPosition=='right'">{{ revenue.totalEstimate |
-                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }} {{currencySymbol|
+                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                        }}</h6>
+                    <h6 class="mb-0" *ngIf="currencySymbolPosition=='right'">{{
+                        revenue.totalEstimate |
+                        currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                        }} {{currencySymbol|
                         currencySymbol:'wide'}}</h6>
                     <p class="mb-0">Total Estimated</p>
                 </div>
@@ -84,7 +114,8 @@
                     </div>
                     <div class="right-details">
                         <h3> Current Plan </h3>
-                        <p> 14 days Free trail - <a (click)="onupgrade()"> Upgrade </a></p>
+                        <p> 14 days Free trail - <a (click)="onupgrade()">
+                                Upgrade </a></p>
                     </div>
 
                 </div>
@@ -94,24 +125,30 @@
 
     <div class="" id="category">
         <div class="row mx-0 flex-content-center">
-            <div id="all-category-list" class="col-lg-3 col-12 col-md-6 border-8">
+            <div id="all-category-list" class="col-lg-3 col-12 col-md-6
+                border-8">
                 <div class="main-category-listing">
-                    <ul *ngIf="categories.length > 0">
+                    <ul *ngIf="categories.length> 0">
                         <li class="bottom-border plr-25">
                             <p class="title-heading-main">Categories</p>
                         </li>
-                        <li class="bottom-border plr-25 pointer" [ngClass]="{'active': selectedCategory == 'all' }"
-                            (click)="fnOnClickCategory('all','Services'); fnselectCategoryActive('all');">
+                        <li class="bottom-border plr-25 pointer"
+                            [ngClass]="{'active': selectedCategory == 'all' }"
+                            (click)="fnOnClickCategory('all','Services');
+                            fnselectCategoryActive('all');">
                             <p class="title-main">All Services
                                 <i class="material-icons-outlined">
                                     chevron_right
                                 </i>
                             </p>
                         </li>
-                        <li class="bottom-border plr-25 pointer" [ngClass]="{'active': selectedCategory == i }"
+                        <li class="bottom-border plr-25 pointer"
+                            [ngClass]="{'active': selectedCategory == i }"
                             *ngFor="let category of categories; let i=index"
-                            (click)="fnOnClickCategory(category.id,category.category_title); fnselectCategoryActive(i);">
-                            <p class="title-main">{{category.category_title}} <i class="material-icons-outlined">
+                            (click)="fnOnClickCategory(category.id,category.category_title);
+                            fnselectCategoryActive(i);">
+                            <p class="title-main">{{category.category_title}} <i
+                                    class="material-icons-outlined">
                                     chevron_right
                                 </i></p>
                         </li>
@@ -120,31 +157,36 @@
                         <li class="bottom-border plr-25 pl-1">
                             <p class="title-heading-main">Categories</p>
                         </li>
-                        <li class="bottom-border custom-li-wrap plr-25 pl-1 pr-1">
+                        <li class="bottom-border custom-li-wrap plr-25 pl-1
+                            pr-1">
                             <p class="title-heading-main"></p>
                             <i class="material-icons-outlined">
                                 chevron_right
                             </i>
                         </li>
-                        <li class="bottom-border custom-li-wrap plr-25 pl-1 pr-1">
+                        <li class="bottom-border custom-li-wrap plr-25 pl-1
+                            pr-1">
                             <p class="title-heading-main-1"></p>
                             <i class="material-icons-outlined">
                                 chevron_right
                             </i>
                         </li>
-                        <li class="bottom-border custom-li-wrap plr-25 pl-1 pr-1">
+                        <li class="bottom-border custom-li-wrap plr-25 pl-1
+                            pr-1">
                             <p class="title-heading-main-2"></p>
                             <i class="material-icons-outlined">
                                 chevron_right
                             </i>
                         </li>
-                        <li class="bottom-border custom-li-wrap plr-25 pl-1 pr-1">
+                        <li class="bottom-border custom-li-wrap plr-25 pl-1
+                            pr-1">
                             <p class="title-heading-main-3"></p>
                             <i class="material-icons-outlined">
                                 chevron_right
                             </i>
                         </li>
-                        <li class="bottom-border custom-li-wrap plr-25 pl-1 pr-1">
+                        <li class="bottom-border custom-li-wrap plr-25 pl-1
+                            pr-1">
                             <p class="title-heading-main-4"></p>
                             <i class="material-icons-outlined">
                                 chevron_right
@@ -153,14 +195,21 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-5 col-12 col-md-6 border-8 appointment-listing-card">
+            <div class="col-lg-5 col-12 col-md-6 border-8
+                appointment-listing-card">
                 <div>
-                    <div class="d-flex bottom-border align-items-center main-top-filter workspace-appo-list">
-                        <mat-tab-group [(selectedIndex)]="selectedtab" (selectedTabChange)="onTabChanged($event)" mat-align-tabs="start" class="main-tab-grp common-tab-group">
+                    <div class="d-flex bottom-border align-items-center
+                        main-top-filter workspace-appo-list">
+                        <mat-tab-group [(selectedIndex)]="selectedtab"
+                            (selectedTabChange)="onTabChanged($event)"
+                            mat-align-tabs="start" class="main-tab-grp
+                            common-tab-group">
                             <mat-tab>
                                 <ng-template mat-tab-label>
                                     Show new booking request
-                                    <span *ngIf="pendingBookingCount > 0" class="badge-red"> {{pendingBookingCount}} </span>
+                                    <span *ngIf="pendingBookingCount> 0"
+                                        class="badge-red">
+                                        {{pendingBookingCount}} </span>
                                 </ng-template>
                             </mat-tab>
                             <mat-tab>
@@ -178,43 +227,56 @@
                                 <a class="heading-booking">Show all bookings </a>
                             </div>
                         </div> -->
-                        
                         <!-- <mat-icon class="form-control-feedback">search</mat-icon> -->
                         <div class="right-side-wrap">
                             <div class="searchbox mr-2 mt-3">
                                 <form class="search_input-staff">
                                     <div class="has-search">
                                         <mat-icon class="form-control-feedback">search</mat-icon>
-                                        <input name="searchKeyword" [(ngModel)]="search.keyword"
-                                            (keyup)="todayBookingSearch()" type="text"
-                                            class="form-control searchbox_appointment" placeholder="Serach">
+                                        <input name="searchKeyword"
+                                            [(ngModel)]="search.keyword"
+                                            (keyup)="todayBookingSearch()"
+                                            type="text"
+                                            class="form-control
+                                            searchbox_appointment"
+                                            placeholder="Serach">
                                     </div>
                                 </form>
                             </div>
                             <div class="filter-btn-appoint">
-                                <a [ngbPopover]="popContent" placement="bottom" aria-hidden="false"
-                                    aria-label="Example home icon" class="filter-btn"><i
-                                        class="material-icons mr-1">filter_list_alt</i> </a>
-                                <ng-template class="popover common-popover" #popContent>
-                                    <div (click)="fnOnClickStatus('all')" class="common-text">
+                                <a [ngbPopover]="popContent" placement="bottom"
+                                    aria-hidden="false"
+                                    aria-label="Example home icon"
+                                    class="filter-btn"><i
+                                        class="material-icons mr-1">filter_list_alt</i>
+                                </a>
+                                <ng-template class="popover common-popover"
+                                    #popContent>
+                                    <div (click)="fnOnClickStatus('all')"
+                                        class="common-text">
                                         <a> All </a>
                                     </div>
                                     <!-- <div class="common-text">
                                         <a> Pending </a>
                                     </div> -->
-                                    <div (click)="fnOnClickStatus('CNF')" class="common-text">
+                                    <div (click)="fnOnClickStatus('CNF')"
+                                        class="common-text">
                                         <a> Confirm </a>
                                     </div>
-                                    <div (click)="fnOnClickStatus('AC')" class="common-text">
+                                    <div (click)="fnOnClickStatus('AC')"
+                                        class="common-text">
                                         <a> Accepted </a>
                                     </div>
-                                    <div (click)="fnOnClickStatus('OW')" class="common-text">
+                                    <div (click)="fnOnClickStatus('OW')"
+                                        class="common-text">
                                         <a> On The Way </a>
                                     </div>
-                                    <div (click)="fnOnClickStatus('WS')" class="common-text">
+                                    <div (click)="fnOnClickStatus('WS')"
+                                        class="common-text">
                                         <a> Work Started </a>
                                     </div>
-                                    <div (click)="fnOnClickStatus('GL')" class="common-text">
+                                    <div (click)="fnOnClickStatus('GL')"
+                                        class="common-text">
                                         <a> Getting Late </a>
                                     </div>
 
@@ -228,126 +290,222 @@
                     <div class="justify-content-center timeframe-main h-100">
                         <div class="work-service-bg-main h-100">
                             <div class="service-background pt-4 h-100">
-                                <div class="left-time-main pointer py-3 position-relative"
-                                    *ngFor="let appointment of appointments;let i=index"
+                                <div class="left-time-main pointer py-3
+                                    position-relative"
+                                    *ngFor="let appointment of appointments;let
+                                    i=index"
                                     (click)="fnOnClickAppointment(i)"
-                                    [ngClass]="{'active_booking':activeBooking === i}">
-                                    <span class=" left-font">{{appointment.booking_time}}</span>
+                                    [ngClass]="{'active_booking':activeBooking
+                                    === i}">
+                                    <span class="left-font">{{appointment.booking_time}}</span>
                                     <div class="pl-5">
                                         <div class="d-flex">
-                                            <p *ngIf="appointment.timeToService >= 0" class="mb-0 work-space-font hourse-font">in {{appointment.timeToService}} hours</p>
-                                            <p *ngIf="appointment.timeToService < 0" class="mb-0 work-space-font hourse-font">Service Time Gone</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'P'">Pending</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'CNF'">Confirm</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'AC'">Accepted</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'OW'">On The Way</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'WS'">Work Started</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'RSA'">Rescheduled</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'RSS'">Rescheduled</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'RSC'">Rescheduled</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'ITR'">Intrupted</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'C'">Cancelled</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'CC'">Cancelled by Client</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'R'">Rejected</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'CO'">Completed</p>
-                                            <p class="status-stamp ff-stamper pt-0 "
-                                                *ngIf="appointment.order_status == 'GL'">
+                                            <p *ngIf="appointment.timeToService
+                                                >= 0" class="mb-0
+                                                work-space-font hourse-font">in
+                                                {{appointment.timeToService}}
+                                                hours</p>
+                                            <p *ngIf="appointment.timeToService
+                                            <0" class="mb-0 work-space-font
+                                                hourse-font">Service Time Gone</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'P'">Pending</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'CNF'">Confirm</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'AC'">Accepted</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'OW'">On The Way</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'WS'">Work Started</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'RSA'">Rescheduled</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'RSS'">Rescheduled</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'RSC'">Rescheduled</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'ITR'">Intrupted</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'C'">Cancelled</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'CC'">Cancelled by Client</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'R'">Rejected</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'CO'">Completed</p>
+                                            <p class="status-stamp ff-stamper
+                                                pt-0"
+                                                *ngIf="appointment.order_status
+                                                == 'GL'">
                                                 Getting late
                                             </p>
                                         </div>
                                         <h5 class="service-name">
-                                            {{appointment.service?appointment.service.service_name:''}} <small
+                                            {{appointment.service?appointment.service.service_name:''}}
+                                            <small
                                                 class="work-space-font">({{appointment.service?appointment.service.category_name:''}})</small>
                                         </h5>
                                     </div>
-                                    <div class="d-flex flex-wrap pl-5 mb-4 main-details-info">
+                                    <div class="d-flex flex-wrap pl-5 mb-4
+                                        main-details-info">
                                         <div class="d-flex Time">
-                                            <span class="material-icons-outlined">
+                                            <span
+                                                class="material-icons-outlined">
                                                 schedule
                                             </span>
                                             <p class="work-space-font pt-0">{{appointment.booking_time}}</p>
                                         </div>
                                         <div class="d-flex customer-name">
-                                            <span class="material-icons-outlined">
+                                            <span
+                                                class="material-icons-outlined">
                                                 person
                                             </span>
-                                            <p class="work-space-font pt-0 ">
+                                            <p class="work-space-font pt-0">
                                                 {{appointment.customer?appointment.customer.fullname:''}}</p>
                                         </div>
-                                        <div class="d-flex service-person" *ngIf="appointment.staff">
-                                            <span class=""><img src="/assets/images/icons/suitcase.svg" /></span>
+                                        <div class="d-flex service-person"
+                                            *ngIf="appointment.staff">
+                                            <span class=""><img
+                                                    src="/assets/images/icons/suitcase.svg"
+                                                    /></span>
                                             <!-- <i class="fa fa-briefcase pr-2 " aria-hidden="true"></i> -->
-                                            <p class="work-space-font pt-0 ">
+                                            <p class="work-space-font pt-0">
                                                 {{appointment.staff?appointment.staff.firstname:''}}
                                                 {{appointment.staff?appointment.staff.lastname:''}}
                                             </p>
                                         </div>
                                         <div class="money">
                                             <!-- <p class="work-space-font pt-0 ">$ {{appointment.total_cost}}</p> -->
-                                            <p class="work-space-font pt-0 " *ngIf="currencySymbolPosition=='left'">
+                                            <p class="work-space-font pt-0"
+                                                *ngIf="currencySymbolPosition=='left'">
                                                 {{currencySymbol|
-                                                currencySymbol:'wide'}} {{ appointment.total_cost |
-                                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</p>
-                                            <p class="work-space-font pt-0 " *ngIf="currencySymbolPosition=='right'">{{
+                                                currencySymbol:'wide'}} {{
                                                 appointment.total_cost |
-                                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}
-                                                {{currencySymbol| currencySymbol:'wide'}}</p>
+                                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                                                }}</p>
+                                            <p class="work-space-font pt-0"
+                                                *ngIf="currencySymbolPosition=='right'">{{
+                                                appointment.total_cost |
+                                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                                                }}
+                                                {{currencySymbol|
+                                                currencySymbol:'wide'}}</p>
                                         </div>
                                     </div>
                                     <div class="d-flex pl-3 active-btns"
-                                        *ngIf="appointmentDetails.order_status != 'CO' && appointmentDetails.order_status != 'C' && appointmentDetails.order_status != 'CC'">
+                                        *ngIf="appointmentDetails.order_status
+                                        != 'CO' &&
+                                        appointmentDetails.order_status != 'C'
+                                        && appointmentDetails.order_status !=
+                                        'CC'">
                                         <div class="reschedulebtn-width">
-                                            <button mat-button type="button" class=" Reschedulebtn d-block "
+                                            <button mat-button type="button"
+                                                class="Reschedulebtn d-block"
                                                 (click)="rescheduleAppointment()"
-                                                *ngIf="minReschedulingTime && appointment.booking_date_time && (minReschedulingTime.getTime() < appointment.booking_date_time.getTime())">Reschedule</button>
+                                                *ngIf="minReschedulingTime &&
+                                                appointment.booking_date_time &&
+                                                (minReschedulingTime.getTime()
+                                            <appointment.booking_date_time.getTime())">Reschedule</button>
                                         </div>
                                         <div class="cancelbtn-width">
-                                            <button mat-button type="button" class=" Reschedulebtn d-block "
+                                            <button mat-button type="button"
+                                                class="Reschedulebtn d-block"
                                                 (click)="fnCancelAppointment()"
-                                                *ngIf="cancellationBufferTime && appointment.booking_date_time && (cancellationBufferTime.getTime() < appointment.booking_date_time.getTime())">Cancel</button>
+                                                *ngIf="cancellationBufferTime &&
+                                                appointment.booking_date_time &&
+                                                (cancellationBufferTime.getTime()
+                                            <appointment.booking_date_time.getTime())">Cancel</button>
                                         </div>
                                         <div class="acceptbtn-width"
-                                            *ngIf="appointmentDetails.order_status != 'CO' && appointmentDetails.order_status != 'C' && appointmentDetails.order_status != 'CC'">
-                                            <button mat-button type="button" class="Reschedulebtn accept-btn d-block"
+                                            *ngIf="appointmentDetails.order_status
+                                            != 'CO' &&
+                                            appointmentDetails.order_status !=
+                                            'C' &&
+                                            appointmentDetails.order_status !=
+                                            'CC'">
+                                            <button mat-button type="button"
+                                                class="Reschedulebtn accept-btn
+                                                d-block"
                                                 (click)="fnConfirmAppointment()"
-                                                *ngIf="appointmentDetails.order_status == 'P'">Confirm</button>
+                                                *ngIf="appointmentDetails.order_status
+                                                == 'P'">Confirm</button>
 
                                             <div class="assign-dropdown-width"
-                                                *ngIf="appointmentDetails.order_status == 'CNF' && (appointmentDetails.staffId == '' || appointmentDetails.staffId == null)">
+                                                *ngIf="appointmentDetails.order_status
+                                                == 'CNF' &&
+                                                (appointmentDetails.staffId ==
+                                                '' || appointmentDetails.staffId
+                                                == null)">
 
-                                                <mat-select class="form-control form-control-transparent"
-                                                    [(value)]="selectedStaff" (selectionChange)="fnOnClickStaff($event)"
+                                                <mat-select class="form-control
+                                                    form-control-transparent"
+                                                    [(value)]="selectedStaff"
+                                                    (selectionChange)="fnOnClickStaff($event)"
                                                     placeholder="select staff">
-                                                    <mat-option *ngFor="let staff of availableStaff"
+                                                    <mat-option *ngFor="let
+                                                        staff of availableStaff"
                                                         value="{{staff.id}}">{{staff.name}}</mat-option>
-                                                    <mat-option *ngIf="availableStaff.length === 0">No Staff
+                                                    <mat-option
+                                                        *ngIf="availableStaff.length
+                                                        === 0">No Staff
                                                         Available</mat-option>
                                                 </mat-select>
                                             </div>
-                                            <button mat-button type="button" class="sc-pink-btn"
-                                                *ngIf="(appointmentDetails.order_status == 'CNF') && (appointmentDetails.staffId != '' && appointmentDetails.staffId != null)">Assigned</button>
-
-                                            <button mat-button type="button" class="Reschedulebtn accept-btn d-block"
+                                            <button mat-button type="button"
+                                                class="sc-pink-btn"
+                                                *ngIf="(appointmentDetails.order_status
+                                                == 'CNF') &&
+                                                (appointmentDetails.staffId !=
+                                                '' && appointmentDetails.staffId
+                                                != null)">Assigned</button>
+                                            <button mat-button type="button"
+                                                class="Reschedulebtn accept-btn
+                                                d-block"
                                                 (click)="fnCompleteAppointment()"
-                                                *ngIf="(appointmentDetails.order_status == 'AC' || appointmentDetails.order_status == 'RSA' || appointmentDetails.order_status == 'RSC' || appointmentDetails.order_status == 'RSS') && (appointmentDetails.staffId != '' && appointmentDetails.staffId != null)">Complete</button>
+                                                *ngIf="(appointmentDetails.order_status
+                                                == 'AC' ||
+                                                appointmentDetails.order_status
+                                                == 'RSA' ||
+                                                appointmentDetails.order_status
+                                                == 'RSC' ||
+                                                appointmentDetails.order_status
+                                                == 'RSS') &&
+                                                (appointmentDetails.staffId !=
+                                                '' && appointmentDetails.staffId
+                                                != null)">Complete</button>
                                         </div>
                                     </div>
                                     <div class="line ml-1 mr-1 ml-5"></div>
                                 </div>
-                                <div class="no-appointment-data" *ngIf="appointments.length==0">
+                                <div class="no-appointment-data"
+                                    *ngIf="appointments.length==0">
                                     <div class="no-data-badge custom-no-data">
                                         <img src="/assets/images/nodata.svg" />
                                         <label>No Booking Request to Show</label>
@@ -358,72 +516,111 @@
                     </div>
                 </div>
             </div>
-            <div id="appo_detail" class="col-lg-4 col-12 col-md-6 border-8" *ngIf="appointments.length>0">
+            <div id="appo_detail" class="col-lg-4 col-12 col-md-6 border-8"
+                *ngIf="appointments.length>0">
                 <div id="Appoinment-Details" class="Appoinment-all-details">
                     <div class="bottom-border">
                         <p class="title-heading-main">Appointment Details</p>
                     </div>
                     <div class="top-status-wrap">
-                        <div class="d-flex w-100 justify-content-between center-buttons-appointment"
-                            *ngIf="appointmentDetails.order_status != 'CO' && appointmentDetails.order_status != 'C' && appointmentDetails.order_status != 'CC'">
-                            <button mat-button type="button" class="sc-pink-btn confirm-pink-btn"
-                                (click)="fnConfirmAppointment()" *ngIf="appointmentDetails.order_status == 'P'">
-                                <i class="fa fa-check" aria-hidden="true"></i> Confirm</button>
-                            <label class="fontred pointer mb-0 d-flex align-items-center"
+                        <div class="d-flex w-100 justify-content-between
+                            center-buttons-appointment"
+                            *ngIf="appointmentDetails.order_status != 'CO' &&
+                            appointmentDetails.order_status != 'C' &&
+                            appointmentDetails.order_status != 'CC'">
+                            <button mat-button type="button" class="sc-pink-btn
+                                confirm-pink-btn"
+                                (click)="fnConfirmAppointment()"
+                                *ngIf="appointmentDetails.order_status == 'P'">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                Confirm</button>
+                            <label class="fontred pointer mb-0 d-flex
+                                align-items-center"
                                 (click)="fnCancelAppointment()"
-                                *ngIf="cancellationBufferTime && appointmentDetails.booking_date_time && cancellationBufferTime.getTime() < appointmentDetails.booking_date_time.getTime()"><i
+                                *ngIf="cancellationBufferTime &&
+                                appointmentDetails.booking_date_time &&
+                                cancellationBufferTime.getTime()
+                            <appointmentDetails.booking_date_time.getTime()"><i
                                     class="fa fa-times-circle-o pr-1"></i>Cancel</label>
-                            <label class="reschedule-font pointer mb-0 d-flex align-items-center"
+                            <label class="reschedule-font pointer mb-0 d-flex
+                                align-items-center"
                                 (click)="rescheduleAppointment()"
-                                *ngIf="minReschedulingTime && appointmentDetails.booking_date_time &&  minReschedulingTime.getTime() < appointmentDetails.booking_date_time.getTime()"><i
+                                *ngIf="minReschedulingTime &&
+                                appointmentDetails.booking_date_time &&
+                                minReschedulingTime.getTime()
+                            <appointmentDetails.booking_date_time.getTime()"><i
                                     class="fa fa-repeat repeat pr-1"></i>Reschedule</label>
-
-
-                            <button mat-button type="button" class="sc-pink-btn" *ngIf="(appointmentDetails.order_status == 'RSA' || appointmentDetails.order_status == 'RSC' || appointmentDetails.order_status == 'RSS' || appointmentDetails.order_status == 'CNF') && (appointmentDetails.staffId != '' && appointmentDetails.staffId != null)">Assigned</button>
-                            <button mat-button type="button" class="d-block sc-pink-btn float-right add-booking-notes" (click)="fnCompleteAppointment()"  *ngIf="appointmentDetails.order_status == 'AC'">Complete</button>
+                            <button mat-button type="button" class="sc-pink-btn"
+                                *ngIf="(appointmentDetails.order_status == 'RSA'
+                                || appointmentDetails.order_status == 'RSC' ||
+                                appointmentDetails.order_status == 'RSS' ||
+                                appointmentDetails.order_status == 'CNF') &&
+                                (appointmentDetails.staffId != '' &&
+                                appointmentDetails.staffId != null)">Assigned</button>
+                            <button mat-button type="button" class="d-block
+                                sc-pink-btn float-right add-booking-notes"
+                                (click)="fnCompleteAppointment()"
+                                *ngIf="appointmentDetails.order_status == 'AC'">Complete</button>
                         </div>
                         <div class="d-flex">
                             <div class="assign-dropdown-width"
-                                *ngIf="appointmentDetails.order_status == 'CNF' && (appointmentDetails.staffId == '' || appointmentDetails.staffId == null)">
+                                *ngIf="appointmentDetails.order_status == 'CNF'
+                                && (appointmentDetails.staffId == '' ||
+                                appointmentDetails.staffId == null)">
                                 <mat-label>AssignTo</mat-label>
-                                <mat-select class="form-control form-control-transparent" [(value)]="selectedStaff"
-                                    (selectionChange)="fnOnClickStaff($event)" placeholder="select staff">
-                                    <mat-option *ngFor="let staff of availableStaff" value="{{staff.id}}">
+                                <mat-select class="form-control
+                                    form-control-transparent"
+                                    [(value)]="selectedStaff"
+                                    (selectionChange)="fnOnClickStaff($event)"
+                                    placeholder="select staff">
+                                    <mat-option *ngFor="let staff of
+                                        availableStaff" value="{{staff.id}}">
                                         {{staff.name}}</mat-option>
                                 </mat-select>
                             </div>
                         </div>
-                        <div class="d-flex Completed-status" *ngIf="appointmentDetails.order_status == 'CO'">
+                        <div class="d-flex Completed-status"
+                            *ngIf="appointmentDetails.order_status == 'CO'">
                             Completed</div>
                         <div class="d-flex Cancelled-status"
-                            *ngIf="appointmentDetails.order_status == 'C' || appointmentDetails.order_status == 'CC'">
+                            *ngIf="appointmentDetails.order_status == 'C' ||
+                            appointmentDetails.order_status == 'CC'">
                             Cancelled</div>
                         <div class="d-flex Cancelled-status"
                             *ngIf="appointmentDetails.order_status == 'WS'">
                             Work Started</div>
                     </div>
-                    <div class="background booking-details-main-wrap pb-2 border-right-blue position-relative">
+                    <div class="background booking-details-main-wrap pb-2
+                        border-right-blue position-relative">
                         <div class="top-booking-date">
                             <h6 class="">{{appointmentDetails.booking_date}}</h6>
-                            <p class=""> Booked On: {{appointmentDetails.created_at}}</p>
+                            <p class=""> Booked On:
+                                {{appointmentDetails.created_at}}</p>
                         </div>
                         <div class="common-booking-details">
                             <p class="">Service</p>
                             <h6 class="" *ngIf="currencySymbolPosition=='left'">
-                                {{appointmentDetails.service_name}}({{appointmentDetails.categoryName}}) :
-                                {{currencySymbol| currencySymbol:'wide'}} {{ appointmentDetails.total_cost |
-                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</h6>
-                            <h6 class="" *ngIf="currencySymbolPosition=='right'">
-                                {{appointmentDetails.service_name}}({{appointmentDetails.categoryName}}) : {{
+                                {{appointmentDetails.service_name}}({{appointmentDetails.categoryName}})
+                                :
+                                {{currencySymbol| currencySymbol:'wide'}} {{
                                 appointmentDetails.total_cost |
-                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }} {{currencySymbol|
+                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                                }}</h6>
+                            <h6 class=""
+                                *ngIf="currencySymbolPosition=='right'">
+                                {{appointmentDetails.service_name}}({{appointmentDetails.categoryName}})
+                                : {{
+                                appointmentDetails.total_cost |
+                                currency:selectedCurrency:'':'1.2-2':currencySymbolFormat
+                                }} {{currencySymbol|
                                 currencySymbol:'wide'}}</h6>
                             <!-- <p class="text-gray pt-0 mb-0">(Tax : $.50.00)</p> -->
                         </div>
                         <div class="common-booking-details">
                             <p class="">Time</p>
                             <h6 class="">{{appointmentDetails.booking_time}} -
-                                {{appointmentDetails.booking_time_to}} ({{appointmentDetails.service_time}} Min)
+                                {{appointmentDetails.booking_time_to}}
+                                ({{appointmentDetails.service_time}} Min)
                             </h6>
                         </div>
                         <div class="d-flex">
@@ -433,35 +630,65 @@
                             </div>
                             <div class="appoint-Status common-booking-details">
                                 <p class="text-gray mb-0 pt-2">Status</p>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'P'">Pending
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'P'">Pending
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'CNF'">Confirm
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'CNF'">Confirm
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'AC'">Accepted
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'AC'">Accepted
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'OW'">On The Way
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'OW'">On The Way
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'WS'">Work
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'WS'">Work
                                     Started</h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'RSA'">
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'RSA'">
                                     Rescheduled By Admin</h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'RSS'">
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'RSS'">
                                     Rescheduled By Staff</h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'RSC'">
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'RSC'">
                                     Rescheduled By Client</h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'ITR'">Intrupted
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'ITR'">Intrupted
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'C'">Cancelled
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'C'">Cancelled
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'CC'">Cancelled
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'CC'">Cancelled
                                     By Client</h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'R'">Rejected
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'R'">Rejected
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'CO'">Completed
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'CO'">Completed
                                 </h6>
-                                <h6 class="pt-0 mb-0" *ngIf="appointmentDetails.order_status == 'GL'">
-                                    Getting Late {{appointmentDetails.gl_time && appointmentDetails.gl_time !=
-                                    ''?'(Late Time : '+appointmentDetails.gl_time+')':''}}
+                                <h6 class="pt-0 mb-0"
+                                    *ngIf="appointmentDetails.order_status ==
+                                    'GL'">
+                                    Getting Late {{appointmentDetails.gl_time &&
+                                    appointmentDetails.gl_time !=
+                                    ''?'(Late Time :
+                                    '+appointmentDetails.gl_time+')':''}}
                                 </h6>
                             </div>
                             <div class="appoint-staff common-booking-details">
@@ -494,26 +721,82 @@
                         <h6 (click)="fnOpenNote()" class="pointer w-fc">Notes <i
                                 class="fa fa-plus-circle pl-2 note-icon"></i></h6>
                         <div class="form-group mt-2" *ngIf="formSettingPage">
-                            <textarea class="form-control" rows="5" [(ngModel)]="singlenote" matInput
+                            <textarea class="form-control" rows="5"
+                                [(ngModel)]="singlenote" matInput
                                 placeholder="Type Note Description Here"></textarea>
                         </div>
                         <div class="text-end">
-                            <button mat-button type="button" class="mt-2 sc-pink-btn" *ngIf="formSettingPage"
+                            <button mat-button type="button" class="mt-2
+                                sc-pink-btn" *ngIf="formSettingPage"
                                 (click)="fnSaveBookingNotes(appointmentDetails.id)">Save</button>
                         </div>
 
-                        <p class="note-add-details" *ngFor="let note of singleBookingNotes; let i=index">
-                            {{note.notes}}, <br> Added by <br> {{note.user_type=='A'?'Admin':''}}
-                            {{note.user_type=='SM'?'Staff':''}} {{note.user_type=='C'?'Customer':''}}
+                        <p class="note-add-details" *ngFor="let note of
+                            singleBookingNotes; let i=index">
+                            {{note.notes}}, <br> Added by <br>
+                            {{note.user_type=='A'?'Admin':''}}
+                            {{note.user_type=='SM'?'Staff':''}}
+                            {{note.user_type=='C'?'Customer':''}}
                             @{{note.created_at | date:'yyyy/MM/dd HH:mm'}}
                         </p>
                     </div>
 
                     <div class="activelog-details-main bottom-border">
                         <h6>Activity Log</h6>
-                        <div *ngFor="let log of activityLog" class="activelog-details ">
+                        <div *ngFor="let log of activityLog"
+                            class="activelog-details">
                             <p>
-                                {{log.created_at | date:'yyyy/MM/dd HH:mm'}}  - {{log.status=='P'?'Pending':''}} {{log.status=='MOD'?'Modified':''}} {{log.status=='CNF'?'Confirm':''}} {{log.user_type=='A' && log.status=='CNF' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='CNF' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='CNF' ? 'By '+ log.user.fullname +' (User)' : ''}} {{log.status=='AC'?'Accepted':''}} {{log.user_type=='A' && log.status=='AC' ? 'By '+ log.user.fullname +' (Admin)' : log. user_type=='S' && log.status=='AC' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='AC' ? 'By '+ log.user.fullname +' (User)' : ''}} {{log.status=='OW'?'On The Way':''}} {{log.status=='WS'?'Work Started':''}} {{log.status=='RSA' && log.customer ? 'Rescheduled By '+ log.customer.fullname : log.status=='RSA' ? 'Rescheduled By '+ log.user.fullname +' (Admin)' :''}} {{log.status=='RSS' && log.customer ? 'Rescheduled By '+ log.customer.fullname : log.status=='RSS' ? 'Rescheduled By '+ log.user.fullname +' (Staff)' :''}} {{log.status=='RSC' && log.customer ? 'Rescheduled By '+ log.customer.fullname : log.status=='RSC' ? 'Rescheduled By Client' :''}} {{log.status=='ITR'?'Intrupted':''}} {{log.status=='C' && log.customer ? 'Cancelled By '+ log.customer.fullname : log.status=='C' ? 'Cancelled' :''}} {{log.status=='CC' && log.customer ? 'Cancelled By '+ log.customer.fullname : log.status=='CC' ? 'Cancelled By Client' :''}} {{log.status=='R'?'Rejected':''}} {{log.user_type=='A' && log.status=='R' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='R' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='R' ? 'By '+ log.user.fullname +' (User)' : ''}} {{log.status=='CO'?'Completed':''}} {{log.user_type=='A' && log.status=='CO' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='CO' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='CO' ? 'By '+ log.user.fullname +' (User)' : ''}}
+                                {{log.created_at | date:'yyyy/MM/dd HH:mm'}} -
+                                {{log.status=='P'?'Pending':''}}
+                                {{log.status=='MOD'?'Modified':''}}
+                                {{log.status=='CNF'?'Confirm':''}}
+                                {{log.user_type=='A' && log.status=='CNF' ? 'By
+                                '+ log.user.fullname +' (Admin)' :
+                                log.user_type=='S' && log.status=='CNF' ? 'By '+
+                                log.user.fullname +' (Staff)':
+                                log.user_type=='C' && log.status=='CNF' ? 'By '+
+                                log.user.fullname +' (User)' : ''}}
+                                {{log.status=='AC'?'Accepted':''}}
+                                {{log.user_type=='A' && log.status=='AC' ? 'By
+                                '+ log.user.fullname +' (Admin)' : log.
+                                user_type=='S' && log.status=='AC' ? 'By '+
+                                log.user.fullname +' (Staff)':
+                                log.user_type=='C' && log.status=='AC' ? 'By '+
+                                log.user.fullname +' (User)' : ''}}
+                                {{log.status=='OW'?'On The Way':''}}
+                                {{log.status=='WS'?'Work Started':''}}
+                                {{log.status=='RSA' && log.customer ?
+                                'Rescheduled By '+ log.customer.fullname :
+                                log.status=='RSA' ? 'Rescheduled By '+
+                                log.user.fullname +' (Admin)' :''}}
+                                {{log.status=='RSS' && log.customer ?
+                                'Rescheduled By '+ log.customer.fullname :
+                                log.status=='RSS' ? 'Rescheduled By '+
+                                log.user.fullname +' (Staff)' :''}}
+                                {{log.status=='RSC' && log.customer ?
+                                'Rescheduled By '+ log.customer.fullname :
+                                log.status=='RSC' ? 'Rescheduled By Client'
+                                :''}} {{log.status=='ITR'?'Intrupted':''}}
+                                {{log.status=='C' && log.customer ? 'Cancelled
+                                By '+ log.customer.fullname : log.status=='C' ?
+                                'Cancelled' :''}} {{log.status=='CC' &&
+                                log.customer ? 'Cancelled By '+
+                                log.customer.fullname : log.status=='CC' ?
+                                'Cancelled By Client' :''}}
+                                {{log.status=='R'?'Rejected':''}}
+                                {{log.user_type=='A' && log.status=='R' ? 'By '+
+                                log.user.fullname +' (Admin)' :
+                                log.user_type=='S' && log.status=='R' ? 'By '+
+                                log.user.fullname +' (Staff)':
+                                log.user_type=='C' && log.status=='R' ? 'By '+
+                                log.user.fullname +' (User)' : ''}}
+                                {{log.status=='CO'?'Completed':''}}
+                                {{log.user_type=='A' && log.status=='CO' ? 'By
+                                '+ log.user.fullname +' (Admin)' :
+                                log.user_type=='S' && log.status=='CO' ? 'By '+
+                                log.user.fullname +' (Staff)':
+                                log.user_type=='C' && log.status=='CO' ? 'By '+
+                                log.user.fullname +' (User)' : ''}}
                             </p>
                             <p *ngIf="log.notes">
                                 <b>Note: </b> {{log.notes}}
@@ -522,7 +805,8 @@
                     </div>
                 </div>
             </div>
-            <div id="appo_detail" class="col-lg-4 col-12 col-md-6 border-8" *ngIf="appointments.length==0">
+            <div id="appo_detail" class="col-lg-4 col-12 col-md-6 border-8"
+                *ngIf="appointments.length==0">
                 <div id="Appoinment-Details" class="Appoinment-all-details">
                     <div class="bottom-border">
                         <p class="title-heading-main">Appointment Details</p>
@@ -532,28 +816,30 @@
                             <span></span>
                         </div>
                         <div class="cancel-wrap">
-                            <img src="../../../assets/images/icons/icon-close.svg">
+                            <img
+                                src="../../../assets/images/icons/icon-close.svg">
                             <span></span>
                         </div>
                         <div class="retun-wrap-sec">
-                            <img src="../../../assets/images/icons/Icon metro-undo.svg">
+                            <img src="../../../assets/images/icons/Icon
+                                metro-undo.svg">
                             <span></span>
                         </div>
                     </div>
                     <ul>
-                        <li class=" appoinment-custom-wrap  plr-25 pl-1 pr-1">
+                        <li class="appoinment-custom-wrap plr-25 pl-1 pr-1">
                             <p class="first-line-wrap"></p>
                             <p class="second-trans-wrap"></p>
                         </li>
-                        <li class=" appoinment-custom-wrap  plr-25 pl-1 pr-1">
+                        <li class="appoinment-custom-wrap plr-25 pl-1 pr-1">
                             <p class="first-line-wrap"></p>
                             <p class="second-trans-wrap"></p>
                         </li>
-                        <li class=" appoinment-custom-wrap  plr-25 pl-1 pr-1">
+                        <li class="appoinment-custom-wrap plr-25 pl-1 pr-1">
                             <p class="first-line-wrap"></p>
                             <p class="second-trans-wrap"></p>
                         </li>
-                        <li class=" appoinment-custom-wrap  plr-25 pl-1 pr-1">
+                        <li class="appoinment-custom-wrap plr-25 pl-1 pr-1">
                             <p class="first-line-wrap"></p>
                             <p class="second-trans-wrap"></p>
                         </li>

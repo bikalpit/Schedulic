@@ -13,7 +13,7 @@ import { AppComponent } from '@app/app.component';
 import { AuthenticationService } from '@app/_services';
 import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
 import { SharedService } from '@app/_services/shared.service';
-import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
 
 @Component({
@@ -21,8 +21,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
   templateUrl: './my-work-space.component.html',
   styleUrls: ['./my-work-space.component.scss'],
   providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS},
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
     DatePipe
   ]
 })
@@ -90,13 +90,14 @@ export class MyWorkSpaceComponent implements OnInit {
   singlenote: any;
   startWorkSpacePage: boolean = true;
   bookingTypeView: any = 'all';
-  dateTypeFilter:any='today';
-  dateTypeFilterView:any=new Date();
-  selectedDateRange:any;
-  selectedStartDate:any;
-  selectedEndDate:any;
-  pendingBookingCount:number=0;
-  selectedtab:number=0;
+  dateTypeFilter: any = 'today';
+  dateTypeFilterView: any = new Date();
+  selectedDateRange: any;
+  selectedStartDate: any;
+  selectedEndDate: any;
+  pendingBookingCount: number = 0;
+  // selectedtab: number = 0;
+  selectedtab: number = 1;
   @ViewChild(DaterangepickerDirective, { static: false }) pickerDirective: DaterangepickerDirective;
   constructor(
     public dialog: MatDialog,
@@ -104,7 +105,7 @@ export class MyWorkSpaceComponent implements OnInit {
     private _formBuilder: FormBuilder,
     public router: Router,
     private adminService: AdminService,
-    private _snackBar: MatSnackBar,    private appComponent: AppComponent,
+    private _snackBar: MatSnackBar, private appComponent: AppComponent,
     private authenticationService: AuthenticationService,
     private datePipe: DatePipe,
     private sharedService: SharedService) {
@@ -117,10 +118,10 @@ export class MyWorkSpaceComponent implements OnInit {
       filterDate: [''],
     });
 
-    this.dateTypeFilterView=this.datePipe.transform(new Date(), 'yyyy/MM/dd');
+    this.dateTypeFilterView = this.datePipe.transform(new Date(), 'yyyy/MM/dd');
 
-    this.selectedStartDate=this.datePipe.transform(new Date(),"yyyy/MM/dd");
-    this.selectedEndDate=this.datePipe.transform(new Date(),"yyyy/MM/dd");
+    this.selectedStartDate = this.datePipe.transform(new Date(), "yyyy/MM/dd");
+    this.selectedEndDate = this.datePipe.transform(new Date(), "yyyy/MM/dd");
   }
 
   ngOnInit() {
@@ -243,7 +244,7 @@ export class MyWorkSpaceComponent implements OnInit {
   fnselectCategoryActive(i) {
     this.selectedCategory = i;
   }
-  
+
   fnGetAllAppointmentsByCategoryAndStatus() {
     this.isLoaderAdmin = true;
     let requestObject = {
@@ -251,15 +252,15 @@ export class MyWorkSpaceComponent implements OnInit {
       "category": this.selectedCategoryId,
       "status_filter": this.selectedStatus,
       "booking_date": this.dateTypeFilter,
-      "start_date":this.selectedStartDate,
-      "end_date":this.selectedEndDate
+      "start_date": this.selectedStartDate,
+      "end_date": this.selectedEndDate
     };
     this.adminService.getAllAppointmentsByCategoryAndStatus(requestObject).subscribe((response: any) => {
       if (response.data == true) {
         this.appointments = response.response;
         this.appointments = this.appointments.sort(this.dynamicSort("booking_time"))
         this.activeBooking = 0;
-        this.fnGetPendingCount();
+        // this.fnGetPendingCount();
         this.appointments.forEach((element) => {
           var todayDateTime = new Date();
           element.booking_date_time = new Date(element.booking_date + " " + element.booking_time);
@@ -324,35 +325,35 @@ export class MyWorkSpaceComponent implements OnInit {
           this.fnGetStaff(this.appointmentDetails.booking_date, this.appointmentDetails.customer_id, this.appointmentDetails.booking_time, this.appointmentDetails.serviceId, this.appointmentDetails.postalCode);
         }
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
-        
+
         this.appointments = [];
       }
 
-    this.isLoaderAdmin = false;
+      this.isLoaderAdmin = false;
     },
       (err) => {
         this.error = err;
       });
   }
 
-    fnGetPendingCount() {
+  fnGetPendingCount() {
     this.isLoaderAdmin = true;
     let requestObject = {
       "business_id": this.businessId,
       "category": this.selectedCategoryId,
       "status_filter": 'P',
       "booking_date": this.dateTypeFilter,
-      "start_date":this.selectedStartDate,
-      "end_date":this.selectedEndDate
+      "start_date": this.selectedStartDate,
+      "end_date": this.selectedEndDate
     };
     this.adminService.getAllAppointmentsByCategoryAndStatus(requestObject).subscribe((response: any) => {
       if (response.data == true) {
         this.pendingBookingCount = response.response.length;
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
       }
-      if(this.pendingBookingCount == 0){
+      if (this.pendingBookingCount == 0) {
         this.selectedtab = 1;
-      }else{
+      } else {
         this.selectedtab = 0;
       }
       this.isLoaderAdmin = false;
@@ -524,7 +525,7 @@ export class MyWorkSpaceComponent implements OnInit {
   goToSupport() {
     this.router.navigate(['/admin/support/']);
   }
-  onupgrade(){
+  onupgrade() {
     this.router.navigate(['/admin/settings-payment/billing/']);
   }
 
@@ -585,12 +586,12 @@ export class MyWorkSpaceComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != undefined){
-        if(result.start_date){
-          this.selectedStartDate=this.datePipe.transform(new Date(result.start_date),"yyyy/MM/dd");
+      if (result != undefined) {
+        if (result.start_date) {
+          this.selectedStartDate = this.datePipe.transform(new Date(result.start_date), "yyyy/MM/dd");
         }
-        if(result.end_date){
-          this.selectedEndDate=this.datePipe.transform(new Date(result.end_date),"yyyy/MM/dd");
+        if (result.end_date) {
+          this.selectedEndDate = this.datePipe.transform(new Date(result.end_date), "yyyy/MM/dd");
         }
       }
       this.fnGetAllAppointmentsByCategoryAndStatus();
@@ -761,45 +762,47 @@ export class MyWorkSpaceComponent implements OnInit {
     }
   }
 
-  fnChangeBookingStatus(type){
+  fnChangeBookingStatus(type) {
     this.bookingTypeView = type;
-      this.selectedStatus = type;
+    this.selectedStatus = type;
     // this.formSettingPage = false;
+    console.log('this.bookingTypeView:', this.bookingTypeView, this.selectedStatus);
+
     this.fnGetAllAppointmentsByCategoryAndStatus();
   }
 
-  fnChangeDateFilter(dateType){
-    this.dateTypeFilter= dateType;
-    if(dateType == 'today'){
+  fnChangeDateFilter(dateType) {
+    this.dateTypeFilter = dateType;
+    if (dateType == 'today') {
       this.dateTypeFilterView = this.datePipe.transform(new Date(), 'yyyy/MM/dd');
-    }else if(dateType == 'tomorrow'){
+    } else if (dateType == 'tomorrow') {
       const today = new Date()
       const tomorrow = new Date(today)
       tomorrow.setDate(tomorrow.getDate() + 1)
       this.dateTypeFilterView = this.datePipe.transform(tomorrow, 'yyyy/MM/dd');
-    }else if(dateType == 'week'){
+    } else if (dateType == 'week') {
       var curr = new Date; // get current date
       var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
       var last = first + 6; // last day is the first day + 6
       var firstday = new Date(curr.setDate(first)).toUTCString();
       var lastday = new Date(curr.setDate(last)).toUTCString();
-      this.dateTypeFilterView = this.datePipe.transform(firstday, 'yyyy/MM/dd') +' to '+this.datePipe.transform(lastday, 'yyyy/MM/dd')
-    }else if(dateType == 'month'){
+      this.dateTypeFilterView = this.datePipe.transform(firstday, 'yyyy/MM/dd') + ' to ' + this.datePipe.transform(lastday, 'yyyy/MM/dd')
+    } else if (dateType == 'month') {
       this.dateTypeFilterView = this.datePipe.transform(new Date(), 'MMMM')
-    }else if(dateType == 'year'){
+    } else if (dateType == 'year') {
       this.dateTypeFilterView = this.datePipe.transform(new Date(), 'y')
-    }else if(dateType == 'custom'){
-      this.dateTypeFilterView = this.selectedStartDate+' To '+this.selectedEndDate
+    } else if (dateType == 'custom') {
+      this.dateTypeFilterView = this.selectedStartDate + ' To ' + this.selectedEndDate
     }
     this.fnGetAllAppointmentsByCategoryAndStatus();
   }
 
-  
-  onTabChanged(event){
+
+  onTabChanged(event) {
     this.selectedtab = event.index;
-    if(this.selectedtab == 0){
+    if (this.selectedtab == 0) {
       this.fnChangeBookingStatus('P');
-    }else if(this.selectedtab == 1){
+    } else if (this.selectedtab == 1) {
       this.fnChangeBookingStatus('all');
     }
   }
@@ -811,8 +814,8 @@ export class MyWorkSpaceComponent implements OnInit {
   selector: 'interrupted-reschedule-dialog-workspace',
   templateUrl: '../_dialogs/reschedule-appointment-dialog.html',
   providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS},
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
     DatePipe
   ]
 })
@@ -835,7 +838,7 @@ export class InterruptedReschedule {
   maximumAdvanceBookingTime: any;
   minimumAdvanceBookingDateTimeObject: any;
   maximumAdvanceBookingDateTimeObject: any;
-  isLoaderAdmin:boolean=false;
+  isLoaderAdmin: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<InterruptedReschedule>,
     private datePipe: DatePipe,
@@ -1104,8 +1107,8 @@ export class InterruptedReschedule {
   selector: 'date-range-selection',
   templateUrl: '../_dialogs/date-range-picker.html',
   providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS},
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
     DatePipe
   ]
 })
@@ -1116,9 +1119,9 @@ export class dateRangeSelectDialog {
 
   }
 
-  datesUpdated(event){
-    if(event.startDate && event.endDate){
-      this.dialogRef.close({'start_date':event.startDate._d, 'end_date':event.endDate._d});
+  datesUpdated(event) {
+    if (event.startDate && event.endDate) {
+      this.dialogRef.close({ 'start_date': event.startDate._d, 'end_date': event.endDate._d });
     }
   }
 

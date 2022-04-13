@@ -15,7 +15,7 @@ import { DatePipe } from "@angular/common";
 import { AppComponent } from "@app/app.component";
 import { environment } from "@environments/environment";
 import { ConfirmationDialogComponent } from '../../_components/confirmation-dialog/confirmation-dialog.component';
-import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
 
 export interface DialogData {
@@ -27,8 +27,8 @@ export interface DialogData {
   templateUrl: "./discount-coupon.component.html",
   styleUrls: ["./discount-coupon.component.scss"],
   providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS},
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
     DatePipe
   ]
 })
@@ -79,7 +79,7 @@ export class DiscountCouponComponent implements OnInit {
   currencySymbolPosition: any;
   currencySymbolFormat: any;
   singleCouponDetail: any;
-  
+
   constructor(
     private AdminService: AdminService,
     private _formBuilder: FormBuilder,
@@ -238,8 +238,10 @@ export class DiscountCouponComponent implements OnInit {
     this.discountCoupon.get("valid_till").setValue("");
   }
 
+
   fnCreateCouponSubmit() {
-   
+    console.log('this.discountCoupon:', this.discountCoupon.valid);
+    // debugger
     if (this.discountCoupon.valid) {
       this.valid_from = this.discountCoupon.get("valid_from").value;
       this.valid_till = this.discountCoupon.get("valid_till").value;
@@ -284,6 +286,7 @@ export class DiscountCouponComponent implements OnInit {
       };
       if (this.categoryServiceCheckServiceId != "") {
         if (this.singleCouponDetail) {
+          // alert('okay')
           this.createdCouponCodeData["coupon_id"] = this.singleCouponDetail.id;
           this.updateCouponCode(this.createdCouponCodeData);
         } else {
@@ -427,12 +430,12 @@ export class DiscountCouponComponent implements OnInit {
           this.categoryServiceList = response.response;
           this.categoryServiceList.forEach((element) => {
             element.is_selected = false;
-            let subCategoryLength = element.subcategory.length ;
-            let selectedSubCategoryCount = 0; 
+            let subCategoryLength = element.subcategory.length;
+            let selectedSubCategoryCount = 0;
 
             element.subcategory.forEach((subelement) => {
               subelement.is_selected = false;
-              let serviceLength = subelement.services.length ;
+              let serviceLength = subelement.services.length;
               let selectedServiceCount = 0;
 
               subelement.services.forEach((serviceselement) => {
@@ -449,42 +452,42 @@ export class DiscountCouponComponent implements OnInit {
                   this.categoryServiceCheckServiceId.push(serviceselement.id);
                 }
               });
-                if(selectedServiceCount != 0 && selectedServiceCount == serviceLength){
-                  subelement.is_selected = true;
-                  selectedSubCategoryCount++;
-                }
-                if (!this.singleCouponDetail) {
-                  subelement.is_selected = true;
-                }
-            });
-              if(selectedSubCategoryCount != 0 && selectedSubCategoryCount == subCategoryLength){
-                element.is_selected = true;
+              if (selectedServiceCount != 0 && selectedServiceCount == serviceLength) {
+                subelement.is_selected = true;
+                selectedSubCategoryCount++;
               }
               if (!this.singleCouponDetail) {
+                subelement.is_selected = true;
+              }
+            });
+            if (selectedSubCategoryCount != 0 && selectedSubCategoryCount == subCategoryLength) {
+              element.is_selected = true;
+            }
+            if (!this.singleCouponDetail) {
+              element.is_selected = true;
+            }
+
+            if (element.getservices.length > 0) {
+              let dserviceLength = element.getservices.length;
+              let dselectedServiceCount = 0;
+              element.getservices.forEach(serviceselement => {
+                serviceselement.is_selected = false;
+                const index = this.categoryServiceCheckServiceId.indexOf(serviceselement.id, 0);
+                if (index > -1) {
+                  this.categoryServiceCheckServiceId.push(serviceselement.id);
+                  serviceselement.is_selected = true;
+                  dselectedServiceCount++;
+                }
+                if (!this.singleCouponDetail) {
+                  serviceselement.is_selected = true;
+                  this.categoryServiceCheckServiceId.push(serviceselement.id);
+                }
+              });
+              if (dserviceLength == dselectedServiceCount) {
                 element.is_selected = true;
               }
+            }
 
-              if(element.getservices.length > 0){
-                let dserviceLength = element.getservices.length ;
-                let dselectedServiceCount = 0;
-                element.getservices.forEach(serviceselement => {
-                  serviceselement.is_selected = false;
-                  const index = this.categoryServiceCheckServiceId.indexOf(serviceselement.id, 0);
-                  if (index > -1) {
-                    this.categoryServiceCheckServiceId.push(serviceselement.id);
-                    serviceselement.is_selected = true;
-                    dselectedServiceCount++;
-                  }
-                  if (!this.singleCouponDetail) {
-                    serviceselement.is_selected = true;
-                    this.categoryServiceCheckServiceId.push(serviceselement.id);
-                  }
-                });
-                if(dserviceLength == dselectedServiceCount){
-                  element.is_selected = true;
-                }
-              }
-  
           });
 
           this.categoryServiceListTemp = this.categoryServiceList;
@@ -721,7 +724,7 @@ export class DiscountCouponComponent implements OnInit {
     this.discountCoupon.controls["valid_till"].setValue(
       new Date(this.singleCouponDetail.coupon_valid_till)
     );
-      
+
     this.categoryServiceCheckServiceId = this.singleCouponDetail.service_id
       .split(",")
       .map(function (item) {
@@ -736,32 +739,32 @@ export class DiscountCouponComponent implements OnInit {
       data: "Are you sure you want to delete?"
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         let requestObject = {
           'coupon_id': couponId
         }
         this.isLoaderAdmin = true;
         this.AdminService.deleteCoupon(requestObject).subscribe(
-        (response: any) => {
-          if (response.data == true) {
-            this._snackBar.open(response.response, "X", {
-              duration: 2000,
-              verticalPosition: "top",
-              panelClass: ["green-snackbar"],
-            });
-            this.getAllCouponCode();
-          } else if (
-            response.data == false &&
-            response.response !== "api token or userid invaild"
-          ) {
-            this._snackBar.open(response.response, "X", {
-              duration: 2000,
-              verticalPosition: "top",
-              panelClass: ["red-snackbar"],
-            });
-          }
-          this.isLoaderAdmin = false;
-        });
+          (response: any) => {
+            if (response.data == true) {
+              this._snackBar.open(response.response, "X", {
+                duration: 2000,
+                verticalPosition: "top",
+                panelClass: ["green-snackbar"],
+              });
+              this.getAllCouponCode();
+            } else if (
+              response.data == false &&
+              response.response !== "api token or userid invaild"
+            ) {
+              this._snackBar.open(response.response, "X", {
+                duration: 2000,
+                verticalPosition: "top",
+                panelClass: ["red-snackbar"],
+              });
+            }
+            this.isLoaderAdmin = false;
+          });
       }
     });
   }

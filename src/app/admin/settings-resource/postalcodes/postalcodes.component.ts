@@ -55,11 +55,12 @@ export class PostalcodesComponent implements OnInit {
   ngOnInit() { }
 
   getSettingValue() {
-    this.isLoaderAdmin =true;
+    this.isLoaderAdmin = true;
     let requestObject = {
       'business_id': this.businessId,
     };
-    this.adminSettingsService.getSettingsValue(requestObject).subscribe((response: any) => {
+    // old -getSettingsValue
+    this.adminSettingsService.getAlertSettingsValue(requestObject).subscribe((response: any) => {
       if (response.data == true && response.response != '') {
         this.settingData = response.response
         console.log(this.settingData);
@@ -69,7 +70,7 @@ export class PostalcodesComponent implements OnInit {
 
         }
       }
-      this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
 
@@ -88,7 +89,7 @@ export class PostalcodesComponent implements OnInit {
   }
 
   editPostalCode(postalCodeId) {
-    this.isLoaderAdmin =true;
+    this.isLoaderAdmin = true;
     let requestObject = {
       'business_id': localStorage.getItem('business_id'),
       'postal_id': postalCodeId
@@ -117,7 +118,7 @@ export class PostalcodesComponent implements OnInit {
           }
         });
       }
-      this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     });
   }
 
@@ -135,7 +136,7 @@ export class PostalcodesComponent implements OnInit {
 
 
   fnGetPostalCodeList() {
-    this.isLoaderAdmin =true;
+    this.isLoaderAdmin = true;
     let requestObject = {
       'business_id': localStorage.getItem('business_id'),
     };
@@ -153,7 +154,7 @@ export class PostalcodesComponent implements OnInit {
       else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.postalCodeList = [];
       }
-      this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
 
@@ -171,7 +172,7 @@ export class PostalcodesComponent implements OnInit {
         'status': "D"
       };
     }
-    this.isLoaderAdmin =true;
+    this.isLoaderAdmin = true;
     this.adminSettingsService.changePostalCodeStatus(this.changePostalCodeStatusObject).subscribe((response: any) => {
       if (response.data == true) {
         this._snackBar.open("Status Updated.", "X", {
@@ -187,11 +188,11 @@ export class PostalcodesComponent implements OnInit {
           panelClass: ['red-snackbar']
         });
       }
-      this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
   fnChangePostalCodeCheck(status) {
-    this.isLoaderAdmin =true;
+    this.isLoaderAdmin = true;
     let requestObject = {
       "business_id": this.businessId,
       "status": JSON.stringify(status)
@@ -213,25 +214,25 @@ export class PostalcodesComponent implements OnInit {
           panelClass: ['red-snackbar']
         });
       }
-      this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
 
-  
-  checkAll(event){
+
+  checkAll(event) {
 
     this.postalCodeIdArr = [];
     for (let i = 0; i < this.postalCodeList.length; i++) {
       const item = this.postalCodeList[i];
       item.is_selected = event.checked;
-      if(event.checked){
+      if (event.checked) {
         this.postalCodeIdArr.push(item.id)
       }
     }
 
-    if(event.checked){
+    if (event.checked) {
       this.selectAll = true;
-    }else{
+    } else {
       this.selectAll = false;
     }
 
@@ -248,7 +249,7 @@ export class PostalcodesComponent implements OnInit {
         this.postalCodeIdArr.splice(index, 1);
       }
     }
-    if (this.postalCodeIdArr.length == this.postalCodeList.length ) {
+    if (this.postalCodeIdArr.length == this.postalCodeList.length) {
       this.selectAll = true;
     } else {
       this.selectAll = false;
@@ -266,7 +267,7 @@ export class PostalcodesComponent implements OnInit {
         "postal_code": this.postalCodeIdArr,
         "status": status
       }
-      this.isLoaderAdmin =true;
+      this.isLoaderAdmin = true;
       this.adminSettingsService.changeSelectedPostalCodeStatus(requestObject).subscribe((response: any) => {
         if (response.data == true) {
           this._snackBar.open("Status Updated.", "X", {
@@ -285,7 +286,7 @@ export class PostalcodesComponent implements OnInit {
             panelClass: ['red-snackbar']
           });
         }
-        this.isLoaderAdmin =false;
+        this.isLoaderAdmin = false;
       })
     }
 
@@ -298,7 +299,7 @@ export class PostalcodesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.isLoaderAdmin =true;
+        this.isLoaderAdmin = true;
         let requestObject = {
           'postal_id': postalCodeId,
         };
@@ -309,7 +310,7 @@ export class PostalcodesComponent implements OnInit {
           else if (response.data == false && response.response !== 'api token or userid invaild') {
 
           }
-          this.isLoaderAdmin =false;
+          this.isLoaderAdmin = false;
         })
       }
     });

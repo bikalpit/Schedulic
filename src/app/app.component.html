@@ -5,10 +5,13 @@
 </style>
 <mat-drawer-container class="main-container">
     <mat-drawer-content class="">
-        <div class="loader-main bg-white" *ngIf="isLoaderAdmin"><img src="../../../assets/images/sc-loader.svg" /></div>
+        <div class="loader-main bg-white" *ngIf="isLoaderAdmin"><img
+                src="../../../assets/images/sc-loader.svg" /></div>
         <main fxLayout="column" fxLayoutGap="0">
-            <mat-toolbar [ngClass]="{'admin_top_bar': (isAdminUser() && !isBusiness()) || isSuperAdmin()}"
-                color="primary" class="toolbar menu-comman" *ngIf="isLogin() && !isPOS()">
+            <mat-toolbar [ngClass]="{'admin_top_bar': (isAdminUser() &&
+                !isBusiness()) || isSuperAdmin()}"
+                color="primary" class="toolbar menu-comman" *ngIf="isLogin() &&
+                !isPOS()">
                 <mat-toolbar-row *ngIf="isStaffUser()">
                     <div class="logo">
                         <a class="logo-image" (click)="fnClickLogo('staff')"><img
@@ -22,16 +25,20 @@
                     <span class="example-fill-remaining-space"></span>
                     <span class="f13">
                         <!-- {{staffAvailable}} -->
-                        <mat-slide-toggle [checked]="staffAvailable" (change)="staffAvaibility($event.checked)"
+                        <mat-slide-toggle [checked]="staffAvailable"
+                            (change)="staffAvaibility($event.checked)"
                             class="slidetoggle">Availability</mat-slide-toggle>
-
-                        <button mat-stroked-button class="bellborder notification-btn bell-color ml-3"
+                        <button mat-stroked-button class="bellborder
+                            notification-btn bell-color ml-3"
                             (click)="openNotificationDialog()">
                             <!-- <i mat-list-icon class="fa fa-bell-o" aria-hidden="true"></i> -->
-                            <img src="/assets/images/icons/notification-bell.svg" class="notification-svg">
+                            <img
+                                src="/assets/images/icons/notification-bell.svg"
+                                class="notification-svg">
                             <span *ngIf="notificationData" class="count">{{notificationCount}}</span>
                         </button>
-                        <mat-button-toggle class="toggleborder" (click)="drawer.toggle()">
+                        <mat-button-toggle class="toggleborder"
+                            (click)="drawer.toggle()">
                             <img src="/assets/images/toogle-menu-icon.svg" />
                         </mat-button-toggle>
                         <!-- <img src="/assets/images/icons/logout.svg" class="logout-svg"> -->
@@ -40,31 +47,38 @@
                 <mat-toolbar-row *ngIf="isAdminUser()" class="admin-header">
                     <div class="page-head">
                         <label *ngIf="pageHeading == 'My Workspace'">
-                            <img src="/assets/images/header-icons/bookings.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/bookings.svg"
+                                class="mr-2" aria-hidden="true">
                             My Workspace
                         </label>
                         <label *ngIf="pageHeading == 'My Appointments'">
-                            <img src="/assets/images/header-icons/bookings.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/bookings.svg"
+                                class="mr-2" aria-hidden="true">
                             My Appointments
                         </label>
                         <label *ngIf="pageHeading == 'My Customer'">
-                            <img src="/assets/images/header-icons/customers.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/customers.svg"
+                                class="mr-2" aria-hidden="true">
                             My Customers
                         </label>
                         <label *ngIf="pageHeading == 'My Reports'">
-                            <img src="/assets/images/header-icons/report.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/report.svg"
+                                class="mr-2" aria-hidden="true">
                             My Reports
                         </label>
                         <label *ngIf="pageHeading == 'My Discount Coupon'">
-                            <img src="/assets/images/header-icons/coupon.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/coupon.svg"
+                                class="mr-2" aria-hidden="true">
                             My Discount Coupon
                         </label>
                         <label *ngIf="pageHeading == 'My Profile'">
-                            <img src="/assets/images/header-icons/profile.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/profile.svg"
+                                class="mr-2" aria-hidden="true">
                             My Profile
                         </label>
                         <label *ngIf="pageHeading == 'My Settings'">
-                            <img src="/assets/images/header-icons/settings.svg" class="mr-2" aria-hidden="true">
+                            <img src="/assets/images/header-icons/settings.svg"
+                                class="mr-2" aria-hidden="true">
                             Settings
                         </label>
                     </div>
@@ -74,73 +88,109 @@
                     <!-- {{pageHeading}} -->
                     <span class="example-fill-remaining-space">
                         <div class="selected-business-btn-main">
-                            <label class="text-capitalize" *ngIf="isBusinessSelected() && !isBusiness()">Business :
+                            <label class="text-capitalize"
+                                *ngIf="isBusinessSelected() && !isBusiness()">Business
+                                :
                                 <span>{{selectedBusinessName}}</span></label>
-
                         </div>
                     </span>
                     <span class="f13 d-flex align-items-center">
-                        <button mat-button class="sc-pink-btn live-btn mr-2 position-relative w-auto"
-                            *ngIf="!isBusiness()" (click)="MyLiveAppointmentNav()">
-                            <label class="circle-animat-wrap"><span class="circle-blick-with-border"></span></label>
+                        <button mat-button class="sc-pink-btn live-btn mr-2
+                            position-relative w-auto"
+                            *ngIf="!isBusiness()"
+                            (click)="MyLiveAppointmentNav()">
+                            <label class="circle-animat-wrap"><span
+                                    class="circle-blick-with-border"></span></label>
                             Live
                         </button>
-                        <button mat-button class="sc-yellow-btn" *ngIf="!isBusiness()" (click)="MyBusinessNav()">My
+                        <button mat-button class="sc-yellow-btn"
+                            *ngIf="!isBusiness()" (click)="MyBusinessNav()">My
                             Businesses</button>
                         <span class="profile-head">
-                            <div class="customer-profile-img m-2 float-left overflow-hidden" data="aaa">
-                                <img class="h-100 w-100" src="{{currentUser.image}}"
+                            <div class="customer-profile-img m-2 float-left
+                                overflow-hidden" data="aaa">
+                                <img class="h-100 w-100"
+                                    src="{{currentUser.image}}"
                                     onerror="this.src='../assets/img/user.png';">
                             </div>
                             <p class="my-2 p-1" *ngIf="currentUser.full_name">{{currentUser.full_name}}</p>
                         </span>
-                        <button *ngIf="!isBusiness()" mat-stroked-button class="bellborder notification-btn bell-color"
+                        <button *ngIf="!isBusiness()" mat-stroked-button
+                            class="bellborder notification-btn bell-color"
                             (click)="openNotificationDialog()">
-                            <img src="/assets/images/icons/notification-bell.svg" class="notification-svg">
+                            <img
+                                src="/assets/images/icons/notification-bell.svg"
+                                class="notification-svg">
                             <span *ngIf="notificationData" class="count">{{notificationCount}}</span>
                         </button>
-                        <img (click)="logout2(true)" src="/assets/images/icons/logout.svg"
+                        <img (click)="logout2(true)"
+                            src="/assets/images/icons/logout.svg"
                             class="logout-svg ml-3 pointer">
                     </span>
-                    <div *ngIf="!isBusiness() && businessSetup && !businessSetup.status && pageHeading == 'My Workspace'"
+                    <div *ngIf="!isBusiness() && businessSetup &&
+                        !businessSetup.status && pageHeading == 'My Workspace'"
                         class="getting-started-window-wrap">
-                        <div class="window-screen" [ngClass]="{'opened' : gettingStartedWindowOpen}">
-                            <mdb-carousel #carousel class="setup-step-slider" [isControls]="true" [animation]="'slide'"
+                        <div class="window-screen" [ngClass]="{'opened' :
+                            gettingStartedWindowOpen}">
+                            <mdb-carousel #carousel class="setup-step-slider"
+                                [isControls]="true" [animation]="'slide'"
                                 [interval]="'0'">
                                 <mdb-carousel-item class="signle-item">
                                     <div class="row w-100 ml-0">
                                         <div class="col-6 left-side">
                                             <div class="progress-content">
-                                                <h3>Let's personalize your account!</h3>
-                                                <mat-progress-bar mode="determinate"
-                                                    [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
-                                                <span class="progress-count">{{businessSetup.count}}/5 complete Well
+                                                <h3>Let's personalize your
+                                                    account!</h3>
+                                                <mat-progress-bar
+                                                    mode="determinate"
+                                                    [value]="businessSetup.count
+                                                    * 100 / 5"></mat-progress-bar>
+                                                <span class="progress-count">{{businessSetup.count}}/5
+                                                    complete Well
                                                     Done!</span>
                                                 <ul class="steps">
                                                     <li class="active"
-                                                        [ngClass]="{'checked' : businessSetup.businessInfo}">Update your
+                                                        [ngClass]="{'checked' :
+                                                        businessSetup.businessInfo}">Update
+                                                        your
                                                         business info</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.clientData}">Import your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.clientData}">Import
+                                                        your
                                                         clients data</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up
-                                                        your Business Categories & Services</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add
-                                                        website widget or your own booking page</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.categoryServices}">Set
+                                                        up
+                                                        your Business Categories
+                                                        & Services</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.websiteWidget}">Add
+                                                        website widget or your
+                                                        own booking page</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.moreFeatures}">Explore
                                                         more features</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-6 right-side px-2">
                                             <div class="step-content">
-                                                <img class="mb-3" src="/assets/images/icons/store-icon.svg" />
-                                                <h4 class="mb-1">Update your business info</h4>
+                                                <img class="mb-3"
+                                                    src="/assets/images/icons/store-icon.svg"
+                                                    />
+                                                <h4 class="mb-1">Update your
+                                                    business info</h4>
                                                 <p>Takes 2 minutes</p>
-                                                <label>Tell us about your business so we can serve you better</label>
+                                                <label>Tell us about your
+                                                    business so we can serve you
+                                                    better</label>
                                                 <button
                                                     (click)="gotToDestinationPage('/admin/settings-account/company-details')"
-                                                    mat-button class="sc-pink-btn">Complete business info</button>
-                                                <span (click)="skipFrom()" class="skip-btn"> Skip</span>
+                                                    mat-button
+                                                    class="sc-pink-btn">Complete
+                                                    business info</button>
+                                                <span (click)="skipFrom()"
+                                                    class="skip-btn"> Skip</span>
                                             </div>
                                         </div>
                                     </div>
@@ -149,35 +199,57 @@
                                     <div class="row w-100 ml-0">
                                         <div class="col-6 left-side">
                                             <div class="progress-content">
-                                                <h3>Let's personalize your account!</h3>
-                                                <mat-progress-bar mode="determinate"
-                                                    [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
-                                                <span class="progress-count">{{businessSetup.count}}/5 complete Well
+                                                <h3>Let's personalize your
+                                                    account!</h3>
+                                                <mat-progress-bar
+                                                    mode="determinate"
+                                                    [value]="businessSetup.count
+                                                    * 100 / 5"></mat-progress-bar>
+                                                <span class="progress-count">{{businessSetup.count}}/5
+                                                    complete Well
                                                     Done!</span>
                                                 <ul class="steps">
-                                                    <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.businessInfo}">Update
+                                                        your
                                                         business info</li>
                                                     <li class="active"
-                                                        [ngClass]="{'checked' : businessSetup.clientData}">Import your
+                                                        [ngClass]="{'checked' :
+                                                        businessSetup.clientData}">Import
+                                                        your
                                                         clients data</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up
-                                                        your Business Categories & Services</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add
-                                                        website widget or your own booking page</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.categoryServices}">Set
+                                                        up
+                                                        your Business Categories
+                                                        & Services</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.websiteWidget}">Add
+                                                        website widget or your
+                                                        own booking page</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.moreFeatures}">Explore
                                                         more features</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-6 right-side px-2">
                                             <div class="step-content">
-                                                <img class="mb-3" src="/assets/images/icons/clients-data.svg" />
-                                                <h4 class="mb-1">Import client data</h4>
+                                                <img class="mb-3"
+                                                    src="/assets/images/icons/clients-data.svg"
+                                                    />
+                                                <h4 class="mb-1">Import client
+                                                    data</h4>
                                                 <p>Takes 4 minutes</p>
-                                                <label>Manage all your client data in one location</label>
-                                                <button (click)="gotToDestinationPage('/admin/my-customer')" mat-button
-                                                    class="sc-pink-btn">Start Import</button>
-                                                <span class="skip-btn" (click)="skipFrom()"> Skip</span>
+                                                <label>Manage all your client
+                                                    data in one location</label>
+                                                <button
+                                                    (click)="gotToDestinationPage('/admin/my-customer')"
+                                                    mat-button
+                                                    class="sc-pink-btn">Start
+                                                    Import</button>
+                                                <span class="skip-btn"
+                                                    (click)="skipFrom()"> Skip</span>
                                             </div>
                                         </div>
                                     </div>
@@ -186,37 +258,60 @@
                                     <div class="row w-100 ml-0">
                                         <div class="col-6 left-side">
                                             <div class="progress-content">
-                                                <h3>Let's personalize your account!</h3>
-                                                <mat-progress-bar mode="determinate"
-                                                    [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
-                                                <span class="progress-count">{{businessSetup.count}}/5 complete Well
+                                                <h3>Let's personalize your
+                                                    account!</h3>
+                                                <mat-progress-bar
+                                                    mode="determinate"
+                                                    [value]="businessSetup.count
+                                                    * 100 / 5"></mat-progress-bar>
+                                                <span class="progress-count">{{businessSetup.count}}/5
+                                                    complete Well
                                                     Done!</span>
                                                 <ul class="steps">
-                                                    <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.businessInfo}">Update
+                                                        your
                                                         business info</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.clientData}">Import your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.clientData}">Import
+                                                        your
                                                         clients data</li>
                                                     <li class="active"
-                                                        [ngClass]="{'checked' : businessSetup.categoryServices}">Set up
-                                                        your Business Categories & Services</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add
-                                                        website widget or your own booking page</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore
+                                                        [ngClass]="{'checked' :
+                                                        businessSetup.categoryServices}">Set
+                                                        up
+                                                        your Business Categories
+                                                        & Services</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.websiteWidget}">Add
+                                                        website widget or your
+                                                        own booking page</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.moreFeatures}">Explore
                                                         more features</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-6 right-side px-2">
                                             <div class="step-content">
-                                                <img class="mb-3" src="/assets/images/icons/category-services.svg" />
-                                                <h4 class="mb-1">Set up your Business Categories & Services</h4>
+                                                <img class="mb-3"
+                                                    src="/assets/images/icons/category-services.svg"
+                                                    />
+                                                <h4 class="mb-1">Set up your
+                                                    Business Categories &
+                                                    Services</h4>
                                                 <p>Takes 5 minutes</p>
-                                                <label>Set your hours, reminders & booking options. Go about your day
+                                                <label>Set your hours, reminders
+                                                    & booking options. Go about
+                                                    your day
                                                     without missing a thing!</label>
-                                                <button mat-button class="sc-pink-btn"
-                                                    (click)="gotToDestinationPage('/admin/settings-resource')">Set up
+                                                <button mat-button
+                                                    class="sc-pink-btn"
+                                                    (click)="gotToDestinationPage('/admin/settings-resource')">Set
+                                                    up
                                                     now</button>
-                                                <span class="skip-btn" (click)="skipFrom()"> Skip</span>
+                                                <span class="skip-btn"
+                                                    (click)="skipFrom()"> Skip</span>
                                             </div>
                                         </div>
                                     </div>
@@ -225,22 +320,36 @@
                                     <div class="row w-100 ml-0">
                                         <div class="col-6 left-side">
                                             <div class="progress-content">
-                                                <h3>Let's personalize your account!</h3>
-                                                <mat-progress-bar mode="determinate"
-                                                    [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
-                                                <span class="progress-count">{{businessSetup.count}}/5 complete Well
+                                                <h3>Let's personalize your
+                                                    account!</h3>
+                                                <mat-progress-bar
+                                                    mode="determinate"
+                                                    [value]="businessSetup.count
+                                                    * 100 / 5"></mat-progress-bar>
+                                                <span class="progress-count">{{businessSetup.count}}/5
+                                                    complete Well
                                                     Done!</span>
                                                 <ul class="steps">
-                                                    <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.businessInfo}">Update
+                                                        your
                                                         business info</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.clientData}">Import your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.clientData}">Import
+                                                        your
                                                         clients data</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up
-                                                        your Business Categories & Services</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.categoryServices}">Set
+                                                        up
+                                                        your Business Categories
+                                                        & Services</li>
                                                     <li class="active"
-                                                        [ngClass]="{'checked' : businessSetup.websiteWidget}">Add
-                                                        website widget or your own booking page</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore
+                                                        [ngClass]="{'checked' :
+                                                        businessSetup.websiteWidget}">Add
+                                                        website widget or your
+                                                        own booking page</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.moreFeatures}">Explore
                                                         more features</li>
                                                 </ul>
                                             </div>
@@ -248,30 +357,60 @@
                                         <div class="col-6 right-side">
                                             <div class="step-content">
                                                 <div class="ver-sec">
-                                                    <img class="mb-3" src="/assets/images/icons/widget.svg" />
+                                                    <img class="mb-3"
+                                                        src="/assets/images/icons/widget.svg"
+                                                        />
                                                     <div class="contents">
-                                                        <h4 class="mb-1 text-left">Add website widget</h4>
-                                                        <p class="w-100">Takes 8 minutes</p>
-                                                        <label class="text-left">Open up your website to instant
-                                                            bookings, payments, messaging & more!</label>
-                                                        <button mat-button class="sc-pink-btn"
+                                                        <h4 class="mb-1
+                                                            text-left">Add
+                                                            website widget</h4>
+                                                        <p class="w-100">Takes 8
+                                                            minutes</p>
+                                                        <label
+                                                            class="text-left">Open
+                                                            up your website to
+                                                            instant
+                                                            bookings, payments,
+                                                            messaging & more!</label>
+                                                        <button mat-button
+                                                            class="sc-pink-btn"
                                                             (click)="gotToDestinationPageAppearance('widgets')">Add
                                                             Widgets</button>
-                                                        <span class="skip-btn-side" (click)="skipFrom()"> Skip</span>
+                                                        <span
+                                                            class="skip-btn-side"
+                                                            (click)="skipFrom()">
+                                                            Skip</span>
                                                     </div>
                                                 </div>
                                                 <div class="ver-sec">
-                                                    <img class="mb-3" src="/assets/images/icons/website-icon.svg" />
+                                                    <img class="mb-3"
+                                                        src="/assets/images/icons/website-icon.svg"
+                                                        />
                                                     <div class="contents">
-                                                        <h4 class="mb-1 text-left">No website?</h4>
-                                                        <p class="w-100">Takes 5-15 minutes</p>
-                                                        <label class="text-left">No Website, No Problem! Schedulic
-                                                            offers a unique sub-domain for every account with which you
-                                                            can form your own booking page.</label>
-                                                        <button mat-button class="sc-pink-btn"
-                                                            (click)="gotToDestinationPageAppearance('link')">Set Your
+                                                        <h4 class="mb-1
+                                                            text-left">No
+                                                            website?</h4>
+                                                        <p class="w-100">Takes
+                                                            5-15 minutes</p>
+                                                        <label
+                                                            class="text-left">No
+                                                            Website, No Problem!
+                                                            Schedulic
+                                                            offers a unique
+                                                            sub-domain for every
+                                                            account with which
+                                                            you
+                                                            can form your own
+                                                            booking page.</label>
+                                                        <button mat-button
+                                                            class="sc-pink-btn"
+                                                            (click)="gotToDestinationPageAppearance('link')">Set
+                                                            Your
                                                             Page</button>
-                                                        <span class="skip-btn-side" (click)="skipFrom()"> Skip</span>
+                                                        <span
+                                                            class="skip-btn-side"
+                                                            (click)="skipFrom()">
+                                                            Skip</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -282,22 +421,36 @@
                                     <div class="row w-100 ml-0">
                                         <div class="col-6 left-side">
                                             <div class="progress-content">
-                                                <h3>Let's personalize your account!</h3>
-                                                <mat-progress-bar mode="determinate"
-                                                    [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
-                                                <span class="progress-count">{{businessSetup.count}}/5 complete Well
+                                                <h3>Let's personalize your
+                                                    account!</h3>
+                                                <mat-progress-bar
+                                                    mode="determinate"
+                                                    [value]="businessSetup.count
+                                                    * 100 / 5"></mat-progress-bar>
+                                                <span class="progress-count">{{businessSetup.count}}/5
+                                                    complete Well
                                                     Done!</span>
                                                 <ul class="steps">
-                                                    <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.businessInfo}">Update
+                                                        your
                                                         business info</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.clientData}">Import your
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.clientData}">Import
+                                                        your
                                                         clients data</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up
-                                                        your Business Categories & Services</li>
-                                                    <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add
-                                                        website widget or your own booking page</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.categoryServices}">Set
+                                                        up
+                                                        your Business Categories
+                                                        & Services</li>
+                                                    <li [ngClass]="{'checked' :
+                                                        businessSetup.websiteWidget}">Add
+                                                        website widget or your
+                                                        own booking page</li>
                                                     <li class="active"
-                                                        [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore
+                                                        [ngClass]="{'checked' :
+                                                        businessSetup.moreFeatures}">Explore
                                                         more features</li>
                                                 </ul>
                                             </div>
@@ -305,27 +458,54 @@
                                         <div class="col-6 right-side">
                                             <div class="step-content">
                                                 <div class="ver-sec">
-                                                    <img class="mb-3" src="/assets/images/icons/mobile-apps.svg" />
+                                                    <img class="mb-3"
+                                                        src="/assets/images/icons/mobile-apps.svg"
+                                                        />
                                                     <div class="contents">
-                                                        <h4 class="mb-1 text-left">Get the mobile app</h4>
-                                                        <p class="w-100">Takes 1 minutes</p>
-                                                        <label class="text-left">The freedom to run your business
-                                                            on-the-go, no matter where you are!</label>
-                                                        <button mat-button class="sc-pink-btn">Get App</button>
-                                                        <span class="skip-btn-side" (click)="skipFrom()"> Skip</span>
+                                                        <h4 class="mb-1
+                                                            text-left">Get the
+                                                            mobile app</h4>
+                                                        <p class="w-100">Takes 1
+                                                            minutes</p>
+                                                        <label
+                                                            class="text-left">The
+                                                            freedom to run your
+                                                            business
+                                                            on-the-go, no matter
+                                                            where you are!</label>
+                                                        <button mat-button
+                                                            class="sc-pink-btn">Get
+                                                            App</button>
+                                                        <span
+                                                            class="skip-btn-side"
+                                                            (click)="skipFrom()">
+                                                            Skip</span>
                                                     </div>
                                                 </div>
                                                 <div class="ver-sec">
-                                                    <img class="mb-3" src="/assets/images/icons/invite-team.svg" />
+                                                    <img class="mb-3"
+                                                        src="/assets/images/icons/invite-team.svg"
+                                                        />
                                                     <div class="contents">
-                                                        <h4 class="mb-1 text-left">Invite team members</h4>
-                                                        <p class="w-100">Takes 2 minutes</p>
-                                                        <label class="text-left">Get your team members on board and
-                                                            start working together!</label>
-                                                        <button mat-button class="sc-pink-btn"
+                                                        <h4 class="mb-1
+                                                            text-left">Invite
+                                                            team members</h4>
+                                                        <p class="w-100">Takes 2
+                                                            minutes</p>
+                                                        <label
+                                                            class="text-left">Get
+                                                            your team members on
+                                                            board and
+                                                            start working
+                                                            together!</label>
+                                                        <button mat-button
+                                                            class="sc-pink-btn"
                                                             (click)="gotToDestinationPageStaff('newstaff')">Add
                                                             Team</button>
-                                                        <span class="skip-btn-side" (click)="skipFrom()"> Skip</span>
+                                                        <span
+                                                            class="skip-btn-side"
+                                                            (click)="skipFrom()">
+                                                            Skip</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,10 +514,13 @@
                                 </mdb-carousel-item>
                             </mdb-carousel>
                         </div>
-                        <div (click)="gettingStartedWindowOpen=!gettingStartedWindowOpen"
-                            [ngClass]="{'opened' : gettingStartedWindowOpen}" class="getting-started-label">
+                        <div
+                            (click)="gettingStartedWindowOpen=!gettingStartedWindowOpen"
+                            [ngClass]="{'opened' : gettingStartedWindowOpen}"
+                            class="getting-started-label">
                             <img src="/assets/images/icons/shuttle.svg" />
-                            <label>{{gettingStartedWindowOpen?'Do It Later':'Getting Started'}}</label>
+                            <label>{{gettingStartedWindowOpen?'Do It
+                                Later':'Getting Started'}}</label>
                             <span class="material-icons">expand_circle_down</span>
                         </div>
                     </div>
@@ -351,20 +534,26 @@
                     </div>
                     <span class="f13 ml-auto d-flex align-items-center">
                         <span class="profile-head">
-                            <div class="customer-profile-img m-2 float-left overflow-hidden" data="aaa">
-                                <img class="h-100 w-100" src="{{currentUser.image}}"
+                            <div class="customer-profile-img m-2 float-left
+                                overflow-hidden" data="aaa">
+                                <img class="h-100 w-100"
+                                    src="{{currentUser.image}}"
                                     onerror="this.src='../assets/img/user.png';">
                             </div>
                             <p class="my-2 p-1" *ngIf="currentUser.full_name">{{currentUser.full_name}}</p>
                         </span>
-                        <button *ngIf="!isBusiness()" mat-stroked-button class="bellborder notification-btn bell-color"
+                        <button *ngIf="!isBusiness()" mat-stroked-button
+                            class="bellborder notification-btn bell-color"
                             (click)="openNotificationDialog()">
-                            <i mat-list-icon class="fa fa-bell-o" aria-hidden="true"></i>
+                            <i mat-list-icon class="fa fa-bell-o"
+                                aria-hidden="true"></i>
                             <span *ngIf="notificationData" class="count">{{notificationCount}}</span>
                         </button>
-                        <button mat-stroked-button class="bellborder bell-color pointer" (click)="logout2(true)"
+                        <button mat-stroked-button class="bellborder bell-color
+                            pointer" (click)="logout2(true)"
                             matTooltip="Logout" aria-label="clcik on Logout">
-                            <img src="/assets/images/icons/logout.svg" class="logout-svg pointer">
+                            <img src="/assets/images/icons/logout.svg"
+                                class="logout-svg pointer">
                         </button>
                     </span>
                 </mat-toolbar-row>
@@ -378,64 +567,110 @@
             <div class="bottom_header" *ngIf="isAdminUser()" fxFlex="100">
                 <mat-drawer-container class="main-container left-admin-menu">
                     <mat-drawer [disableClose]="true" class="main_admin_menu"
-                        [opened]="sharedService.sideMenuState | async" mode="side">
+                        [opened]="sharedService.sideMenuState | async"
+                        mode="side">
                         <div class="top_admin_menu">
-                            <mat-list-item role="listitem" class="matlist pointer logo">
-                                <div (click)="fnClickLogo('admin')" class="logo"><img
+                            <mat-list-item role="listitem" class="matlist
+                                pointer logo">
+                                <div (click)="fnClickLogo('admin')"
+                                    class="logo"><img
                                         src="assets/images/sc-shot-logo.png"></div>
                             </mat-list-item>
-                            <mat-list-item role="listitem" class="add" [mdePopoverTriggerFor]="appPopover"
+                            <mat-list-item role="listitem" class="add"
+                                [mdePopoverTriggerFor]="appPopover"
                                 mdePopoverTriggerOn="click">
                                 <div>
-                                    <div matTooltip="Add New" class="add common-menu">
+                                    <div matTooltip="Add New" class="add
+                                        common-menu">
                                         <img src="/assets/images/admin/add.svg">
                                     </div>
-                                    <mde-popover #appPopover="mdePopover" mdePopoverArrowColor="white"
-                                        mdePopoverOffsetX="60" mdePopoverOffsetY="-60"
-                                        [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false">
-                                        <div class="add-popover p-0" style="max-width: 300px" (click)="closePopover()">
+                                    <mde-popover #appPopover="mdePopover"
+                                        mdePopoverArrowColor="white"
+                                        mdePopoverOffsetX="60"
+                                        mdePopoverOffsetY="-60"
+                                        [mdePopoverOverlapTrigger]="false"
+                                        [mdePopoverCloseOnClick]="false">
+                                        <div class="add-popover p-0"
+                                            style="max-width: 300px"
+                                            (click)="closePopover()">
                                             <div class="add-content">
                                                 <p class="mb-0 add-new">Add New</p>
                                                 <ul class="admin-add-menu">
-                                                    <mat-list-item role="listitem" (click)="addNewAppointNav()">
-                                                        <div class="common-menu">
-                                                            <img class="add-new-img pr-2"
-                                                                src="/assets/images/admin/settings-menu/add/booking.svg" />
+                                                    <mat-list-item
+                                                        role="listitem"
+                                                        (click)="addNewAppointNav()">
+                                                        <div
+                                                            class="common-menu">
+                                                            <img
+                                                                class="add-new-img
+                                                                pr-2"
+                                                                src="/assets/images/admin/settings-menu/add/booking.svg"
+                                                                />
                                                             Appointment
                                                         </div>
                                                     </mat-list-item>
-                                                    <mat-list-item role="listitem" (click)="addNewCategoryNav()">
-                                                        <div class="common-menu">
-                                                            <img class="add-new-img pr-2"
-                                                                src="/assets/images/admin/settings-menu/add/category.svg" />
+                                                    <mat-list-item
+                                                        role="listitem"
+                                                        (click)="addNewCategoryNav()">
+                                                        <div
+                                                            class="common-menu">
+                                                            <img
+                                                                class="add-new-img
+                                                                pr-2"
+                                                                src="/assets/images/admin/settings-menu/add/category.svg"
+                                                                />
                                                             Category
                                                         </div>
                                                     </mat-list-item>
-                                                    <mat-list-item role="listitem" (click)="addNewStaffNav()">
-                                                        <div class="common-menu">
-                                                            <img class="add-new-img pr-2"
-                                                                src="/assets/images/admin/settings-menu/add/staff.svg" />
+                                                    <mat-list-item
+                                                        role="listitem"
+                                                        (click)="addNewStaffNav()">
+                                                        <div
+                                                            class="common-menu">
+                                                            <img
+                                                                class="add-new-img
+                                                                pr-2"
+                                                                src="/assets/images/admin/settings-menu/add/staff.svg"
+                                                                />
                                                             Staff
                                                         </div>
                                                     </mat-list-item>
-                                                    <mat-list-item role="listitem" (click)="addNewCustomerNav()">
-                                                        <div class="common-menu">
-                                                            <img class="add-new-img pr-2"
-                                                                src="/assets/images/admin/settings-menu/add/customer.svg" />
+                                                    <mat-list-item
+                                                        role="listitem"
+                                                        (click)="addNewCustomerNav()">
+                                                        <div
+                                                            class="common-menu">
+                                                            <img
+                                                                class="add-new-img
+                                                                pr-2"
+                                                                src="/assets/images/admin/settings-menu/add/customer.svg"
+                                                                />
                                                             Customer
                                                         </div>
                                                     </mat-list-item>
-                                                    <mat-list-item role="listitem" (click)="addNewPostalCodeNav()">
-                                                        <div class="common-menu">
-                                                            <img class="add-new-img pr-2"
-                                                                src="/assets/images/admin/settings-menu/add/postalcode.svg" />
+                                                    <mat-list-item
+                                                        role="listitem"
+                                                        (click)="addNewPostalCodeNav()">
+                                                        <div
+                                                            class="common-menu">
+                                                            <img
+                                                                class="add-new-img
+                                                                pr-2"
+                                                                src="/assets/images/admin/settings-menu/add/postalcode.svg"
+                                                                />
                                                             Postal Code
                                                         </div>
                                                     </mat-list-item>
-                                                    <mat-list-item role="listitem" (click)="addNewDiscountCouponNav()">
-                                                        <div class="common-menu">
-                                                            <img class="add-new-img pr-2"
-                                                                src="/assets/images/admin/settings-menu/add/coupon.svg" />
+                                                    <mat-list-item
+                                                        role="listitem"
+                                                        (click)="addNewDiscountCouponNav()">
+                                                        <div
+                                                            class="common-menu">
+                                                            <img
+                                                                class="add-new-img
+                                                                pr-2"
+                                                                src="/assets/images/admin/settings-menu/add/coupon.svg"
+                                                                />
                                                             Discount Coupon
                                                         </div>
                                                     </mat-list-item>
@@ -446,43 +681,72 @@
                                 </div>
                             </mat-list-item>
                             <mat-list-item role="listitem"
-                                [ngClass]="{'active': postUrl == 'my-workspace' , 'active': pageHeading == 'My Workspace' }"
-                                (click)="myWorkSpaceNav(); fnPostUrl('my-workspace');" matTooltip="Workspace">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/workspace.svg"></div>
+                                [ngClass]="{'active': postUrl == 'my-workspace'
+                                , 'active': pageHeading == 'My Workspace' }"
+                                (click)="myWorkSpaceNav();
+                                fnPostUrl('my-workspace');"
+                                matTooltip="Workspace">
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/workspace.svg"></div>
                             </mat-list-item>
                             <mat-list-item role="listitem"
-                                [ngClass]="{'active': postUrl == 'my-appointment', 'active': pageHeading=='My Appointments' }"
-                                (click)="MyAppointmentNav(); fnPostUrl('my-appointment');" matTooltip="Appointment">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/calendar.svg">
+                                [ngClass]="{'active': postUrl ==
+                                'my-appointment', 'active': pageHeading=='My
+                                Appointments' }"
+                                (click)="MyAppointmentNav();
+                                fnPostUrl('my-appointment');"
+                                matTooltip="Appointment">
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/calendar.svg">
                                 </div>
                             </mat-list-item>
                             <mat-list-item role="listitem"
-                                [ngClass]="{'active': postUrl == 'my-customers' , 'active': pageHeading=='My Customer' }"
-                                (click)="MyCustomerNav(); fnPostUrl('my-customers');" matTooltip="Customers">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/customers.svg">
+                                [ngClass]="{'active': postUrl == 'my-customers'
+                                , 'active': pageHeading=='My Customer' }"
+                                (click)="MyCustomerNav();
+                                fnPostUrl('my-customers');"
+                                matTooltip="Customers">
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/customers.svg">
                                 </div>
                             </mat-list-item>
                             <mat-list-item role="listitem"
-                                [ngClass]="{'active': postUrl == 'my-reports', 'active': pageHeading=='My Reports' }"
-                                (click)="MyReportsNav(); fnPostUrl('my-reports');" matTooltip="Reports">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/reports.svg"></div>
+                                [ngClass]="{'active': postUrl == 'my-reports',
+                                'active': pageHeading=='My Reports' }"
+                                (click)="MyReportsNav();
+                                fnPostUrl('my-reports');" matTooltip="Reports">
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/reports.svg"></div>
                             </mat-list-item>
                             <mat-list-item role="listitem"
-                                [ngClass]="{'active': postUrl == 'my-discountCoupon', 'active': pageHeading=='My Discount Coupon' }"
-                                (click)="MyDiscountCouponNav(); fnPostUrl('my-discountCoupon');" matTooltip="Coupons">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/discount.svg"></div>
+                                [ngClass]="{'active': postUrl ==
+                                'my-discountCoupon', 'active': pageHeading=='My
+                                Discount Coupon' }"
+                                (click)="MyDiscountCouponNav();
+                                fnPostUrl('my-discountCoupon');"
+                                matTooltip="Coupons">
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/discount.svg"></div>
                             </mat-list-item>
                         </div>
                         <div class="bottom_admin_menu">
-                            <mat-list-item role="listitem" (click)="MySettingsNav(); fnPostUrl('my-settings');"
-                                [ngClass]="{'active': postUrl == 'my-settings', 'active': pageHeading=='My Settings' }"
+                            <mat-list-item role="listitem"
+                                (click)="MySettingsNav();
+                                fnPostUrl('my-settings');"
+                                [ngClass]="{'active': postUrl == 'my-settings',
+                                'active': pageHeading=='My Settings' }"
                                 matTooltip="Settings">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/settings.svg"></div>
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/settings.svg"></div>
                             </mat-list-item>
-                            <mat-list-item role="listitem" (click)="MyProfileNav(); fnPostUrl('my-profile');"
-                                [ngClass]="{'active': postUrl == 'my-profile', 'active': pageHeading=='My Profile' }"
+                            <mat-list-item role="listitem"
+                                (click)="MyProfileNav();
+                                fnPostUrl('my-profile');"
+                                [ngClass]="{'active': postUrl == 'my-profile',
+                                'active': pageHeading=='My Profile' }"
                                 matTooltip="Profile">
-                                <div class="common-menu"><img src="/assets/images/icons/menu-icons/user.svg"></div>
+                                <div class="common-menu"><img
+                                        src="/assets/images/icons/menu-icons/user.svg"></div>
                             </mat-list-item>
                         </div>
                     </mat-drawer>
@@ -495,31 +759,43 @@
             </div>
             <div class="bottom_header" *ngIf="isSuperAdmin()" fxFlex="100">
                 <mat-drawer-container class="main-container left-admin-menu">
-                    <mat-drawer [disableClose]="true" class="main_admin_menu" mode="side" opened>
+                    <mat-drawer [disableClose]="true" class="main_admin_menu"
+                        mode="side" opened>
                         <div class="top_admin_menu">
-                            <mat-list-item role="listitem" class="matlist pointer logo">
-                                <div (click)="fnClickLogo('superAdmin')" class="logo"><img
+                            <mat-list-item role="listitem" class="matlist
+                                pointer logo">
+                                <div (click)="fnClickLogo('superAdmin')"
+                                    class="logo"><img
                                         src="assets/images/admin/admin-logo-orange.png"></div>
                             </mat-list-item>
-                            <mat-list-item class="{{pageHeading=='My Admins'?'active':''}}" role="listitem"
+                            <mat-list-item class="{{pageHeading=='My
+                                Admins'?'active':''}}" role="listitem"
                                 (click)="myAdminsNav(); fnPostUrl('myAdmins');">
-                                <div class="common-menu"><img src="/assets/images/admin/admin-menu-user.png"></div>
+                                <div class="common-menu"><img
+                                        src="/assets/images/admin/admin-menu-user.png"></div>
                             </mat-list-item>
-                            <mat-list-item class="{{pageHeading=='My Subscriptions'?'active':''}}" role="listitem"
-                                (click)="mySubscriptionsNav(); fnPostUrl('my-subscriptions');">
+                            <mat-list-item class="{{pageHeading=='My
+                                Subscriptions'?'active':''}}" role="listitem"
+                                (click)="mySubscriptionsNav();
+                                fnPostUrl('my-subscriptions');">
                                 <div class="common-menu"><img style="width:33px"
                                         src="/assets/images/admin/subscription.png"></div>
                             </mat-list-item>
-                            <mat-list-item class="{{pageHeading=='My Transactions'?'active':''}}" role="listitem"
-                                (click)="myTransactionsNav(); fnPostUrl('my-transactions');">
+                            <mat-list-item class="{{pageHeading=='My
+                                Transactions'?'active':''}}" role="listitem"
+                                (click)="myTransactionsNav();
+                                fnPostUrl('my-transactions');">
                                 <div class="common-menu"><img style="width:33px"
                                         src="/assets/images/admin/transactions.png"></div>
                             </mat-list-item>
                         </div>
                         <div class="bottom_admin_menu">
-                            <mat-list-item class="{{pageHeading=='My Profile'?'active':''}}" role="listitem"
-                                (click)="MySuperAdinProfileNav(); fnPostUrl('super-admin-profile');">
-                                <div class="common-menu"><img src="/assets/images/admin/admin-menu-user-2.png"></div>
+                            <mat-list-item class="{{pageHeading=='My
+                                Profile'?'active':''}}" role="listitem"
+                                (click)="MySuperAdinProfileNav();
+                                fnPostUrl('super-admin-profile');">
+                                <div class="common-menu"><img
+                                        src="/assets/images/admin/admin-menu-user-2.png"></div>
                             </mat-list-item>
                         </div>
                     </mat-drawer>
@@ -537,60 +813,88 @@
         <mat-list role="list" *ngIf="isStaffUser()">
             <mat-menu></mat-menu>
             <mat-list-item role="listitem" class="matlist">
-                <img class="customer-profile-img ml-2 mt-3 mr-2 mb-2" src="{{currentUser.image}}">
+                <img class="customer-profile-img ml-2 mt-3 mr-2 mb-2"
+                    src="{{currentUser.image}}">
                 <div>
                     <p class="font-weight-bold p-1 pt-2 mb-0">{{currentUser.full_name}}</p>
-                    <div *ngIf="currentUser.avgRatings.length != 0" class="d-flex statick-rating staff-dash w-100">
+                    <div *ngIf="currentUser.avgRatings.length != 0"
+                        class="d-flex statick-rating staff-dash w-100">
                         <div class="star-rating" *ngIf="currentUser.avgRatings">
-                            <input type="radio" [checked]="currentUser.avgRatings[0].aggregate == '5'"
-                                id="5-stars_{{currentUser.id}}" name="rating_2" value="5" />
-                            <label for="5-stars_{{currentUser.id}}" class="star">&#9733;</label>
-                            <input [checked]="currentUser.avgRatings[0].aggregate == '4'" type="radio"
-                                id="4-stars_{{currentUser.id}}" name="rating_2" value="4" />
-                            <label for="4-stars_{{currentUser.id}}" class="star">&#9733;</label>
-                            <input [checked]="currentUser.avgRatings[0].aggregate == '3'" type="radio"
-                                id="3-stars_{{currentUser.id}}" name="rating_2" value="3" />
-                            <label for="3-stars_{{currentUser.id}}" class="star">&#9733;</label>
-                            <input [checked]="currentUser.avgRatings[0].aggregate == '2'" type="radio"
-                                id="2-stars_{{currentUser.id}}" name="rating_2" value="2" />
-                            <label for="2-stars_{{currentUser.id}}" class="star">&#9733;</label>
-                            <input [checked]="currentUser.avgRatings[0].aggregate == '1'" type="radio"
-                                id="1-star_{{currentUser.id}}" name="rating_2" value="1" />
+                            <input type="radio"
+                                [checked]="currentUser.avgRatings[0].aggregate
+                                == '5'"
+                                id="5-stars_{{currentUser.id}}" name="rating_2"
+                                value="5" />
+                            <label for="5-stars_{{currentUser.id}}"
+                                class="star">&#9733;</label>
+                            <input
+                                [checked]="currentUser.avgRatings[0].aggregate
+                                == '4'" type="radio"
+                                id="4-stars_{{currentUser.id}}" name="rating_2"
+                                value="4" />
+                            <label for="4-stars_{{currentUser.id}}"
+                                class="star">&#9733;</label>
+                            <input
+                                [checked]="currentUser.avgRatings[0].aggregate
+                                == '3'" type="radio"
+                                id="3-stars_{{currentUser.id}}" name="rating_2"
+                                value="3" />
+                            <label for="3-stars_{{currentUser.id}}"
+                                class="star">&#9733;</label>
+                            <input
+                                [checked]="currentUser.avgRatings[0].aggregate
+                                == '2'" type="radio"
+                                id="2-stars_{{currentUser.id}}" name="rating_2"
+                                value="2" />
+                            <label for="2-stars_{{currentUser.id}}"
+                                class="star">&#9733;</label>
+                            <input
+                                [checked]="currentUser.avgRatings[0].aggregate
+                                == '1'" type="radio"
+                                id="1-star_{{currentUser.id}}" name="rating_2"
+                                value="1" />
                             <label for="1-star_{{currentUser.id}}" class="star">&#9733;</label>
                         </div>
                     </div>
                 </div>
             </mat-list-item>
-            <mat-list-item class="menuitem mt-2" [ngClass]="{'active': pageHeading == 'My Workspace' }" role="listitem"
+            <mat-list-item class="menuitem mt-2" [ngClass]="{'active':
+                pageHeading == 'My Workspace' }" role="listitem"
                 (click)="WorkSpace('My Workspace')" (click)="drawer.toggle()">
                 <button mat-menu-item class="menuitem">
                     <!-- <i mat-list-icon class="fa fa-briefcase mr-3"></i> -->
                     My Work Space
                 </button>
             </mat-list-item>
-            <mat-list-item class="menuitem" [ngClass]="{'active': pageHeading == 'My Booking' }" role="listitem"
-                (click)="StaffAppointment('My Booking')" (click)="drawer.toggle()">
+            <mat-list-item class="menuitem" [ngClass]="{'active': pageHeading ==
+                'My Booking' }" role="listitem"
+                (click)="StaffAppointment('My Booking')"
+                (click)="drawer.toggle()">
                 <button mat-menu-item class="menuitem">
                     <!-- <i mat-list-icon   class="fa fa-calendar mr-3"></i> -->
                     My Bookings
                 </button>
             </mat-list-item>
-            <mat-list-item class="menuitem" [ngClass]="{'active': pageHeading == 'My Work Profile' }" role="listitem"
-                (click)="WorkProfile('My Work Profile')" (click)="drawer.toggle()">
+            <mat-list-item class="menuitem" [ngClass]="{'active': pageHeading ==
+                'My Work Profile' }" role="listitem"
+                (click)="WorkProfile('My Work Profile')"
+                (click)="drawer.toggle()">
                 <button mat-menu-item class="menuitem">
                     <!-- <i mat-list-icon class="material-icons mr-3">people_alt</i> -->
                     My Work Profile
                 </button>
             </mat-list-item>
-            <mat-list-item class="menuitem" [ngClass]="{'active': pageHeading == 'My Profile' }" role="listitem"
-                (click)=" StaffProfile('My Profile')" (click)="drawer.toggle()">
+            <mat-list-item class="menuitem" [ngClass]="{'active': pageHeading ==
+                'My Profile' }" role="listitem"
+                (click)="StaffProfile('My Profile')" (click)="drawer.toggle()">
                 <button mat-menu-item class="menuitem">
                     <!-- <i mat-list-icon class="material-icons mr-3">people_alt</i> -->
                     My Profile
                 </button>
             </mat-list-item>
             <mat-list-item class="menuitem" role="listitem">
-                <button mat-menu-item (click)="logout(); drawer.toggle();" class="menuitem" matTooltip="Logout"
+                <button mat-menu-item (click)="logout(); drawer.toggle();"
+                    class="menuitem" matTooltip="Logout"
                     aria-label="clcik on Logout">
                     <!-- <i mat-list-icon class="fa fa-sign-out mr-3 menuitem"></i> -->
                     Logout
