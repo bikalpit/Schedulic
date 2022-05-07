@@ -100,9 +100,11 @@ export class AppearanceComponent implements OnInit {
       console.log('this.encriptedUserId:', this.encriptedUserId);
 
       // this.frontBookingUrl = environment.bookpageLink + "/booking/" + window.btoa(this.businessId)
-      this.frontBookingUrl = environment.bookpageLink + "/business-booking/" + this.encriptedUserId.encrypted_id
+      this.frontBookingUrl = environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id
+      // this.frontBookingUrl = environment.bookpageLink + "/business-booking/" + this.encriptedUserId.encrypted_id
       // this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/booking/" + window.btoa(this.businessId) + "' frameborder='0'></iframe>";
-      this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/business-booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
+      this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
+      // this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/business-booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
     }
     // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     let newWidgetAction = window.location.search.split("?goto=")
