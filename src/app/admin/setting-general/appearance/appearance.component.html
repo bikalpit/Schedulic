@@ -240,7 +240,287 @@
             <mat-tab label="Appearance">
                 <div class="row m-0 appearance-wrap">
                     <div class="left-side appearance-side col-4" [formGroup]="Appearance">
-                        <div class="color-field d-flex ">
+                        <div class="setup-widget">
+                            <label class="palate-main-title">
+                                <span>Set Up Booking Widget</span>
+                                <div class="btn-container">
+                                    <button mat-button class="refresh-btn"><mat-icon>refresh</mat-icon></button>
+                                    <button mat-button class="widget-save-btn"><mat-icon>save</mat-icon></button>
+                                </div>
+                            </label>
+                            <div class="appearance-opt-container">
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Background</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="color-field d-flex ">
+                                                <label>Background Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="image-field">
+                                                <label class="w-100 mb-2">Add Background Image</label>
+                                                <button mat-button class="sc-pink-btn w-100">Upload Image</button>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Foreground</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="color-field d-flex ">
+                                                <label>Background Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Shadow Color <mat-slide-toggle></mat-slide-toggle>
+                                                </label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Border Color
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Store Details</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="toggle-field d-flex ">
+                                                <label>Show Store Logo</label>
+                                                <div class="right-toggle-btn">
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </div>
+                                            </div>
+                                            <div class="toggle-field d-flex ">
+                                                <label>Show Store Name</label>
+                                                <div class="right-toggle-btn">
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </div>
+                                            </div>
+                                            <div class="toggle-field d-flex ">
+                                                <label>Show Store Address</label>
+                                                <div class="right-toggle-btn">
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Primary Text</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="image-field">
+                                                <label class="w-100 mb-2">Text Font</label>
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                    <mat-option value="Poppins, sans-serif">Poppins</mat-option>
+                                                    <mat-option value="Roboto, sans-serif">Roboto</mat-option>
+                                                    <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
+                                                    <mat-option value="'Dosis', sans-serif">Dosis</mat-option>
+                                                    <mat-option value="'Fira Sans', sans-serif">Fira Sans</mat-option>
+                                                    <mat-option value="Lato, sans-serif">Lato</mat-option>
+                                                    <mat-option value="Montserrat, sans-serif">Montserrat</mat-option>
+                                                    <mat-option value="Open Sans, sans-serif">Open Sans</mat-option>
+                                                    <mat-option value="Quicksand, sans-serif">Quicksand</mat-option>
+                                                    <mat-option value="Raleway, sans-serif">Raleway</mat-option>
+                                                    <mat-option value="Ubuntu, sans-serif">Ubuntu</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Text Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Secondary Text</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="image-field">
+                                                <label class="w-100 mb-2">Text Font</label>
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                    <mat-option value="Poppins, sans-serif">Poppins</mat-option>
+                                                    <mat-option value="Roboto, sans-serif">Roboto</mat-option>
+                                                    <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
+                                                    <mat-option value="'Dosis', sans-serif">Dosis</mat-option>
+                                                    <mat-option value="'Fira Sans', sans-serif">Fira Sans</mat-option>
+                                                    <mat-option value="Lato, sans-serif">Lato</mat-option>
+                                                    <mat-option value="Montserrat, sans-serif">Montserrat</mat-option>
+                                                    <mat-option value="Open Sans, sans-serif">Open Sans</mat-option>
+                                                    <mat-option value="Quicksand, sans-serif">Quicksand</mat-option>
+                                                    <mat-option value="Raleway, sans-serif">Raleway</mat-option>
+                                                    <mat-option value="Ubuntu, sans-serif">Ubuntu</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Text Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Button</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="image-field">
+                                                <label class="w-100 mb-2">Button Text Font</label>
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                    <mat-option value="Poppins, sans-serif">Poppins</mat-option>
+                                                    <mat-option value="Roboto, sans-serif">Roboto</mat-option>
+                                                    <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
+                                                    <mat-option value="'Dosis', sans-serif">Dosis</mat-option>
+                                                    <mat-option value="'Fira Sans', sans-serif">Fira Sans</mat-option>
+                                                    <mat-option value="Lato, sans-serif">Lato</mat-option>
+                                                    <mat-option value="Montserrat, sans-serif">Montserrat</mat-option>
+                                                    <mat-option value="Open Sans, sans-serif">Open Sans</mat-option>
+                                                    <mat-option value="Quicksand, sans-serif">Quicksand</mat-option>
+                                                    <mat-option value="Raleway, sans-serif">Raleway</mat-option>
+                                                    <mat-option value="Ubuntu, sans-serif">Ubuntu</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Text Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="btn-style-field d-flex ">
+                                                <label>Button Style</label>
+                                                <div class="button-styles">
+                                                    <button mat-raised-button (click)="activateBTN(1)" [ngClass]="{'activated' : activatedBtn == 1}" class="btn-styles btn-style-1">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(2)" [ngClass]="{'activated' : activatedBtn == 2}" class="btn-styles btn-style-2">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(3)" [ngClass]="{'activated' : activatedBtn == 3}" class="btn-styles btn-style-3">Button 1</button>
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Border Color
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Border Color
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <mat-accordion class="appearance-opts">
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <label>Widget Button Hover</label>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="botton-options">
+                                            <div class="image-field">
+                                                <label class="w-100 mb-2">Button Text Font</label>
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                    <mat-option value="Poppins, sans-serif">Poppins</mat-option>
+                                                    <mat-option value="Roboto, sans-serif">Roboto</mat-option>
+                                                    <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
+                                                    <mat-option value="'Dosis', sans-serif">Dosis</mat-option>
+                                                    <mat-option value="'Fira Sans', sans-serif">Fira Sans</mat-option>
+                                                    <mat-option value="Lato, sans-serif">Lato</mat-option>
+                                                    <mat-option value="Montserrat, sans-serif">Montserrat</mat-option>
+                                                    <mat-option value="Open Sans, sans-serif">Open Sans</mat-option>
+                                                    <mat-option value="Quicksand, sans-serif">Quicksand</mat-option>
+                                                    <mat-option value="Raleway, sans-serif">Raleway</mat-option>
+                                                    <mat-option value="Ubuntu, sans-serif">Ubuntu</mat-option>
+                                                </mat-select>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Text Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Color</label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Border Color
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                            <div class="color-field d-flex ">
+                                                <label>Button Border Color
+                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                </label>
+                                                <div class="colorpicker-wrap">
+                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+
+                            </div>
+
+                        </div>
+                        <!-- <div class="color-field d-flex ">
                             <label>Primary Color</label>
                             <div class="colorpicker-wrap">
                                 <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
@@ -280,7 +560,7 @@
                                 <mat-option value="Raleway, sans-serif">Raleway</mat-option>
                                 <mat-option value="Ubuntu, sans-serif">Ubuntu</mat-option>
                             </mat-select>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div id="preview_container" class="right-side pr-0 py-3 appearance-side col-8">
@@ -353,55 +633,55 @@
                             <h5>Contact Fields</h5>
                             <p>Select which form field will show on your booking page.</p>
                         </div>
-                       
+
                         <div class="contact-field-toggle">
                             <mat-slide-toggle (change)="fnChangeContactFormStatus($event.checked)" [checked]="formArr['contact_field_status']"></mat-slide-toggle>
                         </div>
                     </div>
-                   
+
                     <div class="form-setting-table" *ngIf="formArr['contact_field_status']">
                         <div class="main-table-content main-cust-table-content">
-                            
-                                <div class="content" class="form-setting-list row">
-                                    <div class="col-3">
-                                        <div class="common-check-wrap"> 
-                                       <div class="checked round">
-                                                <p class="check-label">Name</p>
-                                                <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'nameField')" class="form_field_checkbox" [checked]="formArr['nameField'].status=='1'" [disabled]="true">
-                                                </mat-slide-toggle>
+
+                            <div class="content" class="form-setting-list row">
+                                <div class="col-3">
+                                    <div class="common-check-wrap">
+                                        <div class="checked round">
+                                            <p class="check-label">Name</p>
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'nameField')" class="form_field_checkbox" [checked]="formArr['nameField'].status=='1'" [disabled]="true">
+                                            </mat-slide-toggle>
                                         </div>
                                         <div class="" *ngIf="formArr['nameField'].status=='1'">
                                             <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'nameField')" [checked]="formArr['nameField'].required=='1'" [disabled]="true">
                                                 Required</mat-checkbox>
                                         </div>
                                     </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="common-check-wrap"> 
-                                            <div class="checked round">
-                                                <p class="check-label">Number</p>
-                                                <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'numberField')" class="form_field_checkbox" [checked]="formArr['numberField'].status=='1'" [disabled]="true">
-                                                </mat-slide-toggle>
-                                                
-                                            </div>
-                                        
+                                </div>
+                                <div class="col-3">
+                                    <div class="common-check-wrap">
+                                        <div class="checked round">
+                                            <p class="check-label">Number</p>
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'numberField')" class="form_field_checkbox" [checked]="formArr['numberField'].status=='1'" [disabled]="true">
+                                            </mat-slide-toggle>
+
+                                        </div>
+
                                         <div class="" *ngIf="formArr['numberField'].status=='1'">
                                             <div>
                                                 <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'numberField')" [checked]="formArr['numberField'].required=='1'" [disabled]="true">
                                                     Required</mat-checkbox>
                                             </div>
                                         </div>
-                                        </div>
                                     </div>
-                                    <div class="col-3">
-                                        <div class="common-check-wrap">
-                                            <div class="checked round">
-                                                <p class="check-label">Email</p>
-                                                <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'emailField')" class="form_field_checkbox" [checked]="formArr['emailField'].status=='1'" [disabled]="true">
-                                                </mat-slide-toggle>
-                                               
-                                            </div>
-                                       
+                                </div>
+                                <div class="col-3">
+                                    <div class="common-check-wrap">
+                                        <div class="checked round">
+                                            <p class="check-label">Email</p>
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'emailField')" class="form_field_checkbox" [checked]="formArr['emailField'].status=='1'" [disabled]="true">
+                                            </mat-slide-toggle>
+
+                                        </div>
+
                                         <div class="" *ngIf="formArr['emailField'].status=='1'">
                                             <div>
                                                 <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'emailField')" [checked]="formArr['emailField'].required=='1'" [disabled]="true">
@@ -409,15 +689,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="common-check-wrap">
-                                            <div class="checked round">
-                                                <p class="check-label">Address</p>
-                                                <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'addressField')" class="form_field_checkbox" [checked]="formArr['addressField'].status=='1'"></mat-slide-toggle>
-                                               
-                                            </div>
-                                       
+                                </div>
+                                <div class="col-3">
+                                    <div class="common-check-wrap">
+                                        <div class="checked round">
+                                            <p class="check-label">Address</p>
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'addressField')" class="form_field_checkbox" [checked]="formArr['addressField'].status=='1'"></mat-slide-toggle>
+
+                                        </div>
+
                                         <div class="" *ngIf="formArr['addressField'].status=='1'">
                                             <div>
                                                 <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'addressField')" [checked]="formArr['addressField'].required=='1'">Required
@@ -425,13 +705,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
-                                <button mat-button appearance="fill" class="sc-pink-btn pink-btn-md mt-3" (click)="fnFormSetting()">Save</button>
+                            </div>
+                            <button mat-button appearance="fill" class="sc-pink-btn pink-btn-md mt-3" (click)="fnFormSetting()">Save</button>
                         </div>
                     </div>
                 </mat-card>
-                
+
                 <!-- <mat-card class="save-cencel-footer">
                     <div class="d-flex py-2 save-footer-btn">
                         <button mat-button (click)="fnCancelAppearance()" class="sc-grey-btn mr-2">Cancel</button>
@@ -462,7 +742,7 @@
                             </div>
                             <div class="col-12 mb-2">
                                 <!-- <mat-form-field class=" bottom-border-field "> -->
-                                    <input [value]="frontBookingUrl" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly>
+                                <input [value]="frontBookingUrl" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly>
                                 <!-- </mat-form-field> -->
                             </div>
 
@@ -500,9 +780,9 @@
                                         <a class="btn-color-dummy cursor-default">Book Now</a>
                                     </div>
                                     <div class="col-8 pt-0 pb-1 pr-5">
-                                        
+
                                         <input value="<a style='color: #00a89b;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly>
-                                        
+
                                     </div>
                                 </div>
                                 <hr>
@@ -511,9 +791,10 @@
                                         <button class="btn btn-color-one cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                       
-                                       <textarea value="<a style='background-color: #003cff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="{{frontBookingUrl}}" readonly></textarea>
-                                    
+
+                                        <textarea value="<a style='background-color: #003cff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="{{frontBookingUrl}}" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -522,9 +803,10 @@
                                         <button class="btn btn-color-two cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                        
-                                        <textarea value="<a style='background-color: #008aff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                      
+
+                                        <textarea value="<a style='background-color: #008aff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -533,9 +815,10 @@
                                         <button class="btn btn-color-three cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                        
-                                        <textarea value="<a style='background-color: #009315;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                       
+
+                                        <textarea value="<a style='background-color: #009315;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -544,9 +827,10 @@
                                         <button class="btn btn-color-four cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                        
-                                        <textarea value="<a style='background-color: #ffa800;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                       
+
+                                        <textarea value="<a style='background-color: #ffa800;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -555,9 +839,10 @@
                                         <button class="btn btn-color-five cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                       
-                                        <textarea value="<a style='background-color: #ff008a;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                        
+
+                                        <textarea value="<a style='background-color: #ff008a;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -566,9 +851,10 @@
                                         <button class="btn btn-color-six cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                        
-                                        <textarea value="<a style='background-color: #8a00ff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                      
+
+                                        <textarea value="<a style='background-color: #8a00ff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -577,9 +863,10 @@
                                         <button class="btn btn-color-seven cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                       
-                                        <textarea value="<a style='background-color: #ff0000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                       
+
+                                        <textarea value="<a style='background-color: #ff0000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -588,9 +875,10 @@
                                         <button class="btn btn-color-eight cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                       
-                                        <textarea value="<a style='background-color: #000000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                       
+
+                                        <textarea value="<a style='background-color: #000000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -599,9 +887,10 @@
                                         <button class="btn btn-color-nine cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                       
-                                        <textarea value="<a style='background-color: #666666;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                      
+
+                                        <textarea value="<a style='background-color: #666666;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
+                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>
@@ -610,9 +899,10 @@
                                         <button class="btn btn-color-ten cursor-default">BOOK NOW</button>
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
-                                       
-                                        <textarea value="<a style='background-color: #fdfdfd;border: 1px solid #b5b5b5;color: #000;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
-                                       
+
+                                        <textarea value="<a style='background-color: #fdfdfd;border: 1px solid #b5b5b5;color: #000;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2"
+                                            matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+
                                     </div>
                                 </div>
                                 <hr>

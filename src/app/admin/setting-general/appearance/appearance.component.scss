@@ -50,6 +50,7 @@
         margin-bottom: 17px;
     }
 }
+
 ::ng-deep .form-setting-list {
     padding: 16px 4px;
     .common-check-wrap {
@@ -72,7 +73,7 @@
                 width: 100%;
                 margin-bottom: 0px;
             }
-            .mat-checkbox-label{
+            .mat-checkbox-label {
                 color: #0E0E0E;
             }
         }
@@ -131,11 +132,11 @@
     .round input[type="checkbox"] {
         visibility: hidden;
     }
-    .round input[type="checkbox"]:checked + label {
+    .round input[type="checkbox"]:checked+label {
         background-color: #fff;
         border-color: #fff;
     }
-    .round input[type="checkbox"]:checked + label:after {
+    .round input[type="checkbox"]:checked+label:after {
         opacity: 1;
     }
     .check-label {
@@ -187,6 +188,7 @@
         }
     }
 }
+
 .color_box {
     width: 40px;
     height: 40px;
@@ -197,7 +199,7 @@
 }
 
 .form_field_checkbox {
-    ::ng-deep .mat-checkbox-layout {
+     ::ng-deep .mat-checkbox-layout {
         background-color: #ffffff;
         border: 1px solid #fff;
         border-radius: 50%;
@@ -234,22 +236,24 @@
         background-color: #edf4fe;
     }
 }
-.service-boking-text-wrap{
+
+.service-boking-text-wrap {
     box-shadow: unset!important;
     padding: 0px 30px;
-    .bg-wrap{
+    .bg-wrap {
         background-color: #eaf7f6;
         padding: 20px 30px!important;
-        h5{
-           font-size: 16px;
-           color: #0e0e0e;
+        h5 {
+            font-size: 16px;
+            color: #0e0e0e;
         }
-        p{
+        p {
             font-size: 14px;
             color: #565657;
         }
     }
 }
+
 #appearance {
     .setting-right-side-content {
         .save-cencel-footer {
@@ -455,7 +459,7 @@
     font-family: $selected-font-family;
     .datepicker-main {
         background: $primary-gradient-color;
-        ::ng-deep .ngbpicker {
+         ::ng-deep .ngbpicker {
             .btn-light.ng-star-inserted {
                 color: $text-bg;
             }
@@ -485,7 +489,6 @@
             overflow-x: scroll;
         }
     }
-
     .timing {
         display: inline-block;
     }
@@ -534,7 +537,6 @@
 }
 
 // }
-
 .profile-img-wrap {
     border-radius: 100%;
     height: 120px;
@@ -575,6 +577,7 @@
     display: table;
 }
 
+
 /* Image Upload Dialog */
 
 ::ng-deep .modal-info {
@@ -586,7 +589,7 @@
             padding: 0;
         }
     }
-    ::ng-deep .modal-body {
+     ::ng-deep .modal-body {
         .work-content {
             text-align: center;
             padding-left: 10px;
@@ -626,17 +629,123 @@
 .appearance-wrap {
     padding: 20px 30px;
     .left-side {
-        background-color: #eaf7f6;
+        // background-color: #eaf7f6;
         border-radius: 5px;
-        padding: 20px 30px;
+        padding: 0;
+        .setup-widget {
+            border: 1px solid #00A89B80;
+            border-radius: 5px;
+            padding: 15px 20px;
+            .palate-main-title {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding-bottom: 20px;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #00A89B80;
+                span {
+                    font-size: 16px;
+                    color: #0E0E0E;
+                }
+                .btn-container {
+                    margin-left: auto;
+                    .refresh-btn {
+                        background-color: #A1A1A1;
+                        color: #fff;
+                        width: 30px !important;
+                        mat-icon {
+                            font-size: 24px;
+                        }
+                    }
+                    .widget-save-btn {
+                        background-color: #F04589;
+                        color: #fff;
+                        width: 30px !important;
+                        margin-left: 10px;
+                        mat-icon {
+                            font-size: 24px;
+                        }
+                    }
+                }
+            }
+            .appearance-opt-container {
+                height: calc(100% - 110px);
+                overflow-y: scroll;
+            }
+             ::ng-deep .appearance-opts {
+                mat-expansion-panel-header {
+                    border-bottom: 1px solid #00A89B80;
+                    border-radius: 0;
+                    .mat-content {}
+                }
+            }
+        }
         .color-field {
-            border-bottom: 1px solid rgba(0, 168, 155, 0.23);
-            padding: 15px 0;
+            // border-bottom: 1px solid rgba(0, 168, 155, 0.23);
+            padding: 10px 0;
             align-items: center;
             label {
                 color: #0e0e0e;
                 font-weight: 500;
                 font-size: 14px;
+                margin-bottom: 0;
+            }
+        }
+        .toggle-field {
+            padding: 10px 0;
+            align-items: center;
+            justify-content: space-between;
+            label {
+                color: #0e0e0e;
+                font-weight: 500;
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+            .right-toggle-btn {}
+        }
+        .btn-style-field {
+            padding: 10px 0;
+            align-items: center;
+            flex-wrap: wrap;
+            label {
+                color: #0e0e0e;
+                font-weight: 500;
+                font-size: 14px;
+                margin-bottom: 0;
+                width: 100%;
+            }
+            .button-styles {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-top: 12px;
+                .btn-styles {
+                    background-color: #A1A1A1;
+                    color: #fff;
+                    width: 105px;
+                    &.btn-style-1 {
+                        border-radius: 0;
+                    }
+                    &.btn-style-2 {}
+                    &.btn-style-3 {
+                        border-radius: 100px;
+                    }
+                    &.activated {
+                        background-color: #000;
+                    }
+                }
+            }
+        }
+        .image-field {
+            padding: 10px 0;
+            label {
+                color: #0e0e0e;
+                font-weight: 500;
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+            mat-select {
+                background-color: #fff;
             }
         }
     }
@@ -649,7 +758,7 @@
                     background-color: #e0e0e0;
                     width: 40px;
                     height: 40px;
-                    ::ng-deep .mat-button-wrapper {
+                     ::ng-deep .mat-button-wrapper {
                         padding: 0;
                     }
                 }
@@ -665,7 +774,7 @@
                     input[type="radio"] {
                         display: none;
                     }
-                    input[type="radio"]:checked + .single-slot {
+                    input[type="radio"]:checked+.single-slot {
                         background: $primary-gradient-color;
                         color: $text-bg;
                         border-color: $front-primary-color;
@@ -698,8 +807,9 @@
         }
     }
 }
-.html-sample-btns{
-    textarea{
+
+.html-sample-btns {
+    textarea {
         height: 100px;
         resize: none;
     }

@@ -82,6 +82,53 @@ export class AppearanceComponent implements OnInit {
   encriptedUserId: any;
   selectedtab: any = 0;
   currentUser: any;
+  activatedBtn:number = 1;
+  appearanceObject= {
+    widgetBackground:{
+      backgroundColor:'',
+      backgroundImage:'',
+    },
+    widgetForeGround:{
+      backgroundColor:'',
+      isShadow:false,
+      isBorder:false,
+      shadowColor:'',
+      borderColor:'',
+    },
+    widgetStoreDetails:{
+      showStoreLogo:false,
+      showStoreName:false,
+      showStoreAddress:false,
+    },
+    widgetPrimaryText:{
+      font:'',
+      color:'',
+    },
+    widgetSecondaryText:{
+      font:'',
+      color:'',
+    },
+    widgetButton:{
+      font:'',
+      textColor:'',
+      backgroundColor:'',
+      style:'',
+      isBorder:false,
+      isShadow:false,
+      borderColor:'',
+      shadowColor:'',
+    },
+    widgetButtonHover:{
+      isHover:false,
+      font:'',
+      textColor:'',
+      backgroundColor:'',
+      isBorder:false,
+      isShadow:false,
+      borderColor:'',
+      shadowCOlor:'',
+    }
+  }
   constructor(
     private appComponent: AppComponent,
     private _formBuilder: FormBuilder,
@@ -149,6 +196,10 @@ export class AppearanceComponent implements OnInit {
     console.log(event.value)
     this.selectedFont = event.value
     this.update_SCSS_var();
+  }
+
+  activateBTN(btnNo){
+    this.activatedBtn = btnNo
   }
 
   onChangePrimaryColor(event) {
