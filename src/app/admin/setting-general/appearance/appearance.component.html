@@ -225,27 +225,17 @@
                         <button mat-button type="submit" (click)="copyEmbedCode(embededCode)" class="appearance-save-btn">Copy Code</button>
                     </div> -->
                 </div>
-                <div class="mt-4">
-                    <div class="main-getting-content">
-                        <h5 class="mb-3 page-title">Widget Background Image</h5>
-                        <button mat-button type="submit" (click)="uploadWidgetBGImage()" class="image-upload-btn">Upload Image</button>
-                    </div>
-
-                    <div class="widget-image-preview">
-                        <img src="{{widgetBGImage}}">
-                    </div>
-                </div>
             </mat-tab>
             <!-- --------------------------------- Appearance --------------------------------------- -->
             <mat-tab label="Appearance">
                 <div class="row m-0 appearance-wrap">
-                    <div class="left-side appearance-side col-4" [formGroup]="Appearance">
+                    <div class="left-side appearance-side col-4">
                         <div class="setup-widget">
                             <label class="palate-main-title">
                                 <span>Set Up Booking Widget</span>
                                 <div class="btn-container">
-                                    <button mat-button class="refresh-btn"><mat-icon>refresh</mat-icon></button>
-                                    <button mat-button class="widget-save-btn"><mat-icon>save</mat-icon></button>
+                                    <button mat-button (click)="fnCancelAppearance()" class="refresh-btn"><mat-icon>refresh</mat-icon></button>
+                                    <button mat-button (click)="fnSaveAppearanceSettings()" class="widget-save-btn"><mat-icon>save</mat-icon></button>
                                 </div>
                             </label>
                             <div class="appearance-opt-container">
@@ -260,12 +250,12 @@
                                             <div class="color-field d-flex ">
                                                 <label>Background Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetBackground?.backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetBackground.backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Add Background Image</label>
-                                                <button mat-button class="sc-pink-btn w-100">Upload Image</button>
+                                                <button mat-button (click)="uploadWidgetBGImage()" class="sc-pink-btn w-100">Upload Image</button>
                                             </div>
                                         </div>
                                     </mat-expansion-panel>
@@ -281,22 +271,22 @@
                                             <div class="color-field d-flex ">
                                                 <label>Background Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround.backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround.backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
-                                                <label>Shadow Color <mat-slide-toggle></mat-slide-toggle>
+                                                <label>Shadow Color <mat-slide-toggle (change)="onToggleChange($event,'foreground_shadow')"></mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround.shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround.shadowColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Border Color
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'foreground_border')"></mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround.borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround.borderColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -313,19 +303,19 @@
                                             <div class="toggle-field d-flex ">
                                                 <label>Show Store Logo</label>
                                                 <div class="right-toggle-btn">
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'store_logo')"></mat-slide-toggle>
                                                 </div>
                                             </div>
                                             <div class="toggle-field d-flex ">
                                                 <label>Show Store Name</label>
                                                 <div class="right-toggle-btn">
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'store_name')"></mat-slide-toggle>
                                                 </div>
                                             </div>
                                             <div class="toggle-field d-flex ">
                                                 <label>Show Store Address</label>
                                                 <div class="right-toggle-btn">
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'store_address')"></mat-slide-toggle>
                                                 </div>
                                             </div>
 
@@ -342,7 +332,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Text Font</label>
-                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'primary_font')" [(ngModel)]="appearanceObject.widgetPrimaryText.font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -359,7 +349,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetPrimaryText.color" class="color_box" [(colorPicker)]="appearanceObject.widgetPrimaryText.color" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -375,7 +365,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Text Font</label>
-                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'secondary_font')" [(ngModel)]="appearanceObject.widgetSecondaryText.font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -392,7 +382,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetSecondaryText.color" class="color_box" [(colorPicker)]="appearanceObject.widgetSecondaryText.color" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -408,7 +398,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Button Text Font</label>
-                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'button_font')" [(ngModel)]="appearanceObject.widgetButton.font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -425,13 +415,13 @@
                                             <div class="color-field d-flex ">
                                                 <label>Button Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButton.textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton.textColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButton.backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton.backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="btn-style-field d-flex ">
@@ -444,18 +434,18 @@
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Border Color
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_border')"></mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButton.borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton.borderColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
-                                                <label>Button Border Color
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                <label>Button Shadow Color
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_shadow')"></mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButton.shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton.shadowColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -465,13 +455,16 @@
                                     <mat-expansion-panel>
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
-                                                <label>Widget Button Hover</label>
+                                                <label>Widget Button Hover
+                                                    
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_hover')"></mat-slide-toggle>
+                                                </label>
                                             </mat-panel-title>
                                         </mat-expansion-panel-header>
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Button Text Font</label>
-                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'button_hover_font')" [(ngModel)]="appearanceObject.widgetButtonHover.font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -488,80 +481,36 @@
                                             <div class="color-field d-flex ">
                                                 <label>Button Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover.textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover.textColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover.backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover.backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Border Color
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_hover_border')"></mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover.borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover.borderColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
-                                                <label>Button Border Color
-                                                    <mat-slide-toggle></mat-slide-toggle>
+                                                <label>Button Shadow Color
+                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_hover_shadow')"></mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover.shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover.shadowColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
                                     </mat-expansion-panel>
                                 </mat-accordion>
-
-                            </div>
-
-                        </div>
-                        <!-- <div class="color-field d-flex ">
-                            <label>Primary Color</label>
-                            <div class="colorpicker-wrap">
-                                <input [style.background]="primarycolor" class="color_box" [(colorPicker)]="primarycolor" (colorPickerChange)="onChangePrimaryColor($event)" />
                             </div>
                         </div>
-                        <div class="color-field d-flex">
-                            <label>Primary Gradient</label>
-                            <div class="colorpicker-wrap d-flex">
-                                <input [style.background]="primarygradient1" class="color_box" [(colorPicker)]="primarygradient1" (colorPickerChange)="onChangePrimaryGradient1($event)" />
-                                <input [style.background]="primarygradient2" class="color_box" [(colorPicker)]="primarygradient2" (colorPickerChange)="onChangePrimaryGradient2($event)" />
-                            </div>
-                        </div>
-                        <div class="color-field d-flex">
-                            <label>Text Color</label>
-                            <div class="colorpicker-wrap">
-                                <input [style.background]="textcolor" class="color_box" [(colorPicker)]="textcolor" (colorPickerChange)="onChangeTextColor($event)" />
-                            </div>
-                        </div>
-                        <div class="color-field d-flex">
-                            <label>Text Color On Background</label>
-                            <div class=" colorpicker-wrap">
-                                <input [style.background]="textbgcolor" class="color_box" [(colorPicker)]="textbgcolor" (colorPickerChange)="onChangeTextBgColor($event)" />
-                            </div>
-                        </div>
-                        <div class="common-input mt-3">
-                            <label>Font</label>
-                            <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event)" formControlName="font">
-                                <mat-option value="Poppins, sans-serif">Poppins</mat-option>
-                                <mat-option value="Roboto, sans-serif">Roboto</mat-option>
-                                <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
-                                <mat-option value="'Dosis', sans-serif">Dosis</mat-option>
-                                <mat-option value="'Fira Sans', sans-serif">Fira Sans</mat-option>
-                                <mat-option value="Lato, sans-serif">Lato</mat-option>
-                                <mat-option value="Montserrat, sans-serif">Montserrat</mat-option>
-                                <mat-option value="Open Sans, sans-serif">Open Sans</mat-option>
-                                <mat-option value="Quicksand, sans-serif">Quicksand</mat-option>
-                                <mat-option value="Raleway, sans-serif">Raleway</mat-option>
-                                <mat-option value="Ubuntu, sans-serif">Ubuntu</mat-option>
-                            </mat-select>
-                        </div> -->
-
                     </div>
                     <div id="preview_container" class="right-side pr-0 py-3 appearance-side col-8">
                         <div class="main-theme-box">
@@ -676,59 +625,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row mx-0 main-datetime-selection h-100">
-                            <div class="col-12 col-lg-6 col-sm-12 datepicker-main">
-                                <div class="ngbpicker">
-                                    <div class="ngb-dp-header customepickheader">
-                                        <div class="ngb-dp-month-name ng-star-inserted">Pick Date & Time</div>
-                                    </div>
-                                    <ngb-datepicker class='' #dp [(ngModel)]="model"></ngb-datepicker>
-                                </div>
-
-                            </div>
-                            <div class="col-12 col-lg-6 col-sm-12 timeslot-main py-3">
-                                <button mat-fab color="" class="top-back-btn float-right">
-                                <i class="material-icons" color="">close</i>
-                            </button>
-                                <h3 class="selected-date">Wed, Sep 19</h3>
-                                <div class="slot-list">
-                                    <div class=" timing">
-                                        <label>
-                                        <input name="timeslot" type="radio" checked/>
-                                        <div class="single-slot" popover-is-open="true" [mdePopoverTriggerFor]="selectstaff" mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">10:30</div>
-                                    </label>
-                                        <mde-popover #selectstaff="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false">
-                                            <mat-card class="staff-select-box p-0" style="width: 200px">
-                                                <mat-card-content class="py-2 px-3 mt-0">
-                                                    <div class="row">
-                                                        <div class="col staff-selection">
-                                                            <mat-radio-group aria-label="Select Staff">
-                                                                <mat-radio-button checked class="m-0" value="">Any Staff</mat-radio-button>
-                                                                <mat-radio-button class="text-capitalize m-0" value="1">Meet Shah</mat-radio-button>
-                                                                <mat-radio-button class="text-capitalize m-0" value="2">Parth Jadhav</mat-radio-button>
-                                                                <mat-radio-button class="text-capitalize m-0" value="3">Sumit Yedekar</mat-radio-button>
-                                                                <mat-radio-button class="text-capitalize m-0" value="4">Mubin Shaikh</mat-radio-button>
-                                                            </mat-radio-group>
-
-                                                        </div>
-                                                    </div>
-                                                </mat-card-content>
-                                            </mat-card>
-                                        </mde-popover>
-                                    </div>
-                                </div>
-                                <div class="next-action">
-                                    <button mat-button class="round-btn continue-btn">Add More Services</button>
-                                    <button mat-button class="round-btn continue-btn">Book Now</button>
-                                </div>
-                                <div class="">
-
-                                    <div class="cart-btn">
-                                        <i class="material-icons">add_shopping_cart</i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <mat-card class="save-cencel-footer">

@@ -24,7 +24,6 @@ export class AppearanceComponent implements OnInit {
 
   Appearance: FormGroup;
   allAppColor: any;
-  AppearanceData: any;
   gradientColor: any;
   settingData: any;
   getAppearanceData: any;
@@ -59,11 +58,6 @@ export class AppearanceComponent implements OnInit {
 
   formSettingPage: boolean = false;
   formSettingData: any = [];
-  primarycolor: any = '#2889e9';
-  primarygradient1: any = '#2889e9';
-  primarygradient2: any = '#4fa3f7';
-  textcolor: any = '#000000';
-  textbgcolor: any = '#ffffff';
   embededCode: any;
   businessId: any
   encodedBusinessId: any;
@@ -77,7 +71,6 @@ export class AppearanceComponent implements OnInit {
   displayMonths = 1;
   companyDetailsData: any;
   navigation = 'arrows';
-  widgetBGImage: any;
   frontBookingUrl: any;
   encriptedUserId: any;
   selectedtab: any = 0;
@@ -101,18 +94,18 @@ export class AppearanceComponent implements OnInit {
       showStoreAddress:false,
     },
     widgetPrimaryText:{
-      font:'',
+      font:'Poppins, sans-serif',
       color:'',
     },
     widgetSecondaryText:{
-      font:'',
+      font:'Poppins, sans-serif',
       color:'',
     },
     widgetButton:{
-      font:'',
+      font:'Poppins, sans-serif',
       textColor:'',
       backgroundColor:'',
-      style:'',
+      style:1,
       isBorder:false,
       isShadow:false,
       borderColor:'',
@@ -120,13 +113,13 @@ export class AppearanceComponent implements OnInit {
     },
     widgetButtonHover:{
       isHover:false,
-      font:'',
+      font:'Poppins, sans-serif',
       textColor:'',
       backgroundColor:'',
       isBorder:false,
       isShadow:false,
       borderColor:'',
-      shadowCOlor:'',
+      shadowColor:'',
     }
   }
   constructor(
@@ -164,13 +157,11 @@ export class AppearanceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Appearance = this._formBuilder.group({
-      font: ['']
-    });
     this.getSettingValue();
     this.update_SCSS_var();
     this.getCompanyDetails();
   }
+
   getCompanyDetails() {
     this.isLoaderAdmin = true;
     let requestObject = {
@@ -194,40 +185,84 @@ export class AppearanceComponent implements OnInit {
     })
   }
 
-  fnChangeFont(event) {
-    console.log(event.value)
-    this.selectedFont = event.value
+  fnChangeFont(event,type) {
+    if(type == 'primary_font'){
+      this.appearanceObject.widgetPrimaryText.font = event.value;
+    }else if(type == 'secondary_font'){
+      this.appearanceObject.widgetSecondaryText.font = event.value;
+    }else if(type == 'button_font'){
+      this.appearanceObject.widgetButton.font = event.value;
+    }else if(type == 'button_hover_font'){
+      this.appearanceObject.widgetButtonHover.font = event.value;
+    }
     this.update_SCSS_var();
   }
 
   activateBTN(btnNo){
     this.activatedBtn = btnNo
+    this.appearanceObject.widgetButton.style = this.activatedBtn;
+    this.update_SCSS_var();
   }
 
-  onChangePrimaryColor(event) {
-    console.log('--' + event);
-    this.primarycolor = event
+  onChangeAppearance() {
+    console.log(this.appearanceObject);
     this.update_SCSS_var();
   }
-  onChangePrimaryGradient1(event) {
-    this.primarygradient1 = event
-    this.update_SCSS_var();
-  }
-  onChangePrimaryGradient2(event) {
-    this.primarygradient2 = event
-    this.update_SCSS_var();
-  }
-  onChangeTextColor(event) {
-    this.textcolor = event
-    this.update_SCSS_var();
-  }
-  onChangeTextBgColor(event) {
-    this.textbgcolor = event
+
+  onToggleChange(event, type) {
+    console.log(event);
+    if(type == 'button_hover_border'){
+      this.appearanceObject.widgetButtonHover.isBorder = event.checked;
+    }else if(type == 'foreground_shadow'){
+      this.appearanceObject.widgetForeGround.isShadow = event.checked;
+    }else if(type == 'foreground_border'){
+      this.appearanceObject.widgetForeGround.isBorder = event.checked;
+    }else if(type == 'store_logo'){
+      this.appearanceObject.widgetStoreDetails.showStoreLogo = event.checked;
+    }else if(type == 'store_name'){
+      this.appearanceObject.widgetStoreDetails.showStoreName = event.checked;
+    }else if(type == 'store_address'){
+      this.appearanceObject.widgetStoreDetails.showStoreAddress = event.checked;
+    }else if(type == 'button_border'){
+      this.appearanceObject.widgetButton.isBorder = event.checked;
+    }else if(type == 'button_shadow'){
+      this.appearanceObject.widgetButton.isShadow = event.checked;
+    }else if(type == 'button_hover_shadow'){
+      this.appearanceObject.widgetButtonHover.isShadow = event.checked;
+    }else if(type == 'button_hover'){
+      this.appearanceObject.widgetButtonHover.isHover = event.checked;
+    }
+    console.log(this.appearanceObject);
     this.update_SCSS_var();
   }
 
   update_SCSS_var() {
-    this.appearanceValue = '{"pri_color":"' + this.primarycolor + '","pri_gradient1":"' + this.primarygradient1 + '","pri_gradient2":"' + this.primarygradient2 + '","text_color":"' + this.textcolor + '","text_bgcolor":"' + this.textbgcolor + '","font":"' + this.selectedFont + '"}';
+    this.appearanceValue = 
+    '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground.backgroundColor + 
+    '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround.backgroundColor + 
+    '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround.shadowColor + 
+    '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround.borderColor + 
+    '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText.color + 
+    '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText.color + 
+    '","widgetButton_textColor":"' + this.appearanceObject.widgetButton.textColor + 
+    '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton.backgroundColor + 
+    '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton.borderColor + 
+    '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton.shadowColor + 
+    '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover.textColor + 
+    '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover.backgroundColor + 
+    '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover.borderColor + 
+    '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover.shadowColor + 
+    '","widgetForeGround_isShadow":"' + this.appearanceObject.widgetForeGround.isShadow + 
+    '","widgetForeGround_isBorder":"' + this.appearanceObject.widgetForeGround.isBorder + 
+    '","widgetStoreDetails_showStoreLogo":"' + this.appearanceObject.widgetStoreDetails.showStoreLogo + 
+    '","widgetStoreDetails_showStoreName":"' + this.appearanceObject.widgetStoreDetails.showStoreName + 
+    '","widgetStoreDetails_showStoreAddress":"' + this.appearanceObject.widgetStoreDetails.showStoreAddress + 
+    '","widgetButton_isBorder":"' + this.appearanceObject.widgetButton.isBorder + 
+    '","widgetButton_isShadow":"' + this.appearanceObject.widgetButton.isShadow + 
+    '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover + 
+    '","widgetButtonHover_isBorder":"' + this.appearanceObject.widgetButtonHover.isBorder + 
+    '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover + 
+    '"}';
     console.log(this.appearanceValue);
     const data = JSON.parse(this.appearanceValue);
     for (const [key, value] of Object.entries(data)) {
@@ -280,20 +315,7 @@ export class AppearanceComponent implements OnInit {
   }
 
   fnSaveAppearanceSettings() {
-    if (this.Appearance.valid) {
-      this.gradientColor = this.primarygradient1 + "," + this.primarygradient2
-      this.AppearanceData = {
-        'pri_color': this.primarycolor,
-        'pri_gradient1': this.primarygradient1,
-        'pri_gradient2': this.primarygradient2,
-        'text_color': this.textcolor,
-        'text_bgcolor': this.textbgcolor,
-        'font': this.Appearance.controls['font'].value,
-        'old_image': true,
-        'image': this.widgetBGImage
-      }
-      this.fnCreateAppearance(this.AppearanceData);
-    }
+      this.fnCreateAppearance(this.appearanceObject);
   }
 
   fnCreateAppearance(AppearanceData) {
@@ -334,14 +356,8 @@ export class AppearanceComponent implements OnInit {
         this.settingData = response.response
         console.log(this.settingData);
         if (this.settingData.appearance) {
-          this.getAppearanceData = JSON.parse(this.settingData.appearance);
-          this.primarycolor = this.getAppearanceData.pri_color;
-          this.primarygradient1 = this.getAppearanceData.pri_gradient1;
-          this.primarygradient2 = this.getAppearanceData.pri_gradient2;
-          this.textcolor = this.getAppearanceData.text_color;
-          this.textbgcolor = this.getAppearanceData.text_bgcolor;
-          this.widgetBGImage = this.getAppearanceData.image;
-          this.Appearance.controls['font'].setValue(this.getAppearanceData.font);
+          this.appearanceObject = JSON.parse(this.settingData.appearance);
+          // this.appearanceObject.widgetBackground.backgroundImage = this.getAppearanceData.image;
           this.update_SCSS_var();
         }
         if (this.settingData.form_settings) {
@@ -464,18 +480,8 @@ export class AppearanceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined) {
-        this.widgetBGImage = result;
-        this.AppearanceData = {
-          'pri_color': this.primarycolor,
-          'pri_gradient1': this.primarygradient1,
-          'pri_gradient2': this.primarygradient2,
-          'text_color': this.textcolor,
-          'text_bgcolor': this.textbgcolor,
-          'font': this.Appearance.controls['font'].value,
-          'old_image': false,
-          'image': this.widgetBGImage,
-        }
-        this.fnCreateAppearance(this.AppearanceData);
+        this.appearanceObject.widgetBackground.backgroundImage = result;
+        // this.fnCreateAppearance(this.appearanceObject);
       }
     });
   }
