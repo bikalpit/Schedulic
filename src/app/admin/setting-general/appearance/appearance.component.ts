@@ -75,51 +75,51 @@ export class AppearanceComponent implements OnInit {
   encriptedUserId: any;
   selectedtab: any = 0;
   currentUser: any;
-  activatedBtn:number = 1;
-  appearanceObject= {
-    widgetBackground:{
-      backgroundColor:'',
-      backgroundImage:'',
+  activatedBtn: number = 1;
+  appearanceObject = {
+    widgetBackground: {
+      backgroundColor: '',
+      backgroundImage: '',
     },
-    widgetForeGround:{
-      backgroundColor:'',
-      isShadow:false,
-      isBorder:false,
-      shadowColor:'',
-      borderColor:'',
+    widgetForeGround: {
+      backgroundColor: '',
+      isShadow: false,
+      isBorder: false,
+      shadowColor: '',
+      borderColor: '',
     },
-    widgetStoreDetails:{
-      showStoreLogo:false,
-      showStoreName:false,
-      showStoreAddress:false,
+    widgetStoreDetails: {
+      showStoreLogo: false,
+      showStoreName: false,
+      showStoreAddress: false,
     },
-    widgetPrimaryText:{
-      font:'Poppins, sans-serif',
-      color:'',
+    widgetPrimaryText: {
+      font: 'Poppins, sans-serif',
+      color: '',
     },
-    widgetSecondaryText:{
-      font:'Poppins, sans-serif',
-      color:'',
+    widgetSecondaryText: {
+      font: 'Poppins, sans-serif',
+      color: '',
     },
-    widgetButton:{
-      font:'Poppins, sans-serif',
-      textColor:'',
-      backgroundColor:'',
-      style:1,
-      isBorder:false,
-      isShadow:false,
-      borderColor:'',
-      shadowColor:'',
+    widgetButton: {
+      font: 'Poppins, sans-serif',
+      textColor: '',
+      backgroundColor: '',
+      style: 1,
+      isBorder: false,
+      isShadow: false,
+      borderColor: '',
+      shadowColor: '',
     },
-    widgetButtonHover:{
-      isHover:false,
-      font:'Poppins, sans-serif',
-      textColor:'',
-      backgroundColor:'',
-      isBorder:false,
-      isShadow:false,
-      borderColor:'',
-      shadowColor:'',
+    widgetButtonHover: {
+      isHover: false,
+      font: 'Poppins, sans-serif',
+      textColor: '',
+      backgroundColor: '',
+      isBorder: false,
+      isShadow: false,
+      borderColor: '',
+      shadowColor: '',
     }
   }
   constructor(
@@ -185,20 +185,20 @@ export class AppearanceComponent implements OnInit {
     })
   }
 
-  fnChangeFont(event,type) {
-    if(type == 'primary_font'){
+  fnChangeFont(event, type) {
+    if (type == 'primary_font') {
       this.appearanceObject.widgetPrimaryText.font = event.value;
-    }else if(type == 'secondary_font'){
+    } else if (type == 'secondary_font') {
       this.appearanceObject.widgetSecondaryText.font = event.value;
-    }else if(type == 'button_font'){
+    } else if (type == 'button_font') {
       this.appearanceObject.widgetButton.font = event.value;
-    }else if(type == 'button_hover_font'){
+    } else if (type == 'button_hover_font') {
       this.appearanceObject.widgetButtonHover.font = event.value;
     }
     this.update_SCSS_var();
   }
 
-  activateBTN(btnNo){
+  activateBTN(btnNo) {
     this.activatedBtn = btnNo
     this.appearanceObject.widgetButton.style = this.activatedBtn;
     this.update_SCSS_var();
@@ -211,25 +211,25 @@ export class AppearanceComponent implements OnInit {
 
   onToggleChange(event, type) {
     console.log(event);
-    if(type == 'button_hover_border'){
+    if (type == 'button_hover_border') {
       this.appearanceObject.widgetButtonHover.isBorder = event.checked;
-    }else if(type == 'foreground_shadow'){
+    } else if (type == 'foreground_shadow') {
       this.appearanceObject.widgetForeGround.isShadow = event.checked;
-    }else if(type == 'foreground_border'){
+    } else if (type == 'foreground_border') {
       this.appearanceObject.widgetForeGround.isBorder = event.checked;
-    }else if(type == 'store_logo'){
+    } else if (type == 'store_logo') {
       this.appearanceObject.widgetStoreDetails.showStoreLogo = event.checked;
-    }else if(type == 'store_name'){
+    } else if (type == 'store_name') {
       this.appearanceObject.widgetStoreDetails.showStoreName = event.checked;
-    }else if(type == 'store_address'){
+    } else if (type == 'store_address') {
       this.appearanceObject.widgetStoreDetails.showStoreAddress = event.checked;
-    }else if(type == 'button_border'){
+    } else if (type == 'button_border') {
       this.appearanceObject.widgetButton.isBorder = event.checked;
-    }else if(type == 'button_shadow'){
+    } else if (type == 'button_shadow') {
       this.appearanceObject.widgetButton.isShadow = event.checked;
-    }else if(type == 'button_hover_shadow'){
+    } else if (type == 'button_hover_shadow') {
       this.appearanceObject.widgetButtonHover.isShadow = event.checked;
-    }else if(type == 'button_hover'){
+    } else if (type == 'button_hover') {
       this.appearanceObject.widgetButtonHover.isHover = event.checked;
     }
     console.log(this.appearanceObject);
@@ -237,33 +237,37 @@ export class AppearanceComponent implements OnInit {
   }
 
   update_SCSS_var() {
-    this.appearanceValue = 
-    '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground.backgroundColor + 
-    '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround.backgroundColor + 
-    '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround.shadowColor + 
-    '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround.borderColor + 
-    '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText.color + 
-    '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText.color + 
-    '","widgetButton_textColor":"' + this.appearanceObject.widgetButton.textColor + 
-    '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton.backgroundColor + 
-    '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton.borderColor + 
-    '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton.shadowColor + 
-    '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover.textColor + 
-    '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover.backgroundColor + 
-    '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover.borderColor + 
-    '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover.shadowColor + 
-    '","widgetForeGround_isShadow":"' + this.appearanceObject.widgetForeGround.isShadow + 
-    '","widgetForeGround_isBorder":"' + this.appearanceObject.widgetForeGround.isBorder + 
-    '","widgetStoreDetails_showStoreLogo":"' + this.appearanceObject.widgetStoreDetails.showStoreLogo + 
-    '","widgetStoreDetails_showStoreName":"' + this.appearanceObject.widgetStoreDetails.showStoreName + 
-    '","widgetStoreDetails_showStoreAddress":"' + this.appearanceObject.widgetStoreDetails.showStoreAddress + 
-    '","widgetButton_isBorder":"' + this.appearanceObject.widgetButton.isBorder + 
-    '","widgetButton_isShadow":"' + this.appearanceObject.widgetButton.isShadow + 
-    '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover + 
-    '","widgetButtonHover_isBorder":"' + this.appearanceObject.widgetButtonHover.isBorder + 
-    '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover + 
-    '"}';
-    console.log(this.appearanceValue);
+    this.appearanceValue =
+      '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground.backgroundColor +
+      '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround.backgroundColor +
+      '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround.shadowColor +
+      '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround.borderColor +
+      '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText.color +
+      '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText.font +
+      '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText.color +
+      '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText.font +
+      '","widgetButton_textColor":"' + this.appearanceObject.widgetButton.textColor +
+      '","widgetButton_font":"' + this.appearanceObject.widgetButton.font +
+      '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton.backgroundColor +
+      '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton.borderColor +
+      '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton.shadowColor +
+      '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover.textColor +
+      '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover.backgroundColor +
+      '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover.borderColor +
+      '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover.shadowColor +
+      '","widgetForeGround_isShadow":"' + this.appearanceObject.widgetForeGround.isShadow +
+      '","widgetForeGround_isBorder":"' + this.appearanceObject.widgetForeGround.isBorder +
+      '","widgetStoreDetails_showStoreLogo":"' + this.appearanceObject.widgetStoreDetails.showStoreLogo +
+      '","widgetStoreDetails_showStoreName":"' + this.appearanceObject.widgetStoreDetails.showStoreName +
+      '","widgetStoreDetails_showStoreAddress":"' + this.appearanceObject.widgetStoreDetails.showStoreAddress +
+      '","widgetButton_isBorder":"' + this.appearanceObject.widgetButton.isBorder +
+      '","widgetButton_isShadow":"' + this.appearanceObject.widgetButton.isShadow +
+      '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover +
+      '","widgetButtonHover_isBorder":"' + this.appearanceObject.widgetButtonHover.isBorder +
+      '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover +
+      '","widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover.font +
+      '"}';
+    console.log(JSON.parse(this.appearanceValue));
     const data = JSON.parse(this.appearanceValue);
     for (const [key, value] of Object.entries(data)) {
       this.setPropertyOfSCSS('--' + key, value);
@@ -315,7 +319,7 @@ export class AppearanceComponent implements OnInit {
   }
 
   fnSaveAppearanceSettings() {
-      this.fnCreateAppearance(this.appearanceObject);
+    this.fnCreateAppearance(this.appearanceObject);
   }
 
   fnCreateAppearance(AppearanceData) {
