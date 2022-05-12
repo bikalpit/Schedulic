@@ -3,10 +3,8 @@
     <div class="left-side-menu setting-menu" [ngClass]="{ 'short-menu': settingSideMenuToggle === true }">
         <div class="leftarrow-icon d-flex align-items-center">
             <h6 class="mb-0">Resource Management</h6>
-            <span (click)="fnSettingMenuToggleSmall()" *ngIf="!settingSideMenuToggle"
-                class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_left</span>
-            <span (click)="fnSettingMenuToggleLarge()" *ngIf="settingSideMenuToggle"
-                class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_right</span>
+            <span (click)="fnSettingMenuToggleSmall()" *ngIf="!settingSideMenuToggle" class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_left</span>
+            <span (click)="fnSettingMenuToggleLarge()" *ngIf="settingSideMenuToggle" class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_right</span>
         </div>
         <div routerLink="/admin/settings-resource" class="d-flex setting-menu-item">
             <div class="menu-icon">
@@ -89,16 +87,14 @@
             <p>Alert Rules</p>
         </div>
     </div>
-    <div class="setting-right-side-content without-footer"
-        [ngClass]="{ 'short-content-area': settingSideMenuToggle === true }">
+    <div class="setting-right-side-content without-footer" [ngClass]="{ 'short-content-area': settingSideMenuToggle === true }">
         <mat-tab-group [(selectedIndex)]="selectedtab" class="common-tab-group">
             <!-- --------------------------------- Themes ---------------------------------- -->
             <mat-tab label="Theme">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 text-center pt-5">
-                            <div class="col-3 d-inline-block m-3 theme-div theme-1"
-                                [ngClass]="{'theme-active':defaultTheme === '1'}">
+                            <div class="col-3 d-inline-block m-3 theme-div theme-1" [ngClass]="{'theme-active':defaultTheme === '1'}">
                                 <div class="check-icon d-none">
                                     <mat-icon>check</mat-icon>
                                 </div>
@@ -130,8 +126,7 @@
                                 </div>
                             </div> -->
 
-                            <div class="col-3 d-inline-block m-3 theme-div theme-3"
-                                [ngClass]="{'theme-active':defaultTheme === '3'}">
+                            <div class="col-3 d-inline-block m-3 theme-div theme-3" [ngClass]="{'theme-active':defaultTheme === '3'}">
                                 <div class="check-icon d-none">
                                     <mat-icon>check</mat-icon>
                                 </div>
@@ -152,8 +147,7 @@
                         </div>
 
                         <div class="col-12 text-center p-3">
-                            <div class="col-3 d-inline-block m-3 theme-div theme-4"
-                                [ngClass]="{'theme-active':defaultTheme === '4'}">
+                            <div class="col-3 d-inline-block m-3 theme-div theme-4" [ngClass]="{'theme-active':defaultTheme === '4'}">
                                 <div class="check-icon d-none">
                                     <mat-icon>check</mat-icon>
                                 </div>
@@ -170,8 +164,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-3 d-inline-block m-3 theme-div theme-5"
-                                [ngClass]="{'theme-active':defaultTheme === '5'}">
+                            <div class="col-3 d-inline-block m-3 theme-div theme-5" [ngClass]="{'theme-active':defaultTheme === '5'}">
                                 <div class="check-icon d-none">
                                     <mat-icon>check</mat-icon>
                                 </div>
@@ -188,8 +181,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-3 d-inline-block m-3 theme-div theme-6"
-                                [ngClass]="{'theme-active':defaultTheme === '6'}">
+                            <div class="col-3 d-inline-block m-3 theme-div theme-6" [ngClass]="{'theme-active':defaultTheme === '6'}">
                                 <div class="check-icon d-none">
                                     <mat-icon>check</mat-icon>
                                 </div>
@@ -225,18 +217,15 @@
                             < body>
                                 tag
                         </p>
-                        <p class="page-des">3. Now, the users visiting those websites or applications can see the
-                            Appointment Widget. </p>
-                        <p class="page-des">4. If you are still unsure, send the code to someone to assist you with the
-                            configuration.
+                        <p class="page-des">3. Now, the users visiting those websites or applications can see the Appointment Widget. </p>
+                        <p class="page-des">4. If you are still unsure, send the code to someone to assist you with the configuration.
                         </p>
                     </div>
                     <mat-card class="card-content">
                         {{embededCode}}
                         <!-- <iframe height="100%" width="100%" src="http://localhost:4200/booking?business_id=34"></iframe> -->
                         <div *ngIf="isTextCopie==false">
-                            <button mat-button type="submit" (click)="copyEmbedCode(embededCode)"
-                                class="appearance-save-btn">Copy Code</button>
+                            <button mat-button type="submit" (click)="copyEmbedCode(embededCode)" class="appearance-save-btn">Copy Code</button>
                         </div>
                         <div *ngIf="isTextCopie==true">
                             <button mat-button type="submit" class="appearance-save-btn">
@@ -276,17 +265,12 @@
                                             <div class="color-field d-flex ">
                                                 <label>Background Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetBackground_backgroundColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetBackground_backgroundColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetBackground_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetBackground_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Add Background Image</label>
-                                                <button mat-button (click)="uploadWidgetBGImage()"
-                                                    class="sc-pink-btn w-100">Upload Image</button>
+                                                <button mat-button (click)="uploadWidgetBGImage()" class="sc-pink-btn w-100">Upload Image</button>
                                             </div>
                                         </div>
                                     </mat-expansion-panel>
@@ -302,38 +286,28 @@
                                             <div class="color-field d-flex ">
                                                 <label>Background Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetForeGround_backgroundColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetForeGround_backgroundColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Shadow Color <mat-slide-toggle
+                                                        [checked]="appearanceObject.widgetForeGround_isShadow"
                                                         (change)="onToggleChange($event,'foreground_shadow')">
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetForeGround_shadowColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetForeGround_shadowColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_shadowColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Border Color
                                                     <mat-slide-toggle
+                                                        [checked]="appearanceObject.widgetForeGround_isBorder"
                                                         (change)="onToggleChange($event,'foreground_border')">
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetForeGround_borderColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetForeGround_borderColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_borderColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -350,21 +324,21 @@
                                             <div class="toggle-field d-flex ">
                                                 <label>Show Store Logo</label>
                                                 <div class="right-toggle-btn">
-                                                    <mat-slide-toggle (change)="onToggleChange($event,'store_logo')">
+                                                    <mat-slide-toggle [checked]="appearanceObject.widgetStoreDetails_showStoreLogo" (change)="onToggleChange($event,'store_logo')">
                                                     </mat-slide-toggle>
                                                 </div>
                                             </div>
                                             <div class="toggle-field d-flex ">
                                                 <label>Show Store Name</label>
                                                 <div class="right-toggle-btn">
-                                                    <mat-slide-toggle (change)="onToggleChange($event,'store_name')">
+                                                    <mat-slide-toggle [checked]="appearanceObject.widgetStoreDetails_showStoreName" (change)="onToggleChange($event,'store_name')">
                                                     </mat-slide-toggle>
                                                 </div>
                                             </div>
                                             <div class="toggle-field d-flex ">
                                                 <label>Show Store Address</label>
                                                 <div class="right-toggle-btn">
-                                                    <mat-slide-toggle (change)="onToggleChange($event,'store_address')">
+                                                    <mat-slide-toggle [checked]="appearanceObject.widgetStoreDetails_showStoreAddress" (change)="onToggleChange($event,'store_address')">
                                                     </mat-slide-toggle>
                                                 </div>
                                             </div>
@@ -382,9 +356,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Text Font</label>
-                                                <mat-select class="form-control form-control-transparent"
-                                                    (selectionChange)="fnChangeFont($event,'primary_font')"
-                                                    [(ngModel)]="appearanceValue.widgetPrimaryText_font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'primary_font')" [(ngModel)]="appearanceObject.widgetPrimaryText_font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -401,10 +373,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceValue.widgetPrimaryText_color"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetPrimaryText_color"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetPrimaryText_color" class="color_box" [(colorPicker)]="appearanceObject.widgetPrimaryText_color" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -420,9 +389,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Text Font</label>
-                                                <mat-select class="form-control form-control-transparent"
-                                                    (selectionChange)="fnChangeFont($event,'secondary_font')"
-                                                    [(ngModel)]="appearanceValue.widgetSecondaryText_font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'secondary_font')" [(ngModel)]="appearanceObject.widgetSecondaryText_font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -439,11 +406,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetSecondaryText_color"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetSecondaryText_color"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetSecondaryText_color" class="color_box" [(colorPicker)]="appearanceObject.widgetSecondaryText_color" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -459,9 +422,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Button Text Font</label>
-                                                <mat-select class="form-control form-control-transparent"
-                                                    (selectionChange)="fnChangeFont($event,'button_font')"
-                                                    [(ngModel)]="appearanceValue.widgetButton_fontt">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'button_font')" [(ngModel)]="appearanceObject.widgetButton_font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -478,58 +439,43 @@
                                             <div class="color-field d-flex ">
                                                 <label>Button Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceValue.widgetButton_textColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButton_textColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_textColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetButton_backgroundColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButton_backgroundColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="btn-style-field d-flex ">
                                                 <label>Button Style</label>
                                                 <div class="button-styles">
-                                                    <button mat-raised-button (click)="activateBTN(1)"
-                                                        [ngClass]="{'activated' : activatedBtn == 1}"
-                                                        class="btn-styles btn-style-1">Button 1</button>
-                                                    <button mat-raised-button (click)="activateBTN(2)"
-                                                        [ngClass]="{'activated' : activatedBtn == 2}"
-                                                        class="btn-styles btn-style-2">Button 1</button>
-                                                    <button mat-raised-button (click)="activateBTN(3)"
-                                                        [ngClass]="{'activated' : activatedBtn == 3}"
-                                                        class="btn-styles btn-style-3">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(1)" [ngClass]="{'activated' : activatedBtn == 1}" class="btn-styles btn-style-1">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(2)" [ngClass]="{'activated' : activatedBtn == 2}" class="btn-styles btn-style-2">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(3)" [ngClass]="{'activated' : activatedBtn == 3}" class="btn-styles btn-style-3">Button 1</button>
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Border Color
-                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_border')">
+                                                    <mat-slide-toggle 
+                                                        [checked]="appearanceObject.widgetButton_isBorder"
+                                                        (change)="onToggleChange($event,'button_border')">
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceValue.widgetButton_borderColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButton_borderColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_borderColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Shadow Color
-                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_shadow')">
+                                                    <mat-slide-toggle 
+                                                        [checked]="appearanceObject.widgetButton_isShadow"
+                                                        (change)="onToggleChange($event,'button_shadow')">
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceValue.widgetButton_shadowColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButton_shadowColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_shadowColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -541,7 +487,9 @@
                                             <mat-panel-title>
                                                 <label>Widget Button Hover
 
-                                                    <mat-slide-toggle (change)="onToggleChange($event,'button_hover')">
+                                                    <mat-slide-toggle 
+                                                        [checked]="appearanceObject.widgetButtonHover_isHover"
+                                                        (change)="onToggleChange($event,'button_hover')">
                                                     </mat-slide-toggle>
                                                 </label>
                                             </mat-panel-title>
@@ -549,9 +497,7 @@
                                         <div class="botton-options">
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Button Text Font</label>
-                                                <mat-select class="form-control form-control-transparent"
-                                                    (selectionChange)="fnChangeFont($event,'button_hover_font')"
-                                                    [(ngModel)]="appearanceValue.widgetButtonHover_font">
+                                                <mat-select class="form-control form-control-transparent" (selectionChange)="fnChangeFont($event,'button_hover_font')" [(ngModel)]="appearanceObject.widgetButtonHover_font">
                                                     <mat-option value="Poppins, sans-serif">Poppins</mat-option>
                                                     <mat-option value="Roboto, sans-serif">Roboto</mat-option>
                                                     <mat-option value="'Cairo', sans-serif">Cairo</mat-option>
@@ -568,49 +514,35 @@
                                             <div class="color-field d-flex ">
                                                 <label>Button Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetButtonHover_textColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButtonHover_textColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_textColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetButtonHover_backgroundColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButtonHover_backgroundColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Border Color
                                                     <mat-slide-toggle
+                                                        [checked]="appearanceObject.widgetButtonHover_isBorder"
                                                         (change)="onToggleChange($event,'button_hover_border')">
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetButtonHover_borderColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButtonHover_borderColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_borderColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Shadow Color
                                                     <mat-slide-toggle
+                                                        [checked]="appearanceObject.widgetButtonHover_isShadow"
                                                         (change)="onToggleChange($event,'button_hover_shadow')">
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input
-                                                        [style.background]="appearanceValue.widgetButtonHover_shadowColor"
-                                                        class="color_box"
-                                                        [(colorPicker)]="appearanceValue.widgetButtonHover_shadowColor"
-                                                        (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_shadowColor" (colorPickerChange)="onChangeAppearance()" />
                                                 </div>
                                             </div>
                                         </div>
@@ -620,30 +552,28 @@
                         </div>
                     </div>
                     <div id="preview_container" class="right-side pr-0 py-3 appearance-side col-8">
-                        <div class="main-theme-box">
-                            <div id="theme_1" class="theme-main">
+                        <div class="main-theme-box widgetBackground_backgroundColor">
+                            <div id="theme_1" class="theme-main widgetForeGround_backgroundColor " [ngClass]="{'widgetForeGround_shadowColor':appearanceObject.widgetForeGround_isShadow, 'widgetForeGround_borderColor' :appearanceObject.widgetForeGround_isBorder}">
                                 <div class="card-wrap main-front-container">
                                     <div class="theme-card">
                                         <div class="step-wrapper">
                                             <div class="theme-header">
-                                                <div>
+                                                <div *ngIf="appearanceObject.widgetStoreDetails_showStoreLogo">
                                                     <div class="b-logo-container">
-                                                        <img src="../../assets/images/dummy-b-logo-t1.svg" />
+                                                        <img src="../../assets/images/dummy-logo-black.svg" />
                                                     </div>
                                                 </div>
 
-                                                <div class="search-box">
+                                                <div class="search-box widgetPrimaryText_font widgetPrimaryText_color">
                                                     <mat-icon>search</mat-icon>
-                                                    <input type="text" placeholder="Search service"
-                                                        class="form-control" />
+                                                    <input type="text" placeholder="Search service" class="form-control" />
                                                 </div>
                                                 <div class="btn-box d-flex">
-                                                    <button mat-button class="sc-black-btn has-icon">
+                                                    <button mat-button class="sc-black-btn has-icon widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">
                                                         <mat-icon class="btn-icon">perm_identity</mat-icon>
                                                         Login
                                                     </button>
-                                                    <button matBadge="2" matBadgePosition="before" mat-button
-                                                        class="cart-btn">
+                                                    <button matBadge="2" matBadgePosition="before" mat-button class="cart-btn">
                                                         <svg id="Icon_feather-shopping-cart"
                                                             data-name="Icon feather-shopping-cart"
                                                             xmlns="http://www.w3.org/2000/svg" width="36" height="34.5"
@@ -666,20 +596,17 @@
                                                 </div>
                                             </div>
                                             <div id="service_list" class="main-step step_1">
-                                                <div
-                                                    class="theme-card-title col-lg-12 col-sm-12 col-12 d-flex align-items-center p-0">
+                                                <div class="theme-card-title col-lg-12 col-sm-12 col-12 d-flex align-items-center p-0">
                                                     <div class="theme-title-inner d-flex align-items-center">
-                                                        <h3 class="step-title mb-0">Select Category </h3>
+                                                        <h3 class="step-title mb-0 widgetPrimaryText_font widgetPrimaryText_color">Select Category </h3>
                                                         <label class="service-link ml-4 mb-0">Check all services</label>
                                                     </div>
                                                     <div class="store-selector ml-auto for-desktop">
-                                                        <label class="mb-0">Store Location</label>
+                                                        <label class="mb-0 widgetPrimaryText_font widgetPrimaryText_color">Store Location</label>
                                                         <mat-select name="storelocation">
-                                                            <mat-option value="Malad East">Malad East</mat-option>
+                                                            <mat-option value="Malad East ">Malad East</mat-option>
                                                         </mat-select>
-                                                        <img class="location-icon"
-                                                            src="../../assets/images/material-location-on.svg"
-                                                            alt="location">
+                                                        <img class="location-icon" src="../../assets/images/material-location-on.svg" alt="location">
                                                     </div>
                                                 </div>
                                                 <div class="theme-card-content">
@@ -691,9 +618,9 @@
                                                                         src="https://api.schedulic.com/category-images/668447687_test.png" />
                                                                 </div>
                                                                 <div class="cat-content">
-                                                                    <h3 class="cat-title mb-2">Hair Style<span
-                                                                            class="hours-wrap">1 hr</span></h3>
-                                                                    <p>Dess</p>
+                                                                    <h3 class="cat-title mb-2 widgetPrimaryText_font widgetPrimaryText_color">Hair Style<span
+                                                                            class="hours-wrap widgetSecondaryText_font widgetSecondaryText_color">1 hr</span></h3>
+                                                                    <p class="widgetSecondaryText_font widgetSecondaryText_color">Dess</p>
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
@@ -708,9 +635,9 @@
                                                                         src="https://api.schedulic.com/category-images/668447687_test.png" />
                                                                 </div>
                                                                 <div class="cat-content">
-                                                                    <h3 class="cat-title mb-2">Hair Style<span
-                                                                            class="hours-wrap">1 hr</span></h3>
-                                                                    <p>Dess</p>
+                                                                    <h3 class="cat-title mb-2 widgetPrimaryText_font widgetPrimaryText_color">Hair Style<span
+                                                                            class="hours-wrap widgetSecondaryText_font widgetSecondaryText_color">1 hr</span></h3>
+                                                                    <p class="widgetSecondaryText_font widgetSecondaryText_color">Dess</p>
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
@@ -721,9 +648,9 @@
                                                         <label class="col-12 single-cat-main mb-0">
                                                             <div class="single-service">
                                                                 <div class="cat-content without-logo">
-                                                                    <h3 class="cat-title mb-2">Hair Style<span
-                                                                            class="hours-wrap">1 hr</span></h3>
-                                                                    <p>Dess</p>
+                                                                    <h3 class="cat-title mb-2 widgetPrimaryText_font widgetPrimaryText_color">Hair Style<span
+                                                                            class="hours-wrap widgetSecondaryText_font widgetSecondaryText_color">1 hr</span></h3>
+                                                                    <p class="widgetSecondaryText_font widgetSecondaryText_color">Dess</p>
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
@@ -741,12 +668,12 @@
                         </div>
                     </div>
                 </div>
-                <mat-card class="save-cencel-footer">
+                <!-- <mat-card class="save-cencel-footer">
                     <div class="d-flex py-2 save-footer-btn">
                         <button mat-button (click)="fnCancelAppearance()" class="sc-grey-btn mr-2">Cancel</button>
                         <button mat-button class="sc-pink-btn mr-2" (click)="fnSaveAppearanceSettings()">Save</button>
                     </div>
-                </mat-card>
+                </mat-card> -->
             </mat-tab>
             <mat-tab label="Form Setting">
                 <mat-card class="main-form-setting-content common-form-setting-wrap">
@@ -757,8 +684,7 @@
                         </div>
 
                         <div class="contact-field-toggle">
-                            <mat-slide-toggle (change)="fnChangeContactFormStatus($event.checked)"
-                                [checked]="formArr['contact_field_status']"></mat-slide-toggle>
+                            <mat-slide-toggle (change)="fnChangeContactFormStatus($event.checked)" [checked]="formArr['contact_field_status']"></mat-slide-toggle>
                         </div>
                     </div>
 
@@ -770,14 +696,11 @@
                                     <div class="common-check-wrap">
                                         <div class="checked round">
                                             <p class="check-label">Name</p>
-                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'nameField')"
-                                                class="form_field_checkbox" [checked]="formArr['nameField'].status=='1'"
-                                                [disabled]="true">
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'nameField')" class="form_field_checkbox" [checked]="formArr['nameField'].status=='1'" [disabled]="true">
                                             </mat-slide-toggle>
                                         </div>
                                         <div class="" *ngIf="formArr['nameField'].status=='1'">
-                                            <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'nameField')"
-                                                [checked]="formArr['nameField'].required=='1'" [disabled]="true">
+                                            <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'nameField')" [checked]="formArr['nameField'].required=='1'" [disabled]="true">
                                                 Required</mat-checkbox>
                                         </div>
                                     </div>
@@ -786,19 +709,14 @@
                                     <div class="common-check-wrap">
                                         <div class="checked round">
                                             <p class="check-label">Number</p>
-                                            <mat-slide-toggle
-                                                (change)="fnChangeFieldStatus($event.checked,'numberField')"
-                                                class="form_field_checkbox"
-                                                [checked]="formArr['numberField'].status=='1'" [disabled]="true">
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'numberField')" class="form_field_checkbox" [checked]="formArr['numberField'].status=='1'" [disabled]="true">
                                             </mat-slide-toggle>
 
                                         </div>
 
                                         <div class="" *ngIf="formArr['numberField'].status=='1'">
                                             <div>
-                                                <mat-checkbox
-                                                    (change)="fnChangeRequiredStatus($event.checked,'numberField')"
-                                                    [checked]="formArr['numberField'].required=='1'" [disabled]="true">
+                                                <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'numberField')" [checked]="formArr['numberField'].required=='1'" [disabled]="true">
                                                     Required</mat-checkbox>
                                             </div>
                                         </div>
@@ -808,19 +726,14 @@
                                     <div class="common-check-wrap">
                                         <div class="checked round">
                                             <p class="check-label">Email</p>
-                                            <mat-slide-toggle
-                                                (change)="fnChangeFieldStatus($event.checked,'emailField')"
-                                                class="form_field_checkbox"
-                                                [checked]="formArr['emailField'].status=='1'" [disabled]="true">
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'emailField')" class="form_field_checkbox" [checked]="formArr['emailField'].status=='1'" [disabled]="true">
                                             </mat-slide-toggle>
 
                                         </div>
 
                                         <div class="" *ngIf="formArr['emailField'].status=='1'">
                                             <div>
-                                                <mat-checkbox
-                                                    (change)="fnChangeRequiredStatus($event.checked,'emailField')"
-                                                    [checked]="formArr['emailField'].required=='1'" [disabled]="true">
+                                                <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'emailField')" [checked]="formArr['emailField'].required=='1'" [disabled]="true">
                                                     Required</mat-checkbox>
                                             </div>
                                         </div>
@@ -830,26 +743,20 @@
                                     <div class="common-check-wrap">
                                         <div class="checked round">
                                             <p class="check-label">Address</p>
-                                            <mat-slide-toggle
-                                                (change)="fnChangeFieldStatus($event.checked,'addressField')"
-                                                class="form_field_checkbox"
-                                                [checked]="formArr['addressField'].status=='1'"></mat-slide-toggle>
+                                            <mat-slide-toggle (change)="fnChangeFieldStatus($event.checked,'addressField')" class="form_field_checkbox" [checked]="formArr['addressField'].status=='1'"></mat-slide-toggle>
 
                                         </div>
 
                                         <div class="" *ngIf="formArr['addressField'].status=='1'">
                                             <div>
-                                                <mat-checkbox
-                                                    (change)="fnChangeRequiredStatus($event.checked,'addressField')"
-                                                    [checked]="formArr['addressField'].required=='1'">Required
+                                                <mat-checkbox (change)="fnChangeRequiredStatus($event.checked,'addressField')" [checked]="formArr['addressField'].required=='1'">Required
                                                 </mat-checkbox>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button mat-button appearance="fill" class="sc-pink-btn pink-btn-md mt-3"
-                                (click)="fnFormSetting()">Save</button>
+                            <button mat-button appearance="fill" class="sc-pink-btn pink-btn-md mt-3" (click)="fnFormSetting()">Save</button>
                         </div>
                     </div>
                 </mat-card>
@@ -865,9 +772,7 @@
             <mat-tab label="Buttons & Links">
                 <mat-card class="main-form-setting-content content-btn-links-wrap">
                     <h5 class="page-title">Buttons and Links</h5>
-                    <p class="page-des">Promote your pages (Facebook & Twitter) with buttons for booking appointments.
-                        We will provide you with a unique booking link that you can share online with customers on
-                        social media.</p>
+                    <p class="page-des">Promote your pages (Facebook & Twitter) with buttons for booking appointments. We will provide you with a unique booking link that you can share online with customers on social media.</p>
                 </mat-card>
 
                 <mat-card class="main-form-setting-content service-boking-text-wrap">
@@ -881,26 +786,20 @@
 
                             <div class="col-10">
                                 <p>
-                                    Add this service booking link on your website and social media pages to accept
-                                    bookings.
+                                    Add this service booking link on your website and social media pages to accept bookings.
                                 </p>
                             </div>
                             <div class="col-12 mb-2">
                                 <!-- <mat-form-field class=" bottom-border-field "> -->
-                                <input [value]="frontBookingUrl"
-                                    class="form-control form-control-transparent border pl-2" matInput
-                                    placeholder="https://app.schedulic.com/book/service" readonly>
+                                <input [value]="frontBookingUrl" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly>
                                 <!-- </mat-form-field> -->
                             </div>
 
-                            <a mat-button [href]="frontBookingUrl" target="_blank"
-                                class="btn service-booking-link-active ml-3 m-2 pr-3"><i
+                            <a mat-button [href]="frontBookingUrl" target="_blank" class="btn service-booking-link-active ml-3 m-2 pr-3"><i
                                     class="fa fa-external-link mr-2"></i>Test link</a>
-                            <button mat-button (click)="fnShare('facebook');"
-                                class="btn service-booking-link m-2 pr-3"><i class="fa fa-facebook mr-2"></i>Share
+                            <button mat-button (click)="fnShare('facebook');" class="btn service-booking-link m-2 pr-3"><i class="fa fa-facebook mr-2"></i>Share
                                 It</button>
-                            <button mat-button (click)="fnShare('twitter');"
-                                class="btn service-booking-link m-2 pr-3"><i class="fa fa-twitter mr-2"></i>Tweet
+                            <button mat-button (click)="fnShare('twitter');" class="btn service-booking-link m-2 pr-3"><i class="fa fa-twitter mr-2"></i>Tweet
                                 It</button>
                         </div>
                     </div>
@@ -915,8 +814,7 @@
                                 <h5>HTML Buttons</h5>
                             </div>
                             <div class="col-12">
-                                <p>Add different colored “Book now” HTML buttons on your website. You can copy the code
-                                    and add it to your blog and website.</p>
+                                <p>Add different colored “Book now” HTML buttons on your website. You can copy the code and add it to your blog and website.</p>
                             </div>
 
                             <div class="col-12 html-sample-btns">
@@ -935,10 +833,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pb-1 pr-5">
 
-                                        <input
-                                            value="<a style='color: #00a89b;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
-                                            placeholder="https://app.schedulic.com/book/service" readonly>
+                                        <input value="<a style='color: #00a89b;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput placeholder="https://app.schedulic.com/book/service" readonly>
 
                                     </div>
                                 </div>
@@ -949,9 +844,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #003cff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #003cff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="{{frontBookingUrl}}" readonly></textarea>
 
                                     </div>
@@ -963,9 +856,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #008aff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #008aff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -977,9 +868,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #009315;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #009315;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -991,9 +880,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #ffa800;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #ffa800;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -1005,9 +892,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #ff008a;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #ff008a;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -1019,9 +904,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #8a00ff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #8a00ff;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -1033,9 +916,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #ff0000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #ff0000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -1047,9 +928,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #000000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #000000;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -1061,9 +940,7 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #666666;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
+                                        <textarea value="<a style='background-color: #666666;color: #fff;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2" matInput
                                             placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
@@ -1075,10 +952,8 @@
                                     </div>
                                     <div class="col-8 pt-0 pr-5">
 
-                                        <textarea
-                                            value="<a style='background-color: #fdfdfd;border: 1px solid #b5b5b5;color: #000;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>"
-                                            class="form-control form-control-transparent border pl-2" matInput
-                                            placeholder="https://app.schedulic.com/book/service" readonly></textarea>
+                                        <textarea value="<a style='background-color: #fdfdfd;border: 1px solid #b5b5b5;color: #000;display: inline-block;padding: 10px 15px;text-decoration: none;border-radius: 5px;' href='{{frontBookingUrl}}'>BOOK NOW</a>" class="form-control form-control-transparent border pl-2"
+                                            matInput placeholder="https://app.schedulic.com/book/service" readonly></textarea>
 
                                     </div>
                                 </div>

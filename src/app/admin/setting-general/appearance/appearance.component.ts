@@ -77,50 +77,36 @@ export class AppearanceComponent implements OnInit {
   currentUser: any;
   activatedBtn: number = 1;
   appearanceObject = {
-    widgetBackground: {
-      backgroundColor: '',
-      backgroundImage: '',
-    },
-    widgetForeGround: {
-      backgroundColor: '',
-      isShadow: false,
-      isBorder: false,
-      shadowColor: '',
-      borderColor: '',
-    },
-    widgetStoreDetails: {
-      showStoreLogo: false,
-      showStoreName: false,
-      showStoreAddress: false,
-    },
-    widgetPrimaryText: {
-      font: 'Poppins, sans-serif',
-      color: '',
-    },
-    widgetSecondaryText: {
-      font: 'Poppins, sans-serif',
-      color: '',
-    },
-    widgetButton: {
-      font: 'Poppins, sans-serif',
-      textColor: '',
-      backgroundColor: '',
-      style: 1,
-      isBorder: false,
-      isShadow: false,
-      borderColor: '',
-      shadowColor: '',
-    },
-    widgetButtonHover: {
-      isHover: false,
-      font: 'Poppins, sans-serif',
-      textColor: '',
-      backgroundColor: '',
-      isBorder: false,
-      isShadow: false,
-      borderColor: '',
-      shadowColor: '',
-    }
+    widgetBackground_backgroundColor: '',
+    widgetBackground_backgroundImage: '',
+    widgetForeGround_backgroundColor: '',
+    widgetForeGround_isShadow: false,
+    widgetForeGround_isBorder: false,
+    widgetForeGround_shadowColor: '',
+    widgetForeGround_borderColor: '',
+    widgetStoreDetails_showStoreLogo: false,
+    widgetStoreDetails_showStoreName: false,
+    widgetStoreDetails_showStoreAddress: false,
+    widgetPrimaryText_font: 'Poppins, sans-serif',
+    widgetPrimaryText_color: '',
+    widgetSecondaryText_font: 'Poppins, sans-serif',
+    widgetSecondaryText_color: '',
+    widgetButton_font: 'Poppins, sans-serif',
+    widgetButton_textColor: '',
+    widgetButton_backgroundColor: '',
+    widgetButton_style: 1,
+    widgetButton_isBorder: false,
+    widgetButton_isShadow: false,
+    widgetButton_borderColor: '',
+    widgetButton_shadowColor: '',
+    widgetButtonHover_isHover: false,
+    widgetButtonHover_font: 'Poppins, sans-serif',
+    widgetButtonHover_textColor: '',
+    widgetButtonHover_backgroundColor: '',
+    widgetButtonHover_isBorder: false,
+    widgetButtonHover_isShadow: false,
+    widgetButtonHover_borderColor: '',
+    widgetButtonHover_shadowColor: '',
   }
   constructor(
     private appComponent: AppComponent,
@@ -187,20 +173,20 @@ export class AppearanceComponent implements OnInit {
 
   fnChangeFont(event, type) {
     if (type == 'primary_font') {
-      this.appearanceObject.widgetPrimaryText.font = event.value;
+      this.appearanceObject.widgetPrimaryText_font = event.value;
     } else if (type == 'secondary_font') {
-      this.appearanceObject.widgetSecondaryText.font = event.value;
+      this.appearanceObject.widgetSecondaryText_font = event.value;
     } else if (type == 'button_font') {
-      this.appearanceObject.widgetButton.font = event.value;
+      this.appearanceObject.widgetButton_font = event.value;
     } else if (type == 'button_hover_font') {
-      this.appearanceObject.widgetButtonHover.font = event.value;
+      this.appearanceObject.widgetButtonHover_font = event.value;
     }
     this.update_SCSS_var();
   }
 
   activateBTN(btnNo) {
     this.activatedBtn = btnNo
-    this.appearanceObject.widgetButton.style = this.activatedBtn;
+    this.appearanceObject.widgetButton_style = this.activatedBtn;
     this.update_SCSS_var();
   }
 
@@ -212,61 +198,32 @@ export class AppearanceComponent implements OnInit {
   onToggleChange(event, type) {
     console.log(event);
     if (type == 'button_hover_border') {
-      this.appearanceObject.widgetButtonHover.isBorder = event.checked;
+      this.appearanceObject.widgetButtonHover_isBorder = event.checked;
     } else if (type == 'foreground_shadow') {
-      this.appearanceObject.widgetForeGround.isShadow = event.checked;
+      this.appearanceObject.widgetForeGround_isShadow = event.checked;
     } else if (type == 'foreground_border') {
-      this.appearanceObject.widgetForeGround.isBorder = event.checked;
+      this.appearanceObject.widgetForeGround_isBorder = event.checked;
     } else if (type == 'store_logo') {
-      this.appearanceObject.widgetStoreDetails.showStoreLogo = event.checked;
+      this.appearanceObject.widgetStoreDetails_showStoreLogo = event.checked;
     } else if (type == 'store_name') {
-      this.appearanceObject.widgetStoreDetails.showStoreName = event.checked;
+      this.appearanceObject.widgetStoreDetails_showStoreName = event.checked;
     } else if (type == 'store_address') {
-      this.appearanceObject.widgetStoreDetails.showStoreAddress = event.checked;
+      this.appearanceObject.widgetStoreDetails_showStoreAddress = event.checked;
     } else if (type == 'button_border') {
-      this.appearanceObject.widgetButton.isBorder = event.checked;
+      this.appearanceObject.widgetButton_isBorder = event.checked;
     } else if (type == 'button_shadow') {
-      this.appearanceObject.widgetButton.isShadow = event.checked;
+      this.appearanceObject.widgetButton_isShadow = event.checked;
     } else if (type == 'button_hover_shadow') {
-      this.appearanceObject.widgetButtonHover.isShadow = event.checked;
+      this.appearanceObject.widgetButtonHover_isShadow = event.checked;
     } else if (type == 'button_hover') {
-      this.appearanceObject.widgetButtonHover.isHover = event.checked;
+      this.appearanceObject.widgetButtonHover_isHover = event.checked;
     }
     console.log(this.appearanceObject);
     this.update_SCSS_var();
   }
 
   update_SCSS_var() {
-    this.appearanceValue =
-      '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground.backgroundColor +
-      '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround.backgroundColor +
-      '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround.shadowColor +
-      '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround.borderColor +
-      '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText.color +
-      '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText.font +
-      '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText.color +
-      '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText.font +
-      '","widgetButton_textColor":"' + this.appearanceObject.widgetButton.textColor +
-      '","widgetButton_font":"' + this.appearanceObject.widgetButton.font +
-      '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton.backgroundColor +
-      '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton.borderColor +
-      '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton.shadowColor +
-      '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover.textColor +
-      '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover.backgroundColor +
-      '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover.borderColor +
-      '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover.shadowColor +
-      '","widgetForeGround_isShadow":"' + this.appearanceObject.widgetForeGround.isShadow +
-      '","widgetForeGround_isBorder":"' + this.appearanceObject.widgetForeGround.isBorder +
-      '","widgetStoreDetails_showStoreLogo":"' + this.appearanceObject.widgetStoreDetails.showStoreLogo +
-      '","widgetStoreDetails_showStoreName":"' + this.appearanceObject.widgetStoreDetails.showStoreName +
-      '","widgetStoreDetails_showStoreAddress":"' + this.appearanceObject.widgetStoreDetails.showStoreAddress +
-      '","widgetButton_isBorder":"' + this.appearanceObject.widgetButton.isBorder +
-      '","widgetButton_isShadow":"' + this.appearanceObject.widgetButton.isShadow +
-      '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover +
-      '","widgetButtonHover_isBorder":"' + this.appearanceObject.widgetButtonHover.isBorder +
-      '","widgetButtonHover_isHover":"' + this.appearanceObject.widgetButtonHover.isHover +
-      '","widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover.font +
-      '"}';
+    this.appearanceValue = '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground_backgroundColor +'","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround_backgroundColor +'","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround_shadowColor + '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround_borderColor + '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText_color + '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText_font + '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText_color + '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText_font + '","widgetButton_textColor":"' + this.appearanceObject.widgetButton_textColor + '","widgetButton_font":"' + this.appearanceObject.widgetButton_font + '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton_backgroundColor + '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton_borderColor + '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton_shadowColor + '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover_textColor + '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover_backgroundColor + '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover_borderColor + '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover_shadowColor + '","widgetForeGround_isShadow":' + this.appearanceObject.widgetForeGround_isShadow + ',"widgetForeGround_isBorder":' + this.appearanceObject.widgetForeGround_isBorder + ',"widgetStoreDetails_showStoreLogo":' + this.appearanceObject.widgetStoreDetails_showStoreLogo + ',"widgetStoreDetails_showStoreName":' + this.appearanceObject.widgetStoreDetails_showStoreName + ',"widgetStoreDetails_showStoreAddress":' + this.appearanceObject.widgetStoreDetails_showStoreAddress + ',"widgetButton_isBorder":' + this.appearanceObject.widgetButton_isBorder + ',"widgetButton_isShadow":' + this.appearanceObject.widgetButton_isShadow + ',"widgetButtonHover_isHover":' + this.appearanceObject.widgetButtonHover_isHover + ',"widgetButtonHover_isBorder":' + this.appearanceObject.widgetButtonHover_isBorder+ ',"widgetButtonHover_isShadow":' + this.appearanceObject.widgetButtonHover_isShadow + ',"widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover_font + '"}';
     console.log(JSON.parse(this.appearanceValue));
     const data = JSON.parse(this.appearanceValue);
     for (const [key, value] of Object.entries(data)) {
@@ -361,6 +318,8 @@ export class AppearanceComponent implements OnInit {
         console.log(this.settingData);
         if (this.settingData.appearance) {
           this.appearanceObject = JSON.parse(this.settingData.appearance);
+          console.log(this.appearanceObject);
+          
           // this.appearanceObject.widgetBackground.backgroundImage = this.getAppearanceData.image;
           this.update_SCSS_var();
         }
@@ -484,7 +443,7 @@ export class AppearanceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined) {
-        this.appearanceObject.widgetBackground.backgroundImage = result;
+        this.appearanceObject.widgetBackground_backgroundImage = result;
         // this.fnCreateAppearance(this.appearanceObject);
       }
     });

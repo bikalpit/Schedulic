@@ -1,4 +1,72 @@
 @import "variables";
+.widgetBackground_backgroundColor {
+    background-color: $widgetBackground_backgroundColor !important;
+}
+
+.widgetForeGround_backgroundColor {
+    background-color: $widgetForeGround_backgroundColor !important;
+}
+
+.widgetForeGround_shadowColor {
+    box-shadow: 1px 1px 15px $widgetForeGround_shadowColor !important;
+}
+
+.widgetForeGround_borderColor {
+    border-color: $widgetForeGround_borderColor !important;
+}
+
+.widgetPrimaryText_font {
+    font-family: $widgetPrimaryText_font !important;
+}
+
+.widgetPrimaryText_color {
+    color: $widgetPrimaryText_color !important;
+}
+
+.widgetSecondaryText_font {
+    font-family: $widgetSecondaryText_font !important;
+}
+
+.widgetSecondaryText_color {
+    color: $widgetSecondaryText_color !important;
+}
+
+.widgetButton_textColor {
+    color: $widgetButton_textColor !important;
+}
+
+.widgetButton_backgroundColor {
+    background-color: $widgetButton_backgroundColor !important;
+}
+
+.widgetButton_font {
+    font-family: $widgetButton_font !important;
+}
+
+.widgetButton_borderColor {
+    border-color: $widgetButton_borderColor !important;
+}
+
+.widgetButton_shadowColor {
+    box-shadow: 1px 1px 15px $widgetButton_shadowColor !important;
+}
+
+.widgetButtonHover_textColor:hover {
+    color: $widgetButtonHover_textColor !important;
+}
+
+.widgetButtonHover_borderColor:hover {
+    border-color: $widgetButtonHover_borderColor !important;
+}
+
+.widgetButtonHover_shadowColor:hover {
+    box-shadow: 1px 1px 15px $widgetButtonHover_shadowColor !important;
+}
+
+.widgetButtonHover_backgroundColor:hover {
+    background-color: $widgetButtonHover_backgroundColor !important;
+}
+
 .main-getting-content {
     margin: 30px;
 }
@@ -462,12 +530,24 @@
         .theme-main {
             background-color: #fff;
             padding: 4px;
+            border: 2px solid transparent;
+            button {
+                border: 1px solid transparent;
+                transition: all 0.3s;
+            }
+            .btn_style_1 {
+                border-radius: 0;
+            }
+            .btn_style_2 {}
+            .btn_style_3 {
+                border-radius: 100px;
+            }
         }
         .theme-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #3986fa;
+            // background-color: #3986fa;
             padding: 15px 40px;
             height: 95px;
             .b-logo-container {
@@ -489,7 +569,7 @@
                     padding-left: 13px;
                 }
                 input {
-                    border: 0;
+                    border: 1px solid #ccc;
                     border-radius: 3px;
                     text-indent: 30px;
                     font-size: 14px;
@@ -808,6 +888,7 @@
             border: 1px solid #00A89B80;
             border-radius: 5px;
             padding: 15px 20px;
+            height: calc(100vh - 140px);
             .palate-main-title {
                 width: 100%;
                 display: flex;
