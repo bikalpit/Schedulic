@@ -451,9 +451,9 @@
                                             <div class="btn-style-field d-flex ">
                                                 <label>Button Style</label>
                                                 <div class="button-styles">
-                                                    <button mat-raised-button (click)="activateBTN(1)" [ngClass]="{'activated' : activatedBtn == 1}" class="btn-styles btn-style-1">Button 1</button>
-                                                    <button mat-raised-button (click)="activateBTN(2)" [ngClass]="{'activated' : activatedBtn == 2}" class="btn-styles btn-style-2">Button 1</button>
-                                                    <button mat-raised-button (click)="activateBTN(3)" [ngClass]="{'activated' : activatedBtn == 3}" class="btn-styles btn-style-3">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(1)" [ngClass]="{'activated' : appearanceObject.widgetButton_style == 1}" class="btn-styles btn-style-1">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(2)" [ngClass]="{'activated' : appearanceObject.widgetButton_style == 2}" class="btn-styles btn-style-2">Button 1</button>
+                                                    <button mat-raised-button (click)="activateBTN(3)" [ngClass]="{'activated' : appearanceObject.widgetButton_style == 3}" class="btn-styles btn-style-3">Button 1</button>
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
@@ -624,7 +624,7 @@
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
-                                                                        class="sc-bordered-btn w-100">Select</button>
+                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
                                                                 </div>
                                                             </div>
                                                         </label>
@@ -641,7 +641,7 @@
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
-                                                                        class="sc-bordered-btn w-100">Select</button>
+                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
                                                                 </div>
                                                             </div>
                                                         </label>
@@ -654,7 +654,7 @@
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
-                                                                        class="sc-bordered-btn w-100">Select</button>
+                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
                                                                 </div>
                                                             </div>
                                                         </label>
