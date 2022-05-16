@@ -108,6 +108,11 @@ export class AppearanceComponent implements OnInit {
     widgetButtonHover_borderColor: '',
     widgetButtonHover_shadowColor: '',
   }
+  theme1appearanceObject:any;
+  theme2appearanceObject:any;
+  theme3appearanceObject:any;
+  theme4appearanceObject:any;
+  theme5appearanceObject:any;
   constructor(
     private appComponent: AppComponent,
     private _formBuilder: FormBuilder,
@@ -140,6 +145,171 @@ export class AppearanceComponent implements OnInit {
     if (newWidgetAction.length > 1 && newWidgetAction[1] == 'widgets') {
       this.selectedtab = 1;
     }
+
+
+    // theme wise appearance
+
+    this.theme1appearanceObject = {
+      widgetBackground_backgroundColor: '#fff',
+      widgetBackground_backgroundImage: '',
+      widgetForeGround_backgroundColor: '#fff',
+      widgetForeGround_isShadow: false,
+      widgetForeGround_isBorder: false,
+      widgetForeGround_shadowColor: '',
+      widgetForeGround_borderColor: '',
+      widgetStoreDetails_showStoreLogo: true,
+      widgetStoreDetails_showStoreName: false,
+      widgetStoreDetails_showStoreAddress: false,
+      widgetPrimaryText_font: 'Poppins, sans-serif',
+      widgetPrimaryText_color: '#1D1D1D',
+      widgetSecondaryText_font: 'Poppins, sans-serif',
+      widgetSecondaryText_color: '#A2A2A2',
+      widgetButton_font: 'Poppins, sans-serif',
+      widgetButton_textColor: '#000000',
+      widgetButton_backgroundColor: '#fff',
+      widgetButton_style: 2,
+      widgetButton_isBorder: true,
+      widgetButton_isShadow: false,
+      widgetButton_borderColor: '#707070',
+      widgetButton_shadowColor: '',
+      widgetButtonHover_isHover: true,
+      widgetButtonHover_font: 'Poppins, sans-serif',
+      widgetButtonHover_textColor: '#fff',
+      widgetButtonHover_backgroundColor: '#1D1D1D',
+      widgetButtonHover_isBorder: false,
+      widgetButtonHover_isShadow: false,
+      widgetButtonHover_borderColor: '',
+      widgetButtonHover_shadowColor: '',
+    }
+    this.theme2appearanceObject = {
+      widgetBackground_backgroundColor: '#fff',
+      widgetBackground_backgroundImage: '',
+      widgetForeGround_backgroundColor: '#fff',
+      widgetForeGround_isShadow: false,
+      widgetForeGround_isBorder: false,
+      widgetForeGround_shadowColor: '',
+      widgetForeGround_borderColor: '',
+      widgetStoreDetails_showStoreLogo: true,
+      widgetStoreDetails_showStoreName: false,
+      widgetStoreDetails_showStoreAddress: false,
+      widgetPrimaryText_font: 'Poppins, sans-serif',
+      widgetPrimaryText_color: '#000000',
+      widgetSecondaryText_font: 'Poppins, sans-serif',
+      widgetSecondaryText_color: '#2C2C2C',
+      widgetButton_font: 'Poppins, sans-serif',
+      widgetButton_textColor: '#fff',
+      widgetButton_backgroundColor: '#C4C4C4',
+      widgetButton_style: 2,
+      widgetButton_isBorder: false,
+      widgetButton_isShadow: false,
+      widgetButton_borderColor: '',
+      widgetButton_shadowColor: '',
+      widgetButtonHover_isHover: true,
+      widgetButtonHover_font: 'Poppins, sans-serif',
+      widgetButtonHover_textColor: '#fff',
+      widgetButtonHover_backgroundColor: '#3B31B9',
+      widgetButtonHover_isBorder: false,
+      widgetButtonHover_isShadow: false,
+      widgetButtonHover_borderColor: '',
+      widgetButtonHover_shadowColor: '',
+    }
+    this.theme3appearanceObject = {
+      widgetBackground_backgroundColor: '#fff',
+      widgetBackground_backgroundImage: '',
+      widgetForeGround_backgroundColor: '#fff',
+      widgetForeGround_isShadow: false,
+      widgetForeGround_isBorder: false,
+      widgetForeGround_shadowColor: '',
+      widgetForeGround_borderColor: '',
+      widgetStoreDetails_showStoreLogo: true,
+      widgetStoreDetails_showStoreName: false,
+      widgetStoreDetails_showStoreAddress: false,
+      widgetPrimaryText_font: 'Poppins, sans-serif',
+      widgetPrimaryText_color: '#2C2C2C',
+      widgetSecondaryText_font: 'Poppins, sans-serif',
+      widgetSecondaryText_color: '#686868',
+      widgetButton_font: 'Poppins, sans-serif',
+      widgetButton_textColor: '#fff',
+      widgetButton_backgroundColor: '#3B31B9',
+      widgetButton_style: 2,
+      widgetButton_isBorder: false,
+      widgetButton_isShadow: false,
+      widgetButton_borderColor: '',
+      widgetButton_shadowColor: '',
+      widgetButtonHover_isHover: false,
+      widgetButtonHover_font: '',
+      widgetButtonHover_textColor: '',
+      widgetButtonHover_backgroundColor: '',
+      widgetButtonHover_isBorder: false,
+      widgetButtonHover_isShadow: false,
+      widgetButtonHover_borderColor: '',
+      widgetButtonHover_shadowColor: '',
+    }
+    this.theme4appearanceObject = {
+      widgetBackground_backgroundColor: '#fff',
+      widgetBackground_backgroundImage: '',
+      widgetForeGround_backgroundColor: '#fff',
+      widgetForeGround_isShadow: false,
+      widgetForeGround_isBorder: false,
+      widgetForeGround_shadowColor: '',
+      widgetForeGround_borderColor: '',
+      widgetStoreDetails_showStoreLogo: true,
+      widgetStoreDetails_showStoreName: false,
+      widgetStoreDetails_showStoreAddress: false,
+      widgetPrimaryText_font: 'Poppins, sans-serif',
+      widgetPrimaryText_color: '#2C2C2C',
+      widgetSecondaryText_font: 'Poppins, sans-serif',
+      widgetSecondaryText_color: '#A7A7A7',
+      widgetButton_font: 'Poppins, sans-serif',
+      widgetButton_textColor: '#fff',
+      widgetButton_backgroundColor: '#FF5D5D',
+      widgetButton_style: 2,
+      widgetButton_isBorder: false,
+      widgetButton_isShadow: false,
+      widgetButton_borderColor: '',
+      widgetButton_shadowColor: '',
+      widgetButtonHover_isHover: false,
+      widgetButtonHover_font: '',
+      widgetButtonHover_textColor: '',
+      widgetButtonHover_backgroundColor: '',
+      widgetButtonHover_isBorder: false,
+      widgetButtonHover_isShadow: false,
+      widgetButtonHover_borderColor: '',
+      widgetButtonHover_shadowColor: '',
+    }
+    this.theme5appearanceObject = {
+      widgetBackground_backgroundColor: '#fff',
+      widgetBackground_backgroundImage: '',
+      widgetForeGround_backgroundColor: '#fff',
+      widgetForeGround_isShadow: false,
+      widgetForeGround_isBorder: false,
+      widgetForeGround_shadowColor: '',
+      widgetForeGround_borderColor: '',
+      widgetStoreDetails_showStoreLogo: true,
+      widgetStoreDetails_showStoreName: false,
+      widgetStoreDetails_showStoreAddress: false,
+      widgetPrimaryText_font: 'Poppins, sans-serif',
+      widgetPrimaryText_color: '#1D1D1D',
+      widgetSecondaryText_font: 'Poppins, sans-serif',
+      widgetSecondaryText_color: '#818181',
+      widgetButton_font: 'Poppins, sans-serif',
+      widgetButton_textColor: '#048FA5',
+      widgetButton_backgroundColor: '#F1F1F1',
+      widgetButton_style: 2,
+      widgetButton_isBorder: true,
+      widgetButton_isShadow: false,
+      widgetButton_borderColor: '#048FA5',
+      widgetButton_shadowColor: '',
+      widgetButtonHover_isHover: true,
+      widgetButtonHover_font: 'Poppins, sans-serif',
+      widgetButtonHover_textColor: '#fff',
+      widgetButtonHover_backgroundColor: '#048FA5',
+      widgetButtonHover_isBorder: false,
+      widgetButtonHover_isShadow: false,
+      widgetButtonHover_borderColor: '',
+      widgetButtonHover_shadowColor: '',
+    }
+
   }
 
   ngOnInit() {
@@ -395,7 +565,18 @@ export class AppearanceComponent implements OnInit {
   }
 
   fnCancelAppearance() {
-    this.getSettingValue();
+    // this.getSettingValue();
+    if(this.defaultTheme == 1){
+      this.fnCreateAppearance(this.theme1appearanceObject);
+    }else if(this.defaultTheme == 3){
+      this.fnCreateAppearance(this.theme2appearanceObject);
+    }else if(this.defaultTheme == 4){
+      this.fnCreateAppearance(this.theme3appearanceObject);
+    }else if(this.defaultTheme == 5){
+      this.fnCreateAppearance(this.theme4appearanceObject);
+    }else if(this.defaultTheme == 6){
+      this.fnCreateAppearance(this.theme5appearanceObject);
+    }
   }
 
   fnChnageTheme(selectedTheme) {
@@ -413,6 +594,17 @@ export class AppearanceComponent implements OnInit {
           verticalPosition: 'top',
           panelClass: ['green-snackbar']
         });
+        if(selectedTheme == 1){
+          this.fnCreateAppearance(this.theme1appearanceObject);
+        }else if(selectedTheme == 3){
+          this.fnCreateAppearance(this.theme2appearanceObject);
+        }else if(selectedTheme == 4){
+          this.fnCreateAppearance(this.theme3appearanceObject);
+        }else if(selectedTheme == 5){
+          this.fnCreateAppearance(this.theme4appearanceObject);
+        }else if(selectedTheme == 6){
+          this.fnCreateAppearance(this.theme5appearanceObject);
+        }
         this.getSettingValue();
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
 
