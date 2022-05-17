@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl,ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { AdminSettingsService } from '../../_services/admin-settings.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -30,14 +30,14 @@ export interface CityArry {
   styleUrls: ['./company-details.component.scss']
 })
 export class CompanyDetailsComponent implements OnInit {
-  adminSettings : boolean = true;
-  companyDetails:FormGroup;
-  companyDetailsData:any;
-  companyDetailsImageUrl:any = '';
-  updateCompanyDetailsData:any;
+  adminSettings: boolean = true;
+  companyDetails: FormGroup;
+  companyDetailsData: any;
+  companyDetailsImageUrl: any = '';
+  updateCompanyDetailsData: any;
   allCountry: any;
   allStates: any;
-  settingSideMenuToggle : boolean = false;
+  settingSideMenuToggle: boolean = false;
   allCities: any;
   businessId: any;
   selectedCountry: any;
@@ -57,11 +57,11 @@ export class CompanyDetailsComponent implements OnInit {
   public CityList: ReplaySubject<StateArry[]> = new ReplaySubject<StateArry[]>(1);
 
   protected _onDestroy = new Subject<void>();
-  
-  phoneNumberInvalid:any = "valid";
+
+  phoneNumberInvalid: any = "valid";
   emailFormat = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
   onlynumeric = /^-?(0|[1-9]\d*)?$/
-  trimValidator:ValidatorFn;
+  trimValidator: ValidatorFn;
   websiteUrl = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
   websiteUrl2 = '/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/'
   isLoaderAdmin: boolean = false;
@@ -75,46 +75,47 @@ export class CompanyDetailsComponent implements OnInit {
 
 
   constructor(
-    private _formBuilder:FormBuilder,
+    private _formBuilder: FormBuilder,
     public dialog: MatDialog,
     @Inject(AdminSettingsService) public adminSettingsService: AdminSettingsService,
     private _snackBar: MatSnackBar
-    ) {
-      localStorage.setItem('isBusiness', 'false');
-      if (localStorage.getItem('business_id')) {
-          this.businessId = localStorage.getItem('business_id');
-      }
+  ) {
+    localStorage.setItem('isBusiness', 'false');
+    if (localStorage.getItem('business_id')) {
+      this.businessId = localStorage.getItem('business_id');
+    }
 
-   }
+  }
 
 
   ngOnInit() {
     this.gelAllCountry();
     this.getCompanyDetails();
     this.companyDetails = this._formBuilder.group({
-      company_name : ['', [Validators.required,Validators.minLength(3),Validators.maxLength(255)],this.whiteSpaceValidation.bind(this)],
-      comp_email : ['',[Validators.required, Validators.pattern(this.emailFormat)]],
-      comp_website : ['',[Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")]],
-      comp_mobile : ['',[Validators.required,Validators.minLength(6),Validators.maxLength(15)]],
+      company_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)], this.whiteSpaceValidation.bind(this)],
+      comp_email: ['', [Validators.required, Validators.pattern(this.emailFormat)]],
+      comp_website: ['', [Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")]],
+      comp_mobile: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
       // comp_mobile : ['',[Validators.required]],
-      country:['', Validators.required],
-      comp_address:['', Validators.required],
-      city:['', Validators.required],
-      state:['', Validators.required],
-      zip_code:['', [Validators.required,Validators.minLength(5),Validators.maxLength(7)]],
-      comp_decs:['', Validators.required],
-      comp_status:[false],
-      comp_private_status:[false],
+      country: ['', Validators.required],
+      comp_address: ['', Validators.required],
+      How_customers_will_Find_you: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip_code: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(7)]],
+      comp_decs: ['', Validators.required],
+      comp_status: [false],
+      comp_private_status: [false],
     });
   }
 
   whiteSpaceValidation(control: FormControl) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if(control.value.trim().length == 0){
+        if (control.value.trim().length == 0) {
           resolve({ whiteSpaceValidation: true });
           // return false;
-        }else{
+        } else {
           // return true;
           resolve(null);
         }
@@ -123,13 +124,13 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
 
-  getCompanyDetails(){
+  getCompanyDetails() {
     this.isLoaderAdmin = true;
     let requestObject = {
-        'business_id': this.businessId,
+      'business_id': this.businessId,
     };
-    this.adminSettingsService.getCompanyDetails(requestObject).subscribe((response:any) => {
-      if(response.data == true){
+    this.adminSettingsService.getCompanyDetails(requestObject).subscribe((response: any) => {
+      if (response.data == true) {
         this.companyDetailsData = response.response;
         this.selectCountry(this.companyDetailsData.country.id);
         this.selectStates(this.companyDetailsData.state);
@@ -139,37 +140,38 @@ export class CompanyDetailsComponent implements OnInit {
         this.companyDetails.controls['comp_mobile'].setValue(this.companyDetailsData.phone);
         this.companyDetails.controls['country'].setValue(JSON.stringify(this.companyDetailsData.country.id));
         this.companyDetails.controls['comp_address'].setValue(this.companyDetailsData.address);
+        this.companyDetails.controls['How_customers_will_Find_you'].setValue(this.companyDetailsData.How_customers_will_Find_you);
         this.companyDetails.controls['city'].setValue(JSON.stringify(this.companyDetailsData.city.id));
         // this.companyDetails.controls['state'].setValue(JSON.stringify(this.companyDetailsData.state!=null ? this.companyDetailsData.state.id : ''));
-        this.companyDetails.controls['state'].setValue(JSON.stringify(this.companyDetailsData.state?this.companyDetailsData.state.id:''));
+        this.companyDetails.controls['state'].setValue(JSON.stringify(this.companyDetailsData.state ? this.companyDetailsData.state.id : ''));
         this.companyDetails.controls['zip_code'].setValue(this.companyDetailsData.zipcode);
         this.companyDetails.controls['comp_decs'].setValue(this.companyDetailsData.description);
-        this.companyDetails.controls['comp_status'].setValue(this.companyDetailsData.status=="E"?true:false);
-        this.companyDetails.controls['comp_private_status'].setValue(this.companyDetailsData.private_status=="Y"?true:false);
-        if(this.companyDetailsData.image == 'https://api.schedulic.com/business-images/default.png'){
+        this.companyDetails.controls['comp_status'].setValue(this.companyDetailsData.status == "E" ? true : false);
+        this.companyDetails.controls['comp_private_status'].setValue(this.companyDetailsData.private_status == "Y" ? true : false);
+        if (this.companyDetailsData.image == 'https://api.schedulic.com/business-images/default.png') {
           this.companyDetailsData.image = null;
         }
-        this.selectedCountryISO =  this.adminSettingsService.fncountySelected(this.companyDetailsData.country.id);
-        
+        this.selectedCountryISO = this.adminSettingsService.fncountySelected(this.companyDetailsData.country.id);
+
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
-       this.companyDetailsData = [];
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
+        this.companyDetailsData = [];
       }
       this.isLoaderAdmin = false;
     })
   }
 
-  fnSettingMenuToggleSmall(){
+  fnSettingMenuToggleSmall() {
     this.settingSideMenuToggle = true;
   }
-  fnSettingMenuToggleLarge(){
+  fnSettingMenuToggleLarge() {
     this.settingSideMenuToggle = false;
   }
 
-  gelAllCountry(){
+  gelAllCountry() {
     this.isLoaderAdmin = true;
-    this.adminSettingsService.gelAllCountry().subscribe((response:any) => {
-      if(response.data == true){
+    this.adminSettingsService.gelAllCountry().subscribe((response: any) => {
+      if (response.data == true) {
         this.countryArry = response.response
         this.countryList.next(this.countryArry.slice());
         this.countryFilterCtrl.valueChanges
@@ -178,21 +180,21 @@ export class CompanyDetailsComponent implements OnInit {
             this.filterCountries();
           });
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.allCountry = [];
         this._snackBar.open(response.response, "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
       }
       this.isLoaderAdmin = false;
     })
   }
 
-  selectCountry(country_id){
+  selectCountry(country_id) {
 
-    this.selectedCountryISO =  this.adminSettingsService.fncountySelected(country_id);
+    this.selectedCountryISO = this.adminSettingsService.fncountySelected(country_id);
 
     this.companyDetails.controls['comp_address'].setValue(null);
     this.companyDetails.controls['city'].setValue(null);
@@ -201,13 +203,13 @@ export class CompanyDetailsComponent implements OnInit {
     this.allStates = [];
     this.allCities = [];
 
-    if(country_id == null || country_id == ''){
+    if (country_id == null || country_id == '') {
       return;
     }
     this.isLoaderAdmin = true;
 
-    this.adminSettingsService.gelAllState(country_id).subscribe((response:any) => {
-      if(response.data == true){
+    this.adminSettingsService.gelAllState(country_id).subscribe((response: any) => {
+      if (response.data == true) {
         this.StateArry = response.response
         this.StateList.next(this.StateArry.slice());
         this.StateFilterCtrl.valueChanges
@@ -216,29 +218,29 @@ export class CompanyDetailsComponent implements OnInit {
             this.filterState();
           });
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.allStates = [];
         this._snackBar.open(response.response, "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
       }
       this.isLoaderAdmin = false;
     })
   }
 
-  selectStates(state_id){
+  selectStates(state_id) {
     this.companyDetails.controls['city'].setValue(null);
     this.allCities = [];
 
-    if(state_id == null || state_id == ''){
+    if (state_id == null || state_id == '') {
       console.log("=====");
       return;
     }
     this.isLoaderAdmin = true;
-    this.adminSettingsService.gelAllCities(state_id).subscribe((response:any) => {
-      if(response.data == true && response.response!="no city found"){
+    this.adminSettingsService.gelAllCities(state_id).subscribe((response: any) => {
+      if (response.data == true && response.response != "no city found") {
         this.CityArry = response.response
         this.CityList.next(this.CityArry.slice());
         this.CityFilterCtrl.valueChanges
@@ -247,26 +249,27 @@ export class CompanyDetailsComponent implements OnInit {
             this.filterCity();
           });
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.allCities = [];
         this._snackBar.open(response.response, "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
       }
       this.isLoaderAdmin = false;
     })
   }
 
-  fnUpdateCompanyDetail(){
-    if(this.companyDetails.invalid){
+  fnUpdateCompanyDetail() {
+    if (this.companyDetails.invalid) {
       this.companyDetails.get('company_name').markAsTouched();
       this.companyDetails.get('comp_email').markAllAsTouched();
       this.companyDetails.get('comp_website').markAsTouched();
       this.companyDetails.get('comp_mobile').markAsTouched();
       this.companyDetails.get('country').markAsTouched();
       this.companyDetails.get('comp_address').markAsTouched();
+      this.companyDetails.get('How_customers_will_Find_you').markAsTouched();
       this.companyDetails.get('city').markAsTouched();
       this.companyDetails.get('state').markAsTouched();
       this.companyDetails.get('zip_code').markAsTouched();
@@ -274,7 +277,7 @@ export class CompanyDetailsComponent implements OnInit {
     }
     // var comp_mobile =  this.companyDetails.get('comp_mobile').value;
     // console.log(comp_mobile);
-    
+
     // if(comp_mobile==undefined){ 
     //   this.phoneNumberInvalid = "required";
     //   return; 
@@ -284,115 +287,117 @@ export class CompanyDetailsComponent implements OnInit {
     //   this.phoneNumberInvalid = "length";
     //   return;
     // }
-    
+
     // var phone = this.companyDetails.get('comp_mobile').value.number.replace(/\s/g, "");
 
-    
-    if(this.companyDetails.valid){
-      if( this.companyDetailsImageUrl != ''){
-        this.updateCompanyDetailsData ={
-          "business_id" : this.businessId,
-          "company_name" : this.companyDetails.get('company_name').value,
-          "email" : this.companyDetails.get('comp_email').value,
-          "website" : this.companyDetails.get('comp_website').value,
-          "phone" : this.companyDetails.get('comp_mobile').value,
+
+    if (this.companyDetails.valid) {
+      if (this.companyDetailsImageUrl != '') {
+        this.updateCompanyDetailsData = {
+          "business_id": this.businessId,
+          "company_name": this.companyDetails.get('company_name').value,
+          "email": this.companyDetails.get('comp_email').value,
+          "website": this.companyDetails.get('comp_website').value,
+          "phone": this.companyDetails.get('comp_mobile').value,
           // "country_code" : this.companyDetails.get('comp_mobile').value.dialCode.replace(/\s/g, ""),
-          "country" : this.companyDetails.get('country').value,
-          "address" : this.companyDetails.get('comp_address').value,
-          "city" : this.companyDetails.get('city').value,
-          "state" : this.companyDetails.get('state').value,
-          "zip" : this.companyDetails.get('zip_code').value,
-          "description" : this.companyDetails.get('comp_decs').value,
-          "status" : this.companyDetails.get('comp_status').value==true?"E":"D",
-          "private_status" : this.companyDetails.get('comp_private_status').value==true?"Y":"N",
+          "country": this.companyDetails.get('country').value,
+          "address": this.companyDetails.get('comp_address').value,
+          "howcustomers": this.companyDetails.get('How_customers_will_Find_you').value,
+          "city": this.companyDetails.get('city').value,
+          "state": this.companyDetails.get('state').value,
+          "zip": this.companyDetails.get('zip_code').value,
+          "description": this.companyDetails.get('comp_decs').value,
+          "status": this.companyDetails.get('comp_status').value == true ? "E" : "D",
+          "private_status": this.companyDetails.get('comp_private_status').value == true ? "Y" : "N",
           'image': this.companyDetailsImageUrl
         }
       }
-      else if(this.companyDetailsImageUrl == ''){
-        this.updateCompanyDetailsData ={
-          "business_id" : this.businessId,
-          "company_name" : this.companyDetails.get('company_name').value,
-          "email" : this.companyDetails.get('comp_email').value,
-          "website" : this.companyDetails.get('comp_website').value,
-          "phone" : this.companyDetails.get('comp_mobile').value,
+      else if (this.companyDetailsImageUrl == '') {
+        this.updateCompanyDetailsData = {
+          "business_id": this.businessId,
+          "company_name": this.companyDetails.get('company_name').value,
+          "email": this.companyDetails.get('comp_email').value,
+          "website": this.companyDetails.get('comp_website').value,
+          "phone": this.companyDetails.get('comp_mobile').value,
           // "country_code" : this.companyDetails.get('comp_mobile').value.dialCode.replace(/\s/g, ""),
-          "country" : this.companyDetails.get('country').value,
-          "address" : this.companyDetails.get('comp_address').value,
-          "city" : this.companyDetails.get('city').value,
-          "state" : this.companyDetails.get('state').value,
-          "zip" : this.companyDetails.get('zip_code').value,
-          "description" : this.companyDetails.get('comp_decs').value,
-          "status" : this.companyDetails.get('comp_status').value==true?"E":"D",
-          "private_status" : this.companyDetails.get('comp_private_status').value==true?"Y":"N",
+          "country": this.companyDetails.get('country').value,
+          "address": this.companyDetails.get('comp_address').value,
+          "howcustomers": this.companyDetails.get('How_customers_will_Find_you').value,
+          "city": this.companyDetails.get('city').value,
+          "state": this.companyDetails.get('state').value,
+          "zip": this.companyDetails.get('zip_code').value,
+          "description": this.companyDetails.get('comp_decs').value,
+          "status": this.companyDetails.get('comp_status').value == true ? "E" : "D",
+          "private_status": this.companyDetails.get('comp_private_status').value == true ? "Y" : "N",
         }
       }
       this.fnupdateBusineData(this.updateCompanyDetailsData);
     }
   }
 
-  fnupdateBusineData(updateCompanyDetailsData){
+  fnupdateBusineData(updateCompanyDetailsData) {
     this.isLoaderAdmin = true;
-    this.adminSettingsService.fnupdateBusineData(updateCompanyDetailsData).subscribe((response:any) => {
+    this.adminSettingsService.fnupdateBusineData(updateCompanyDetailsData).subscribe((response: any) => {
       this.isLoaderAdmin = false;
-      if(response.data == true){
+      if (response.data == true) {
         this._snackBar.open("Company detail updated.", "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
         this.companyDetailsImageUrl = undefined;
         this.getCompanyDetails();
-      } else if(response.data == false && response.response !== 'api token or userid invaild'){
+      } else if (response.data == false && response.response !== 'api token or userid invaild') {
         this._snackBar.open(response.response, "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
       }
     });
   }
 
-  removeCompanyImage(){
-    let requestObject  = {
-      'user_type' : 'B',
-      'user_id' : this.businessId,
+  removeCompanyImage() {
+    let requestObject = {
+      'user_type': 'B',
+      'user_id': this.businessId,
     }
     this.isLoaderAdmin = true;
-    this.adminSettingsService.onRemoveProfile(requestObject).subscribe((response:any) => {
+    this.adminSettingsService.onRemoveProfile(requestObject).subscribe((response: any) => {
       this.isLoaderAdmin = false;
-      if(response.data == true){
+      if (response.data == true) {
         this._snackBar.open("Company detail updated.", "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
         this.companyDetailsImageUrl = undefined;
         this.getCompanyDetails();
-      } else if(response.data == false && response.response !== 'api token or userid invaild'){
+      } else if (response.data == false && response.response !== 'api token or userid invaild') {
         this._snackBar.open(response.response, "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
       }
     });
   }
-  fnCancelBusiness(){
+  fnCancelBusiness() {
     this.getCompanyDetails();
   }
 
   companyDetailsImage() {
     const dialogRef = this.dialog.open(DialogCompanyDetailsImageUpload, {
       width: '500px',
-      
+
     });
-  
-     dialogRef.afterClosed().subscribe(result => {
-        if(result != undefined){
-            this.companyDetailsImageUrl = result;
-            console.log(result);
-           }
-     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        this.companyDetailsImageUrl = result;
+        console.log(result);
+      }
+    });
   }
 
   protected filterCountries() {
@@ -414,7 +419,7 @@ export class CompanyDetailsComponent implements OnInit {
     );
   }
 
-  protected filterState (){
+  protected filterState() {
     if (!this.StateArry) {
       return;
     }
@@ -432,7 +437,7 @@ export class CompanyDetailsComponent implements OnInit {
     );
   }
 
-  protected filterCity (){
+  protected filterCity() {
     if (!this.CityArry) {
       return;
     }
@@ -450,7 +455,7 @@ export class CompanyDetailsComponent implements OnInit {
     );
   }
 
- 
+
 }
 
 
@@ -460,59 +465,59 @@ export class CompanyDetailsComponent implements OnInit {
 })
 export class DialogCompanyDetailsImageUpload {
 
-  uploadForm: FormGroup;  
+  uploadForm: FormGroup;
   imageSrc: string;
   profileImage: string;
-  
-constructor(
-  public dialogRef: MatDialogRef<DialogCompanyDetailsImageUpload>,
-  private _formBuilder:FormBuilder,
-  private _snackBar: MatSnackBar,
-  @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogCompanyDetailsImageUpload>,
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
-      this.dialogRef.close(this.profileImage);
-    }
-    ngOnInit() {
-      this.uploadForm = this._formBuilder.group({
-        profile: ['']
-      });
-    }
-    get f() {
-      return this.uploadForm.controls;
-    }
-    
-onFileChange(event) {
+    this.dialogRef.close(this.profileImage);
+  }
+  ngOnInit() {
+    this.uploadForm = this._formBuilder.group({
+      profile: ['']
+    });
+  }
+  get f() {
+    return this.uploadForm.controls;
+  }
 
-  var file_type = event.target.files[0].type;
+  onFileChange(event) {
 
-  if(file_type!='image/jpeg' &&  file_type!='image/png' && file_type!='image/jpg' &&  file_type!='image/gif'){
-      
+    var file_type = event.target.files[0].type;
+
+    if (file_type != 'image/jpeg' && file_type != 'image/png' && file_type != 'image/jpg' && file_type != 'image/gif') {
+
       this._snackBar.open("Sorry, only JPG, JPEG, PNG & GIF files are allowed.", "X", {
-          duration: 2000,
-          verticalPosition: 'top',
-          panelClass: ['red-snackbar']
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass: ['red-snackbar']
       });
       return;
-  }
- 
-  
-  const reader = new FileReader();
-  if (event.target.files && event.target.files.length) {
+    }
+
+
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
       reader.onload = () => {
-          this.imageSrc = reader.result as string;
-          this.uploadForm.patchValue({
-              fileSource: reader.result
-          });
+        this.imageSrc = reader.result as string;
+        this.uploadForm.patchValue({
+          fileSource: reader.result
+        });
       };
+    }
   }
-}
-uploadImage() {
-  this.profileImage = this.imageSrc
-  this.dialogRef.close(this.profileImage);
-}
+  uploadImage() {
+    this.profileImage = this.imageSrc
+    this.dialogRef.close(this.profileImage);
+  }
 
 
 }

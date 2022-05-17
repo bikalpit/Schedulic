@@ -1,8 +1,7 @@
-
 <div class="loader-main" *ngIf="isLoaderAdmin"><img src="../../../assets/images/sc-loader.svg" /></div>
 <div class="cretae-new-business-block-wrap">
     <div class="cretae-new-business-block" [ngClass]="{'p-0' : currentStep >= 5}">
-    <!-- <div class="common-top-header" *ngIf="!firstBusiness">
+        <!-- <div class="common-top-header" *ngIf="!firstBusiness">
         <button type="button" class="model-close-btn ml-auto" data-dismiss="modal" aria-label="Close" (click)="onNoClick()">
             <span class="material-icons-outlined"> close </span>
         </button>
@@ -20,12 +19,16 @@
                         <div class="col-6 common-input">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><img src="/assets/images/icons/business-icon.svg" /></span>
+                                    <span class="input-group-text"><img
+                                            src="/assets/images/icons/business-icon.svg" /></span>
                                 </div>
-                                <input type="text" formControlName="business_name" class="form-control" placeholder="Business Name*">
+                                <input type="text" formControlName="business_name" class="form-control"
+                                    placeholder="Business Name*">
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_name').dirty || createBusiness.get('business_name').touched">
-                                <small *ngIf="createBusiness.get('business_name').hasError('required')" class="error">Business name is required.</small>
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_name').dirty || createBusiness.get('business_name').touched">
+                                <small *ngIf="createBusiness.get('business_name').hasError('required')"
+                                    class="error">Business name is required.</small>
                             </span>
                         </div>
                         <div class="col-6 common-input">
@@ -33,126 +36,187 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/calling.svg" /></span>
                                 </div>
-                                <input type="number" formControlName="business_phone" class="form-control" placeholder="Phone*">
+                                <input type="number" formControlName="business_phone" class="form-control"
+                                    placeholder="Phone*">
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_phone').dirty || createBusiness.get('business_phone').touched">
-                                <small *ngIf="createBusiness.get('business_phone').hasError('required')" class="error">Phone is required.</small>
-                                <small *ngIf="createBusiness.get('business_phone').hasError('minlength') || createBusiness.get('business_phone').hasError('maxlength')" class="error">Phone should minimum 6 and maximum 15 digits.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_phone').dirty || createBusiness.get('business_phone').touched">
+                                <small *ngIf="createBusiness.get('business_phone').hasError('required')"
+                                    class="error">Phone is required.</small>
+                                <small
+                                    *ngIf="createBusiness.get('business_phone').hasError('minlength') || createBusiness.get('business_phone').hasError('maxlength')"
+                                    class="error">Phone should minimum 6 and maximum 15 digits.</small>
+                            </span>
                         </div>
                         <div class="col-6 common-input">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/man.svg" /></span>
                                 </div>
-                                <mat-select formControlName="business_size" class="form-control" placeholder="Business Size*">
+                                <mat-select formControlName="business_size" class="form-control"
+                                    placeholder="Business Size*">
                                     <mat-option value="0-99">0 to 99</mat-option>
                                     <mat-option value="100-499">100 to 499</mat-option>
                                     <mat-option value="500-999">500 to 999</mat-option>
                                     <mat-option value="1000-more">1000 to more</mat-option>
                                 </mat-select>
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_size').dirty || createBusiness.get('business_size').touched">
-                                <small *ngIf="createBusiness.get('business_size').hasError('required')" class="error">Business size is required.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_size').dirty || createBusiness.get('business_size').touched">
+                                <small *ngIf="createBusiness.get('business_size').hasError('required')"
+                                    class="error">Business size is required.</small>
+                            </span>
                         </div>
                         <div class="col-6 common-input">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/website.svg" /></span>
                                 </div>
-                                <input type="text" formControlName="business_website" class="form-control" placeholder="Website URL*">
+                                <input type="text" formControlName="business_website" class="form-control"
+                                    placeholder="Website URL*">
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_website').dirty || createBusiness.get('business_website').touched">
-                                <small *ngIf="createBusiness.get('business_website').hasError('required')" class="error">Website URL is required.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_website').dirty || createBusiness.get('business_website').touched">
+                                <small *ngIf="createBusiness.get('business_website').hasError('required')"
+                                    class="error">Website URL is required.</small>
+                            </span>
                         </div>
                         <div class="col-12 common-input">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><img src="/assets/images/icons/location.svg" /></span>
+                                    <span class="input-group-text"><img
+                                            src="/assets/images/icons/location.svg" /></span>
                                 </div>
-                                <input type="text" formControlName="business_address" class="form-control" placeholder="Your business address*">
+                                <input type="text" formControlName="business_address" class="form-control"
+                                    placeholder="Your business address*">
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_address').dirty || createBusiness.get('business_address').touched">
-                                <small *ngIf="createBusiness.get('business_address').hasError('required')" class="error">Business address is required.</small>
-                                <small *ngIf="createBusiness.get('business_address').hasError('minlength')"class="error">Business address must be at least 2 character.</small>
-                                <small *ngIf="createBusiness.get('business_address').hasError('maxlength') "class="error">Business address can not be greater than 50 character.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_address').dirty || createBusiness.get('business_address').touched">
+                                <small *ngIf="createBusiness.get('business_address').hasError('required')"
+                                    class="error">Business address is required.</small>
+                                <small *ngIf="createBusiness.get('business_address').hasError('minlength')"
+                                    class="error">Business address must be at least 2 character.</small>
+                                <small *ngIf="createBusiness.get('business_address').hasError('maxlength') "
+                                    class="error">Business address can not be greater than 50 character.</small>
+                            </span>
+                        </div>
+                        <div class="col-12 common-input">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><img
+                                            src="/assets/images/icons/location.svg" /></span>
+                                </div>
+                                <input type="text" formControlName="How_customers_will_Find_you" class="form-control"
+                                    placeholder="How customers will Find you?*">
+                            </div>
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('How_customers_will_Find_you').dirty || createBusiness.get('How_customers_will_Find_you').touched">
+                                <small *ngIf="createBusiness.get('How_customers_will_Find_you').hasError('required')"
+                                    class="error">Business address is required.</small>
+                                <small *ngIf="createBusiness.get('How_customers_will_Find_you').hasError('minlength')"
+                                    class="error">Business address must be at least 2 character.</small>
+                                <small *ngIf="createBusiness.get('How_customers_will_Find_you').hasError('maxlength') "
+                                    class="error">Business address can not be greater than 50 character.</small>
+                            </span>
                         </div>
                         <div class="col-4 common-input">
                             <div class="form-group">
-                                <mat-select formControlName="business_country" class="form-control" placeholder="Country*" (selectionChange)="selectCountry($event.value)">
+                                <mat-select formControlName="business_country" class="form-control"
+                                    placeholder="Country*" (selectionChange)="selectCountry($event.value)">
                                     <mat-option>
-                                        <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="countryFilterCtrl"></ngx-mat-select-search>
+                                        <ngx-mat-select-search placeholderLabel="Search"
+                                            noEntriesFoundLabel="No record found" [formControl]="countryFilterCtrl">
+                                        </ngx-mat-select-search>
                                     </mat-option>
                                     <mat-option *ngFor="let country of countryList | async" [value]="country.id">
                                         {{country.name}}
                                     </mat-option>
                                 </mat-select>
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_country').dirty || createBusiness.get('business_country').touched">
-                                <small *ngIf="createBusiness.get('business_country').hasError('required')" class="error">Country is required.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_country').dirty || createBusiness.get('business_country').touched">
+                                <small *ngIf="createBusiness.get('business_country').hasError('required')"
+                                    class="error">Country is required.</small>
+                            </span>
                         </div>
                         <div class="col-4 common-input">
                             <div class="form-group">
-                                <mat-select formControlName="business_state" class="form-control" placeholder="State*" (selectionChange)="selectStates($event.value)">
+                                <mat-select formControlName="business_state" class="form-control" placeholder="State*"
+                                    (selectionChange)="selectStates($event.value)">
                                     <mat-option>
-                                        <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="StateFilterCtrl"></ngx-mat-select-search>
+                                        <ngx-mat-select-search placeholderLabel="Search"
+                                            noEntriesFoundLabel="No record found" [formControl]="StateFilterCtrl">
+                                        </ngx-mat-select-search>
                                     </mat-option>
                                     <mat-option *ngFor="let allStates of StateList | async" [value]="allStates.id">
                                         {{allStates.name}}
                                     </mat-option>
                                 </mat-select>
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_state').dirty || createBusiness.get('business_state').touched">
-                                <small *ngIf="createBusiness.get('business_state').hasError('required')" class="error">State is required.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_state').dirty || createBusiness.get('business_state').touched">
+                                <small *ngIf="createBusiness.get('business_state').hasError('required')"
+                                    class="error">State is required.</small>
+                            </span>
                         </div>
                         <div class="col-4 common-input">
                             <div class="form-group">
                                 <mat-select formControlName="business_city" class="form-control" placeholder="City*">
                                     <mat-option>
-                                        <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="CityFilterCtrl"></ngx-mat-select-search>
+                                        <ngx-mat-select-search placeholderLabel="Search"
+                                            noEntriesFoundLabel="No record found" [formControl]="CityFilterCtrl">
+                                        </ngx-mat-select-search>
                                     </mat-option>
                                     <mat-option *ngFor="let allCities of CityList | async" [value]="allCities.id">
                                         {{allCities.name}}
                                     </mat-option>
                                 </mat-select>
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_city').dirty || createBusiness.get('business_city').touched">
-                                <small *ngIf="createBusiness.get('business_city').hasError('required')" class="error">City is required.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_city').dirty || createBusiness.get('business_city').touched">
+                                <small *ngIf="createBusiness.get('business_city').hasError('required')"
+                                    class="error">City is required.</small>
+                            </span>
                         </div>
                         <div class="col-8 common-input">
                             <div class="form-group">
-                                <mat-select formControlName="business_timezone" class="form-control" placeholder="Time Zone*" #singleSelect>
+                                <mat-select formControlName="business_timezone" class="form-control"
+                                    placeholder="Time Zone*" #singleSelect>
                                     <mat-option>
-                                        <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="timeZoneFilterCtrl"></ngx-mat-select-search>
+                                        <ngx-mat-select-search placeholderLabel="Search"
+                                            noEntriesFoundLabel="No record found" [formControl]="timeZoneFilterCtrl">
+                                        </ngx-mat-select-search>
                                     </mat-option>
                                     <!-- <mat-select-search [formControl]="bankFilterCtrl"></mat-select-search> -->
-                                    <mat-option *ngFor="let listTimeZone of listTimeZoneList | async" [value]="listTimeZone.name">
+                                    <mat-option *ngFor="let listTimeZone of listTimeZoneList | async"
+                                        [value]="listTimeZone.name">
                                         ({{listTimeZone.utc}}) {{listTimeZone.name}}
                                     </mat-option>
                                 </mat-select>
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_timezone').dirty || createBusiness.get('business_timezone').touched">
-                                <small *ngIf="createBusiness.get('business_timezone').hasError('required')" class="error">Timezone is required.</small>
-                            </span> 
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_timezone').dirty || createBusiness.get('business_timezone').touched">
+                                <small *ngIf="createBusiness.get('business_timezone').hasError('required')"
+                                    class="error">Timezone is required.</small>
+                            </span>
                         </div>
                         <div class="col-4 common-input">
                             <div class="form-group">
-                                <input type="text" formControlName="business_zip" class="form-control" placeholder="Postal Code*">
+                                <input type="text" formControlName="business_zip" class="form-control"
+                                    placeholder="Postal Code*">
                             </div>
-                            <span class="error-wrap" *ngIf="createBusiness.get('business_zip').dirty || createBusiness.get('business_zip').touched">
-                                <small *ngIf="createBusiness.get('business_zip').hasError('required')" class="error">Postal Code is required.</small>
-                                <small *ngIf="createBusiness.get('business_zip').hasError('minlength') || createBusiness.get('business_zip').hasError('maxlength')" class="error">Postal Code should minimum 5 and maximum 7 digits.</small>
+                            <span class="error-wrap"
+                                *ngIf="createBusiness.get('business_zip').dirty || createBusiness.get('business_zip').touched">
+                                <small *ngIf="createBusiness.get('business_zip').hasError('required')"
+                                    class="error">Postal Code is required.</small>
+                                <small
+                                    *ngIf="createBusiness.get('business_zip').hasError('minlength') || createBusiness.get('business_zip').hasError('maxlength')"
+                                    class="error">Postal Code should minimum 5 and maximum 7 digits.</small>
                             </span>
                         </div>
                         <div class="col-12 bottom-check">
                             <mat-checkbox (change)="onChangePresence($event)" class="my-2 d-flex">
-                            Present my phone number & address to my clients
+                                Present my phone number & address to my clients
                             </mat-checkbox>
                         </div>
                     </div>
@@ -164,13 +228,16 @@
                     <li><span></span></li>
                     <li><span></span></li>
                 </ul>
-                <button (click)="goToNextStep(2)" mat-button *ngIf="firstBusiness" class="sc-pink-btn long-width-btn">Continue</button>
-                <button (click)="fnCreateBusiness()" mat-button *ngIf="!firstBusiness" class="sc-pink-btn long-width-btn ml-auto">Create</button>
+                <button (click)="goToNextStep(2)" mat-button *ngIf="firstBusiness"
+                    class="sc-pink-btn long-width-btn">Continue</button>
+                <button (click)="fnCreateBusiness()" mat-button *ngIf="!firstBusiness"
+                    class="sc-pink-btn long-width-btn ml-auto">Create</button>
             </div>
         </div>
         <div class="step-wrap" *ngIf="currentStep == 2" id="step_2">
             <div class="w-100">
-                <a (click)="onBackStep(1)" class="step-back-btn text-center pl-0"><span class="material-icons-outlined">chevron_left</span>Back</a>
+                <a (click)="onBackStep(1)" class="step-back-btn text-center pl-0"><span
+                        class="material-icons-outlined">chevron_left</span>Back</a>
             </div>
             <div class="step-head">
                 <div class="text-center">
@@ -185,14 +252,16 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><img src="/assets/images/icons/searching.svg" /></span>
                             </div>
-                            <input (keyup)="getBusinessCategory()" [(ngModel)]="categorySearch" type="text" class="form-control" placeholder="Types here for results...">
+                            <input (keyup)="getBusinessCategory()" [(ngModel)]="categorySearch" type="text"
+                                class="form-control" placeholder="Types here for results...">
                         </div>
                     </div>
                     <div class="results-list-wrap">
                         <h4>Examples :</h4>
                         <ul class="re-list" *ngIf="businessCategories.length > 0">
                             <li *ngFor="let category of businessCategories; let i=index;">
-                                <mat-checkbox [checked]="selectedCategoryList.indexOf(category.id) > -1" (change)="onCateChange($event, category.id)">{{category.name}}</mat-checkbox>
+                                <mat-checkbox [checked]="selectedCategoryList.indexOf(category.id) > -1"
+                                    (change)="onCateChange($event, category.id)">{{category.name}}</mat-checkbox>
                             </li>
                         </ul>
                         <p class="text-left w-100 my-3" *ngIf="businessCategories.length == 0">No record found.</p>
@@ -210,7 +279,8 @@
         </div>
         <div class="step-wrap" *ngIf="currentStep == 3" id="step_3">
             <div class="w-100">
-                <a (click)="onBackStep(2)" class="step-back-btn text-center pl-0"><span class="material-icons-outlined">chevron_left</span>Back</a>
+                <a (click)="onBackStep(2)" class="step-back-btn text-center pl-0"><span
+                        class="material-icons-outlined">chevron_left</span>Back</a>
             </div>
             <div class="step-head">
                 <div class="text-center">
@@ -227,7 +297,8 @@
                             </div>
                             <div class="card-contant">
                                 <h5>Managing clients</h5>
-                                <p>Create client cards with full contact information, add files and notes, track history and set follow-up reminders.</p>
+                                <p>Create client cards with full contact information, add files and notes, track history
+                                    and set follow-up reminders.</p>
                             </div>
                         </div>
                     </div>
@@ -239,7 +310,8 @@
                             </div>
                             <div class="card-contant">
                                 <h5>Online Scheduling</h5>
-                                <p>Add a beautiful online booking widget to your website & watch your calendar rapidly fill up with appointments!</p>
+                                <p>Add a beautiful online booking widget to your website & watch your calendar rapidly
+                                    fill up with appointments!</p>
                             </div>
                         </div>
                     </div>
@@ -251,7 +323,8 @@
                             </div>
                             <div class="card-contant">
                                 <h5>Email & SMS marketing</h5>
-                                <p>Attract new business with easy email & SMS promotions. Add online coupons within seconds to sweeten the deal.</p>
+                                <p>Attract new business with easy email & SMS promotions. Add online coupons within
+                                    seconds to sweeten the deal.</p>
                             </div>
                         </div>
                     </div>
@@ -263,7 +336,8 @@
                             </div>
                             <div class="card-contant">
                                 <h5>Invoices & estimates</h5>
-                                <p>Create fast, beautiful invoices and estimates on the go or at home. Easily spot & resolve outstanding invoices.</p>
+                                <p>Create fast, beautiful invoices and estimates on the go or at home. Easily spot &
+                                    resolve outstanding invoices.</p>
                             </div>
                         </div>
                     </div>
@@ -275,7 +349,8 @@
                             </div>
                             <div class="card-contant">
                                 <h5>Booking Reminders</h5>
-                                <p>Reduce no-shows and resolve late payments with automated appointment & payment reminders</p>
+                                <p>Reduce no-shows and resolve late payments with automated appointment & payment
+                                    reminders</p>
                             </div>
                         </div>
                     </div>
@@ -316,24 +391,29 @@
                     <div class="col-6 left-side">
                         <div class="progress-content">
                             <h3>Let's personalize your account!</h3>
-                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5">
+                            </mat-progress-bar>
                             <span class="progress-count">{{businessSetup.count}}/5 complete Well Done!</span>
                             <ul class="steps">
-                                <li class="active" [ngClass]="{'checked' : businessSetup.businessInfo}">Update your business info</li>
+                                <li class="active" [ngClass]="{'checked' : businessSetup.businessInfo}">Update your
+                                    business info</li>
                                 <li [ngClass]="{'checked' : businessSetup.clientData}">Import your clients data</li>
-                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business Categories & Services</li>
-                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own booking page</li>
+                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business
+                                    Categories & Services</li>
+                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own
+                                    booking page</li>
                                 <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore more features</li>
                             </ul>
                         </div>
-                    </div>  
+                    </div>
                     <div class="col-6 right-side px-2">
                         <div class="step-content">
                             <img class="mb-3" src="/assets/images/icons/store-icon.svg" />
                             <h4 class="mb-1">Update your business info</h4>
                             <p>Takes 2 minutes</p>
                             <label>Tell us about your business so we can serve you better</label>
-                            <button (click)="gotToDestinationPage('/admin/settings-account/company-details')" mat-button class="sc-pink-btn">Complete business info</button>
+                            <button (click)="gotToDestinationPage('/admin/settings-account/company-details')" mat-button
+                                class="sc-pink-btn">Complete business info</button>
                             <span (click)="skipFrom(6)" class="skip-btn"> Skip</span>
                         </div>
                     </div>
@@ -346,13 +426,17 @@
                     <div class="col-6 left-side">
                         <div class="progress-content">
                             <h3>Let's personalize your account!</h3>
-                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5">
+                            </mat-progress-bar>
                             <span class="progress-count">{{businessSetup.count}}/5 complete Well Done!</span>
                             <ul class="steps">
                                 <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your business info</li>
-                                <li class="active" [ngClass]="{'checked' : businessSetup.clientData}">Import your clients data</li>
-                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business Categories & Services</li>
-                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own booking page</li>
+                                <li class="active" [ngClass]="{'checked' : businessSetup.clientData}">Import your
+                                    clients data</li>
+                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business
+                                    Categories & Services</li>
+                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own
+                                    booking page</li>
                                 <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore more features</li>
                             </ul>
                         </div>
@@ -363,7 +447,8 @@
                             <h4 class="mb-1">Import client data</h4>
                             <p>Takes 4 minutes</p>
                             <label>Manage all your client data in one location</label>
-                            <button (click)="gotToDestinationPage('/admin/my-customer')" mat-button class="sc-pink-btn">Start Import</button>
+                            <button (click)="gotToDestinationPage('/admin/my-customer')" mat-button
+                                class="sc-pink-btn">Start Import</button>
                             <span class="skip-btn" (click)="skipFrom(7)"> Skip</span>
                         </div>
                     </div>
@@ -376,13 +461,16 @@
                     <div class="col-6 left-side">
                         <div class="progress-content">
                             <h3>Let's personalize your account!</h3>
-                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5">
+                            </mat-progress-bar>
                             <span class="progress-count">{{businessSetup.count}}/5 complete Well Done!</span>
                             <ul class="steps">
                                 <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your business info</li>
                                 <li [ngClass]="{'checked' : businessSetup.clientData}">Import your clients data</li>
-                                <li class="active" [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business Categories & Services</li>
-                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own booking page</li>
+                                <li class="active" [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your
+                                    Business Categories & Services</li>
+                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own
+                                    booking page</li>
                                 <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore more features</li>
                             </ul>
                         </div>
@@ -392,28 +480,33 @@
                             <img class="mb-3" src="/assets/images/icons/category-services.svg" />
                             <h4 class="mb-1">Set up your Business Categories & Services</h4>
                             <p>Takes 5 minutes</p>
-                            <label>Set your hours, reminders & booking options. Go about your day without missing a thing!</label>
-                            <button mat-button class="sc-pink-btn" (click)="gotToDestinationPage('/admin/settings-resource')">Set up now</button>
+                            <label>Set your hours, reminders & booking options. Go about your day without missing a
+                                thing!</label>
+                            <button mat-button class="sc-pink-btn"
+                                (click)="gotToDestinationPage('/admin/settings-resource')">Set up now</button>
                             <span class="skip-btn" (click)="skipFrom(8)"> Skip</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="step-wrap" *ngIf="currentStep == 8" id="step_8">
             <div class="signle-item">
                 <div class="row w-100 ml-0">
                     <div class="col-6 left-side">
                         <div class="progress-content">
                             <h3>Let's personalize your account!</h3>
-                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5">
+                            </mat-progress-bar>
                             <span class="progress-count">{{businessSetup.count}}/5 complete Well Done!</span>
                             <ul class="steps">
                                 <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your business info</li>
                                 <li [ngClass]="{'checked' : businessSetup.clientData}">Import your clients data</li>
-                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business Categories & Services</li>
-                                <li class="active" [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own booking page</li>
+                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business
+                                    Categories & Services</li>
+                                <li class="active" [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website
+                                    widget or your own booking page</li>
                                 <li [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore more features</li>
                             </ul>
                         </div>
@@ -425,8 +518,10 @@
                                 <div class="contents">
                                     <h4 class="mb-1 text-left">Add website widget</h4>
                                     <p class="w-100">Takes 8 minutes</p>
-                                    <label class="text-left">Open up your website to instant bookings, payments, messaging & more!</label>
-                                    <button mat-button class="sc-pink-btn" (click)="gotToDestinationPageAppearance('widgets')">Add Widgets</button>
+                                    <label class="text-left">Open up your website to instant bookings, payments,
+                                        messaging & more!</label>
+                                    <button mat-button class="sc-pink-btn"
+                                        (click)="gotToDestinationPageAppearance('widgets')">Add Widgets</button>
                                     <span class="skip-btn-side" (click)="skipFrom(9)"> Skip</span>
                                 </div>
                             </div>
@@ -435,8 +530,11 @@
                                 <div class="contents">
                                     <h4 class="mb-1 text-left">No website?</h4>
                                     <p class="w-100">Takes 5-15 minutes</p>
-                                    <label class="text-left">No Website, No Problem! Schedulic offers  a unique sub-domain for every account with which you can form your own booking page.</label>
-                                    <button mat-button class="sc-pink-btn" (click)="gotToDestinationPageAppearance('link')">Set Your Page</button>
+                                    <label class="text-left">No Website, No Problem! Schedulic offers a unique
+                                        sub-domain for every account with which you can form your own booking
+                                        page.</label>
+                                    <button mat-button class="sc-pink-btn"
+                                        (click)="gotToDestinationPageAppearance('link')">Set Your Page</button>
                                     <span class="skip-btn-side" (click)="skipFrom(9)"> Skip</span>
                                 </div>
                             </div>
@@ -451,14 +549,18 @@
                     <div class="col-6 left-side">
                         <div class="progress-content">
                             <h3>Let's personalize your account!</h3>
-                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" [value]="businessSetup.count * 100 / 5">
+                            </mat-progress-bar>
                             <span class="progress-count">{{businessSetup.count}}/5 complete Well Done!</span>
                             <ul class="steps">
                                 <li [ngClass]="{'checked' : businessSetup.businessInfo}">Update your business info</li>
                                 <li [ngClass]="{'checked' : businessSetup.clientData}">Import your clients data</li>
-                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business Categories & Services</li>
-                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own booking page</li>
-                                <li class="active" [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore more features</li>
+                                <li [ngClass]="{'checked' : businessSetup.categoryServices}">Set up your Business
+                                    Categories & Services</li>
+                                <li [ngClass]="{'checked' : businessSetup.websiteWidget}">Add website widget or your own
+                                    booking page</li>
+                                <li class="active" [ngClass]="{'checked' : businessSetup.moreFeatures}">Explore more
+                                    features</li>
                             </ul>
                         </div>
                     </div>
@@ -469,7 +571,8 @@
                                 <div class="contents">
                                     <h4 class="mb-1 text-left">Get the mobile app</h4>
                                     <p class="w-100">Takes 1 minutes</p>
-                                    <label class="text-left">The freedom to run your business on-the-go, no matter where you are!</label>
+                                    <label class="text-left">The freedom to run your business on-the-go, no matter where
+                                        you are!</label>
                                     <button mat-button class="sc-pink-btn">Get App</button>
                                     <span class="skip-btn-side" (click)="skipFrom(10)"> Skip</span>
                                 </div>
@@ -479,8 +582,10 @@
                                 <div class="contents">
                                     <h4 class="mb-1 text-left">Invite team members</h4>
                                     <p class="w-100">Takes 2 minutes</p>
-                                    <label class="text-left">Get your team members on board and start working together!</label>
-                                    <button mat-button class="sc-pink-btn" (click)="gotToDestinationPageStaff('newstaff')">Add Team</button>
+                                    <label class="text-left">Get your team members on board and start working
+                                        together!</label>
+                                    <button mat-button class="sc-pink-btn"
+                                        (click)="gotToDestinationPageStaff('newstaff')">Add Team</button>
                                     <span class="skip-btn-side" (click)="skipFrom(10)"> Skip</span>
                                 </div>
                             </div>

@@ -3,8 +3,10 @@
     <div class="left-side-menu setting-menu" [ngClass]="{ 'short-menu': settingSideMenuToggle === true }">
         <div class="leftarrow-icon d-flex align-items-center">
             <h6 class="mb-0">Resource Management</h6>
-            <span (click)="fnSettingMenuToggleSmall()" *ngIf="!settingSideMenuToggle" class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_left</span>
-            <span (click)="fnSettingMenuToggleLarge()" *ngIf="settingSideMenuToggle" class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_right</span>
+            <span (click)="fnSettingMenuToggleSmall()" *ngIf="!settingSideMenuToggle"
+                class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_left</span>
+            <span (click)="fnSettingMenuToggleLarge()" *ngIf="settingSideMenuToggle"
+                class="customer-drawer-leftarrow ml-auto pointer material-icons-outlined">arrow_circle_right</span>
         </div>
         <div routerLink="/admin/settings-resource" class="d-flex setting-menu-item">
             <div class="menu-icon">
@@ -87,7 +89,8 @@
             <p>Alert Rules</p>
         </div>
     </div>
-    <div class="h-100 setting-right-side-content with-footer" [ngClass]="{ 'short-content-area': settingSideMenuToggle === true }">
+    <div class="h-100 setting-right-side-content with-footer"
+        [ngClass]="{ 'short-content-area': settingSideMenuToggle === true }">
         <div class="m-0 h-auto">
             <div class="row mx-0">
                 <div class="col-lg-12">
@@ -99,16 +102,28 @@
                     <div class="col-lg-6 col-6 col-md-4  main-account-company-details">
                         <div class="my-2 d-flex ">
                             <div class="account-my-profile-img-wrap" *ngIf="companyDetailsData">
-                                <div class="profile-img-wrap" *ngIf="!companyDetailsData.image && !companyDetailsImageUrl" >
-                                    <img class="account-my-profile-img default-img" src="/assets/images/icons/image-placeholder.svg">
+                                <div class="profile-img-wrap"
+                                    *ngIf="!companyDetailsData.image && !companyDetailsImageUrl">
+                                    <img class="account-my-profile-img default-img"
+                                        src="/assets/images/icons/image-placeholder.svg">
                                 </div>
-                                <div class="profile-img-wrap" *ngIf="!companyDetailsData.image && companyDetailsImageUrl" [ngStyle]="{'background-image': 'url('+companyDetailsImageUrl+')'}"></div>
-                                <div class="profile-img-wrap" *ngIf="companyDetailsData.image && !companyDetailsImageUrl" [ngStyle]="{'background-image': 'url('+companyDetailsData.image+')'}"></div>
-                                <div class="profile-img-wrap" *ngIf="companyDetailsData.image && companyDetailsImageUrl" [ngStyle]="{'background-image': 'url('+companyDetailsImageUrl+')'}"></div>
+                                <div class="profile-img-wrap"
+                                    *ngIf="!companyDetailsData.image && companyDetailsImageUrl"
+                                    [ngStyle]="{'background-image': 'url('+companyDetailsImageUrl+')'}"></div>
+                                <div class="profile-img-wrap"
+                                    *ngIf="companyDetailsData.image && !companyDetailsImageUrl"
+                                    [ngStyle]="{'background-image': 'url('+companyDetailsData.image+')'}"></div>
+                                <div class="profile-img-wrap" *ngIf="companyDetailsData.image && companyDetailsImageUrl"
+                                    [ngStyle]="{'background-image': 'url('+companyDetailsImageUrl+')'}"></div>
                                 <div class="img-upload-btns">
-                                    <button (click)="companyDetailsImage()" *ngIf="!companyDetailsData.image && !companyDetailsImageUrl" class="sc-yellow-btn mb-2" mat-button>Upload Image</button>
-                                    <button (click)="companyDetailsImage()" *ngIf="companyDetailsImageUrl || companyDetailsData.image" class="sc-yellow-btn mb-2" mat-button>Change Image</button>
-                                    <button (click)="removeCompanyImage()" *ngIf="companyDetailsData.image" class="sc-grey-btn mb-2" mat-button>Remove Image</button>
+                                    <button (click)="companyDetailsImage()"
+                                        *ngIf="!companyDetailsData.image && !companyDetailsImageUrl"
+                                        class="sc-yellow-btn mb-2" mat-button>Upload Image</button>
+                                    <button (click)="companyDetailsImage()"
+                                        *ngIf="companyDetailsImageUrl || companyDetailsData.image"
+                                        class="sc-yellow-btn mb-2" mat-button>Change Image</button>
+                                    <button (click)="removeCompanyImage()" *ngIf="companyDetailsData.image"
+                                        class="sc-grey-btn mb-2" mat-button>Remove Image</button>
                                 </div>
                             </div>
                         </div>
@@ -118,14 +133,21 @@
                                 <label> Company Name</label>
                                 <div class="input-group form-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><img src="/assets/images/icons/office.svg" /></span>
+                                        <span class="input-group-text"><img
+                                                src="/assets/images/icons/office.svg" /></span>
                                     </div>
-                                    <input class="form-control" formControlName="company_name" placeholder="Enter Company Name">
+                                    <input class="form-control" formControlName="company_name"
+                                        placeholder="Enter Company Name">
                                 </div>
-                                <span class="error-wrap d-flex" *ngIf="companyDetails.get('company_name').dirty || companyDetails.get('company_name').touched">
-                                    <small *ngIf="companyDetails.get('company_name').hasError('required')" class="error">Company name is required</small>
-                                    <small *ngIf="companyDetails.get('company_name').hasError('minlength') || companyDetails.get('company_name').hasError('maxlength')" class="error">Company name must be between 3 to 255 characters.</small>
-                                    <small *ngIf="companyDetails.get('company_name').hasError('whiteSpaceValidation')" class="error">Company name can not consist of white spaces.</small>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('company_name').dirty || companyDetails.get('company_name').touched">
+                                    <small *ngIf="companyDetails.get('company_name').hasError('required')"
+                                        class="error">Company name is required</small>
+                                    <small
+                                        *ngIf="companyDetails.get('company_name').hasError('minlength') || companyDetails.get('company_name').hasError('maxlength')"
+                                        class="error">Company name must be between 3 to 255 characters.</small>
+                                    <small *ngIf="companyDetails.get('company_name').hasError('whiteSpaceValidation')"
+                                        class="error">Company name can not consist of white spaces.</small>
                                 </span>
 
                             </div>
@@ -134,13 +156,18 @@
                                 <label> Email</label>
                                 <div class="input-group form-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><img src="/assets/images/icons/email.svg" /></span>
+                                        <span class="input-group-text"><img
+                                                src="/assets/images/icons/email.svg" /></span>
                                     </div>
-                                    <input class="form-control" formControlName="comp_email" placeholder="Enter Company Email">
+                                    <input class="form-control" formControlName="comp_email"
+                                        placeholder="Enter Company Email">
                                 </div>
-                                <span class="error-wrap d-flex" *ngIf="companyDetails.get('comp_email').dirty || companyDetails.get('comp_email').touched">
-                                    <small *ngIf="companyDetails.get('comp_email').hasError('required')" class="error">Email is required.</small>
-                                    <small *ngIf="companyDetails.get('comp_email').hasError('pattern')" class="error">Email is invalid.</small>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('comp_email').dirty || companyDetails.get('comp_email').touched">
+                                    <small *ngIf="companyDetails.get('comp_email').hasError('required')"
+                                        class="error">Email is required.</small>
+                                    <small *ngIf="companyDetails.get('comp_email').hasError('pattern')"
+                                        class="error">Email is invalid.</small>
                                 </span>
                             </div>
 
@@ -148,26 +175,36 @@
                                 <label> Website</label>
                                 <div class="input-group form-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><img src="/assets/images/icons/website.svg" /></span>
+                                        <span class="input-group-text"><img
+                                                src="/assets/images/icons/website.svg" /></span>
                                     </div>
-                                    <input class="form-control" formControlName="comp_website" placeholder="Enter Website URL">
+                                    <input class="form-control" formControlName="comp_website"
+                                        placeholder="Enter Website URL">
                                 </div>
-                                    <span class="error-wrap d-flex" *ngIf="companyDetails.get('comp_website').dirty || companyDetails.get('comp_website').touched">
-                                        <small *ngIf="companyDetails.get('comp_website').hasError('required')" class="error">Enter valid wabsite.</small>
-                                    </span>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('comp_website').dirty || companyDetails.get('comp_website').touched">
+                                    <small *ngIf="companyDetails.get('comp_website').hasError('required')"
+                                        class="error">Enter valid wabsite.</small>
+                                </span>
                             </div>
 
-                                <div class="common-input">
-                                    <label> Phone Number</label>
-                                    <div class="input-group form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><img src="/assets/images/icons/calling.svg" /></span>
-                                        </div>
-                                        <input type='number' class="form-control" formControlName="comp_mobile" placeholder="Enter Phone Number">
+                            <div class="common-input">
+                                <label> Phone Number</label>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><img
+                                                src="/assets/images/icons/calling.svg" /></span>
                                     </div>
-                                <span class="error-wrap d-flex" *ngIf="companyDetails.get('comp_mobile').dirty || companyDetails.get('comp_mobile').touched">
-                                    <small *ngIf="companyDetails.get('comp_mobile').hasError('required')" class="error">Phone Number is required.</small>
-                                    <small *ngIf="companyDetails.get('comp_mobile').hasError('minlength') || companyDetails.get('comp_mobile').hasError('maxlength')" class="error">Phone Number should be 6 to 15 character.</small>
+                                    <input type='number' class="form-control" formControlName="comp_mobile"
+                                        placeholder="Enter Phone Number">
+                                </div>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('comp_mobile').dirty || companyDetails.get('comp_mobile').touched">
+                                    <small *ngIf="companyDetails.get('comp_mobile').hasError('required')"
+                                        class="error">Phone Number is required.</small>
+                                    <small
+                                        *ngIf="companyDetails.get('comp_mobile').hasError('minlength') || companyDetails.get('comp_mobile').hasError('maxlength')"
+                                        class="error">Phone Number should be 6 to 15 character.</small>
                                 </span>
                             </div>
                         </div>
@@ -178,85 +215,132 @@
                             <div class="common-input">
                                 <label> Country</label>
                                 <div class="form-group">
-                                    <mat-select class="form-control" formControlName="country" (selectionChange)="selectCountry($event.value)">
+                                    <mat-select class="form-control" formControlName="country"
+                                        (selectionChange)="selectCountry($event.value)">
                                         <mat-option>
-                                            <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="countryFilterCtrl"></ngx-mat-select-search>
+                                            <ngx-mat-select-search placeholderLabel="Search"
+                                                noEntriesFoundLabel="No record found" [formControl]="countryFilterCtrl">
+                                            </ngx-mat-select-search>
                                         </mat-option>
-                                        <mat-option *ngFor="let allCountry of countryList | async" value="{{allCountry.id}}"> 
-                                            {{allCountry.name}}           
+                                        <mat-option *ngFor="let allCountry of countryList | async"
+                                            value="{{allCountry.id}}">
+                                            {{allCountry.name}}
                                         </mat-option>
                                     </mat-select>
                                 </div>
-                                <span class="error-wrap d-flex" *ngIf="companyDetails.get('country').dirty || companyDetails.get('country').touched">
-                                <small *ngIf="companyDetails.get('country').hasError('required')" class="error">Country is required.</small></span>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('country').dirty || companyDetails.get('country').touched">
+                                    <small *ngIf="companyDetails.get('country').hasError('required')"
+                                        class="error">Country is required.</small></span>
 
+                            </div>
+                            <div class="common-input">
+                                <label> How customers will Find you?</label>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><img
+                                                src="/assets/images/icons/location.svg" /></span>
+                                    </div>
+                                    <input class="form-control" formControlName="How_customers_will_Find_you"
+                                        placeholder="How customers will Find you ?">
+                                </div>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('How_customers_will_Find_you').dirty || companyDetails.get('How_customers_will_Find_you').touched">
+                                    <small
+                                        *ngIf="companyDetails.get('How_customers_will_Find_you').hasError('required')"
+                                        class="error">Address is required.</small>
+                                </span>
                             </div>
                             <div class="common-input">
                                 <label> Company Location</label>
                                 <div class="input-group form-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><img src="/assets/images/icons/location.svg" /></span>
+                                        <span class="input-group-text"><img
+                                                src="/assets/images/icons/location.svg" /></span>
                                     </div>
                                     <input class="form-control" formControlName="comp_address" placeholder="Address">
                                 </div>
-                                <span class="error-wrap d-flex" *ngIf="companyDetails.get('comp_address').dirty || companyDetails.get('comp_address').touched">
-                                    <small *ngIf="companyDetails.get('comp_address').hasError('required')" class="error">Address is required.</small>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('comp_address').dirty || companyDetails.get('comp_address').touched">
+                                    <small *ngIf="companyDetails.get('comp_address').hasError('required')"
+                                        class="error">Address is required.</small>
                                 </span>
                             </div>
                             <div class="row">
                                 <div class="col-6 common-input">
                                     <div class="form-group">
-                                        <mat-select class="form-control" formControlName="state" (selectionChange)="selectStates($event.value)">
+                                        <mat-select class="form-control" formControlName="state"
+                                            (selectionChange)="selectStates($event.value)">
                                             <mat-option>
-                                                <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="StateFilterCtrl"></ngx-mat-select-search>
+                                                <ngx-mat-select-search placeholderLabel="Search"
+                                                    noEntriesFoundLabel="No record found"
+                                                    [formControl]="StateFilterCtrl"></ngx-mat-select-search>
                                             </mat-option>
-                                            <mat-option *ngFor="let allStates of StateList | async" value="{{allStates.id}}">
+                                            <mat-option *ngFor="let allStates of StateList | async"
+                                                value="{{allStates.id}}">
                                                 {{allStates.name}}
                                             </mat-option>
                                         </mat-select>
                                     </div>
-                                    <span class="error-wrap d-flex" *ngIf="companyDetails.get('state').dirty || companyDetails.get('state').touched">
-                                    <small *ngIf="companyDetails.get('state').hasError('required')" class="error">State is required.</small></span>
+                                    <span class="error-wrap d-flex"
+                                        *ngIf="companyDetails.get('state').dirty || companyDetails.get('state').touched">
+                                        <small *ngIf="companyDetails.get('state').hasError('required')"
+                                            class="error">State is required.</small></span>
                                 </div>
 
                                 <div class="col-6 common-input">
                                     <div class="form-group">
                                         <mat-select class="form-control" formControlName="city">
                                             <mat-option>
-                                                <ngx-mat-select-search placeholderLabel="Search" noEntriesFoundLabel="No record found" [formControl]="CityFilterCtrl"></ngx-mat-select-search>
+                                                <ngx-mat-select-search placeholderLabel="Search"
+                                                    noEntriesFoundLabel="No record found"
+                                                    [formControl]="CityFilterCtrl"></ngx-mat-select-search>
                                             </mat-option>
-                                            <mat-option *ngFor="let allCities of CityList | async" value="{{allCities.id}}">
+                                            <mat-option *ngFor="let allCities of CityList | async"
+                                                value="{{allCities.id}}">
                                                 {{allCities.name}}
                                             </mat-option>
                                         </mat-select>
                                     </div>
-                                    <span class="error-wrap d-flex" *ngIf="companyDetails.get('city').dirty || companyDetails.get('city').touched">
-                                     <small *ngIf="companyDetails.get('city').hasError('required')" class="error">City is required.</small></span>
+                                    <span class="error-wrap d-flex"
+                                        *ngIf="companyDetails.get('city').dirty || companyDetails.get('city').touched">
+                                        <small *ngIf="companyDetails.get('city').hasError('required')"
+                                            class="error">City is required.</small></span>
                                 </div>
 
                                 <div class="col-6 common-input">
                                     <div class="form-group">
-                                        <input class="form-control" formControlName="zip_code" matInput placeholder="Zip">
+                                        <input class="form-control" formControlName="zip_code" matInput
+                                            placeholder="Zip">
                                     </div>
-                                    <span class="error-wrap d-flex" *ngIf="companyDetails.get('zip_code').dirty || companyDetails.get('zip_code').touched">
-                                    <small *ngIf="companyDetails.get('zip_code').hasError('required')" class="error">Zip code is required.</small><small *ngIf="companyDetails.get('zip_code').hasError('minlength') || companyDetails.get('zip_code').hasError('maxlength')" class="error">Zip code must be between 5 to 7 characters</small></span>
+                                    <span class="error-wrap d-flex"
+                                        *ngIf="companyDetails.get('zip_code').dirty || companyDetails.get('zip_code').touched">
+                                        <small *ngIf="companyDetails.get('zip_code').hasError('required')"
+                                            class="error">Zip code is required.</small><small
+                                            *ngIf="companyDetails.get('zip_code').hasError('minlength') || companyDetails.get('zip_code').hasError('maxlength')"
+                                            class="error">Zip code must be between 5 to 7 characters</small></span>
                                 </div>
                             </div>
 
                             <div class="common-input business-description">
                                 <label> Description</label>
                                 <div class="form-group">
-                                    <textarea class="form-control" formControlName="comp_decs" placeholder="A brief description of your business"></textarea>
+                                    <textarea class="form-control" formControlName="comp_decs"
+                                        placeholder="A brief description of your business"></textarea>
                                 </div>
-                                <span class="error-wrap d-flex" *ngIf="companyDetails.get('comp_decs').dirty || companyDetails.get('comp_decs').touched">
-                                    <small *ngIf="companyDetails.get('comp_decs').hasError('required')" class="error">Description is required.</small></span>
+                                <span class="error-wrap d-flex"
+                                    *ngIf="companyDetails.get('comp_decs').dirty || companyDetails.get('comp_decs').touched">
+                                    <small *ngIf="companyDetails.get('comp_decs').hasError('required')"
+                                        class="error">Description is required.</small></span>
                             </div>
 
                             <mat-card class="row footer-save-container">
                                 <div class="company-action-btn">
                                     <div class="mx-2">
-                                        <button mat-button class="sc-grey-btn mr-2" (click)="fnCancelBusiness()">Cancel</button>
-                                        <button mat-button type="submit" (click)="fnUpdateCompanyDetail()" appearance="fill" class="sc-pink-btn">Update</button>
+                                        <button mat-button class="sc-grey-btn mr-2"
+                                            (click)="fnCancelBusiness()">Cancel</button>
+                                        <button mat-button type="submit" (click)="fnUpdateCompanyDetail()"
+                                            appearance="fill" class="sc-pink-btn">Update</button>
                                     </div>
                                 </div>
                             </mat-card>

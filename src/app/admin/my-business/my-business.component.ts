@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, RouterEvent } from '@angular/router';
 import { ReplaySubject, Subject } from 'rxjs';
 import { AdminService } from '../_services/admin-main.service'
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponent } from '@app/app.component';
 import { AuthenticationService } from '@app/_services';
 import { take, takeUntil } from 'rxjs/operators';
@@ -44,7 +44,7 @@ export interface CityArry {
 
 export class MyBusinessComponent implements OnInit {
   animal: any;
-  allBusiness: any=[];
+  allBusiness: any = [];
   adminSettings: boolean = false;
   isLoaderAdmin: boolean = true;
   currentUser: any;
@@ -52,30 +52,30 @@ export class MyBusinessComponent implements OnInit {
   token: any;
   getIpAddress: any;
   pageSlug: any;
-  firstBusiness:boolean=false;
+  firstBusiness: boolean = false;
   constructor(
     public dialog: MatDialog,
     private http: HttpClient,
     public router: Router,
     private AdminService: AdminService,
-    private appComponent : AppComponent,
-    private authenticationService:AuthenticationService,
+    private appComponent: AppComponent,
+    private authenticationService: AuthenticationService,
     private _snackBar: MatSnackBar,
     private sharedService: SharedService) {
-      
-      this.isLoaderAdmin = true;
-      setTimeout(() => {
-        this.isLoaderAdmin = false;
-    },2000)
+
+    this.isLoaderAdmin = true;
+    setTimeout(() => {
+      this.isLoaderAdmin = false;
+    }, 2000)
     localStorage.setItem('isBusiness', 'true');
     this.router.events.subscribe(event => {
       if (event instanceof RouterEvent) this.handleRoute(event);
-        const url = this.getUrl(event);
+      const url = this.getUrl(event);
     });
-    this.currentUser=this.authenticationService.currentUserValue;
-    this.adminId=this.currentUser.user_id;
-    this.token=this.currentUser.token;
-    }
+    this.currentUser = this.authenticationService.currentUserValue;
+    this.adminId = this.currentUser.user_id;
+    this.token = this.currentUser.token;
+  }
 
   ngOnInit() {
     this.getAllBusiness();
@@ -89,23 +89,23 @@ export class MyBusinessComponent implements OnInit {
     }, 4000);
   }
 
-  fnGetIpAddress(){
-    this.authenticationService.getIPAddress().subscribe((res:any)=>{
-      if(res.data == true){
+  fnGetIpAddress() {
+    this.authenticationService.getIPAddress().subscribe((res: any) => {
+      if (res.data == true) {
         this.getIpAddress = res.response
       }
     });
   }
 
-  getAllBusiness(){
+  getAllBusiness() {
     this.isLoaderAdmin = true;
     this.sharedService.updateSideMenuState(false);
-    this.AdminService.getAllBusiness().subscribe((response:any) => {
-      if(response.data == true){
+    this.AdminService.getAllBusiness().subscribe((response: any) => {
+      if (response.data == true) {
         this.allBusiness = response.response
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
-        this.firstBusiness=true;
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
+        this.firstBusiness = true;
         this.creatNewBusiness();
         this.allBusiness = [];
       }
@@ -113,69 +113,69 @@ export class MyBusinessComponent implements OnInit {
     })
   }
 
-  delete(id:number){
+  delete(id: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       data: "Are you sure you want to delete?"
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        if(result){
-            this.isLoaderAdmin = true;
-            this.AdminService.deleteBusiness(id).subscribe((response:any) => {
-              if(response.data == true){
-                this._snackBar.open("Bussiness Deleted.", "X", {
-                  duration: 2000,
-                  verticalPosition:'top',
-                  panelClass :['green-snackbar']
-                });
-                this.getAllBusiness();
-                this.isLoaderAdmin = false;
-              } else if(response.data == false && response.response !== 'api token or userid invaild'){
-                this._snackBar.open(response.response, "X", {
-                  duration: 2000,
-                  verticalPosition: 'top',
-                  panelClass : ['red-snackbar']
-                });
-                this.isLoaderAdmin = false;
-              }
+      if (result) {
+        this.isLoaderAdmin = true;
+        this.AdminService.deleteBusiness(id).subscribe((response: any) => {
+          if (response.data == true) {
+            this._snackBar.open("Bussiness Deleted.", "X", {
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass: ['green-snackbar']
             });
-        }
+            this.getAllBusiness();
+            this.isLoaderAdmin = false;
+          } else if (response.data == false && response.response !== 'api token or userid invaild') {
+            this._snackBar.open(response.response, "X", {
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass: ['red-snackbar']
+            });
+            this.isLoaderAdmin = false;
+          }
+        });
+      }
     });
   }
 
-  duplicate(id:number){
+  duplicate(id: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       data: "Are you sure you want to create duplicate?"
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        if(result){
-            this.isLoaderAdmin = true;
-            this.AdminService.duplicateBusiness(id).subscribe((response:any) => {
-              if(response.data == true){
-                this._snackBar.open("Duplicate Bussiness Created.", "X", {
-                  duration: 2000,
-                  verticalPosition:'top',
-                  panelClass :['green-snackbar']
-                });
-                this.getAllBusiness();
-                this.isLoaderAdmin = false;
-              } else if(response.data == false && response.response !== 'api token or userid invaild'){
-                this._snackBar.open(response.response, "X", {
-                  duration: 2000,
-                  verticalPosition: 'top',
-                  panelClass : ['red-snackbar']
-                });
-                this.isLoaderAdmin = false;
-              }
+      if (result) {
+        this.isLoaderAdmin = true;
+        this.AdminService.duplicateBusiness(id).subscribe((response: any) => {
+          if (response.data == true) {
+            this._snackBar.open("Duplicate Bussiness Created.", "X", {
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass: ['green-snackbar']
             });
-        }
+            this.getAllBusiness();
+            this.isLoaderAdmin = false;
+          } else if (response.data == false && response.response !== 'api token or userid invaild') {
+            this._snackBar.open(response.response, "X", {
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass: ['red-snackbar']
+            });
+            this.isLoaderAdmin = false;
+          }
+        });
+      }
     });
   }
 
-  fnSelectBusiness(business_id,busisness_name){
+  fnSelectBusiness(business_id, busisness_name) {
     localStorage.setItem('business_id', business_id);
     localStorage.setItem('business_name', busisness_name);
     this.router.navigate(['/admin/my-workspace']);
@@ -186,27 +186,27 @@ export class MyBusinessComponent implements OnInit {
   creatNewBusiness() {
     const dialogRef = this.dialog.open(myCreateNewBusinessDialog, {
       width: '1000px',
-      data:{firstBusiness:this.firstBusiness}
+      data: { firstBusiness: this.firstBusiness }
     });
 
-     dialogRef.afterClosed().subscribe(result => {
-      if(result && result != 'success'){
-        if(result.type == 'redirect' && result.link == 'appearance'){
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result != 'success') {
+        if (result.type == 'redirect' && result.link == 'appearance') {
           this.router.navigate(['/admin/settings-general/appearance'], { queryParams: { goto: result.param } });
-        }else if(result.type == 'redirect' && result.link == 'staff'){
+        } else if (result.type == 'redirect' && result.link == 'staff') {
           this.router.navigate(['/admin/settings-resource/staff'], { queryParams: { goto: result.param } });
-        }else{
+        } else {
           this.router.navigate([result.link]);
         }
 
-      }else if(result && result == 'success'){
+      } else if (result && result == 'success') {
         this.router.navigate(['/admin/my-workspace']);
         this.appComponent.getNotificationCount(localStorage.getItem('business_id'));
         this.appComponent.getBusinessSetup(localStorage.getItem('business_id'));
-      }else{
+      } else {
         this.getAllBusiness();
       }
-     });
+    });
   }
 
 
@@ -227,7 +227,7 @@ export class MyBusinessComponent implements OnInit {
   }
   private getUrl(event: any) {
     if (event && event.url) {
-      this.pageSlug = event.url.split('/' , 2)
+      this.pageSlug = event.url.split('/', 2)
       const url = event.url;
       const state = (event.state) ? event.state.url : null;
       const redirect = (event.urlAfterRedirects) ? event.urlAfterRedirects : null;
@@ -238,12 +238,12 @@ export class MyBusinessComponent implements OnInit {
 
   private handleRoute(event: RouterEvent) {
     const url = this.getUrl(event);
-    let devidedUrl = url.split('/',4);
-    if((devidedUrl[1] == 'admin' && devidedUrl.length == 2) || devidedUrl[2] == 'my-business'){
+    let devidedUrl = url.split('/', 4);
+    if ((devidedUrl[1] == 'admin' && devidedUrl.length == 2) || devidedUrl[2] == 'my-business') {
       // this.AppComponent
-      localStorage.setItem('isBusiness','true');
-    }else{
-      localStorage.setItem('isBusiness','false');
+      localStorage.setItem('isBusiness', 'true');
+    } else {
+      localStorage.setItem('isBusiness', 'false');
       this.sharedService.updateSideMenuState(true);
     }
   }
@@ -261,25 +261,25 @@ export class myCreateNewBusinessDialog {
   allCountry: any;
   allStates: any;
   allCities: any;
-  businessCategories: any=[];
+  businessCategories: any = [];
   newBusinessData: any;
-  createBusiness :FormGroup;
-  isLoaderAdmin : boolean = false;
-  currentStep:number=1;
-  presentPhoneAddress:any='N';
-  selectedCategoryList:any=[];
-  needsUpdate:boolean=false;
-  firstBusiness:boolean=false;
-  needs:any ={
-    'clients' :false,
-    'scheduling' :false,
-    'marketing  ' :false,
-    'invoice' :false,
-    'reminder' :false,
-    'payment' :false,
+  createBusiness: FormGroup;
+  isLoaderAdmin: boolean = false;
+  currentStep: number = 1;
+  presentPhoneAddress: any = 'N';
+  selectedCategoryList: any = [];
+  needsUpdate: boolean = false;
+  firstBusiness: boolean = false;
+  needs: any = {
+    'clients': false,
+    'scheduling': false,
+    'marketing  ': false,
+    'invoice': false,
+    'reminder': false,
+    'payment': false,
   }
-  categorySearch:any="";
-  businessSetup:any;
+  categorySearch: any = "";
+  businessSetup: any;
   protected listTimeZoneListArry: ListTimeZoneListArry[];
   public timeZoneFilterCtrl: FormControl = new FormControl();
   public listTimeZoneList: ReplaySubject<ListTimeZoneListArry[]> = new ReplaySubject<ListTimeZoneListArry[]>(1);
@@ -304,7 +304,7 @@ export class myCreateNewBusinessDialog {
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.firstBusiness = this.data.firstBusiness;
+    this.firstBusiness = this.data.firstBusiness;
   }
 
   onNoClick(): void {
@@ -321,49 +321,50 @@ export class myCreateNewBusinessDialog {
     this.getTimeZone();
     this.getBusinessCategory();
     this.createBusiness = this._formBuilder.group({
-      business_name : ['', [Validators.required]],
-      business_phone : ['',[Validators.required,Validators.minLength(6),Validators.maxLength(15)]],
-      business_size : ['',[Validators.required]],
-      business_website : ['',[Validators.required]],
-      business_address : ['', [Validators.required,Validators.minLength(2),Validators.maxLength(50)]],
-      business_country : ['', Validators.required],
-      business_state : ['', Validators.required],
-      business_timezone : ['', Validators.required],
-      business_city : ['', Validators.required],
-      business_zip : ['', [Validators.required,Validators.minLength(5),Validators.maxLength(7)]]
+      business_name: ['', [Validators.required]],
+      business_phone: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+      business_size: ['', [Validators.required]],
+      business_website: ['', [Validators.required]],
+      business_address: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      How_customers_will_Find_you: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      business_country: ['', Validators.required],
+      business_state: ['', Validators.required],
+      business_timezone: ['', Validators.required],
+      business_city: ['', Validators.required],
+      business_zip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(7)]]
     });
   }
 
-  gelAllCountry(){
-    this.isLoaderAdmin =true;
-    this.AdminService.gelAllCountry().subscribe((response:any) => {
-      if(response.data == true){
+  gelAllCountry() {
+    this.isLoaderAdmin = true;
+    this.AdminService.gelAllCountry().subscribe((response: any) => {
+      if (response.data == true) {
         // this.allCountry = response.response
         this.countryArry = response.response
         this.countryList.next(this.countryArry.slice());
         this.countryFilterCtrl.valueChanges
-        .pipe(takeUntil(this._onDestroy))
-        .subscribe(() => {
-        this.filterCountries();
-      });
-        this.isLoaderAdmin =false;
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterCountries();
+          });
+        this.isLoaderAdmin = false;
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.allCountry = ''
         this._snackBar.open(response.response, "X", {
           duration: 2000,
           verticalPosition: 'top',
-          panelClass : ['red-snackbar']
+          panelClass: ['red-snackbar']
         });
-        this.isLoaderAdmin =false;
+        this.isLoaderAdmin = false;
       }
     })
   }
 
-  selectCountry(country_id){
-    this.isLoaderAdmin =true;
-    this.AdminService.gelAllState(country_id).subscribe((response:any) => {
-      if(response.data == true){
+  selectCountry(country_id) {
+    this.isLoaderAdmin = true;
+    this.AdminService.gelAllState(country_id).subscribe((response: any) => {
+      if (response.data == true) {
         this.allStates = response.response
         this.createBusiness.controls['business_state'].setValue('');
         this.StateArry = response.response
@@ -374,23 +375,23 @@ export class myCreateNewBusinessDialog {
             this.filterState();
           });
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.allStates = ''
         this.createBusiness.controls['business_state'].setValue('');
         this._snackBar.open(response.response, "X", {
           duration: 2000,
           verticalPosition: 'top',
-          panelClass : ['red-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
-        this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
 
-  selectStates(state_id){
-    this.isLoaderAdmin =true;
-    this.AdminService.gelAllCities(state_id).subscribe((response:any) => {
-      if(response.data == true){
+  selectStates(state_id) {
+    this.isLoaderAdmin = true;
+    this.AdminService.gelAllCities(state_id).subscribe((response: any) => {
+      if (response.data == true) {
         this.createBusiness.controls['business_city'].setValue('');
         // this.allCities = response.response
         this.CityArry = response.response
@@ -401,114 +402,116 @@ export class myCreateNewBusinessDialog {
             this.filterCity();
           });
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.allCities = [];
         this.createBusiness.controls['business_city'].setValue('');
         this._snackBar.open(response.response, "X", {
           duration: 2000,
           verticalPosition: 'top',
-          panelClass : ['red-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
-        this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
-  
-  getBusinessCategory(){
-    this.isLoaderAdmin =true;
+
+  getBusinessCategory() {
+    this.isLoaderAdmin = true;
     let requestObject = {
-      'search':this.categorySearch
+      'search': this.categorySearch
     }
-    this.AdminService.getBusinessCategory(requestObject).subscribe((response:any) => {
-      if(response.data == true){
+    this.AdminService.getBusinessCategory(requestObject).subscribe((response: any) => {
+      if (response.data == true) {
         this.businessCategories = response.response
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.businessCategories = [];
         this._snackBar.open(response.response, "X", {
           duration: 2000,
           verticalPosition: 'top',
-          panelClass : ['red-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
-      this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
 
-  getTimeZone(){
-    this.isLoaderAdmin =true;
-    this.AdminService.getTimeZone().subscribe((response:any) => {
-      if(response.data == true){
+  getTimeZone() {
+    this.isLoaderAdmin = true;
+    this.AdminService.getTimeZone().subscribe((response: any) => {
+      if (response.data == true) {
         this.listTimeZoneListArry = response.response
         this.listTimeZoneList.next(this.listTimeZoneListArry.slice());
         this.timeZoneFilterCtrl.valueChanges
-        .pipe(takeUntil(this._onDestroy))
-        .subscribe(() => {
-        this.filterTimezones();
-      });
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterTimezones();
+          });
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this.listTimeZoneListArry = []
         this._snackBar.open(response.response, "X", {
           duration: 2000,
           verticalPosition: 'top',
-          panelClass : ['red-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
-        this.isLoaderAdmin =false;
+      this.isLoaderAdmin = false;
     })
   }
 
-  onChangePresence(event){
-    if(event.checked){
-      this.presentPhoneAddress= 'Y';
-    }else{
-      this.presentPhoneAddress= 'N';
+  onChangePresence(event) {
+    if (event.checked) {
+      this.presentPhoneAddress = 'Y';
+    } else {
+      this.presentPhoneAddress = 'N';
     }
   }
 
-  onCateChange(event, id){
-    if(event.checked){
+  onCateChange(event, id) {
+    if (event.checked) {
       this.selectedCategoryList.push(id)
-    }else{
+    } else {
       const index = this.businessCategories.indexOf(id, 0);
       if (index > -1) {
-          this.selectedCategoryList.splice(index, 1);
+        this.selectedCategoryList.splice(index, 1);
       }
     }
   }
 
-  onChangeNeeds(event, needType){
+  onChangeNeeds(event, needType) {
     this.needsUpdate = true;
-    if(event.checked){
-      this.needs[needType]= true;
-    }else{
-      this.needs[needType]= false;
+    if (event.checked) {
+      this.needs[needType] = true;
+    } else {
+      this.needs[needType] = false;
     }
     console.log(this.needs)
   }
 
-  fnCreateBusiness(){
-    if(this.createBusiness.valid){
-      this.newBusinessData ={
-        "business_name" : this.createBusiness.get('business_name').value,
-        "address" : this.createBusiness.get('business_address').value,
-        "business_size" : this.createBusiness.get('business_size').value,
-        "present_phone_address" : this.presentPhoneAddress,
-        "business_categories" : this.selectedCategoryList,
-        "business_needs" : this.needsUpdate?this.needs:null,
-        "phone" : this.createBusiness.get('business_phone').value,
-        "country" : this.createBusiness.get('business_country').value,
-        "state" : this.createBusiness.get('business_state').value,
-        "city" : this.createBusiness.get('business_city').value,
-        "time_zone" : this.createBusiness.get('business_timezone').value,
-        "website" : this.createBusiness.get('business_website').value,
-        "zipcode" : this.createBusiness.get('business_zip').value,
+  fnCreateBusiness() {
+    if (this.createBusiness.valid) {
+      this.newBusinessData = {
+        "business_name": this.createBusiness.get('business_name').value,
+        "address": this.createBusiness.get('business_address').value,
+        "howcustomers": this.createBusiness.get('How_customers_will_Find_you').value,
+        "business_size": this.createBusiness.get('business_size').value,
+        "present_phone_address": this.presentPhoneAddress,
+        "business_categories": this.selectedCategoryList,
+        "business_needs": this.needsUpdate ? this.needs : null,
+        "phone": this.createBusiness.get('business_phone').value,
+        "country": this.createBusiness.get('business_country').value,
+        "state": this.createBusiness.get('business_state').value,
+        "city": this.createBusiness.get('business_city').value,
+        "time_zone": this.createBusiness.get('business_timezone').value,
+        "website": this.createBusiness.get('business_website').value,
+        "zipcode": this.createBusiness.get('business_zip').value,
       }
       this.createNewBusiness(this.newBusinessData);
-    }else{
+    } else {
       this.createBusiness.get('business_name').markAsTouched();
       this.createBusiness.get('business_address').markAsTouched();
+      this.createBusiness.get('How_customers_will_Find_you').markAsTouched();
       this.createBusiness.get('business_country').markAsTouched();
       this.createBusiness.get('business_state').markAsTouched();
       this.createBusiness.get('business_city').markAsTouched();
@@ -519,98 +522,99 @@ export class myCreateNewBusinessDialog {
       this.createBusiness.get('business_website').markAsTouched();
     }
   }
-  createNewBusiness(newBusinessData){
-    this.AdminService.createNewBusiness(newBusinessData).subscribe((response:any) => {
-      if(response.data == true){
+  createNewBusiness(newBusinessData) {
+    this.AdminService.createNewBusiness(newBusinessData).subscribe((response: any) => {
+      if (response.data == true) {
         this._snackBar.open("Business Created.", "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['green-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
         });
-        if(this.firstBusiness){
+        if (this.firstBusiness) {
           this.currentStep = 5;
           localStorage.setItem('business_id', response.response.id);
-          localStorage.setItem('business_name',response.response.business_name);
+          localStorage.setItem('business_name', response.response.business_name);
           this.getBusinessSetup(response.response.id);
-        }else{
+        } else {
           localStorage.setItem('business_id', response.response.id);
-          localStorage.setItem('business_name',response.response.business_name);
+          localStorage.setItem('business_name', response.response.business_name);
           this.dialogRef.close('success');
         }
         console.log(response.response)
         // this.dialogRef.close(response.response);
       }
-      else if(response.data == false && response.response !== 'api token or userid invaild'){
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
         this._snackBar.open(response.response, "X", {
           duration: 2000,
-          verticalPosition:'top',
-          panelClass :['red-snackbar']
+          verticalPosition: 'top',
+          panelClass: ['red-snackbar']
         });
       }
     })
   }
 
-  
+
   /*For Business Setup*/
-  getBusinessSetup(business_id){
+  getBusinessSetup(business_id) {
     this.isLoaderAdmin = true;
-      let requestObject = {
-        "business_id": business_id,
-      };
-      this.AdminService.getBusinessSetup(requestObject).subscribe((response: any) => {
-        if (response.data == true) {
-          this.businessSetup = response.response
-        }else if(response.data == false){
-          
-        }
-        this.isLoaderAdmin = false;
-      })
+    let requestObject = {
+      "business_id": business_id,
+    };
+    this.AdminService.getBusinessSetup(requestObject).subscribe((response: any) => {
+      if (response.data == true) {
+        this.businessSetup = response.response
+      } else if (response.data == false) {
+
+      }
+      this.isLoaderAdmin = false;
+    })
   }
 
-  
-  gotToDestinationPage(link){
+
+  gotToDestinationPage(link) {
     let dialogResponse = {
-      'type' : 'redirect',
-      'link' : link,
+      'type': 'redirect',
+      'link': link,
     }
     this.dialogRef.close(dialogResponse);
     this.router.navigate([link]);
   }
 
-  gotToDestinationPageAppearance(param){
+  gotToDestinationPageAppearance(param) {
     let dialogResponse = {
-      'type' : 'redirect',
-      'link' : 'appearance',
-      'param' : param,
+      'type': 'redirect',
+      'link': 'appearance',
+      'param': param,
     }
     this.dialogRef.close(dialogResponse);
     // this.router.navigate(['/admin/settings-general/appearance'], { queryParams: { goto: param } });
   }
 
 
-  gotToDestinationPageStaff(param){
+  gotToDestinationPageStaff(param) {
     let dialogResponse = {
-      'type' : 'redirect',
-      'link' : 'staff',
-      'param' : param,
+      'type': 'redirect',
+      'link': 'staff',
+      'param': param,
     }
     this.dialogRef.close(dialogResponse);
     this.router.navigate(['/admin/settings-resource/staff'], { queryParams: { goto: param } });
   }
 
-  skipFrom(step){
-    if(step == 10){
+  skipFrom(step) {
+    if (step == 10) {
       this.dialogRef.close('success');
       return false;
     }
     this.currentStep = step;
   }
 
-  goToNextStep(step){
-    if(step == 2){
-      if(this.createBusiness.invalid){
+  goToNextStep(step) {
+    if (step == 2) {
+      if (this.createBusiness.invalid) {
         this.createBusiness.get('business_name').markAsTouched();
         this.createBusiness.get('business_address').markAsTouched();
+        this.createBusiness.get('How_customers_will_Find_you').markAsTouched();
         this.createBusiness.get('business_country').markAsTouched();
         this.createBusiness.get('business_state').markAsTouched();
         this.createBusiness.get('business_city').markAsTouched();
@@ -619,24 +623,24 @@ export class myCreateNewBusinessDialog {
         this.createBusiness.get('business_size').markAsTouched();
         this.createBusiness.get('business_phone').markAsTouched();
         this.createBusiness.get('business_website').markAsTouched();
-      }else{
-        this.currentStep= step;
+      } else {
+        this.currentStep = step;
       }
-    }else{
-      this.currentStep= step;
+    } else {
+      this.currentStep = step;
     }
   }
 
-  onBackStep(step){
+  onBackStep(step) {
     // if(step == 1){
     //   this.selectedCategoryList = [];
     // }
-    this.currentStep= step;
+    this.currentStep = step;
   }
-  
-    /**
-   * Sets the initial value after the filteredTimezones are loaded initially
-   */
+
+  /**
+ * Sets the initial value after the filteredTimezones are loaded initially
+ */
   protected setInitialValueTimeZone() {
     this.listTimeZoneList
       .pipe(take(1), takeUntil(this._onDestroy))
@@ -662,9 +666,9 @@ export class myCreateNewBusinessDialog {
     );
   }
 
-    /**
-   * Sets the initial value after the filteredCountry are loaded initially
-   */
+  /**
+ * Sets the initial value after the filteredCountry are loaded initially
+ */
   protected setInitialValueCountry() {
     this.listTimeZoneList
       .pipe(take(1), takeUntil(this._onDestroy))
@@ -690,7 +694,7 @@ export class myCreateNewBusinessDialog {
     );
   }
 
-  protected filterState (){
+  protected filterState() {
     if (!this.StateArry) {
       return;
     }
@@ -708,7 +712,7 @@ export class myCreateNewBusinessDialog {
     );
   }
 
-  protected filterCity (){
+  protected filterCity() {
     if (!this.CityArry) {
       return;
     }
