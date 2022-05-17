@@ -361,7 +361,6 @@ export class AppearanceComponent implements OnInit {
   }
 
   onChangeAppearance() {
-    console.log(this.appearanceObject);
     this.update_SCSS_var();
   }
 
@@ -393,22 +392,25 @@ export class AppearanceComponent implements OnInit {
   }
 
   update_SCSS_var() {
+    console.log('1');
+    
     this.appearanceValue = '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground_backgroundColor + '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround_backgroundColor + '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround_shadowColor + '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround_borderColor + '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText_color + '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText_font + '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText_color + '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText_font + '","widgetButton_textColor":"' + this.appearanceObject.widgetButton_textColor + '","widgetButton_font":"' + this.appearanceObject.widgetButton_font + '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton_backgroundColor + '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton_borderColor + '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton_shadowColor + '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover_textColor + '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover_backgroundColor + '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover_borderColor + '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover_shadowColor + '","widgetForeGround_isShadow":' + this.appearanceObject.widgetForeGround_isShadow + ',"widgetForeGround_isBorder":' + this.appearanceObject.widgetForeGround_isBorder + ',"widgetStoreDetails_showStoreLogo":' + this.appearanceObject.widgetStoreDetails_showStoreLogo + ',"widgetStoreDetails_showStoreName":' + this.appearanceObject.widgetStoreDetails_showStoreName + ',"widgetStoreDetails_showStoreAddress":' + this.appearanceObject.widgetStoreDetails_showStoreAddress + ',"widgetButton_isBorder":' + this.appearanceObject.widgetButton_isBorder + ',"widgetButton_isShadow":' + this.appearanceObject.widgetButton_isShadow + ',"widgetButtonHover_isHover":' + this.appearanceObject.widgetButtonHover_isHover + ',"widgetButtonHover_isBorder":' + this.appearanceObject.widgetButtonHover_isBorder + ',"widgetButtonHover_isShadow":' + this.appearanceObject.widgetButtonHover_isShadow + ',"widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover_font + '"}';
-    // console.log(JSON.parse(this.appearanceValue));
-    const data = JSON.parse(JSON.stringify(this.appearanceValue));
+    const data = JSON.parse(this.appearanceValue);
     for (const [key, value] of Object.entries(data)) {
       this.setPropertyOfSCSS('--' + key, value);
-      // document.documentElement.style.setProperty('--' + key, value);
     }
+    console.log('2');
   }
 
   setPropertyOfSCSS(key, value) {
+    console.log('3');
     if (key[0] != '-') {
       key = '--' + key;
     }
     if (value) {
       document.documentElement.style.setProperty(key, value);
     }
+    console.log('4');
     return getComputedStyle(document.documentElement).getPropertyValue(key);
   }
 
