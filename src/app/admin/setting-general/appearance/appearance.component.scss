@@ -7,6 +7,10 @@
     background-color: $widgetForeGround_backgroundColor !important;
 }
 
+.widgetHeader_color {
+    background-color: $widgetHeader_color !important;
+}
+
 .widgetForeGround_shadowColor {
     box-shadow: 1px 1px 15px $widgetForeGround_shadowColor !important;
 }

@@ -79,6 +79,7 @@ export class AppearanceComponent implements OnInit {
   appearanceObject = {
     widgetBackground_backgroundColor: '',
     widgetBackground_backgroundImage: '',
+    widgetHeader_color: '',
     widgetForeGround_backgroundColor: '',
     widgetForeGround_isShadow: false,
     widgetForeGround_isBorder: false,
@@ -128,7 +129,6 @@ export class AppearanceComponent implements OnInit {
     if (localStorage.getItem('business_id')) {
       this.businessId = localStorage.getItem('business_id');
       this.encriptedUserId = JSON.parse(localStorage.getItem('currentUser'));
-      console.log('this.encriptedUserId:', this.encriptedUserId);
 
       // this.frontBookingUrl = environment.bookpageLink + "/booking/" + window.btoa(this.businessId)
       this.frontBookingUrl = environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id
@@ -152,6 +152,7 @@ export class AppearanceComponent implements OnInit {
     this.theme1appearanceObject = {
       widgetBackground_backgroundColor: '#fff',
       widgetBackground_backgroundImage: '',
+      widgetHeader_color: '#1D1D1D',
       widgetForeGround_backgroundColor: '#fff',
       widgetForeGround_isShadow: false,
       widgetForeGround_isBorder: false,
@@ -184,6 +185,7 @@ export class AppearanceComponent implements OnInit {
     this.theme2appearanceObject = {
       widgetBackground_backgroundColor: '#fff',
       widgetBackground_backgroundImage: '',
+      widgetHeader_color: '#fff',
       widgetForeGround_backgroundColor: '#fff',
       widgetForeGround_isShadow: false,
       widgetForeGround_isBorder: false,
@@ -216,6 +218,7 @@ export class AppearanceComponent implements OnInit {
     this.theme3appearanceObject = {
       widgetBackground_backgroundColor: '#fff',
       widgetBackground_backgroundImage: '',
+      widgetHeader_color: '#3B31B9',
       widgetForeGround_backgroundColor: '#fff',
       widgetForeGround_isShadow: false,
       widgetForeGround_isBorder: false,
@@ -248,6 +251,7 @@ export class AppearanceComponent implements OnInit {
     this.theme4appearanceObject = {
       widgetBackground_backgroundColor: '#fff',
       widgetBackground_backgroundImage: '',
+      widgetHeader_color: '#fff',
       widgetForeGround_backgroundColor: '#fff',
       widgetForeGround_isShadow: false,
       widgetForeGround_isBorder: false,
@@ -280,6 +284,7 @@ export class AppearanceComponent implements OnInit {
     this.theme5appearanceObject = {
       widgetBackground_backgroundColor: '#fff',
       widgetBackground_backgroundImage: '',
+      widgetHeader_color: '#fff',
       widgetForeGround_backgroundColor: '#fff',
       widgetForeGround_isShadow: false,
       widgetForeGround_isBorder: false,
@@ -326,8 +331,6 @@ export class AppearanceComponent implements OnInit {
     this.AdminSettingsService.getCompanyDetails(requestObject).subscribe((response: any) => {
       if (response.data == true) {
         this.companyDetailsData = response.response;
-        console.log(this.companyDetailsData);
-
       }
       else if (response.data == false && response.response !== 'api token or userid invaild') {
 
@@ -360,12 +363,14 @@ export class AppearanceComponent implements OnInit {
     this.update_SCSS_var();
   }
 
-  onChangeAppearance() {
+  onChangeAppearance(event) {
+    if(event == 'forground'){
+      this.appearanceObject.widgetHeader_color = this.appearanceObject.widgetForeGround_backgroundColor
+    }
     this.update_SCSS_var();
   }
 
   onToggleChange(event, type) {
-    console.log(event);
     if (type == 'button_hover_border') {
       this.appearanceObject.widgetButtonHover_isBorder = event.checked;
     } else if (type == 'foreground_shadow') {
@@ -392,25 +397,21 @@ export class AppearanceComponent implements OnInit {
   }
 
   update_SCSS_var() {
-    console.log('1');
-    
-    this.appearanceValue = '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground_backgroundColor + '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround_backgroundColor + '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround_shadowColor + '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround_borderColor + '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText_color + '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText_font + '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText_color + '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText_font + '","widgetButton_textColor":"' + this.appearanceObject.widgetButton_textColor + '","widgetButton_font":"' + this.appearanceObject.widgetButton_font + '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton_backgroundColor + '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton_borderColor + '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton_shadowColor + '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover_textColor + '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover_backgroundColor + '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover_borderColor + '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover_shadowColor + '","widgetForeGround_isShadow":' + this.appearanceObject.widgetForeGround_isShadow + ',"widgetForeGround_isBorder":' + this.appearanceObject.widgetForeGround_isBorder + ',"widgetStoreDetails_showStoreLogo":' + this.appearanceObject.widgetStoreDetails_showStoreLogo + ',"widgetStoreDetails_showStoreName":' + this.appearanceObject.widgetStoreDetails_showStoreName + ',"widgetStoreDetails_showStoreAddress":' + this.appearanceObject.widgetStoreDetails_showStoreAddress + ',"widgetButton_isBorder":' + this.appearanceObject.widgetButton_isBorder + ',"widgetButton_isShadow":' + this.appearanceObject.widgetButton_isShadow + ',"widgetButtonHover_isHover":' + this.appearanceObject.widgetButtonHover_isHover + ',"widgetButtonHover_isBorder":' + this.appearanceObject.widgetButtonHover_isBorder + ',"widgetButtonHover_isShadow":' + this.appearanceObject.widgetButtonHover_isShadow + ',"widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover_font + '"}';
+    this.appearanceValue = '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground_backgroundColor + '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround_backgroundColor + '","widgetHeader_color":"' + this.appearanceObject.widgetHeader_color + '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround_shadowColor + '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround_borderColor + '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText_color + '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText_font + '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText_color + '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText_font + '","widgetButton_textColor":"' + this.appearanceObject.widgetButton_textColor + '","widgetButton_font":"' + this.appearanceObject.widgetButton_font + '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton_backgroundColor + '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton_borderColor + '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton_shadowColor + '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover_textColor + '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover_backgroundColor + '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover_borderColor + '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover_shadowColor + '","widgetForeGround_isShadow":' + this.appearanceObject.widgetForeGround_isShadow + ',"widgetForeGround_isBorder":' + this.appearanceObject.widgetForeGround_isBorder + ',"widgetStoreDetails_showStoreLogo":' + this.appearanceObject.widgetStoreDetails_showStoreLogo + ',"widgetStoreDetails_showStoreName":' + this.appearanceObject.widgetStoreDetails_showStoreName + ',"widgetStoreDetails_showStoreAddress":' + this.appearanceObject.widgetStoreDetails_showStoreAddress + ',"widgetButton_isBorder":' + this.appearanceObject.widgetButton_isBorder + ',"widgetButton_isShadow":' + this.appearanceObject.widgetButton_isShadow + ',"widgetButtonHover_isHover":' + this.appearanceObject.widgetButtonHover_isHover + ',"widgetButtonHover_isBorder":' + this.appearanceObject.widgetButtonHover_isBorder + ',"widgetButtonHover_isShadow":' + this.appearanceObject.widgetButtonHover_isShadow + ',"widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover_font + '"}';
     const data = JSON.parse(this.appearanceValue);
     for (const [key, value] of Object.entries(data)) {
+      console.log('--' + key, value)
       this.setPropertyOfSCSS('--' + key, value);
     }
-    console.log('2');
   }
 
   setPropertyOfSCSS(key, value) {
-    console.log('3');
     if (key[0] != '-') {
       key = '--' + key;
     }
     if (value) {
       document.documentElement.style.setProperty(key, value);
     }
-    console.log('4');
     return getComputedStyle(document.documentElement).getPropertyValue(key);
   }
 
@@ -435,7 +436,6 @@ export class AppearanceComponent implements OnInit {
       this.formArr[field_name].status = 0;
       this.formArr[field_name].required = 0;
     }
-    console.log(this.formArr);
   }
 
   fnChangeRequiredStatus(event, field_name) {
@@ -444,7 +444,6 @@ export class AppearanceComponent implements OnInit {
     } else if (event == false) {
       this.formArr[field_name].required = 0;
     }
-    console.log(this.formArr);
   }
 
   fnSaveAppearanceSettings() {
@@ -487,12 +486,9 @@ export class AppearanceComponent implements OnInit {
     this.AdminSettingsService.getSettingsValue(requestObject).subscribe((response: any) => {
       if (response.data == true && response.response != '') {
         this.settingData = response.response
-        console.log(this.settingData);
         if (this.settingData.appearance) {
           this.appearanceObject = JSON.parse(this.settingData.appearance);
           console.log(this.appearanceObject);
-
-          // this.appearanceObject.widgetBackground.backgroundImage = this.getAppearanceData.image;
           this.update_SCSS_var();
         }
         if (this.settingData.form_settings) {
@@ -500,15 +496,7 @@ export class AppearanceComponent implements OnInit {
         }
         if (this.settingData.theme) {
           this.defaultTheme = this.settingData.theme
-          // if(this.defaultTheme == 1){
-          //   this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='"+environment.urlForLink+"/booking?business_id="+window.btoa(this.businessId)+"'></iframe>";
-          // }else{
-          //   this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='"+environment.urlForLink+"/booking-"+this.defaultTheme+"?business_id="+window.btoa(this.businessId)+"'></iframe>";
-          // }
         }
-        // else{
-        //   this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='"+environment.urlForLink+"/booking?business_id="+window.btoa(this.businessId)+"'></iframe>";
-        // }
 
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
 
@@ -567,7 +555,6 @@ export class AppearanceComponent implements OnInit {
   }
 
   fnCancelAppearance() {
-    // this.getSettingValue();
     if(this.defaultTheme == 1){
       this.fnCreateAppearance(this.theme1appearanceObject);
     }else if(this.defaultTheme == 3){
@@ -584,7 +571,6 @@ export class AppearanceComponent implements OnInit {
   fnChnageTheme(selectedTheme) {
     this.isLoaderAdmin = true;
     let requestObject = {
-      // 'business_id': this.businessId,
       'admin_id': this.currentUser.user_id,
       'theme': selectedTheme
     };

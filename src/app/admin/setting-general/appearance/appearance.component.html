@@ -265,7 +265,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Background Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetBackground_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetBackground_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetBackground_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetBackground_backgroundColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="image-field">
@@ -286,7 +286,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Background Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetForeGround_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_backgroundColor" (colorPickerChange)="onChangeAppearance('forground')" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
@@ -296,7 +296,7 @@
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetForeGround_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_shadowColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_shadowColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
@@ -307,7 +307,7 @@
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetForeGround_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_borderColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetForeGround_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetForeGround_borderColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -373,7 +373,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetPrimaryText_color" class="color_box" [(colorPicker)]="appearanceObject.widgetPrimaryText_color" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetPrimaryText_color" class="color_box" [(colorPicker)]="appearanceObject.widgetPrimaryText_color" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -406,7 +406,7 @@
                                             <div class="color-field d-flex ">
                                                 <label>Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetSecondaryText_color" class="color_box" [(colorPicker)]="appearanceObject.widgetSecondaryText_color" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetSecondaryText_color" class="color_box" [(colorPicker)]="appearanceObject.widgetSecondaryText_color" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -439,13 +439,13 @@
                                             <div class="color-field d-flex ">
                                                 <label>Button Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButton_textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_textColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_textColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButton_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_backgroundColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="btn-style-field d-flex ">
@@ -464,7 +464,7 @@
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButton_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_borderColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_borderColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
@@ -475,7 +475,7 @@
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButton_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_shadowColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButton_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButton_shadowColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -514,13 +514,13 @@
                                             <div class="color-field d-flex ">
                                                 <label>Button Text Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButtonHover_textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_textColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_textColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_textColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
                                                 <label>Button Color</label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButtonHover_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_backgroundColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_backgroundColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_backgroundColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
@@ -531,7 +531,7 @@
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButtonHover_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_borderColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_borderColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_borderColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                             <div class="color-field d-flex ">
@@ -542,7 +542,7 @@
                                                     </mat-slide-toggle>
                                                 </label>
                                                 <div class="colorpicker-wrap">
-                                                    <input [style.background]="appearanceObject.widgetButtonHover_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_shadowColor" (colorPickerChange)="onChangeAppearance()" />
+                                                    <input [style.background]="appearanceObject.widgetButtonHover_shadowColor" class="color_box" [(colorPicker)]="appearanceObject.widgetButtonHover_shadowColor" (colorPickerChange)="onChangeAppearance($event)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -557,7 +557,7 @@
                                 <div class="card-wrap main-front-container">
                                     <div class="theme-card">
                                         <div class="step-wrapper">
-                                            <div class="theme-header">
+                                            <div class="theme-header widgetHeader_color">
                                                 <div *ngIf="appearanceObject.widgetStoreDetails_showStoreLogo">
                                                     <div class="b-logo-container">
                                                         <img src="../../assets/images/dummy-logo-black.svg" />

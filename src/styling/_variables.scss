@@ -1,6 +1,7 @@
 :root {
     --widgetBackground_backgroundColor: '#ccc';
     --widgetForeGround_backgroundColor: '#fff';
+    --widgetHeader_color: '#fff';
     --widgetForeGround_shadowColor: '#000';
     --widgetForeGround_borderColor: '#000';
     --widgetPrimaryText_color: '#000';
@@ -31,6 +32,7 @@
 
 $widgetBackground_backgroundColor: var(--widgetBackground_backgroundColor);
 $widgetForeGround_backgroundColor: var(--widgetForeGround_backgroundColor);
+$widgetHeader_color: var(--widgetHeader_color);
 $widgetForeGround_shadowColor: var(--widgetForeGround_shadowColor);
 $widgetForeGround_borderColor: var(--widgetForeGround_borderColor);
 $widgetPrimaryText_color: var(--widgetPrimaryText_color);
