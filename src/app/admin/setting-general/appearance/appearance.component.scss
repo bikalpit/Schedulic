@@ -903,6 +903,7 @@
                 span {
                     font-size: 16px;
                     color: #0E0E0E;
+                    font-weight: 600;
                 }
                 .btn-container {
                     margin-left: auto;
@@ -910,6 +911,8 @@
                         background-color: #A1A1A1;
                         color: #fff;
                         width: 30px !important;
+                        min-width: 50px;
+                        padding: 0px;
                         mat-icon {
                             font-size: 24px;
                         }
@@ -919,8 +922,14 @@
                         color: #fff;
                         width: 30px !important;
                         margin-left: 10px;
+                        min-width: 50px;
+                        padding: 0px;
                         mat-icon {
                             font-size: 24px;
+                        }
+                        img{
+                            width: 18px;
+                            height: 18px;
                         }
                     }
                 }
@@ -934,6 +943,10 @@
                     border-bottom: 1px solid #00A89B80;
                     border-radius: 0;
                     .mat-content {}
+                }
+                label{
+                    margin-bottom: 0px;
+                    font-weight: 600;
                 }
             }
         }
@@ -974,7 +987,7 @@
             .button-styles {
                 width: 100%;
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 margin-top: 12px;
                 .btn-styles {
                     background-color: #A1A1A1;
@@ -982,8 +995,11 @@
                     width: 105px;
                     &.btn-style-1 {
                         border-radius: 0;
+                        margin-right: 10px;
                     }
-                    &.btn-style-2 {}
+                    &.btn-style-2 {
+                        margin-right: 10px;
+                    }
                     &.btn-style-3 {
                         border-radius: 100px;
                     }
@@ -1069,5 +1085,32 @@
     textarea {
         height: 100px;
         resize: none;
+    }
+}
+
+
+::ng-deep.mat-slide-toggle-bar{
+    background-color: #00A89B!important;
+    height: 21px!important;
+    width: 40px!important;
+    border-radius: 10px!important;
+    .mat-slide-toggle-thumb{
+        background-color: #fff;
+        height: 15px!important;
+        width: 15px!important;
+        position: absolute;
+        top: 6px;
+        right: 1px;
+    }
+    
+}
+::ng-deep{
+    .mat-slide-toggle{
+        &.mat-checked{
+            .mat-slide-toggle-thumb{
+               background-color: #fff;
+            }
+        }
+        
     }
 }
