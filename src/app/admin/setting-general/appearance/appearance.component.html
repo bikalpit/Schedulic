@@ -552,16 +552,18 @@
                         </div>
                     </div>
                     <div id="preview_container" class="right-side pr-0 py-3 appearance-side col-8">
-                        <div class="main-theme-box widgetBackground_backgroundColor">
+                        <div class="main-theme-box widgetBackground_backgroundColor" [ngStyle]="{'background-image': 'url(' + appearanceObject.widgetBackground_backgroundImage + ')'}">
                             <div id="theme_1" class="theme-main widgetForeGround_backgroundColor " [ngClass]="{'widgetForeGround_shadowColor':appearanceObject.widgetForeGround_isShadow, 'widgetForeGround_borderColor' :appearanceObject.widgetForeGround_isBorder}">
                                 <div class="card-wrap main-front-container">
                                     <div class="theme-card">
                                         <div class="step-wrapper">
                                             <div class="theme-header widgetHeader_color">
-                                                <div *ngIf="appearanceObject.widgetStoreDetails_showStoreLogo">
-                                                    <div class="b-logo-container">
+                                                <div class="store-detail">
+                                                    <div class="b-logo-container" *ngIf="appearanceObject.widgetStoreDetails_showStoreLogo">
                                                         <img src="../../assets/images/dummy-logo-black.svg" />
                                                     </div>
+                                                    <h3 *ngIf="appearanceObject.widgetStoreDetails_showStoreName" class="widgetPrimaryText_font widgetPrimaryText_color">Store Name</h3>
+                                                    <p *ngIf="appearanceObject.widgetStoreDetails_showStoreAddress" class="widgetPrimaryText_font widgetPrimaryText_color">52 Bates Brothers Road, Columbus - Ohio</p>
                                                 </div>
 
                                                 <div class="search-box widgetPrimaryText_font widgetPrimaryText_color">
@@ -569,7 +571,7 @@
                                                     <input type="text" placeholder="Search service" class="form-control" />
                                                 </div>
                                                 <div class="btn-box d-flex">
-                                                    <button mat-button class="sc-black-btn has-icon widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">
+                                                    <button mat-button class="sc-black-btn has-icon widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor widgetButtonHover_font':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">
                                                         <mat-icon class="btn-icon">perm_identity</mat-icon>
                                                         Login
                                                     </button>
@@ -624,7 +626,7 @@
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
-                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
+                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor widgetButtonHover_backgroundColor widgetButtonHover_font':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
                                                                 </div>
                                                             </div>
                                                         </label>
@@ -641,7 +643,7 @@
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
-                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
+                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor widgetButtonHover_font':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
                                                                 </div>
                                                             </div>
                                                         </label>
@@ -654,7 +656,7 @@
                                                                 </div>
                                                                 <div class="select-btn">
                                                                     <button mat-button
-                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
+                                                                        class="sc-bordered-btn w-100 widgetButton_textColor widgetButton_backgroundColor widgetButton_font" [ngClass]="{'widgetButton_borderColor':appearanceObject.widgetButton_isBorder, 'widgetButton_shadowColor' :appearanceObject.widgetButton_isShadow, 'btn_style_1' : appearanceObject.widgetButton_style==1, 'btn_style_2' : appearanceObject.widgetButton_style==2, 'btn_style_3' : appearanceObject.widgetButton_style==3, 'widgetButtonHover_textColor  widgetButtonHover_backgroundColor widgetButtonHover_font':appearanceObject.widgetButtonHover_isHover, 'widgetButtonHover_borderColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isBorder, 'widgetButtonHover_shadowColor':appearanceObject.widgetButtonHover_isHover && appearanceObject.widgetButtonHover_isShadow}">Select</button>
                                                                 </div>
                                                             </div>
                                                         </label>

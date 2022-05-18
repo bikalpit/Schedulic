@@ -71,6 +71,10 @@
     background-color: $widgetButtonHover_backgroundColor !important;
 }
 
+.widgetButtonHover_font:hover {
+    font-family: $widgetButtonHover_font !important;
+}
+
 .main-getting-content {
     margin: 30px;
 }
@@ -528,6 +532,26 @@
 }
 
 #preview_container {
+    .store-detail {
+        .b-logo-container {
+            display: flex;
+            justify-content: center;
+            img {
+                width: 90px;
+            }
+        }
+        h3 {
+            font-size: 14px;
+            margin-bottom: 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        p {
+            font-size: 12px;
+            margin-bottom: 0;
+            text-align: center;
+        }
+    }
     .main-theme-box {
         padding: 20px;
         background-color: #000;
@@ -554,12 +578,6 @@
             // background-color: #3986fa;
             padding: 15px 40px;
             height: 95px;
-            .b-logo-container {
-                img {
-                    width: 150px;
-                    height: 80px;
-                }
-            }
             .search-box {
                 width: calc(100% - 496px);
                 position: relative;
