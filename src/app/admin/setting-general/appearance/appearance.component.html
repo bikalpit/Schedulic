@@ -552,7 +552,7 @@
                         </div>
                     </div>
                     <div id="preview_container" class="right-side pr-0 py-3 appearance-side col-8">
-                        <div class="main-theme-box widgetBackground_backgroundColor" [ngStyle]="{'background-image': 'url(' + appearanceObject.widgetBackground_backgroundImage + ')'}">
+                        <!-- <div class="main-theme-box widgetBackground_backgroundColor" [ngStyle]="{'background-image': 'url(' + appearanceObject.widgetBackground_backgroundImage + ')'}">
                             <div id="theme_1" class="theme-main widgetForeGround_backgroundColor " [ngClass]="{'widgetForeGround_shadowColor':appearanceObject.widgetForeGround_isShadow, 'widgetForeGround_borderColor' :appearanceObject.widgetForeGround_isBorder}">
                                 <div class="card-wrap main-front-container">
                                     <div class="theme-card">
@@ -667,7 +667,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <p [innerHtml]="embededCodePreview"></p>
                     </div>
                 </div>
                 <!-- <mat-card class="save-cencel-footer">
@@ -676,6 +677,8 @@
                         <button mat-button class="sc-pink-btn mr-2" (click)="fnSaveAppearanceSettings()">Save</button>
                     </div>
                 </mat-card> -->
+
+                <!-- <p [innerHtml]="embededCodePreview"></p> -->
             </mat-tab>
             <mat-tab label="Form Setting">
                 <mat-card class="main-form-setting-content common-form-setting-wrap">

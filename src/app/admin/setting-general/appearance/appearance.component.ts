@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '@environments/environment';
 import { NgbDateParserFormatter, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from '@app/_services';
+import {DomSanitizer} from "@angular/platform-browser";
 
 export interface DialogData {
   animal: string;
@@ -114,14 +115,12 @@ export class AppearanceComponent implements OnInit {
   theme3appearanceObject:any;
   theme4appearanceObject:any;
   theme5appearanceObject:any;
+  embededCodePreview:any;
   constructor(
-    private appComponent: AppComponent,
-    private _formBuilder: FormBuilder,
     public vcRef: ViewContainerRef,
-    private cpService: ColorPickerService,
     private _snackBar: MatSnackBar,
-    private calendar: NgbCalendar,
     public dialog: MatDialog,
+    private sanitizer:DomSanitizer,
     @Inject(AdminSettingsService) private AdminSettingsService: AdminSettingsService,
     private authenticationService: AuthenticationService,
   ) {
@@ -134,7 +133,8 @@ export class AppearanceComponent implements OnInit {
       this.frontBookingUrl = environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id
       // this.frontBookingUrl = environment.bookpageLink + "/business-booking/" + this.encriptedUserId.encrypted_id
       // this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/booking/" + window.btoa(this.businessId) + "' frameborder='0'></iframe>";
-      this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
+      this.embededCode = "<iframe id='front_iframe' height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
+      this.embededCodePreview = this.transform(this.embededCode);
       // this.embededCode = "<iframe height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/business-booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
     }
     // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -323,6 +323,11 @@ export class AppearanceComponent implements OnInit {
     this.getCompanyDetails();
   }
 
+  
+  transform(embededCode) {
+    return  this.sanitizer.bypassSecurityTrustHtml(embededCode);
+  }
+
   getCompanyDetails() {
     this.isLoaderAdmin = true;
     let requestObject = {
@@ -447,6 +452,7 @@ export class AppearanceComponent implements OnInit {
   }
 
   fnSaveAppearanceSettings() {
+
     this.fnCreateAppearance(this.appearanceObject);
   }
 
@@ -497,6 +503,7 @@ export class AppearanceComponent implements OnInit {
         if (this.settingData.theme) {
           this.defaultTheme = this.settingData.theme
         }
+        document.getElementById('front_iframe').src+= '';
 
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
 
