@@ -503,7 +503,9 @@ export class AppearanceComponent implements OnInit {
         if (this.settingData.theme) {
           this.defaultTheme = this.settingData.theme
         }
-        document.getElementById('front_iframe').src+= '';
+        // document.getElementById('front_iframe').src+= '';
+        // this.embededCode = "<iframe id='front_iframe' height='100%' style='height:100vh' width='100%' src='" + environment.bookpageLink + "/booking/" + this.encriptedUserId.encrypted_id + "' frameborder='0'></iframe>";
+        this.embededCodePreview = this.transform(this.embededCode);
 
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
 
