@@ -116,6 +116,10 @@ export class AppearanceComponent implements OnInit {
   theme4appearanceObject:any;
   theme5appearanceObject:any;
   embededCodePreview:any;
+  commonAppearanceObject:any ={
+    default:'',
+    new:''
+  }
   constructor(
     public vcRef: ViewContainerRef,
     private _snackBar: MatSnackBar,
@@ -319,6 +323,7 @@ export class AppearanceComponent implements OnInit {
 
   ngOnInit() {
     this.getSettingValue();
+    this.getThemeAppearance();
     this.update_SCSS_var();
     this.getCompanyDetails();
   }
@@ -397,7 +402,6 @@ export class AppearanceComponent implements OnInit {
     } else if (type == 'button_hover') {
       this.appearanceObject.widgetButtonHover_isHover = event.checked;
     }
-    console.log(this.appearanceObject);
     this.update_SCSS_var();
   }
 
@@ -405,7 +409,6 @@ export class AppearanceComponent implements OnInit {
     this.appearanceValue = '{"widgetBackground_backgroundColor":"' + this.appearanceObject.widgetBackground_backgroundColor + '","widgetForeGround_backgroundColor":"' + this.appearanceObject.widgetForeGround_backgroundColor + '","widgetHeader_color":"' + this.appearanceObject.widgetHeader_color + '","widgetForeGround_shadowColor":"' + this.appearanceObject.widgetForeGround_shadowColor + '","widgetForeGround_borderColor":"' + this.appearanceObject.widgetForeGround_borderColor + '","widgetPrimaryText_color":"' + this.appearanceObject.widgetPrimaryText_color + '","widgetPrimaryText_font":"' + this.appearanceObject.widgetPrimaryText_font + '","widgetSecondaryText_color":"' + this.appearanceObject.widgetSecondaryText_color + '","widgetSecondaryText_font":"' + this.appearanceObject.widgetSecondaryText_font + '","widgetButton_textColor":"' + this.appearanceObject.widgetButton_textColor + '","widgetButton_font":"' + this.appearanceObject.widgetButton_font + '","widgetButton_backgroundColor":"' + this.appearanceObject.widgetButton_backgroundColor + '","widgetButton_borderColor":"' + this.appearanceObject.widgetButton_borderColor + '","widgetButton_shadowColor":"' + this.appearanceObject.widgetButton_shadowColor + '","widgetButtonHover_textColor":"' + this.appearanceObject.widgetButtonHover_textColor + '","widgetButtonHover_backgroundColor":"' + this.appearanceObject.widgetButtonHover_backgroundColor + '","widgetButtonHover_borderColor":"' + this.appearanceObject.widgetButtonHover_borderColor + '","widgetButtonHover_shadowColor":"' + this.appearanceObject.widgetButtonHover_shadowColor + '","widgetForeGround_isShadow":' + this.appearanceObject.widgetForeGround_isShadow + ',"widgetForeGround_isBorder":' + this.appearanceObject.widgetForeGround_isBorder + ',"widgetStoreDetails_showStoreLogo":' + this.appearanceObject.widgetStoreDetails_showStoreLogo + ',"widgetStoreDetails_showStoreName":' + this.appearanceObject.widgetStoreDetails_showStoreName + ',"widgetStoreDetails_showStoreAddress":' + this.appearanceObject.widgetStoreDetails_showStoreAddress + ',"widgetButton_isBorder":' + this.appearanceObject.widgetButton_isBorder + ',"widgetButton_isShadow":' + this.appearanceObject.widgetButton_isShadow + ',"widgetButtonHover_isHover":' + this.appearanceObject.widgetButtonHover_isHover + ',"widgetButtonHover_isBorder":' + this.appearanceObject.widgetButtonHover_isBorder + ',"widgetButtonHover_isShadow":' + this.appearanceObject.widgetButtonHover_isShadow + ',"widgetButtonHover_font":"' + this.appearanceObject.widgetButtonHover_font + '"}';
     const data = JSON.parse(this.appearanceValue);
     for (const [key, value] of Object.entries(data)) {
-      console.log('--' + key, value)
       this.setPropertyOfSCSS('--' + key, value);
     }
   }
@@ -458,10 +461,38 @@ export class AppearanceComponent implements OnInit {
 
   fnCreateAppearance(AppearanceData) {
     this.isLoaderAdmin = true;
+    if(this.defaultTheme == '1'){
+      this.commonAppearanceObject = {
+        'default':this.theme1appearanceObject,
+        'new' : AppearanceData
+      }
+    }else if(this.defaultTheme == '3'){
+      this.commonAppearanceObject = {
+        'default':this.theme2appearanceObject,
+        'new' : AppearanceData
+      }
+    }else if(this.defaultTheme == '4'){
+      this.commonAppearanceObject = {
+        'default':this.theme3appearanceObject,
+        'new' : AppearanceData
+      }
+    }else if(this.defaultTheme == '5'){
+      this.commonAppearanceObject = {
+        'default':this.theme4appearanceObject,
+        'new' : AppearanceData
+      }
+    }else if(this.defaultTheme == '6'){
+      this.commonAppearanceObject = {
+        'default':this.theme5appearanceObject,
+        'new' : AppearanceData
+      }
+    }
+    
     let requestObject = {
-      // 'business_id': this.businessId,
+      'business_id': JSON.parse(this.businessId),
       'admin_id': this.currentUser.user_id,
-      "appearance": AppearanceData
+      'theme': this.defaultTheme,
+      "appearance": this.commonAppearanceObject
     };
     this.AdminSettingsService.fnCreateAppearance(requestObject).subscribe((response: any) => {
       if (response.data == true) {
@@ -471,8 +502,35 @@ export class AppearanceComponent implements OnInit {
           panelClass: ['green-snackbar']
         });
         this.getSettingValue();
+        this.getThemeAppearance();
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
 
+        this._snackBar.open(response.response, "X", {
+          duration: 2000,
+          verticalPosition: 'top',
+          panelClass: ['red-snackbar']
+        });
+      }
+      this.isLoaderAdmin = false;
+    })
+  }
+
+  getThemeAppearance(){
+    this.isLoaderAdmin = true;
+    alert(this.defaultTheme)
+    let requestObject = {
+      // 'business_id': this.businessId,
+      'admin_id': this.currentUser.user_id,
+      'business_id': this.businessId,
+      'theme': this.defaultTheme,
+    };
+    this.AdminSettingsService.getThemeAppearance(requestObject).subscribe((response: any) => {
+      if (response.data == true && response.response != '') {
+          let optionValue = JSON.parse(response.response.option_value)
+          console.log(optionValue);
+          this.appearanceObject = optionValue.new
+          this.update_SCSS_var();
+      } else if (response.data == false && response.response !== 'api token or userid invaild') {
         this._snackBar.open(response.response, "X", {
           duration: 2000,
           verticalPosition: 'top',
@@ -492,11 +550,6 @@ export class AppearanceComponent implements OnInit {
     this.AdminSettingsService.getSettingsValue(requestObject).subscribe((response: any) => {
       if (response.data == true && response.response != '') {
         this.settingData = response.response
-        if (this.settingData.appearance) {
-          this.appearanceObject = JSON.parse(this.settingData.appearance);
-          console.log(this.appearanceObject);
-          this.update_SCSS_var();
-        }
         if (this.settingData.form_settings) {
           this.formArr = JSON.parse(this.settingData.form_settings);
         }
@@ -564,45 +617,47 @@ export class AppearanceComponent implements OnInit {
   }
 
   fnCancelAppearance() {
-    if(this.defaultTheme == 1){
+    if(this.defaultTheme == '1'){
       this.fnCreateAppearance(this.theme1appearanceObject);
-    }else if(this.defaultTheme == 3){
+    }else if(this.defaultTheme == '3'){
       this.fnCreateAppearance(this.theme2appearanceObject);
-    }else if(this.defaultTheme == 4){
+    }else if(this.defaultTheme == '4'){
       this.fnCreateAppearance(this.theme3appearanceObject);
-    }else if(this.defaultTheme == 5){
+    }else if(this.defaultTheme == '5'){
       this.fnCreateAppearance(this.theme4appearanceObject);
-    }else if(this.defaultTheme == 6){
+    }else if(this.defaultTheme == '6'){
       this.fnCreateAppearance(this.theme5appearanceObject);
     }
   }
 
-  fnChnageTheme(selectedTheme) {
+  fnChangeTheme(selectedTheme) {
     this.isLoaderAdmin = true;
     let requestObject = {
       'admin_id': this.currentUser.user_id,
       'theme': selectedTheme
     };
 
-    this.AdminSettingsService.fnChnageTheme(requestObject).subscribe((response: any) => {
+    this.AdminSettingsService.fnChangeTheme(requestObject).subscribe((response: any) => {
       if (response.data == true) {
         this._snackBar.open("Default Theme Updated.", "X", {
           duration: 2000,
           verticalPosition: 'top',
           panelClass: ['green-snackbar']
         });
-        if(selectedTheme == 1){
-          this.fnCreateAppearance(this.theme1appearanceObject);
-        }else if(selectedTheme == 3){
-          this.fnCreateAppearance(this.theme2appearanceObject);
-        }else if(selectedTheme == 4){
-          this.fnCreateAppearance(this.theme3appearanceObject);
-        }else if(selectedTheme == 5){
-          this.fnCreateAppearance(this.theme4appearanceObject);
-        }else if(selectedTheme == 6){
-          this.fnCreateAppearance(this.theme5appearanceObject);
-        }
+        this.defaultTheme = selectedTheme
+        // if(selectedTheme == 1){
+        //   this.fnCreateAppearance(this.theme1appearanceObject);
+        // }else if(selectedTheme == 3){
+        //   this.fnCreateAppearance(this.theme2appearanceObject);
+        // }else if(selectedTheme == 4){
+        //   this.fnCreateAppearance(this.theme3appearanceObject);
+        // }else if(selectedTheme == 5){
+        //   this.fnCreateAppearance(this.theme4appearanceObject);
+        // }else if(selectedTheme == 6){
+        //   this.fnCreateAppearance(this.theme5appearanceObject);
+        // }
         this.getSettingValue();
+        this.getThemeAppearance();
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
 
         this._snackBar.open(response.response, "X", {
@@ -636,6 +691,9 @@ export class AppearanceComponent implements OnInit {
         // this.fnCreateAppearance(this.appearanceObject);
       }
     });
+  }
+  removeWidgetBGImage(){
+    this.appearanceObject.widgetBackground_backgroundImage = '';
   }
 
 

@@ -105,7 +105,7 @@
                                     <div class="theme-btn-sub-div">
                                         <button (click)="fnThemePreview('1')" class="btn preview-color mb-1"><i
                                                 class="fa fa-eye pr-2"></i>Preview</button>
-                                        <button (click)="fnChnageTheme('1')" class="btn set-default-color mt-1"><i
+                                        <button (click)="fnChangeTheme('1')" class="btn set-default-color mt-1"><i
                                                 class="fa fa-check pr-2"></i>Set Default</button>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                                 <div *ngIf="defaultTheme !== '2'" class="theme-btn-div">
                                     <div class="theme-btn-sub-div">
                                         <button (click)="fnThemePreview('2')" class="btn preview-color mb-1"><i class="fa fa-eye pr-2"></i>Preview</button>
-                                        <button (click)="fnChnageTheme('2')" class="btn set-default-color mt-1"><i class="fa fa-check pr-2"></i>Set Default</button>
+                                        <button (click)="fnChangeTheme('2')" class="btn set-default-color mt-1"><i class="fa fa-check pr-2"></i>Set Default</button>
                                     </div>
                                 </div>
                             </div> -->
@@ -137,7 +137,7 @@
                                     <div class="theme-btn-sub-div">
                                         <button (click)="fnThemePreview('3')" class="btn preview-color mb-1"><i
                                                 class="fa fa-eye pr-2"></i>Preview</button>
-                                        <button (click)="fnChnageTheme('3')" class="btn set-default-color mt-1"><i
+                                        <button (click)="fnChangeTheme('3')" class="btn set-default-color mt-1"><i
                                                 class="fa fa-check pr-2"></i>Set Default</button>
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@
                                     <div class="theme-btn-sub-div">
                                         <button (click)="fnThemePreview('4')" class="btn preview-color mb-1"><i
                                                 class="fa fa-eye pr-2"></i>Preview</button>
-                                        <button (click)="fnChnageTheme('4')" class="btn set-default-color mt-1"><i
+                                        <button (click)="fnChangeTheme('4')" class="btn set-default-color mt-1"><i
                                                 class="fa fa-check pr-2"></i>Set Default</button>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@
                                     <div class="theme-btn-sub-div">
                                         <button (click)="fnThemePreview('5')" class="btn preview-color mb-1"><i
                                                 class="fa fa-eye pr-2"></i>Preview</button>
-                                        <button (click)="fnChnageTheme('5')" class="btn set-default-color mt-1"><i
+                                        <button (click)="fnChangeTheme('5')" class="btn set-default-color mt-1"><i
                                                 class="fa fa-check pr-2"></i>Set Default</button>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@
                                     <div class="theme-btn-sub-div">
                                         <button (click)="fnThemePreview('6')" class="btn preview-color mb-1"><i
                                                 class="fa fa-eye pr-2"></i>Preview</button>
-                                        <button (click)="fnChnageTheme('6')" class="btn set-default-color mt-1"><i
+                                        <button (click)="fnChangeTheme('6')" class="btn set-default-color mt-1"><i
                                                 class="fa fa-check pr-2"></i>Set Default</button>
                                     </div>
                                 </div>
@@ -272,6 +272,10 @@
                                             <div class="image-field">
                                                 <label class="w-100 mb-2">Add Background Image</label>
                                                 <button mat-button (click)="uploadWidgetBGImage()" class="sc-pink-btn w-100">Upload Image</button>
+                                            </div>
+                                            <div class="uploaded-image" *ngIf="appearanceObject.widgetBackground_backgroundImage && appearanceObject.widgetBackground_backgroundImage != ''">
+                                                <img [src]="appearanceObject.widgetBackground_backgroundImage" />
+                                                <button mat-button (click)="removeWidgetBGImage()" class="sc-pink-btn w-100">Remove Image</button>
                                             </div>
                                         </div>
                                     </mat-expansion-panel>
@@ -672,14 +676,6 @@
                         <p [innerHtml]="embededCodePreview"></p>
                     </div>
                 </div>
-                <!-- <mat-card class="save-cencel-footer">
-                    <div class="d-flex py-2 save-footer-btn">
-                        <button mat-button (click)="fnCancelAppearance()" class="sc-grey-btn mr-2">Cancel</button>
-                        <button mat-button class="sc-pink-btn mr-2" (click)="fnSaveAppearanceSettings()">Save</button>
-                    </div>
-                </mat-card> -->
-
-                <!-- <p [innerHtml]="embededCodePreview"></p> -->
             </mat-tab>
             <mat-tab label="Form Setting">
                 <mat-card class="main-form-setting-content common-form-setting-wrap">

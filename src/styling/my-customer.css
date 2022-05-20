@@ -1831,6 +1831,7 @@ th.mat-header-cell {
     color: #f44336
 }
 
+
 /* .mat-form-field.mat-form-field-invalid .mat-form-field-label {
     color: #f44336
 } */
@@ -1856,8 +1857,6 @@ th.mat-header-cell {
 .mat-form-field-appearance-legacy .mat-hint {
     color: rgba(0, 0, 0, .54)
 }
-
-
 
 .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
     background-image: linear-gradient(to right, rgba(0, 0, 0, .42) 0, rgba(0, 0, 0, .42) 33%, transparent 0);
@@ -2263,7 +2262,7 @@ th.mat-header-cell {
 }
 
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-    background-color: #00a89b85;
+    background-color: #00a89b;
 }
 
 .mat-slide-toggle.mat-checked .mat-ripple-element {

@@ -672,7 +672,7 @@ export class AdminSettingsService {
             }),
             catchError(this.handleError));
     }
-    fnChnageTheme(requestObject) {
+    fnChangeTheme(requestObject) {
         this.checkAuthentication();
         let headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -696,6 +696,21 @@ export class AdminSettingsService {
         });
         // get-setting-value ---- old 
         return this.http.post(`${environment.apiUrl}/get-setting-value-admin`, requestObject, { headers: headers }).pipe(
+            map((res) => {
+                return res;
+            }),
+            catchError(this.handleError));
+    }
+    getThemeAppearance(requestObject) {
+        this.checkAuthentication();
+
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'admin-id': this.adminId,
+            'api-token': this.adminToken
+        });
+        // get-setting-value ---- old 
+        return this.http.post(`${environment.apiUrl}/get-appearance-admin`, requestObject, { headers: headers }).pipe(
             map((res) => {
                 return res;
             }),
