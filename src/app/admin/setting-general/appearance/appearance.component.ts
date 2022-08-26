@@ -517,7 +517,7 @@ export class AppearanceComponent implements OnInit {
 
   getThemeAppearance(){
     this.isLoaderAdmin = true;
-    alert(this.defaultTheme)
+    // alert(this.defaultTheme)
     let requestObject = {
       // 'business_id': this.businessId,
       'admin_id': this.currentUser.user_id,
