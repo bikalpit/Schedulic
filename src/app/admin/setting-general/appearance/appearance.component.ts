@@ -526,8 +526,7 @@ export class AppearanceComponent implements OnInit {
     };
     this.AdminSettingsService.getThemeAppearance(requestObject).subscribe((response: any) => {
       if (response.data == true && response.response != '') {
-          let optionValue = JSON.parse(response.response.option_value)
-          console.log(optionValue);
+          let optionValue = response.response
           this.appearanceObject = optionValue.new
           this.update_SCSS_var();
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
