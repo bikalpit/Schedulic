@@ -58,22 +58,20 @@
                                         </svg>
                                     </li>
 
-                                    <li (click)="fngetService(val.id)"
-                                        [ngClass]="{'active':inStoreSelectedCat === val.id}"
-                                        class="bottom-border plr-25 pointer"
-                                        *ngFor="let val of CategoryList; let i=index">
-                                        <p class="title-main">
-                                            {{val.category_title}}
-
-                                        </p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.497" height="20.11"
-                                            viewBox="0 0 11.497 20.11">
-                                            <path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back"
-                                                d="M19.282,16.246l-7.609-7.6a1.437,1.437,0,0,1,2.035-2.03l8.621,8.615a1.434,1.434,0,0,1,.042,1.982l-8.657,8.675a1.437,1.437,0,0,1-2.035-2.03Z"
-                                                transform="translate(-11.251 -6.194)" fill="#00a89b" />
-                                        </svg>
-                                    </li>
-
+                                    <span (click)="fngetService(val.id)"
+                                    *ngFor="let val of CategoryList; let i=index">
+                                      <li class="bottom-border plr-25 pointer" [ngClass]="{'active':inStoreSelectedCat === val.id}" *ngIf="val.status==='E'">
+                                          <p class="title-main">
+                                              {{val.category_title}}
+                                          </p>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="11.497" height="20.11"
+                                              viewBox="0 0 11.497 20.11">
+                                              <path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back"
+                                                  d="M19.282,16.246l-7.609-7.6a1.437,1.437,0,0,1,2.035-2.03l8.621,8.615a1.434,1.434,0,0,1,.042,1.982l-8.657,8.675a1.437,1.437,0,0,1-2.035-2.03Z"
+                                                  transform="translate(-11.251 -6.194)" fill="#00a89b" />
+                                          </svg>
+                                      </li>
+                                    </span>
                                 </ul>
 
                                 <ul class="px-2" *ngIf="CategoryList.length == 0">
@@ -335,7 +333,7 @@
                                 <div class="add-note justify-content-between">
                                     <p [ngClass]="{'disbaled-lable' : posCouponApplied && appliedCouponDetail}" (click)="openCouponModal()" class="title">Apply Coupon</p>
                                     <span *ngIf="posCouponApplied && appliedCouponDetail">
-                                        {{appliedCouponDetail.coupon_title}} 
+                                        {{appliedCouponDetail.coupon_title}}
                                         <span class="material-icons pointer" (click)="removeCoupon()"> highlight_off </span>
                                     </span>
                                     <span *ngIf="posCouponApplied && appliedCouponDetail && currencySymbolPosition=='left'">-{{currencySymbol| currencySymbol:'wide'}} {{ discount_amount | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
@@ -632,7 +630,7 @@
                                     On The Way
                                 </button>
                                 <!-- <button mat-button class="ws-btn" (click)="fnOrderUpdateStatus(val.order_status,val.id,'in_store')" *ngIf="val.service.service_sub_type=='in_store'">
-                                    {{val.order_status=="AC"?"Work Started ":"Completedeed"}} 
+                                    {{val.order_status=="AC"?"Work Started ":"Completedeed"}}
                                 </button> -->
                             </div>
                         </div>
@@ -698,13 +696,13 @@
                     <agm-marker
                         [latitude]="lat"
                         [longitude]="lng"
-                        [iconUrl]="'assets/img/scooter-front-view.svg'"       
+                        [iconUrl]="'assets/img/scooter-front-view.svg'"
                         >
                     </agm-marker>
                         <agm-marker
                         [latitude]="dlat"
                         [longitude]="dlng"
-                        [iconUrl]="'assets/img/customer-map-marker.svg'"       
+                        [iconUrl]="'assets/img/customer-map-marker.svg'"
                         >
                     </agm-marker>
                     <agm-direction [origin]="origin" [destination]="destination" [renderOptions]="renderOptions">

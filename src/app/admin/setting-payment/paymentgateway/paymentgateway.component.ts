@@ -34,7 +34,7 @@ export class PaymentgatewayComponent implements OnInit {
   paypalTestStatus : boolean = false;
   settingSideMenuToggle : boolean = false;
   gatewayList:any=[];
-  
+
 
   constructor(
     private appComponent : AppComponent,
@@ -68,7 +68,7 @@ export class PaymentgatewayComponent implements OnInit {
     }
     this.isLoaderAdmin = true;
     this.adminSettingsService.getAllPaymentGateways(requestObject).subscribe((response:any) => {
-      if(response.status == 'success'){ 
+      if(response.status == 'success'){
         this.gatewayList = response.data;
         // this.ErrorService.successMessage('Paypal Updated')
       } else{
@@ -80,10 +80,13 @@ export class PaymentgatewayComponent implements OnInit {
       }
       this.isLoaderAdmin = false;
     });
+    setTimeout(() => {
+      this.isLoaderAdmin = false;
+    }, 500);
 
   }
 
-  
+
   public onSubmitPaymentGateway(data:NgForm,gateway_type,is_default,code){
         //console.log(data.value);
         let testMode = data.value.testMode?1:0;
@@ -129,8 +132,8 @@ export class PaymentgatewayComponent implements OnInit {
             });
         })
   }
-  
-  
+
+
   public ChangePaymentStatus(code,type,status){
     if (status) {
       let requestObject = {

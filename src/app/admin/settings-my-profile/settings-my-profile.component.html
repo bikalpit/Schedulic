@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <form [formGroup]="settingMyProfile">    
+                    <form [formGroup]="settingMyProfile">
                         <div class="common-input">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
@@ -66,8 +66,8 @@
                                 <small *ngIf="settingMyProfile.get('mobile').hasError('minlength') || settingMyProfile.get('mobile').hasError('maxlength')" class="error">Mobile number should be 6 to 15 digit.</small>
                             </span>
                         </div>
-                        
-                        
+
+
 
                         <div class="action-btn ">
                             <button mat-button type="submit" (click)="fnSubmitMyProfile()" class="sc-pink-btn pink-medium-btn">Save</button>
@@ -77,12 +77,12 @@
             </div>
             <div class="change-password-container col-6">
                 <p class="main-heading"> Change Password </p>
-               
+
                 <form [formGroup]="changePwd" class="with-validation">
                     <div class="row mx-0 mt-4">
                         <div class="col-12">
                             <div class="input-group form-group">
-                                <input type="text" matInput [type]="hide1 ? 'password' : 'text'" formControlName="oldPassword" 
+                                <input type="text" matInput [type]="hide1 ? 'password' : 'text'" formControlName="oldPassword"
                                 class="form-control" placeholder="Old Password">
                                 <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
                                     <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </form>
-        
+
             </div>
         </div>
     </mat-card>

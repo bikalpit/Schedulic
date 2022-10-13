@@ -192,12 +192,12 @@ export class ServicesComponent implements OnInit {
 
     }
 
-    ngAfterViewInit() { 
+    ngAfterViewInit() {
         setTimeout(() => {
-            this.NewisLoaderAdmin = false;    
+            this.NewisLoaderAdmin = false;
         }, 5000);
     }
-    
+
     fnSearchStaff(value){
         this.search = value
         this.fnstaffList()
@@ -214,23 +214,23 @@ export class ServicesComponent implements OnInit {
         const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
           "form .ng-invalid"
         );
-    
+
         firstInvalidControl.focus(); //without smooth behavior
     }
 
-    conversion(mins) { 
-        
-        // getting the hours. 
-        let hrs = Math.floor(parseInt(mins) / 60);  
-        // getting the minutes. 
-        let min = mins % 60;  
-        // formatting the hours. 
-        let new_hrs = hrs < 10 ? '0' + hrs : hrs;  
-        // formatting the minutes. 
-        let new_min = min < 10 ? '0' + min : min;  
-        // returning them as a string. 
-      return `${new_hrs}:${new_min}`;  
-    } 
+    conversion(mins) {
+
+        // getting the hours.
+        let hrs = Math.floor(parseInt(mins) / 60);
+        // getting the minutes.
+        let min = mins % 60;
+        // formatting the hours.
+        let new_hrs = hrs < 10 ? '0' + hrs : hrs;
+        // formatting the minutes.
+        let new_min = min < 10 ? '0' + min : min;
+        // returning them as a string.
+      return `${new_hrs}:${new_min}`;
+    }
 
     fnGetSettings(){
         let requestObject = {
@@ -242,9 +242,9 @@ export class ServicesComponent implements OnInit {
         this.settingsArr = response.response;
 
         this.currencySymbol = this.settingsArr.currency;
-        
+
         this.currencySymbolPosition = this.settingsArr.currency_symbol_position;
-        
+
         this.currencySymbolFormat = this.settingsArr.currency_format;
       }else{
 
@@ -254,7 +254,7 @@ export class ServicesComponent implements OnInit {
         });
     }
 
-    fnCreateNewCategory() { 
+    fnCreateNewCategory() {
         this.createNewCategoryPage = true;
         this.selectCategoryPage = '';
         this.singleSubCategoryPage = '';
@@ -267,7 +267,7 @@ export class ServicesComponent implements OnInit {
     cancelNewCategory() {
         this.createNewCategoryPage = false;
         this.servicesList = true;
-        this.createCategory.reset(); 
+        this.createCategory.reset();
         this.editCategoryId = null;
         this.categoryImageUrl = '';
 
@@ -309,7 +309,7 @@ export class ServicesComponent implements OnInit {
 
     fnAllServicesNavigation(action){
         this.serviceApiUrl1=environment.apiUrl+"/admin-service-list";
-        this.fnAllServices2(action);   
+        this.fnAllServices2(action);
     }
 
     fnAllServices() {
@@ -345,7 +345,7 @@ export class ServicesComponent implements OnInit {
 
                     //this.servicesList = true;
                     this.allServiceCount = this.allServicesList.length;
-                    this.allServicesList.forEach( (element) => { 
+                    this.allServicesList.forEach( (element) => {
                         element.is_selected = false;
                     });
 
@@ -393,7 +393,7 @@ export class ServicesComponent implements OnInit {
 
                     this.servicesList = true;
                     this.allServiceCount = this.allServicesList.length;
-                    this.allServicesList.forEach( (element) => { 
+                    this.allServicesList.forEach( (element) => {
                         element.is_selected = false;
                     });
 
@@ -408,13 +408,13 @@ export class ServicesComponent implements OnInit {
             }
             let addNewAction = window.location.search.split("?category")
         if(addNewAction.length > 1 && action != 'not-new'){
-        // this.addNewEvents = false; 
+        // this.addNewEvents = false;
             this.fnCreateNewCategory();
         }
         })
     }
-    
-    
+
+
     fnAddStaffId(event, staffId,i) {
 
         if (event == true) {
@@ -429,7 +429,7 @@ export class ServicesComponent implements OnInit {
             this.ActionId.splice(index, 1);
         }
         }
-        
+
         if (this.ActionId.length == this.allServicesList.length ) {
         this.selectAll = true;
         } else {
@@ -458,7 +458,7 @@ export class ServicesComponent implements OnInit {
         }
 
     }
-  
+
 
     fnAllCategory() {
 
@@ -486,7 +486,7 @@ export class ServicesComponent implements OnInit {
                     this.fnSelectCategoryNavigation(
                     this.allCetegoryList[this.allCategoryCount - 1].id,this.allCategoryCount-1);
                 }
-                
+
             }else if(response.data == true && response.response.length == 0){
                 this.allCetegoryList = [];
                 this.allCategoryCount = 0;
@@ -501,10 +501,10 @@ export class ServicesComponent implements OnInit {
                 this.allCategoryCount = 0;
                 this.isLoaderAdmin = false;
             }
-            
+
         let addNewAction = window.location.search.split("?category")
         if(addNewAction.length > 1){
-        // this.addNewEvents = false; 
+        // this.addNewEvents = false;
             this.fnCreateNewCategory();
         }
         })
@@ -580,7 +580,7 @@ export class ServicesComponent implements OnInit {
     fnSelectCategoryNavigation(categoryId, index){
         this.selectedFilter = undefined;
         this.serviceApiUrl2=environment.apiUrl+"/list-service";
-        this.fnSelectCategory(categoryId, index);  
+        this.fnSelectCategory(categoryId, index);
         this.categoryImageUrl = '';
         this.subCategoryImageUrl = '';
         this.serviceImageUrl = '';
@@ -612,7 +612,7 @@ export class ServicesComponent implements OnInit {
         };
         this.adminSettingsService.getServiceForCategoiry(requestObject,this.serviceApiUrl2).subscribe((response: any) => {
             if (response.data == true) {
-              
+
                 this.categoryServicesList = response.response.data;
                 this.current_page = response.response.current_page;
                 this.first_page_url = response.response.first_page_url;
@@ -625,7 +625,7 @@ export class ServicesComponent implements OnInit {
                 this.prev_page_url = response.response.prev_page_url;
                 this.path = response.response.path;
 
-                this.categoryServicesList.forEach( (element) => { 
+                this.categoryServicesList.forEach( (element) => {
                     element.is_selected = false;
                 });
                 this.selectAllCategory = false;
@@ -647,7 +647,7 @@ export class ServicesComponent implements OnInit {
                         this.noCategoryService= true;
                     }
                 }
-                
+
                 this.singleSubCategoryPage = '';
                 this.isLoaderAdmin = false;
             }
@@ -734,7 +734,7 @@ export class ServicesComponent implements OnInit {
         else if (event == false) {
             this.editSubcategoryPrivate = 'N';
         }
-    } 
+    }
 
     fnCreateNewSubCategorySubmit() {
         if(this.editSubCategoryId != undefined){
@@ -760,7 +760,7 @@ export class ServicesComponent implements OnInit {
                     }
                 }
                 this.updateSubCategory(this.updateSubCategoryData);
-            }else{                
+            }else{
                 this.createSubCategory.get("subcategory_name").markAsTouched();
                 this.createSubCategory.get("subcategory_description").markAsTouched();
             }
@@ -805,7 +805,7 @@ export class ServicesComponent implements OnInit {
                     this.selectCategoryPage = '';
                     this.createNewSubCategoryPage = false;
                 }, 300);
-               
+
                 this.isLoaderAdmin = false;
             }else if(response.data == false && response.response !== 'api token or userid invaild'){
                 this._snackBar.open(response.response, "X", {
@@ -829,7 +829,7 @@ export class ServicesComponent implements OnInit {
                 });
                 this.createSubCategory.reset();
                 this.fnAllCategory();
-                this.fnSelectSubCategory(this.editSubCategoryId, this.selectedSubCategoryIndex); 
+                this.fnSelectSubCategory(this.editSubCategoryId, this.selectedSubCategoryIndex);
                 // this.servicesList = true;
                 this.createNewSubCategoryPage = false;
                 this.isLoaderAdmin = false;
@@ -883,11 +883,11 @@ export class ServicesComponent implements OnInit {
     }
 
     fnCreateNewCategorySubmit() {
-        
+
         if (this.createCategory.get('category_id').value) {
-        
+
           this.editCategoryId = this.createCategory.get('category_id').value;
-        
+
             if (this.createCategory.valid) {
                 if(this.categoryImageUrl != ''){
                     this.updateCategoryData = {
@@ -951,7 +951,7 @@ export class ServicesComponent implements OnInit {
                     this.createNewCategoryPage = false;
                     this.categoryImageUrl = '';
                     this.editCategoryId = undefined;
-                }, 300);           
+                }, 300);
                 //this.servicesList = true;
                 this.isLoaderAdmin = false;
             }
@@ -1028,7 +1028,7 @@ export class ServicesComponent implements OnInit {
                             verticalPosition: 'top',
                             panelClass: ['green-snackbar']
                         });
-                        
+
                         this.fnAllServices();
                         this.fnAllCategory();
                         this.fnAllServicesNavigation('not-new');
@@ -1048,7 +1048,7 @@ export class ServicesComponent implements OnInit {
             }
         });
 
-       
+
     }
 
     deleteSubCategory(deleteSubCategoryId) {
@@ -1057,7 +1057,7 @@ export class ServicesComponent implements OnInit {
             width: '400px',
             data: "Are you sure you want to delete?"
         });
-      
+
         dialogRef.afterClosed().subscribe(result => {
             if(result){
                 this.isLoaderAdmin = true;
@@ -1078,7 +1078,7 @@ export class ServicesComponent implements OnInit {
                         this.isLoaderAdmin = false;
                         this.singleSubCategoryPage = '';
 
-                        
+
                     } else if(response.data == false && response.response !== 'api token or userid invaild'){
                         this._snackBar.open(response.response, "X", {
                             duration: 2000,
@@ -1092,7 +1092,7 @@ export class ServicesComponent implements OnInit {
             }
         });
 
-        
+
     }
 
     changeCategoryStatus(categoryStatus, categoryId) {
@@ -1145,34 +1145,34 @@ export class ServicesComponent implements OnInit {
             this.selectAllCategory = false;
           }
     }
-    
+
     checkAllCategory(event){
-        
+
 
         this.actionServiceIdarr = [];
         for (let i = 0; i < this.categoryServicesList.length; i++) {
           const item = this.categoryServicesList[i];
           item.is_selected = event.checked;
-          
+
           if(event.checked){
             this.actionServiceIdarr.push(item.id)
-            
+
           }
         }
-    
+
         if(event.checked){
           this.selectAllCategory = true;
         }else{
           this.selectAllCategory = false;
           this.actionServiceIdarr = [];
         }
-        
+
         //this.Change.detectChanges();
-    
+
     }
-  
-      
-    
+
+
+
 
     fnServiceAction(action, categoryId, type) {
         if(action=='DEL'){
@@ -1190,7 +1190,7 @@ export class ServicesComponent implements OnInit {
             this.serviceStatusAction(action, categoryId, type)
         }
 
-        
+
     }
 
     serviceStatusAction(action, categoryId, type){
@@ -1237,7 +1237,7 @@ export class ServicesComponent implements OnInit {
     fnSelectSubCategoryNavigate(subCategoryId, index){
         this.selectedFilter = undefined;
         this.serviceApiUrl3=environment.apiUrl+"/list-subcategory-service";;
-       this.fnSelectSubCategory(subCategoryId, index); 
+       this.fnSelectSubCategory(subCategoryId, index);
        this.selectedSubCategoryID = subCategoryId;
        this.selectedSubCategoryIndex = index;
        this.categoryImageUrl = '';
@@ -1248,7 +1248,7 @@ export class ServicesComponent implements OnInit {
     }
 
     fnSelectSubCategory(subCategoryId, index) {
-        
+
         this.isLoaderAdmin = true;
         this.createNewSubCategoryPage = false;
         this.createNewCategoryPage = false;
@@ -1275,7 +1275,7 @@ export class ServicesComponent implements OnInit {
                 this.prev_page_url = response.response.prev_page_url;
                 this.path = response.response.path;
 
-                this.subCategoryServicesList.forEach( (element) => { 
+                this.subCategoryServicesList.forEach( (element) => {
                     element.is_selected = false;
                 });
                 this.staffActionIdSub = [];
@@ -1305,7 +1305,7 @@ export class ServicesComponent implements OnInit {
                 if (response.response == 'service not found.' || response.response == 'service not found') {
                     this.servicesList = false;
 
-                    
+
                     if(this.allCetegoryList[this.selectedCategoryIndex]!=undefined){
                         this.selectedSubCategoryDetails = this.allCetegoryList[this.selectedCategoryIndex].subcategory[index]
                     }
@@ -1324,30 +1324,30 @@ export class ServicesComponent implements OnInit {
             this.subcategory_service_filter = 'all';
         })
     }
-    
+
     fnAddStaffIdSub(event, staffId,i) {
         if (event == true) {
           this.staffActionIdSub.push(staffId)
           this.subCategoryServicesList[i].is_selected = true;
-    
+
         }else if (event == false) {
           this.subCategoryServicesList[i].is_selected = false;
-    
+
           const index = this.staffActionIdSub.indexOf(staffId, 0);
           if (index > -1) {
             this.staffActionIdSub.splice(index, 1);
           }
         }
-        
+
         if (this.staffActionIdSub.length == this.subCategoryServicesList.length ) {
           this.selectAllSubCat = true;
         } else {
           this.selectAllSubCat = false;
         }
     }
-      
+
     checkAllSubcat(event){
-        
+
         this.staffActionIdSub = [];
 
         for (let i = 0; i < this.subCategoryServicesList.length; i++) {
@@ -1358,17 +1358,17 @@ export class ServicesComponent implements OnInit {
             this.actionServiceIdarr =  this.staffActionIdSub
           }
         }
-        
+
         if(event.checked){
           this.selectAllSubCat = true;
         }else{
           this.selectAllSubCat = false;
           this.actionServiceIdarr = [];
         }
-    
+
     }
-  
-      
+
+
     fnCreateNewServicePage(categoryId, type,btntype) {
         this.fnstaffList();
         this.createService.controls['service_name'].setValue(null);
@@ -1393,7 +1393,7 @@ export class ServicesComponent implements OnInit {
     }
 
     fnCalcelNewSubcategory(){
-        
+
         if(this.whichSubCategoryButton == "main"){
             this.selectCategoryPage = 'notservices';
         }else{
@@ -1409,19 +1409,19 @@ export class ServicesComponent implements OnInit {
     fnCancelAddService(){
         this.servicesList = false;
         this.createNewServicePage = false;
-        this.createNewSubCategoryPage = false;  
+        this.createNewSubCategoryPage = false;
         this.serviceImageUrl = '';
         if(this.whichServiceButton == "main"){
             if(this.fromcategory == true){
-                this.selectCategoryPage = 'notservices';    
+                this.selectCategoryPage = 'notservices';
             }else{
-                this.singleSubCategoryPage="notservices";     
+                this.singleSubCategoryPage="notservices";
             }
         }else{
             if(this.fromcategory == true){
                 this.selectCategoryPage="services";
             }else{
-              this.singleSubCategoryPage="services";  
+              this.singleSubCategoryPage="services";
             }
         }
     }
@@ -1524,7 +1524,7 @@ export class ServicesComponent implements OnInit {
                     //     'service_private': this.editServicePrivate,
                     //     'service_status': this.editServiceStatus,
                     //     'staff_list' : this.assignStaffArr
-                       
+
                     // }
                     if(this.serviceType == 'face_to_face'){
                         if(this.ftfOPT == 'at_home'){
@@ -1592,7 +1592,7 @@ export class ServicesComponent implements OnInit {
                             'staff_list' : this.assignStaffArr
                         }
                     }
-                }             
+                }
                 this.updateService(this.updateServiceData);
             }else{
                 this.createService.get('service_name').markAsTouched();
@@ -1619,7 +1619,7 @@ export class ServicesComponent implements OnInit {
                 if (this.createServiceCategoryType == 'category') {
                     if(this.serviceType == 'face_to_face'){
                         if(this.ftfOPT == 'at_home'){
-                            
+
                             this.newServiceData = {
                                 'category_id': this.createServiceCategoryId,
                                 'business_id': this.businessId,
@@ -1689,7 +1689,7 @@ export class ServicesComponent implements OnInit {
                             'staff_list' : this.assignStaffArr
                         }
                     }
-                    
+
                 }
                 else if (this.createServiceCategoryType == 'subcategory') {
                     // this.newServiceData = {
@@ -1844,7 +1844,7 @@ export class ServicesComponent implements OnInit {
                     //this.selectCategoryPage = 'services'
                 }
                 this.isLoaderAdmin = false;
-                
+
             }
             else if(response.data == false && response.response !== 'api token or userid invaild'){
                 this._snackBar.open(response.response, "X", {
@@ -1883,7 +1883,7 @@ export class ServicesComponent implements OnInit {
         })
     }
     editSubCategory(editSubCategoryId){
-        
+
         // this.fnAllCategory();
         // this.fnSelectSubCategory(this.selectedSubCategoryID,this.selectedSubCategoryIndex);
         this.editSubCategoryId = editSubCategoryId
@@ -1911,7 +1911,7 @@ export class ServicesComponent implements OnInit {
 
 
         if (type == 'category') {
-            
+
         if(this.categoryServicesList[index] && this.categoryServicesList[index].staffs){
             this.assignedStaff = this.categoryServicesList[index].staffs;
             if(this.assignedStaff != '' || this.assignedStaff != [] || this.assignedStaff != undefined){
@@ -1920,7 +1920,7 @@ export class ServicesComponent implements OnInit {
                  });
             }
         }
-     
+
 
             this.createService.controls['service_id'].setValue(this.editServiceId);
             this.createService.controls['service_name'].setValue(this.categoryServicesList[index].service_name);
@@ -2026,7 +2026,7 @@ export class ServicesComponent implements OnInit {
                     service_id: [this.editServiceId],
                 });
             }
-            
+
         }else if(this.serviceType == 'online'){
             this.createService = this._formBuilder.group({
                 service_name: [this.createService.get('service_name').value, [Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
@@ -2086,7 +2086,7 @@ export class ServicesComponent implements OnInit {
                         }
                         this.isLoaderAdmin = false;
                     }
-                    else if(response.data == false && response.response !== 'api token or userid invaild'){ 
+                    else if(response.data == false && response.response !== 'api token or userid invaild'){
                         this._snackBar.open(response.response, "X", {
                         duration: 2000,
                         verticalPosition: 'top',
@@ -2098,15 +2098,15 @@ export class ServicesComponent implements OnInit {
             }
 
         });
-        
+
     }
 
     fnExportService(){
-        const options = { 
+        const options = {
           fieldSeparator: ',',
           quoteStrings: '"',
           decimalSeparator: '.',
-          showLabels: true, 
+          showLabels: true,
           showTitle: false,
           // title: 'Exported Service Data',
           useTextFile: false,
@@ -2140,14 +2140,14 @@ export class ServicesComponent implements OnInit {
                 businessId:this.businessId,
               }
         });
-    
+
         dialogRef.afterClosed().subscribe(result => {
             if(result == 'success'){
                 this.fnAllServices();
                 this.fnAllCategory();
             }
         });
-    }    
+    }
 
     fnAssignStaffToService(event, staffId){
         if(event == true){
@@ -2203,10 +2203,10 @@ export class ServicesComponent implements OnInit {
                     ftfType: ['', [Validators.required]],
                     onlineType: [this.createService.get('onlineType').value],
                     onlineId: [this.createService.get('onlineId').value],
-                    phoneNo: [this.createService.get('phoneNo').value], 
+                    phoneNo: [this.createService.get('phoneNo').value],
                     travelingTime: [null],
                     service_id: [this.editServiceId],
-                }); 
+                });
             }
             // this.createService.get('service_name').markAsTouched();
             // this.createService.get('service_description').markAsTouched();
@@ -2266,9 +2266,9 @@ export class ServicesComponent implements OnInit {
     categoryImage() {
         const dialogRef = this.dialog.open(DialogCategoryImageUpload, {
           width: '500px',
-          
+
         });
-    
+
          dialogRef.afterClosed().subscribe(result => {
             // if(result != undefined){
             //     this.categoryImageUrl = result;
@@ -2282,7 +2282,7 @@ export class ServicesComponent implements OnInit {
     subCategoryImage() {
     const dialogRef = this.dialog.open(DialogSubCategoryImageUpload, {
         width: '500px',
-        
+
     });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -2291,13 +2291,13 @@ export class ServicesComponent implements OnInit {
             }
         });
     }
-     
+
     serviceImage() {
         const dialogRef = this.dialog.open(DialogServiceImageUpload, {
         width: '500px',
-        
+
         });
-    
+
         dialogRef.afterClosed().subscribe(result => {
             if(result != undefined){
                 this.serviceImageUrl = result;
@@ -2312,11 +2312,11 @@ export class ServicesComponent implements OnInit {
     templateUrl: '../_dialogs/import-service-upload.html',
   })
   export class DialogImportServiceUpload {
-  
+
   fileToUpload:any;
   isLoaderAdmin : boolean = false;
   businessId:any;
-  
+
   constructor(
     public dialogRef: MatDialogRef<DialogImportServiceUpload>,
     public http: HttpClient,
@@ -2325,15 +2325,15 @@ export class ServicesComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
         this.businessId = this.data.businessId;
     }
-  
+
     onNoClick(): void {
       this.dialogRef.close();
     }
-  
+
     private handleError(error: HttpErrorResponse) {
       return throwError('Error! something went wrong.');
     }
-  
+
     handleFileInput(files): void {
       this.fileToUpload = files.item(0);
       console.log(this.fileToUpload.type);
@@ -2345,25 +2345,25 @@ export class ServicesComponent implements OnInit {
         });
         return;
       }
-      
-  
-  
+
+
+
     }
-  
+
     fileupload(){
       console.log(this.fileToUpload.type);
       if(this.fileToUpload.type != "application/vnd.ms-excel"){
-  
+
         this._snackBar.open("Please select CSV file", "X", {
           duration: 2000,
           verticalPosition:'top',
           panelClass :['red-snackbar']
         });
         return;
-  
+
       }
-  
-  
+
+
       this.isLoaderAdmin = true;
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
@@ -2386,28 +2386,28 @@ export class ServicesComponent implements OnInit {
         }
         this.isLoaderAdmin = false;
       })
-  
+
       this.isLoaderAdmin = false;
     }
-  
+
   }
-      
+
       @Component({
         selector: 'category-image-upload',
         templateUrl: '../_dialogs/category-image-upload.html',
       })
       export class DialogCategoryImageUpload {
-      
-        uploadForm: FormGroup;  
+
+        uploadForm: FormGroup;
         imageSrc: string;
         profileImage: string;
-        
+
       constructor(
         public dialogRef: MatDialogRef<DialogCategoryImageUpload>,
         private _formBuilder:FormBuilder,
         private _snackBar: MatSnackBar,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-      
+
         onNoClick(): void {
             this.dialogRef.close(this.profileImage);
           }
@@ -2419,17 +2419,17 @@ export class ServicesComponent implements OnInit {
           get f() {
             return this.uploadForm.controls;
           }
-          
+
     onFileChange(event) {
-        
+
         if(event.target.files[0].type==undefined){
             return;
         }
         var file_type = event.target.files[0].type;
-        
+
 
         if(file_type!='image/jpeg' &&  file_type!='image/png' && file_type!='image/jpg' &&  file_type!='image/gif'){
-            
+
             this._snackBar.open("Sorry, only JPG, JPEG, PNG & GIF files are allowed", "X", {
                 duration: 2000,
                 verticalPosition: 'top',
@@ -2437,7 +2437,7 @@ export class ServicesComponent implements OnInit {
             });
             return;
         }
-       
+
 
         const reader = new FileReader();
         if (event.target.files && event.target.files.length) {
@@ -2463,8 +2463,8 @@ export class ServicesComponent implements OnInit {
         });
 
       }
-      
-      
+
+
     }
 
     @Component({
@@ -2472,17 +2472,17 @@ export class ServicesComponent implements OnInit {
         templateUrl: '../_dialogs/service-image-upload-dialog.html',
       })
       export class DialogServiceImageUpload {
-      
-        uploadForm: FormGroup;  
+
+        uploadForm: FormGroup;
         imageSrc: string;
         profileImage: string;
-        
+
       constructor(
         public dialogRef: MatDialogRef<DialogServiceImageUpload>,
         private _formBuilder:FormBuilder,
         private _snackBar: MatSnackBar,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-      
+
         onNoClick(): void {
             this.dialogRef.close(this.profileImage);
           }
@@ -2494,7 +2494,7 @@ export class ServicesComponent implements OnInit {
           get f() {
             return this.uploadForm.controls;
           }
-          
+
     onFileChange(event) {
 
         var file_type = event.target.files[0].type;
@@ -2529,8 +2529,8 @@ export class ServicesComponent implements OnInit {
             panelClass: ['green-snackbar']
         });
       }
-      
-      
+
+
     }
     @Component({
         selector: 'dialog-data-example-dialog',
@@ -2577,23 +2577,23 @@ export class ServicesComponent implements OnInit {
 
       }
 
-    
+
     @Component({
         selector: 'sub-category-image-upload',
         templateUrl: '../_dialogs/sub-category-image-upload.html',
       })
       export class DialogSubCategoryImageUpload {
-      
-        uploadForm: FormGroup;  
+
+        uploadForm: FormGroup;
         imageSrc: string;
         profileImage: string;
-        
+
       constructor(
         public dialogRef: MatDialogRef<DialogSubCategoryImageUpload>,
         private _formBuilder:FormBuilder,
         private _snackBar: MatSnackBar,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-      
+
         onNoClick(): void {
             this.dialogRef.close(this.profileImage);
           }
@@ -2605,7 +2605,7 @@ export class ServicesComponent implements OnInit {
           get f() {
             return this.uploadForm.controls;
           }
-          
+
     onFileChange(event) {
         var file_type = event.target.files[0].type;
 
@@ -2638,11 +2638,11 @@ export class ServicesComponent implements OnInit {
             verticalPosition: 'top',
             panelClass: ['green-snackbar']
         });
-        
+
       }
 
-      
+
     }
-    
+
 
 

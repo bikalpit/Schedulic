@@ -47,7 +47,7 @@ export class PostalcodesComponent implements OnInit {
     this.getSettingValue();
     let addNewAction = window.location.search.split("?postalcode")
     if (addNewAction.length > 1) {
-      // this.addNewEvents = false; 
+      // this.addNewEvents = false;
       this.addPostalCode();
     }
   }
@@ -577,7 +577,10 @@ export class DialogNewCSVPostalCode {
   }
   uploadPostal() {
     this.fileToUpload = this.uploadedFile.item(0);
-    if (this.fileToUpload.type != "application/vnd.ms-excel") {
+    console.log('this.fileToUpload==',this.fileToUpload);
+
+    // if (this.fileToUpload.type != "application/vnd.ms-excel") {
+    if (this.fileToUpload.type !== "text/csv") {
 
       this._snackBar.open("Please select CSV file.", "X", {
         duration: 2000,
@@ -610,6 +613,13 @@ export class DialogNewCSVPostalCode {
 
         this.dialogRef.close();
 
+      } else {
+        this._snackBar.open(response.response, "X", {
+          duration: 2000,
+          verticalPosition: 'top',
+          panelClass: ['red-snackbar']
+        });
+        this.dialogRef.close();
       }
     }), catchError(this.handleError)).subscribe((res) => {
       console.log(res);
