@@ -799,11 +799,11 @@ export class AppointmentLiveComponent implements OnInit {
         }else{
           this.staffListDisplay = true;
         }
-        this._snackBar.open(response.response, "X", {
-          duration: 2000,
-          verticalPosition: 'top',
-          panelClass: ['red-snackbar']
-        });
+        // this._snackBar.open(response.response, "X", {
+        //   duration: 2000,
+        //   verticalPosition: 'top',
+        //   panelClass: ['red-snackbar']
+        // });
 
         this.StaffList = [];
       }
@@ -982,6 +982,7 @@ export class AppointmentLiveComponent implements OnInit {
       this.newCustomer.get('cus_mobile').markAsTouched();
       this.newCustomer.get('cus_name').markAsTouched();
       this.panelOpenState = !this.panelOpenState;
+      window.scroll(0,0)
 
       return false;
     }
@@ -1444,11 +1445,11 @@ export class AppointmentLiveComponent implements OnInit {
         });
         this.OutDootMap(0);
       } else {
-        this._snackBar.open(response.response, "X", {
-          duration: 2000,
-          verticalPosition: 'top',
-          panelClass: ['red-snackbar']
-        });
+        // this._snackBar.open(response.response, "X", {
+        //   duration: 2000,
+        //   verticalPosition: 'top',
+        //   panelClass: ['red-snackbar']
+        // });
         this.outdoorOrdersArr=[];
         this.isLoaderAdmin = false;
       }

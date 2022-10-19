@@ -490,7 +490,7 @@
                 <div class="top-category-bar">
                     <div class="d-flex w-100">
                         <div class="profile-img-wrap mr-3">
-                            <img *ngIf="selectedCategoryDetails && selectedSubCategoryDetails.sub_category_image && selectedSubCategoryDetails.sub_category_image != 'https://api.schedulic.com/sub-category-images/default.png'" src="{{selectedCategoryDetails.category_image}}" class="service-profile-image">
+                            <img *ngIf="selectedCategoryDetails && selectedSubCategoryDetails.sub_category_image && selectedSubCategoryDetails.sub_category_image != 'https://api.schedulic.com/sub-category-images/default.png'" src="{{selectedSubCategoryDetails.sub_category_image}}" class="service-profile-image">
                             <img *ngIf="selectedSubCategoryDetails && (!selectedSubCategoryDetails.sub_category_image || selectedSubCategoryDetails.sub_category_image == 'https://api.schedulic.com/sub-category-images/default.png')" src="/assets/images/icons/image-placeholder.svg" class="default-img">
                         </div>
                         <div class="w-100">

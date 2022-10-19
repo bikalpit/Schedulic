@@ -74,6 +74,11 @@ export class ForgotPasswordComponent implements OnInit {
           if(response.data == true){
             this.forgotPwdContainer =false
             this.emailSentContainer = true;
+            this._snackBar.open('Please check your email for Reset Password.', "X", {
+              duration: 2000,
+              verticalPosition:'top',
+              panelClass :['red-snackbar']
+            });
             if(!this.businessId){
               setTimeout(() => {
                 this.saveDisabled = false
