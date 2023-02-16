@@ -758,7 +758,7 @@ export class DialogAddNewAppointment {
   dialogTitle: any = "New Booking";
   showSubCatDropDown = true;
   is_checked: boolean = false;
-  valide_postal_code: boolean = false;
+  valide_postal_code: boolean = true;
   isLoaderAdmin: boolean = true;
   emailPattern: any;
   onlynumeric: any;
@@ -1233,8 +1233,8 @@ export class DialogAddNewAppointment {
 
   fnNewAppointment() {
 
-
-
+    console.log('1----',this.formAddNewAppointmentStaffStep1);
+    
     if (this.formAddNewAppointmentStaffStep1.invalid) {
       this.formAddNewAppointmentStaffStep1.get('customerFullName').markAsTouched();
       this.formAddNewAppointmentStaffStep1.get('customerEmail').markAsTouched();
@@ -1251,14 +1251,18 @@ export class DialogAddNewAppointment {
 
       return false;
     }
+    console.log('2----',this.formAddNewAppointmentStaffStep1);
+    console.log('test----',this.valide_postal_code);
     if (this.valide_postal_code == false) {
       this.formAddNewAppointmentStaffStep1.get('customerAppoPostalCode').markAsTouched();
       return false;
     }
+    console.log('3----',this.formAddNewAppointmentStaffStep1);
     this.fnGetCategories();
     if (this.bussinessId != undefined && this.selectedServiceId != undefined && this.selectedDate != undefined && this.selectedTime != undefined) {
       this.fnGetStaff();
     }
+    console.log('4----',this.formAddNewAppointmentStaffStep1);
     if (this.data.appointmentData) {
       if (this.appointmentData.sub_category_id != null && this.appointmentData.sub_category_id != "null") {
         this.fnGetSubCategory(this.appointmentData.category_id);
@@ -1275,6 +1279,7 @@ export class DialogAddNewAppointment {
       this.fnGetTimeSlots(this.selectedDate);
       this.fnGetStaff();
     }
+    console.log('5----',this.formAddNewAppointmentStaffStep1);
     this.secondStep = true;
   }
 

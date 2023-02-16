@@ -234,7 +234,7 @@ onFileChange(event) {
   const reader = new FileReader();
   if (event.target.files && event.target.files.length) {
     for(var i = 0; i < event.target.files.length; i++) {
-      if(event.target.files[i].type!="image/png" && event.target.files[i].type!="image/jpeg" && event.target.files[i].type!="image/jpg" && event.target.files[i].type!="image/gif"){
+      if(event.target.files[i].type!="image/png" && event.target.files[i].type!="image/jpeg" && event.target.files[i].type!="image/jpg"){
         this._snackBar.open("Select valid image file", "X", {
           duration: 2000,
           verticalPosition:'top',

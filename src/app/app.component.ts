@@ -131,13 +131,17 @@ export class AppComponent implements AfterViewInit {
       // this.navigationInterceptor(e);
       this.handleRoute(e);
     })
+    console.log(localStorage.getItem('internal_staff'))
 
     if (localStorage.getItem('internal_staff') == '' || localStorage.getItem('internal_staff') == null) {
       this.staffAvailable = true;
       localStorage.setItem('internal_staff', 'N');
     } else if (localStorage.getItem('internal_staff') == 'N') {
+      console.log('enable');
+      
       this.staffAvailable = true;
     } else {
+      console.log('disable');
       this.staffAvailable = false;
     }
 

@@ -514,13 +514,11 @@
                                 </mdb-carousel-item>
                             </mdb-carousel>
                         </div>
-                        <div
-                            (click)="gettingStartedWindowOpen=!gettingStartedWindowOpen"
+                        <div (click)="gettingStartedWindowOpen=!gettingStartedWindowOpen"
                             [ngClass]="{'opened' : gettingStartedWindowOpen}"
                             class="getting-started-label">
                             <img src="/assets/images/icons/shuttle.svg" />
-                            <label>{{gettingStartedWindowOpen?'Do It
-                                Later':'Getting Started'}}</label>
+                            <label>{{gettingStartedWindowOpen?'Do It Later':'Getting Started'}}</label>
                             <span class="material-icons">expand_circle_down</span>
                         </div>
                     </div>

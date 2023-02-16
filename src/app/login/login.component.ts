@@ -136,7 +136,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
                         console.log(data.response.user_type)
                         this.router.navigate(["admin"]);
                     } else if (data.response.user_type == "SM") {
-                        localStorage.setItem('internal_staff', 'N');
+                        localStorage.setItem('internal_staff', data.response.internal_staff);
                         this.router.navigate(["staff"]);
                     }
                 } else if (data.data == false) {

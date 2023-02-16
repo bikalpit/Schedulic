@@ -20,10 +20,15 @@
                 <div *ngIf="todayAppointmentData != ''" class="service-background">
                     <div *ngFor="let todayAppointmentData of todayAppointmentData; let i=index" class="customer-background single-booking pb-2 left-time-main" [ngClass]="{'active':activeBooking === i}" (click)="fnBookingActive(i)">
                         <span>{{todayAppointmentData.booking_time}}</span>
-                        <div class="pl-3 pt-3">
-                            <p class="mb-0 work-space-font" *ngIf="todayAppointmentData.timeToService >= 0">In {{todayAppointmentData.timeToService}} hours</p>
-                            <p class="mb-0 work-space-font" *ngIf="todayAppointmentData.timeToService < 0">Service Time Gone</p>
-                            <h5>{{todayAppointmentData.service.service_name}}</h5>
+                        <div class="d-flex">
+                            <div class="pl-3 pt-3">
+                                <p class="mb-0 work-space-font" *ngIf="todayAppointmentData.timeToService >= 0">In {{todayAppointmentData.timeToService}} hours</p>
+                                <p class="mb-0 work-space-font" *ngIf="todayAppointmentData.timeToService < 0">Service Time Gone</p>
+                                <h5>{{todayAppointmentData.service.service_name}}</h5>
+                            </div>
+                            <div  class="ml-auto">
+                                <p class="order-number mr-2 mt-3">(Order Id: 126)</p>
+                            </div>
                         </div>
                         <div class="d-flex flex-wrap pl-3">
                             <div class="d-flex Time">
