@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, ViewportScroller } from '@angular/common';
 import { AdminService } from '../_services/admin-main.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -180,7 +180,8 @@ export class AppointmentLiveComponent implements OnInit {
     public router: Router,
     private sharedService: SharedService,
     private _snackBar: MatSnackBar,
-    private fireDb:AngularFireDatabase
+    private fireDb:AngularFireDatabase,
+    private scroller: ViewportScroller,
   ) { 
     this.fireDB = fireDb;
     localStorage.setItem('isBusiness', 'true');    
@@ -201,8 +202,12 @@ export class AppointmentLiveComponent implements OnInit {
     this.fnOutdoorOrders(null, null);
     this.clockHandle = setInterval(()=>{
       this.clock = new Date().toLocaleString();
-      this.liveDate = this.datePipe.transform(this.clock,'EEE, MMM d');
-      this.liveTime = this.datePipe.transform(this.clock,'HH:mm');
+      console.log('this.clock------------', this.clock);
+      
+      if(this.clock){
+        // this.liveDate = this.datePipe.transform(this.clock,'EEEE, MMM d');
+        // this.liveTime = this.datePipe.transform(this.clock,'HH:mm');
+      }
     },1000);
 
   }
@@ -982,7 +987,8 @@ export class AppointmentLiveComponent implements OnInit {
       this.newCustomer.get('cus_mobile').markAsTouched();
       this.newCustomer.get('cus_name').markAsTouched();
       this.panelOpenState = !this.panelOpenState;
-      window.scroll(0,0)
+      this.router.navigate([], { fragment: "customer_detail" });
+      // this.scroller.scrollToAnchor("customer_detail");
 
       return false;
     }

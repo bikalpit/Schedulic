@@ -524,6 +524,7 @@ export class AppComponent implements AfterViewInit {
     this.authenticationService.logout();
     this.isAllowed = true;
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   fnCheckLoginStatus() {

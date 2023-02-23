@@ -300,8 +300,8 @@
                                     <span class="left-font">{{appointment.booking_time}}</span>
                                     <div class="pl-5">
                                         <div class="d-flex">
-                                            <p *ngIf="appointment.timeToService
-                                                >= 0" class="mb-0
+                                            <p *ngIf="appointment.timeToService>=
+                                                0" class="mb-0
                                                 work-space-font hourse-font">in
                                                 {{appointment.timeToService}}
                                                 hours</p>
@@ -686,9 +686,7 @@
                                     *ngIf="appointmentDetails.order_status ==
                                     'GL'">
                                     Getting Late {{appointmentDetails.gl_time &&
-                                    appointmentDetails.gl_time !=
-                                    ''?'(Late Time :
-                                    '+appointmentDetails.gl_time+')':''}}
+                                    appointmentDetails.gl_time != ''?'(Late Time : '+appointmentDetails.gl_time+')':''}}
                                 </h6>
                             </div>
                             <div class="appoint-staff common-booking-details">
@@ -750,53 +748,49 @@
                                 {{log.status=='P'?'Pending':''}}
                                 {{log.status=='MOD'?'Modified':''}}
                                 {{log.status=='CNF'?'Confirm':''}}
-                                {{log.user_type=='A' && log.status=='CNF' ? 'By
-                                '+ log.user.fullname +' (Admin)' :
+                                {{log.user_type=='A' && log.status=='CNF' ? 'By '+ log.user?.fullname +' (Admin)' :
                                 log.user_type=='S' && log.status=='CNF' ? 'By '+
-                                log.user.fullname +' (Staff)':
+                                log.user?.fullname +' (Staff)':
                                 log.user_type=='C' && log.status=='CNF' ? 'By '+
-                                log.user.fullname +' (User)' : ''}}
+                                log.user?.fullname +' (User)' : ''}}
                                 {{log.status=='AC'?'Accepted':''}}
-                                {{log.user_type=='A' && log.status=='AC' ? 'By
-                                '+ log.user.fullname +' (Admin)' : log.
+                                {{log.user_type=='A' && log.status=='AC' ? 'By '+ log.user?.fullname +' (Admin)' : log.
                                 user_type=='S' && log.status=='AC' ? 'By '+
-                                log.user.fullname +' (Staff)':
+                                log.user?.fullname +' (Staff)':
                                 log.user_type=='C' && log.status=='AC' ? 'By '+
-                                log.user.fullname +' (User)' : ''}}
+                                log.user?.fullname +' (User)' : ''}}
                                 {{log.status=='OW'?'On The Way':''}}
                                 {{log.status=='WS'?'Work Started':''}}
                                 {{log.status=='RSA' && log.customer ?
-                                'Rescheduled By '+ log.customer.fullname :
+                                'Rescheduled By '+ log.customer?.fullname :
                                 log.status=='RSA' ? 'Rescheduled By '+
                                 log.user.fullname +' (Admin)' :''}}
                                 {{log.status=='RSS' && log.customer ?
                                 'Rescheduled By '+ log.customer.fullname :
                                 log.status=='RSS' ? 'Rescheduled By '+
-                                log.user.fullname +' (Staff)' :''}}
+                                log.user?.fullname +' (Staff)' :''}}
                                 {{log.status=='RSC' && log.customer ?
-                                'Rescheduled By '+ log.customer.fullname :
+                                'Rescheduled By '+ log.customer?.fullname :
                                 log.status=='RSC' ? 'Rescheduled By Client'
                                 :''}} {{log.status=='ITR'?'Intrupted':''}}
-                                {{log.status=='C' && log.customer ? 'Cancelled
-                                By '+ log.customer.fullname : log.status=='C' ?
+                                {{log.status=='C' && log.customer ? 'Cancelled  By '+ log.customer?.fullname : log.status=='C' ?
                                 'Cancelled' :''}} {{log.status=='CC' &&
                                 log.customer ? 'Cancelled By '+
-                                log.customer.fullname : log.status=='CC' ?
+                                log.customer?.fullname : log.status=='CC' ?
                                 'Cancelled By Client' :''}}
                                 {{log.status=='R'?'Rejected':''}}
                                 {{log.user_type=='A' && log.status=='R' ? 'By '+
-                                log.user.fullname +' (Admin)' :
+                                log.user?.fullname +' (Admin)' :
                                 log.user_type=='S' && log.status=='R' ? 'By '+
-                                log.user.fullname +' (Staff)':
+                                log.user?.fullname +' (Staff)':
                                 log.user_type=='C' && log.status=='R' ? 'By '+
-                                log.user.fullname +' (User)' : ''}}
+                                log.user?.fullname +' (User)' : ''}}
                                 {{log.status=='CO'?'Completed':''}}
-                                {{log.user_type=='A' && log.status=='CO' ? 'By
-                                '+ log.user.fullname +' (Admin)' :
+                                {{log.user_type=='A' && log.status=='CO' ? 'By '+ log.user?.fullname +' (Admin)' :
                                 log.user_type=='S' && log.status=='CO' ? 'By '+
-                                log.user.fullname +' (Staff)':
+                                log.user?.fullname +' (Staff)':
                                 log.user_type=='C' && log.status=='CO' ? 'By '+
-                                log.user.fullname +' (User)' : ''}}
+                                log.user?.fullname +' (User)' : ''}}
                             </p>
                             <p *ngIf="log.notes">
                                 <b>Note: </b> {{log.notes}}
