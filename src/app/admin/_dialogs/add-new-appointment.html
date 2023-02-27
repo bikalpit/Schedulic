@@ -331,7 +331,7 @@
                         </div>
                     </div>
                     <div class="col-5 d-flex justify-content-end mb-3">
-                        <button mat-button class="sc-light-green-btn ml-3" (click)="applyCoupon()">Apply Coupon</button>
+                        <button mat-button class="sc-light-green-btn ml-3" [disabled]="discount_type" (click)="applyCoupon()">Apply Coupon</button>
                     </div>
                     <div class="col-4" *ngIf="appointmentSubTotal > 0">
                         <span> Sub Total : {{currencySymbol| currencySymbol:'wide'}} {{ appointmentSubTotal |
