@@ -2045,7 +2045,7 @@ export class DialogAddNewAppointment {
             this.appointmentAmountAfterDiscount = this.appointmentSubTotal;
           }
         } else {
-          this._snackBar.open("Coupon code not found", "X", {
+          this._snackBar.open(response.response?response.response:'You can not apply Coupon', "X", {
             duration: 2000,
             verticalPosition: 'top',
             panelClass: ['red-snackbar']

@@ -1785,6 +1785,8 @@ export class BusinessHoursComponent implements OnInit {
       }
       
     }
+    console.log('requestObject--',requestObject);
+    
     this.adminSettingsService.addNewWorkingHoursStaff(requestObject).subscribe((response:any) => {
       if(response.data == true){
         this.fnGetWorkingHours();
@@ -1795,6 +1797,13 @@ export class BusinessHoursComponent implements OnInit {
         this.showFridayWorkHourAddForm=false;
         this.showSaturdayWorkHourAddForm=false;
         this.showSundayWorkHourAddForm=false;
+        this.showMondayAddForm=false;
+        this.showTuesdayAddForm=false;
+        this.showWednesdayAddForm=false;
+        this.showThursdayAddForm=false;
+        this.showFridayAddForm=false;
+        this.showSaturdayAddForm=false;
+        this.showSundayAddForm=false;
         this.snackBar.open("Working Hour Added.", "X", {
           duration: 2000,
           verticalPosition: 'top',

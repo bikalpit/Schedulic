@@ -2162,8 +2162,8 @@ constructor(
 
   handleFileInput(files): void {
     this.fileToUpload = files.item(0);
-
-    if(this.fileToUpload.type != "application/vnd.ms-excel"){
+    console.log(this.fileToUpload);
+    if(this.fileToUpload.type != "application/vnd.ms-excel" && this.fileToUpload.type != "text/csv"){
       this._snackBar.open("Please select CSV file", "X", {
         duration: 2000,
         verticalPosition:'top',
@@ -2177,8 +2177,9 @@ constructor(
   }
 
   fileupload(){
+    console.log(this.fileToUpload);
     
-    if(this.fileToUpload.type != "application/vnd.ms-excel"){
+    if(this.fileToUpload.type != "application/vnd.ms-excel" && this.fileToUpload.type != "text/csv"){
 
       this._snackBar.open("Please select CSV file", "X", {
         duration: 2000,
@@ -3110,7 +3111,7 @@ constructor(
             this.appointmentAmountAfterDiscount = this.appointmentSubTotal;
           }
         } else {
-          this._snackBar.open("Coupon code not found", "X", {
+          this._snackBar.open(response.response?response.response:'You can not apply Coupon', "X", {
             duration: 2000,
             verticalPosition:'top',
             panelClass :['red-snackbar']
