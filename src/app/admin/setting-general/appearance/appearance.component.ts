@@ -326,6 +326,7 @@ export class AppearanceComponent implements OnInit {
     this.getThemeAppearance();
     this.update_SCSS_var();
     this.getCompanyDetails();
+    console.log(this.appearanceObject);
   }
 
   
@@ -527,7 +528,17 @@ export class AppearanceComponent implements OnInit {
     this.AdminSettingsService.getThemeAppearance(requestObject).subscribe((response: any) => {
       if (response.data == true && response.response != '') {
           let optionValue = response.response
-          this.appearanceObject = optionValue.new
+          if(this.defaultTheme == '1'){
+            this.appearanceObject = optionValue.theme1.new;
+          }else if(this.defaultTheme == '2'){
+            this.appearanceObject = optionValue.theme2.new;
+          }else if(this.defaultTheme == '3'){
+            this.appearanceObject = optionValue.theme3.new;
+          }else if(this.defaultTheme == '4'){
+            this.appearanceObject = optionValue.theme4.new;
+          }else if(this.defaultTheme == '5'){
+            this.appearanceObject = optionValue.theme5.new;
+          }
           this.update_SCSS_var();
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
         this._snackBar.open(response.response, "X", {

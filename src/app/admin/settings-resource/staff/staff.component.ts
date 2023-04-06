@@ -203,6 +203,7 @@ export class StaffComponent implements OnInit {
   allStates: any=[];
   allCities: any=[];
   scrollContainer: any;
+  selectAllPostalCode: boolean = false;
 
   onFileDropped($event) {
     this.prepareFilesList($event);  
@@ -1188,6 +1189,13 @@ export class StaffComponent implements OnInit {
         this.showFridayWorkHourAddForm=false;
         this.showSaturdayWorkHourAddForm=false;
         this.showSundayWorkHourAddForm=false;
+        this.showMondayAddForm=false;
+        this.showTuesdayAddForm=false;
+        this.showWednesdayAddForm=false;
+        this.showThursdayAddForm=false;
+        this.showFridayAddForm=false;
+        this.showSaturdayAddForm=false;
+        this.showSundayAddForm=false;
         this._snackBar.open("Working Hours Added.", "X", {
           duration: 2000,
           verticalPosition: 'top',
@@ -1219,13 +1227,13 @@ export class StaffComponent implements OnInit {
         this.adminSettingsService.deleteWorkingHours(requestObject).subscribe((response:any) => {
           if(response.data == true){
             this.fnViewSingleStaff(this.selectedStaffId, this.singleStaffIndex);
-            this._snackBar.open("Working Hour Deleted.", "X", {
+            this._snackBar.open(response.response?response.response:"Working Hour Deleted.", "X", {
               duration: 2000,
               verticalPosition: 'top',
               panelClass : ['green-snackbar']
             });
           } else if(response.data == false && response.response !== 'api token or userid invaild'){
-           this._snackBar.open("Working Hour Not Deleted.", "X", {
+           this._snackBar.open(response.response?response.response:"Working Hour Not Deleted.", "X", {
               duration: 2000,
               verticalPosition: 'top',
               panelClass : ['red-snackbar']
@@ -1263,6 +1271,9 @@ export class StaffComponent implements OnInit {
   }
 
   fnViewSingleStaff(staffId,index) {
+    
+    this.selectedPostalCodeArr = [];
+    console.log(this.selectedPostalCodeArr);
     this.singleStaffIndex = index;
     this.isLoaderAdmin = true;
     this.selectedStaffId= staffId;
@@ -1476,6 +1487,26 @@ export class StaffComponent implements OnInit {
     })
   }
 
+  checkAllPostalCode(event) {
+
+    this.addPostalCodeId = [];
+    for (let i = 0; i < this.singleStaffDetail.postalCode.length; i++) {
+      const item = this.singleStaffDetail.postalCode[i];
+      item.is_selected = event.checked;
+      if (event.checked) {
+        this.addPostalCodeId.push(item.id)
+      }
+    }
+
+    if (event.checked) {
+      this.selectAllPostalCode = true;
+    } else {
+      this.selectAllPostalCode = false;
+    }
+
+
+  }
+
   fnAddPostalCodeId(event, postalCodeId) {
     if (event == true) {
       this.addPostalCodeId.push(postalCodeId)
@@ -1502,6 +1533,7 @@ export class StaffComponent implements OnInit {
         this.addPostalCodeId.length = 0;
         this.selectedValue = undefined
         this.isLoaderAdmin = false;
+        this.selectAllPostalCode = false;
       }
       else if (response.data == false) {
         this.isLoaderAdmin = false;

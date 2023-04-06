@@ -764,6 +764,7 @@ export class DialogAddNewAppointment {
   onlynumeric: any;
   Postalcode: any = [];
   existingCustomerId: any;
+  currentUser:any;
   constructor(
     public dialogRef: MatDialogRef<DialogAddNewAppointment>,
     public dialog: MatDialog,
@@ -773,7 +774,9 @@ export class DialogAddNewAppointment {
     private adminService: AdminService,
     private datePipe: DatePipe,
     private AdminSettingsService: AdminSettingsService,
+    private authenticationService: AuthenticationService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.emailPattern = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
     this.onlynumeric = /^\+(?:[0-9] ?){6,14}[0-9]$/
     if (this.data.appointmentData) {
@@ -820,8 +823,8 @@ export class DialogAddNewAppointment {
 
     }
     //    console.log(this.appointmentData);
-    this.adminId = (JSON.parse(localStorage.getItem('currentUser'))).user_id
-    this.token = (JSON.parse(localStorage.getItem('currentUser'))).token
+    this.adminId = (JSON.parse(localStorage.getItem('currentUser'))).user_id;
+    this.token = (JSON.parse(localStorage.getItem('currentUser'))).token;
 
     // console.log(this.adminId);
     // console.log(this.token);
@@ -1334,6 +1337,8 @@ export class DialogAddNewAppointment {
     };
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
 
     this.http.post(`${environment.apiUrl}/get-sub-category`, requestObject, { headers: headers }).pipe(
@@ -1381,6 +1386,8 @@ export class DialogAddNewAppointment {
     };
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
 
     this.http.post(`${environment.apiUrl}/get-services`, requestObject, { headers: headers }).pipe(
@@ -1539,6 +1546,8 @@ export class DialogAddNewAppointment {
     };
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
 
 
@@ -1844,6 +1853,8 @@ export class DialogAddNewAppointment {
     };
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
 
     this.http.post(`${environment.apiUrl}/list-availabel-timings`, requestObject, { headers: headers }).pipe(
@@ -1898,6 +1909,7 @@ export class DialogAddNewAppointment {
   }
 
   fnGetStaff() {
+    
     this.isLoaderAdmin = true;
     if (this.valide_postal_code) {
       let requestObject = {
@@ -1909,6 +1921,8 @@ export class DialogAddNewAppointment {
       };
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
+        'api-token': this.token,
+        'admin-id': JSON.stringify(this.adminId),
       });
       this.http.post(`${environment.apiUrl}/service-staff`, requestObject, { headers: headers }).pipe(
         map((res) => {
@@ -1944,6 +1958,8 @@ export class DialogAddNewAppointment {
       };
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
+        'api-token': this.token,
+        'admin-id': JSON.stringify(this.adminId),
       });
       this.http.post(`${environment.apiUrl}/service-staff`, requestObject, { headers: headers }).pipe(
         map((res) => {
@@ -2302,6 +2318,8 @@ export class DialogAllAppointmentDetails {
   singlenote: any;
   currentUser: any;
   singleBookingNotes: any;
+  adminId:any;
+  token:any;
   constructor(
     public dialogRef: MatDialogRef<DialogAllAppointmentDetails>,
     private adminService: AdminService,
@@ -2311,7 +2329,8 @@ export class DialogAllAppointmentDetails {
     private authenticationService: AuthenticationService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
+    this.adminId = (JSON.parse(localStorage.getItem('currentUser'))).user_id;
+    this.token = (JSON.parse(localStorage.getItem('currentUser'))).token;
     this.businessId = localStorage.getItem('business_id');
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.detailsData = this.data.appointmentData;
@@ -2384,10 +2403,11 @@ export class DialogAllAppointmentDetails {
       "book_date": this.datePipe.transform(new Date(booking_date), "yyyy-MM-dd"),
       "book_time": booking_time
     };
-    let headers = new HttpHeaders({
+    var headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
-
     this.http.post(`${environment.apiUrl}/service-staff`, requestObject, { headers: headers }).pipe(
       map((res) => {
         return res;
@@ -2655,23 +2675,128 @@ export class RescheduleAppointAdmin {
   timeSlotArr: any = [];
   availableStaff: any = [];
   isLoaderAdmin: boolean = false;
+  currentUser:any;
+  adminId:any;
+  token:any;
+  myFilter: any;
+  offDaysList: any = [];
+  workingHoursOffDaysList: any = [];
+  bussinessId: any;
   constructor(
     public dialogRef: MatDialogRef<RescheduleAppointAdmin>,
     private datePipe: DatePipe,
     private _formBuilder: FormBuilder,
     private http: HttpClient,
     private adminService: AdminService,
+    private authenticationService: AuthenticationService,
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.adminId = (JSON.parse(localStorage.getItem('currentUser'))).user_id;
+      this.token = (JSON.parse(localStorage.getItem('currentUser'))).token;
+      this.businessId = localStorage.getItem('business_id');
+      this.detailsData = this.data.detailsData;
+      this.formAppointmentRescheduleAdmin = this._formBuilder.group({
+        rescheduleDate: ['', Validators.required],
+        rescheduleTime: ['', Validators.required],
+        rescheduleStaff: ['', Validators.required],
+        rescheduleNote: ['', Validators.required],
+      });
+      console.log(this.detailsData);
+      this.bussinessId = this.detailsData.business_id;
 
-    this.businessId = localStorage.getItem('business_id');
-    this.detailsData = this.data.detailsData;
-    this.formAppointmentRescheduleAdmin = this._formBuilder.group({
-      rescheduleDate: ['', Validators.required],
-      rescheduleTime: ['', Validators.required],
-      rescheduleStaff: ['', Validators.required],
-      rescheduleNote: ['', Validators.required],
-    });
+      this.fnGetOffDays();
+      this.myFilter = (d: Date | null): boolean => {
+        // const day = (d || new Date()).getDay();
+        // const month = (d || new Date()).getMonth();
+        // Prevent Saturday and Sunday from being selected.
+        // return day !== 0 && day !== 6;
+        let temp: any;
+        let temp2: any;
+        if (this.offDaysList.length > 0 || this.workingHoursOffDaysList.length > 0) {
+          for (var i = 0; i < this.offDaysList.length; i++) {
+            var offDay = new Date(this.offDaysList[i]);
+            if (i == 0) {
+              temp = (d.getMonth() + 1 !== offDay.getMonth() + 1 || d.getDate() !== offDay.getDate());
+            } else {
+              temp = temp && (d.getMonth() + 1 !== offDay.getMonth() + 1 || d.getDate() !== offDay.getDate());
+            }
+          }
+          for (var i = 0; i < this.workingHoursOffDaysList.length; i++) {
+            if (this.offDaysList.length > 0) {
+              temp = temp && (d.getDay() !== this.workingHoursOffDaysList[i]);
+            } else {
+              temp = (d.getDay() !== this.workingHoursOffDaysList[i]);
+            }
+          }
+          //return (d.getMonth()+1!==4 || d.getDate()!==30) && (d.getMonth()+1!==5 || d.getDate()!==15);
+          return temp;
+        } else {
+          return true;
+        }
+      }
+  }
+
+  fnGetOffDays() {
+    this.isLoaderAdmin = true;
+    let requestObject = {
+      "business_id": this.bussinessId
+    };
+    this.adminService.getOffDays(requestObject).subscribe((response: any) => {
+      if (response.data == true) {
+        if (response.response.holidays.length > 0) {
+          this.offDaysList = response.response.holidays;
+        } else {
+          this.offDaysList = [];
+        }
+        if (response.response.offday.length > 0) {
+          this.workingHoursOffDaysList = response.response.offday;
+        } else {
+          this.workingHoursOffDaysList = [];
+        }
+
+        this.myFilter = (d: Date | null): boolean => {
+          // const day = (d || new Date()).getDay();
+          // const month = (d || new Date()).getMonth();
+          // Prevent Saturday and Sunday from being selected.
+          // return day !== 0 && day !== 6;
+          let temp: any;
+          let temp2: any;
+          if (this.offDaysList.length > 0 || this.workingHoursOffDaysList.length > 0) {
+            for (var i = 0; i < this.offDaysList.length; i++) {
+              var offDay = new Date(this.offDaysList[i]);
+              if (i == 0) {
+                temp = (d.getMonth() + 1 !== offDay.getMonth() + 1 || d.getDate() !== offDay.getDate());
+              } else {
+                temp = temp && (d.getMonth() + 1 !== offDay.getMonth() + 1 || d.getDate() !== offDay.getDate());
+              }
+            }
+            for (var i = 0; i < this.workingHoursOffDaysList.length; i++) {
+              if (this.offDaysList.length > 0) {
+                temp = temp && (d.getDay() !== this.workingHoursOffDaysList[i]);
+              } else {
+                temp = (d.getDay() !== this.workingHoursOffDaysList[i]);
+              }
+            }
+            //return (d.getMonth()+1!==4 || d.getDate()!==30) && (d.getMonth()+1!==5 || d.getDate()!==15);
+            return temp;
+          } else {
+            return true;
+          }
+        }
+      }
+      else if (response.data == false && response.response !== 'api token or userid invaild') {
+        // this._snackBar.open(response.response, "X", {
+        //   duration: 2000,
+        //   verticalPosition: 'top',
+        //   panelClass : ['red-snackbar']
+        // });
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+    this.isLoaderAdmin = false;
   }
 
 
@@ -2694,6 +2819,8 @@ export class RescheduleAppointAdmin {
     };
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
 
     this.http.post(`${environment.apiUrl}/list-availabel-timings`, requestObject, { headers: headers }).pipe(
@@ -2732,6 +2859,8 @@ export class RescheduleAppointAdmin {
     };
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'api-token': this.token,
+      'admin-id': JSON.stringify(this.adminId),
     });
 
     this.http.post(`${environment.apiUrl}/service-staff`, requestObject, { headers: headers }).pipe(

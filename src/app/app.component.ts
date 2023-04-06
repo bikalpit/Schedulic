@@ -187,6 +187,7 @@ export class AppComponent implements AfterViewInit {
     //this.setcompanycolours();
 
     var is_logout = this.authenticationService.logoutTime();
+    console.log('is_logout----',is_logout)
     if (is_logout == true) {
       this.router.navigate(['/login']);
       return false;
@@ -606,7 +607,11 @@ export class AppComponent implements AfterViewInit {
 
   signInWithGoogle(loginForm): void {
     this.loginForm = loginForm;
+    console.log(this.loginForm);
+    
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(res => {
+      console.log(res);
+      
       this.fnLoginWithGoogleFacebook(res);
     });
 
@@ -634,6 +639,8 @@ export class AppComponent implements AfterViewInit {
   }
 
   fnLoginWithGoogleFacebook(user) {
+    console.log(user);
+    
     this.isAllowed = false;
     if (user.email == '') {
       this._snackBar.open('Please add email id in your facebook account.', "X", {

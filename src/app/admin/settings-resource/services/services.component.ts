@@ -265,8 +265,12 @@ export class ServicesComponent implements OnInit {
     }
 
     cancelNewCategory() {
+        if (this.categoryServicesList != '' && this.categoryServicesList != 'service not found.') {
+            this.selectCategoryPage = 'services';
+        } else if (this.categoryServicesList == 'service not found.') {
+            this.selectCategoryPage = 'notservices';
+        }
         this.createNewCategoryPage = false;
-        this.servicesList = true;
         this.createCategory.reset();
         this.editCategoryId = null;
         this.categoryImageUrl = '';
@@ -1395,9 +1399,9 @@ export class ServicesComponent implements OnInit {
     fnCalcelNewSubcategory(){
 
         if(this.whichSubCategoryButton == "main"){
-            this.selectCategoryPage = 'notservices';
+            this.singleSubCategoryPage = 'notservices';
         }else{
-            this.selectCategoryPage="services";
+            this.singleSubCategoryPage="services";
         }
         this.editSubCategoryId = null;
         this.createNewSubCategoryPage = false;

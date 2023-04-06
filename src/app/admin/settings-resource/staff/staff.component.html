@@ -1311,7 +1311,7 @@
                                         example-box header-background"
                                         fxLayout="row">
                                         <div class="" fxFlex="4">
-                                            <mat-checkbox
+                                            <mat-checkbox [checked]="selectAllPostalCode" (change)="checkAllPostalCode($event)"
                                                 class="postal-code-checkbox">
                                             </mat-checkbox>
                                         </div>
@@ -1344,6 +1344,7 @@
                                             <div class="" fxFlex="4">
                                                 <mat-checkbox
                                                     class="postal-code-checkbox"
+                                                    [checked]="staffPostalCode.is_selected"
                                                     (change)="fnAddPostalCodeId($event.checked,
                                                     staffPostalCode.id)">
                                                 </mat-checkbox>

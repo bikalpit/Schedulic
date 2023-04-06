@@ -10,11 +10,9 @@
                 </div>
                 <div class="appodetails appodetails-status">
                     <div *ngIf="detailsData.order_status != 'C' && detailsData.order_status != 'CO'">
-                        <label class="greenfont pointer" (click)="fnRescheduleAppointment()"
-                            *ngIf="detailsData.booking_date_time && minReschedulingTime && detailsData.booking_date_time && minReschedulingTime.getTime() < detailsData.booking_date_time.getTime()"><i
+                        <label class="greenfont pointer" (click)="fnRescheduleAppointment()" *ngIf="detailsData.booking_date_time && minReschedulingTime && detailsData.booking_date_time && minReschedulingTime.getTime() < detailsData.booking_date_time.getTime()"><i
                                 class="fa fa-repeat repeat"></i>Reschedule</label>
-                        <label class="fontred pl-3 pointer" (click)="fnCancelAppointment()"
-                            *ngIf="detailsData.booking_date_time && cancellationBufferTime && detailsData.booking_date_time && cancellationBufferTime.getTime() < detailsData.booking_date_time.getTime()"><i
+                        <label class="fontred pl-3 pointer" (click)="fnCancelAppointment()" *ngIf="detailsData.booking_date_time && cancellationBufferTime && detailsData.booking_date_time && cancellationBufferTime.getTime() < detailsData.booking_date_time.getTime()"><i
                                 class="fa fa-times-circle-o circle"></i>Cancel</label>
                     </div>
 
@@ -26,14 +24,11 @@
                         Completed
                     </div>
 
-                    <button mat-button type="button" *ngIf="detailsData.order_status == 'P'"
-                        class="sc-pink-btn" (click)="fnConfirmAppointment()">Confirm</button>
+                    <button mat-button type="button" *ngIf="detailsData.order_status == 'P'" class="sc-pink-btn" (click)="fnConfirmAppointment()">Confirm</button>
 
-                    <button mat-button type="button" *ngIf="detailsData.order_status == 'AC'"
-                        class="sc-pink-btn" (click)="fnWorkStarting()">Work Start</button>
+                    <button mat-button type="button" *ngIf="detailsData.order_status == 'AC'" class="sc-pink-btn" (click)="fnWorkStarting()">Work Start</button>
 
-                    <div *ngIf="detailsData.order_status == 'CNF' && detailsData.staff_id == null"
-                        class="form-group w-100px">
+                    <div *ngIf="detailsData.order_status == 'CNF' && detailsData.staff_id == null" class="form-group w-100px">
                         <mat-select class="form-control-transparent form-control" (selectionChange)="fnOnClickStaff($event)" placeholder="select staff">
                             <mat-option *ngFor="let staff of availableStaff" value="{{staff.id}}">{{staff.name}}
                             </mat-option>
@@ -54,8 +49,7 @@
                         <div class="common-appointment-details">
                             <div class="appointment-details">
                                 <p>Time</p>
-                                <h3>{{detailsData.booking_timeForLabel}} -
-                                    {{detailsData.booking_time_to}} ({{detailsData.service_time}} Min)</h3>
+                                <h3>{{detailsData.booking_timeForLabel}} - {{detailsData.booking_time_to}} ({{detailsData.service_time}} Min)</h3>
                             </div>
                         </div>
                         <div class="common-appointment-details">
@@ -205,8 +199,8 @@
                         <div class="d-flex align-items-center py-2">
                             <p class="customer-profile-img text-uppercase">{{customerShortName}}</p>
                             <div class="customer-name pr-3">
-                                <h3 class="">{{detailsData.customer.fullname}}</h3>
-                                <p class="mb-0">{{detailsData.customer.email}}</p>
+                                <h3 *ngIf="detailsData.customer" class="">{{detailsData.customer.fullname}}</h3>
+                                <p *ngIf="detailsData.customer" class="mb-0">{{detailsData.customer.email}}</p>
                             </div>
                         </div>
                         <div class="custom-wrap-modal">
@@ -217,44 +211,39 @@
                     <div class="common-details-customer">
 
                         <div class="main-note-details common-input">
-                            <h6 (click)="formSettingPage=!formSettingPage" class="note-add-icon w-fc">Note<i
-                                    class="fa fa-plus-circle pl-2 note-icon"></i>
+                            <h6 (click)="formSettingPage=!formSettingPage" class="note-add-icon w-fc">Note<i class="fa fa-plus-circle pl-2 note-icon"></i>
                             </h6>
                             <div *ngIf="formSettingPage" class="form-group">
-                                <textarea class="form-control" rows="5" matInput [(ngModel)]="singlenote"
-                                    placeholder="Type Note Description Here"></textarea>
+                                <textarea class="form-control" rows="5" matInput [(ngModel)]="singlenote" placeholder="Type Note Description Here"></textarea>
                                 <div class="text-end">
-                                    <button mat-button type="button" class="sc-pink-btn mt-3"
-                                        (click)="fnSaveBookingNotes(detailsData.id)">Save</button>
+                                    <button mat-button type="button" class="sc-pink-btn mt-3" (click)="fnSaveBookingNotes(detailsData.id)">Save</button>
                                 </div>
 
                             </div>
 
                             <p class="common-note-details" *ngFor="let note of singleBookingNotes; let i=index">
-                                {{note.notes}}, <br> Added by {{note.user_type=='A'?'Admin':''}}
-                                {{note.user_type=='SM'?'Staff':''}} {{note.user_type=='C'?'Customer':''}}
-                                @{{note.created_at | date:'yyyy/MM/dd HH:mm'}}
+                                {{note.notes}}, <br> Added by {{note.user_type=='A'?'Admin':''}} {{note.user_type=='SM'?'Staff':''}} {{note.user_type=='C'?'Customer':''}} @{{note.created_at | date:'yyyy/MM/dd HH:mm'}}
                             </p>
                         </div>
                     </div>
                     <div class="common-details-customer">
                         <h6 class="heading-title ">Activity Log</h6>
                         <div *ngFor="let log of activityLog" class="activelog-details">
-                            {{log.created_at | date:'yyyy/MM/dd HH:mm'}} -
-                            {{log.status=='P'?'Pending':''}} {{log.status=='MOD'?'Modified':''}}
-                            {{log.status=='CNF'?'Confirmed':''}} {{log.status=='GL'?'Getting Late':''}}
-                            {{log.user_type=='A' && log.status=='CNF' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='CNF' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='CNF' ? 'By '+ log.user.fullname +' (User)' : ''}}
-                            {{log.status=='AC'?'Accepted':''}} {{log.user_type=='A' && log.status=='AC' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' &&  log.status=='AC' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='AC' ? 'By '+ log.user.fullname +' (User)' : ''}} {{log.status=='OW'?'On The Way':''}} {{log.status=='WS'?'Work Started':''}}
-                            {{log.status=='RSA' && log.customer ? 'Rescheduled By '+ log.customer.fullname : log.status=='RSA' ? 'Rescheduled By '+ log.user.fullname +' (Admin)' :''}} {{log.status=='RSS' && log.customer ?  'Rescheduled By '+ log.customer.fullname : log.status=='RSS' ? 'Rescheduled By '+ log.user.fullname +' (Staff)' :''}} {{log.status=='RSC' && log.customer ? 'Rescheduled By '+ log.customer.fullname : log.status=='RSC' ? 'Rescheduled By Client' :''}} {{log.status=='ITR'?'Intrupted':''}}
-                            {{log.status=='C' && log.customer ? 'Cancelled By '+ log.customer.fullname : log.status=='C' ? 'Cancelled' :''}} {{log.status=='CC' && log.customer ? 'Cancelled By '+ log.customer.fullname : log.status=='CC' ? 'Cancelled By Client' :''}} {{log.status=='R'?'Rejected':''}}
-                            {{log.user_type=='A' && log.status=='R' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='R' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='R' ? 'By '+ log.user.fullname +' (User)' : ''}}
-                            {{log.status=='CO'?'Completed':''}} {{log.user_type=='A' && log.status=='CO' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='CO' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='CO' ? 'By '+ log.user.fullname +' (User)' : ''}}
-                            {{log.user_type=='A' && log.status=='GL' ? 'By '+ log.user.fullname +' (Admin)' : log.user_type=='S' && log.status=='GL' ? 'By '+ log.user.fullname +' (Staff)': log.user_type=='C' && log.status=='GL' ? 'By '+ log.user.fullname +' (User)' : ''}}
+                            {{log.created_at | date:'yyyy/MM/dd HH:mm'}} - {{log.status=='P'?'Pending':''}} {{log.status=='MOD'?'Modified':''}} {{log.status=='CNF'?'Confirmed':''}} {{log.status=='GL'?'Getting Late':''}} {{log.user_type=='A' && log.status=='CNF' ? 'By '+ log.user?.fullname
+                            +' (Admin)' : log.user_type=='S' && log.status=='CNF' ? 'By '+ log.user?.fullname +' (Staff)': log.user_type=='C' && log.status=='CNF' ? 'By '+ log.user?.fullname +' (User)' : ''}} {{log.status=='AC'?'Accepted':''}} {{log.user_type=='A'
+                            && log.status=='AC' ? 'By '+ log.user?.fullname +' (Admin)' : log.user_type=='S' && log.status=='AC' ? 'By '+ log.user?.fullname +' (Staff)': log.user_type=='C' && log.status=='AC' ? 'By '+ log.user?.fullname +' (User)' : ''}}
+                            {{log.status=='OW'?'On The Way':''}} {{log.status=='WS'?'Work Started':''}} {{log.status=='RSA' && log.customer ? 'Rescheduled By '+ log.customer?.fullname : log.status=='RSA' ? 'Rescheduled By '+ log.user?.fullname +' (Admin)'
+                            :''}} {{log.status=='RSS' && log.customer ? 'Rescheduled By '+ log.customer?.fullname : log.status=='RSS' ? 'Rescheduled By '+ log.user?.fullname +' (Staff)' :''}} {{log.status=='RSC' && log.customer ? 'Rescheduled By '+ log.customer?.fullname
+                            : log.status=='RSC' ? 'Rescheduled By Client' :''}} {{log.status=='ITR'?'Intrupted':''}} {{log.status=='C' && log.customer ? 'Cancelled By '+ log.customer?.fullname : log.status=='C' ? 'Cancelled' :''}} {{log.status=='CC' &&
+                            log.customer ? 'Cancelled By '+ log.customer?.fullname : log.status=='CC' ? 'Cancelled By Client' :''}} {{log.status=='R'?'Rejected':''}} {{log.user_type=='A' && log.status=='R' ? 'By '+ log.user?.fullname +' (Admin)' : log.user_type=='S'
+                            && log.status=='R' ? 'By '+ log.user?.fullname +' (Staff)': log.user_type=='C' && log.status=='R' ? 'By '+ log.user?.fullname +' (User)' : ''}} {{log.status=='CO'?'Completed':''}} {{log.user_type=='A' && log.status=='CO' ?
+                            'By '+ log.user?.fullname +' (Admin)' : log.user_type=='S' && log.status=='CO' ? 'By '+ log.user?.fullname +' (Staff)': log.user_type=='C' && log.status=='CO' ? 'By '+ log.user?.fullname +' (User)' : ''}} {{log.user_type=='A'
+                            && log.status=='GL' ? 'By '+ log.user?.fullname +' (Admin)' : log.user_type=='S' && log.status=='GL' ? 'By '+ log.user?.fullname +' (Staff)': log.user_type=='C' && log.status=='GL' ? 'By '+ log.user?.fullname +' (User)' : ''}}
                             {{log.status=='GL'?'(Late Time : '+detailsData.gl_time+' Mins)':''}}
 
                             <p *ngIf="log.notes">
                                 <b>Note: </b> {{log.notes}}
-                                
+
                             </p>
                         </div>
 

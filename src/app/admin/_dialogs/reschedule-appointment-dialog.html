@@ -23,13 +23,10 @@
                                     <span class="input-group-text"><img
                                             src="/assets/images/icons/date-calendar.svg" /></span>
                                 </div>
-                                <input class="form-control" matInput [min]="minDate" [matDatepicker]="picker"
-                                    placeholder="Choose a date" formControlName="rescheduleDate" (click)="picker.open()"
-                                    (dateChange)="fnDateChange($event)">
+                                <input class="form-control" matInput [min]="minDate" [matDatepicker]="picker" placeholder="Choose a date" formControlName="rescheduleDate" [matDatepickerFilter]="myFilter" (click)="picker.open()" (dateChange)="fnDateChange($event)">
                                 <mat-datepicker #picker></mat-datepicker>
                             </div>
-                            <span class="error-wrap"
-                                *ngIf="formAppointmentRescheduleAdmin.get('rescheduleDate').dirty || formAppointmentRescheduleAdmin.get('rescheduleDate').touched">
+                            <span class="error-wrap" *ngIf="formAppointmentRescheduleAdmin.get('rescheduleDate').dirty || formAppointmentRescheduleAdmin.get('rescheduleDate').touched">
                                 <small *ngIf="formAppointmentRescheduleAdmin.get('rescheduleDate').hasError('required')"
                                     class="error">Date is required</small>
                             </span>
@@ -43,52 +40,47 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/clock.svg" /></span>
                                 </div>
-                                <mat-select formControlName="rescheduleTime" class="form-control formcontrol"
-                                    (selectionChange)="fnChangeTimeSlot($event.value)" [disabled]="">
+                                <mat-select formControlName="rescheduleTime" class="form-control formcontrol" (selectionChange)="fnChangeTimeSlot($event.value)" [disabled]="">
                                     <!-- <mat-option>None</mat-option> -->
                                     <mat-option *ngFor="let slot of timeSlotArr" value="{{slot}}">{{slot}}</mat-option>
                                 </mat-select>
                             </div>
-                            <span class="error-wrap"
-                                *ngIf="formAppointmentRescheduleAdmin.get('rescheduleTime').dirty || formAppointmentRescheduleAdmin.get('rescheduleTime').touched">
+                            <span class="error-wrap" *ngIf="formAppointmentRescheduleAdmin.get('rescheduleTime').dirty || formAppointmentRescheduleAdmin.get('rescheduleTime').touched">
                                 <small *ngIf="formAppointmentRescheduleAdmin.get('rescheduleTime').hasError('required')"
                                     class="error">Time is required</small>
                             </span>
                         </div>
                     </div>
-                <div class="col-12">
-                    <label class="mb-0">Select Staff</label>
-                    <div class="input-group common-input mb-3">
-                        <div class="input-group form-group">
-                            <mat-select class="form-control formcontrol" formControlName="rescheduleStaff">
-                                <mat-option *ngFor="let staff of availableStaff" value="{{staff.id}}"> {{staff.name}}
-                                </mat-option>
-                            </mat-select>
-                        </div>
-                        <span class="error-wrap"
-                            *ngIf="formAppointmentRescheduleAdmin.get('rescheduleStaff').dirty || formAppointmentRescheduleAdmin.get('rescheduleStaff').touched">
+                    <div class="col-12">
+                        <label class="mb-0">Select Staff</label>
+                        <div class="input-group common-input mb-3">
+                            <div class="input-group form-group">
+                                <mat-select class="form-control formcontrol" formControlName="rescheduleStaff">
+                                    <mat-option value="any">Any Staff </mat-option>
+                                    <mat-option *ngFor="let staff of availableStaff" value="{{staff.id}}"> {{staff.name}} </mat-option>
+                                </mat-select>
+                            </div>
+                            <span class="error-wrap" *ngIf="formAppointmentRescheduleAdmin.get('rescheduleStaff').dirty || formAppointmentRescheduleAdmin.get('rescheduleStaff').touched">
                             <small *ngIf="formAppointmentRescheduleAdmin.get('rescheduleStaff').hasError('required')"
                                 class="error">Staff is required</small>
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12">
-                <label class="mb-0">Add Note</label>
-                <div class="input-group common-input mb-3">
-                    <div class="input-group form-group"> 
-                    <textarea class="form-control" placeholder="Add Note" formControlName="rescheduleNote"> </textarea>
-                    <span class="error-wrap"
-                        *ngIf="formAppointmentRescheduleAdmin.get('rescheduleNote').dirty || formAppointmentRescheduleAdmin.get('rescheduleNote').touched">
+                    <div class="col-12">
+                        <label class="mb-0">Add Note</label>
+                        <div class="input-group common-input mb-3">
+                            <div class="input-group form-group">
+                                <textarea class="form-control" placeholder="Add Note" formControlName="rescheduleNote"> </textarea>
+                                <span class="error-wrap" *ngIf="formAppointmentRescheduleAdmin.get('rescheduleNote').dirty || formAppointmentRescheduleAdmin.get('rescheduleNote').touched">
                         <small *ngIf="formAppointmentRescheduleAdmin.get('rescheduleNote').hasError('required')"
                             class="error">Note is required</small>
                     </span>
-                    </div>  
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
 
-                <button mat-button  class="sc-pink-btn float-right"
-                    (click)='formRescheduleSubmit()'>Reschedule</button>
+                <button mat-button class="sc-pink-btn float-right" (click)='formRescheduleSubmit()'>Reschedule</button>
             </form>
         </div>
     </div>

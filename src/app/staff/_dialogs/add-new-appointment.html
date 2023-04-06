@@ -4,8 +4,8 @@
         <div class="modal-header modal-bcolor-primary">
             <p class="heading lead mb-0  work-content">
                 <span class="note-icon-wrap"><img
-                    src="/assets/images/icons/Group 56.svg" /></span>
-                {{dialogTitle}}</p>
+                    src="/assets/images/icons/Group 56.svg" /></span> {{dialogTitle}}
+            </p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onNoClick()">
                 <span aria-hidden="true" class="white-text">&times;</span>
             </button>
@@ -18,8 +18,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><img src="/assets/images/icons/man.svg" /></span>
                         </div>
-                        <input type="text" formControlName="customerFullName" class="form-control"
-                            placeholder="Customer Full Name">
+                        <input type="text" formControlName="customerFullName" class="form-control" placeholder="Customer Full Name">
                     </div>
                     <!-- <mat-form-field class="form-group  bottom-border-field">
                         <mat-label>Customer Full Name</mat-label>
@@ -34,30 +33,28 @@
                 <div class="common-input col-12">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                                <span class="input-group-text"><img src="/assets/images/icons/email.svg"/></span>
+                            <span class="input-group-text"><img src="/assets/images/icons/email.svg"/></span>
                         </div>
-                        <input type="text" formControlName="customerEmail" class="form-control"
-                                placeholder="Customer Email">
+                        <input type="text" formControlName="customerEmail" class="form-control" placeholder="Customer Email">
                     </div>
-                       <!-- <mat-form-field class="form-group  bottom-border-field">
+                    <!-- <mat-form-field class="form-group  bottom-border-field">
                         <mat-label>Customer Email</mat-label>
                         <mat-icon matPrefix><i class="fa fa-envelope-o"></i></mat-icon>
                         <input matInput formControlName="customerEmail" placeholder="Enter Customer Email">
                         </mat-form-field> -->
-                        <!-- <input type="email" formControlName="customerEmail" class="form-control formcontrol" placeholder="Enter Customer Email"> -->
+                    <!-- <input type="email" formControlName="customerEmail" class="form-control formcontrol" placeholder="Enter Customer Email"> -->
                     <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerEmail').dirty || formAddNewAppointmentStaffStep1.get('customerEmail').touched">
                         <small *ngIf="formAddNewAppointmentStaffStep1.get('customerEmail').hasError('required')" class="error">Email is required.</small><small *ngIf="formAddNewAppointmentStaffStep1.get('customerEmail').hasError('email') || formAddNewAppointmentStaffStep1.get('customerEmail').hasError('pattern')" class="error">Enter a valid email.</small>
                         <small class="error" *ngIf="formAddNewAppointmentStaffStep1.get('customerEmail').hasError('isEmailUnique')">Email already in use.</small>
                     </span>
-               </div>
+                </div>
                 <div class="common-input col-12">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><img src="/assets/images/icons/calling.svg"/></span>
                         </div>
-                        <input type="text" formControlName="customerPhone" class="form-control"
-                            placeholder="Contact Number">
-                    </div>   
+                        <input type="text" formControlName="customerPhone" class="form-control" placeholder="Contact Number">
+                    </div>
                     <!-- <mat-form-field class="form-group  bottom-border-field">
                         <mat-label>Customer Contact Number</mat-label>
                         <mat-icon matPrefix><i class="fa fa-phone"></i></mat-icon>
@@ -65,18 +62,18 @@
                     </mat-form-field> -->
 
                     <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerPhone').dirty || formAddNewAppointmentStaffStep1.get('customerPhone').touched">
-                        <small *ngIf="formAddNewAppointmentStaffStep1.get('customerPhone').hasError('required')" class="error">Phone is required.</small><small *ngIf="(formAddNewAppointmentStaffStep1.get('customerPhone').hasError('pattern') && (formAddNewAppointmentStaffStep1.get('customerPhone').hasError('minlength') || formAddNewAppointmentStaffStep1.get('customerPhone').hasError('maxlength')))" class="error">Enter a valid Phone (Country code is required).</small>
+                        <small *ngIf="formAddNewAppointmentStaffStep1.get('customerPhone').hasError('required')" class="error">Phone is required.</small>
+                        <small *ngIf="(formAddNewAppointmentStaffStep1.get('customerPhone').hasError('pattern') || (formAddNewAppointmentStaffStep1.get('customerPhone').hasError('minlength') || formAddNewAppointmentStaffStep1.get('customerPhone').hasError('maxlength')))" class="error">Enter a valid Phone (Country code is required).</small>
                         <small *ngIf="(!formAddNewAppointmentStaffStep1.get('customerPhone').hasError('pattern') && (formAddNewAppointmentStaffStep1.get('customerPhone').hasError('minlength') || formAddNewAppointmentStaffStep1.get('customerPhone').hasError('maxlength')))" class="error">Phone number should be minimum 6 and maximum 15 digits long.</small>
                     </span>
                 </div>
                 <div class="common-input col-12">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                                <span class="input-group-text"><img src="/assets/images/icons/location.svg"/></span>
+                            <span class="input-group-text"><img src="/assets/images/icons/location.svg"/></span>
                         </div>
-                        <input type="text" formControlName="customerAddress" class="form-control"
-                            placeholder="Customer Address">
-                    </div>   
+                        <input type="text" formControlName="customerAddress" class="form-control" placeholder="Customer Address">
+                    </div>
                     <!-- <mat-form-field class="form-group  bottom-border-field">
                         <mat-label>Customer Address</mat-label>
                         <mat-icon matPrefix><i class="fa fa-map-marker"></i></mat-icon>
@@ -91,8 +88,8 @@
                     <div class="col-4 pr-2">
                         <div class="input-group form-group">
                             <!-- <mat-form-field> -->
-                                <!-- <mat-label>State</mat-label> -->
-                                <input matInput class="form-control custom-bg-control" formControlName="customerState" placeholder="State">
+                            <!-- <mat-label>State</mat-label> -->
+                            <input matInput class="form-control custom-bg-control" formControlName="customerState" placeholder="State">
                             <!-- </mat-form-field> -->
                             <!-- <input type="text" formControlName="customerState" class="form-control" placeholder="State"> -->
                             <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerState').dirty || formAddNewAppointmentStaffStep1.get('customerState').touched">
@@ -103,8 +100,8 @@
                     <div class="col-4 pl-2 pr-2">
                         <div class="input-group form-group">
                             <!-- <mat-form-field> -->
-                                <!-- <mat-label>City</mat-label> -->
-                                <input matInput class="form-control custom-bg-control" formControlName="customerCity" placeholder="City">
+                            <!-- <mat-label>City</mat-label> -->
+                            <input matInput class="form-control custom-bg-control" formControlName="customerCity" placeholder="City">
                             <!-- </mat-form-field> -->
                             <!-- <input type="text" formControlName="customerCity" class="form-control" placeholder="City"> -->
                             <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerCity').dirty || formAddNewAppointmentStaffStep1.get('customerCity').touched">
@@ -117,7 +114,7 @@
                         <div class="input-group form-group">
                             <!-- <mat-form-field>
                                 <mat-label>Zip Code</mat-label> -->
-                                <input matInput class="form-control custom-bg-control" formControlName="customerPostalCode" placeholder="Postal Code">
+                            <input matInput class="form-control custom-bg-control" formControlName="customerPostalCode" placeholder="Postal Code">
                             <!-- </mat-form-field> -->
                             <!-- <input type="text" formControlName="customerPostalCode" class="form-control" placeholder="Postal Code"> -->
                             <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerPostalCode').dirty || formAddNewAppointmentStaffStep1.get('customerPostalCode').touched">
@@ -142,9 +139,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><img src="/assets/images/icons/location.svg"/></span>
                         </div>
-                        <input type="text" formControlName="customerAppoAddress" class="form-control"
-                            placeholder="Customer Address">
-                    </div> 
+                        <input type="text" formControlName="customerAppoAddress" class="form-control" placeholder="Customer Address">
+                    </div>
                     <!-- <mat-form-field class="form-group  bottom-border-field"> -->
                     <!-- <mat-label>Address</mat-label>
                     <mat-icon matPrefix><i class="fa fa-map-marker"></i></mat-icon>
@@ -158,8 +154,8 @@
                     <div class="col-4 pr-2">
                         <div class="input-group form-group">
                             <!-- <mat-form-field> -->
-                                <!-- <mat-label>State</mat-label> -->
-                                <input matInput class="form-control custom-bg-control" formControlName="customerAppoState" placeholder="State">
+                            <!-- <mat-label>State</mat-label> -->
+                            <input matInput class="form-control custom-bg-control" formControlName="customerAppoState" placeholder="State">
                             <!-- </mat-form-field> -->
                             <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerAppoState').dirty || formAddNewAppointmentStaffStep1.get('customerAppoState').touched">
                                 <small *ngIf="formAddNewAppointmentStaffStep1.get('customerAppoState').hasError('required')" class="error"> State  is required.</small>
@@ -170,8 +166,8 @@
                     <div class="col-4 pl-2 pr-2">
                         <div class="input-group form-group">
                             <!-- <mat-form-field> -->
-                                <!-- <mat-label>City</mat-label> -->
-                                <input matInput class="form-control custom-bg-control" formControlName="customerAppoCity" placeholder="City">
+                            <!-- <mat-label>City</mat-label> -->
+                            <input matInput class="form-control custom-bg-control" formControlName="customerAppoCity" placeholder="City">
                             <!-- </mat-form-field> -->
                             <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerAppoCity').dirty || formAddNewAppointmentStaffStep1.get('customerAppoCity').touched">
                                 <small *ngIf="formAddNewAppointmentStaffStep1.get('customerAppoCity').hasError('required')" class="error"> City  is required.</small>
@@ -183,7 +179,7 @@
                         <div class="input-group form-group">
                             <!-- <mat-form-field>
                                 <mat-label>Postal Code</mat-label> -->
-                                <input matInput class="form-control custom-bg-control" formControlName="customerAppoPostalCode" placeholder="Postal Code">
+                            <input matInput class="form-control custom-bg-control" formControlName="customerAppoPostalCode" placeholder="Postal Code">
                             <!-- </mat-form-field> -->
                             <span class="error-wrap" *ngIf="formAddNewAppointmentStaffStep1.get('customerAppoPostalCode').dirty || formAddNewAppointmentStaffStep1.get('customerAppoPostalCode').touched">
                                 <small *ngIf="formAddNewAppointmentStaffStep1.get('customerAppoPostalCode').hasError('required')" class="error"> Postal code is required.</small>
@@ -242,14 +238,14 @@
                     <label class="mb-2">Select Date</label>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                                <span class="input-group-text"><img src="/assets/images/icons/date-calendar.svg"/></span>
+                            <span class="input-group-text"><img src="/assets/images/icons/date-calendar.svg"/></span>
                         </div>
                         <input mat-input [min]="minDate" [max]="maxDate" [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Choose a date" class="form-control formcontrol" (click)="picker.open()" (dateChange)="fnDateChange($event)" formControlName="customerDate"
-                        readonly>
+                            readonly>
                         <mat-datepicker #picker></mat-datepicker>
-                    </div>   
+                    </div>
 
-               
+
                     <!-- <div class="input-group mb-3"> -->
                     <!-- <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-calendar"></i>
@@ -265,16 +261,16 @@
                     <label class="mb-2">Select Time</label>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                                <span class="input-group-text"><img src="/assets/images/icons/clock.svg"/></span>
+                            <span class="input-group-text"><img src="/assets/images/icons/clock.svg"/></span>
                         </div>
                         <mat-select placeholder="Select Time" class="form-control formcontrol" [disabled]="" formControlName="customerTime" (selectionChange)="fnSelectTime($event.value)">
                             <!-- <mat-option>None</mat-option> -->
                             <mat-option *ngFor="let slot of timeSlotArr; let i=index;" value="{{slot}}">{{timeSlotArrForLabel[i]}}</mat-option>
                             <mat-option *ngIf="timeSlotArr.length==0" disabled>No Time Slot Available</mat-option>
                         </mat-select>
-                    </div>   
-                
-                   <!-- <div class="input-group mb-3">
+                    </div>
+
+                    <!-- <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fa fa-clock-o"></i>
                         </div>
@@ -286,7 +282,7 @@
                 </div>
                 <div class="row common-input">
                     <div class="col-8 form-group">
-                        <input class="form-control formcontrol"  formControlName="customerCouponCode" placeholder="Coupon Code">
+                        <input class="form-control formcontrol" formControlName="customerCouponCode" placeholder="Coupon Code">
                     </div>
                     <div class="col-4 pl-0">
                         <button class="sc-light-green-btn mat-button" (click)="applyCoupon()">Apply Coupon</button>
@@ -300,7 +296,7 @@
                     <div class="col-12" *ngIf="appointmentSubTotal > 0">
                         <span> Total : {{currencySymbol| currencySymbol:'wide'}} {{ appointmentAmountAfterDiscount | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
                     </div>
-                    <div class="col-12 mb-3 ml-2" ></div>
+                    <div class="col-12 mb-3 ml-2"></div>
                 </div>
 
                 <button class="d-block btn btn-primary addbtn ml-2" [disabled]="is_disabled" (click)="fnNewAppointmentStep2()">Create</button>

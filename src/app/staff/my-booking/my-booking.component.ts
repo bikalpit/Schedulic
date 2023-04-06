@@ -582,7 +582,7 @@ export class DialogAddNewAppointment {
   showSubCatDropDown = true;
   isLoaderAdmin: boolean = false;
   is_checked: boolean = false;
-  valide_postal_code: boolean = false;
+  valide_postal_code: boolean = true;
   emailPattern: any;
   onlynumeric: any;
   Postalcode: any;
@@ -898,7 +898,7 @@ export class DialogAddNewAppointment {
 
   fnNewAppointmentStep1() {
 
-
+    console.log(this.formAddNewAppointmentStaffStep1)
 
     if (this.formAddNewAppointmentStaffStep1.invalid) {
       this.formAddNewAppointmentStaffStep1.get('customerFullName').markAsTouched();

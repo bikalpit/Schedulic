@@ -884,7 +884,7 @@ mat-chip-list {
 }
 
 .form-container {
-    height: 115%;
+    box-shadow: none !important;
     padding: 30px 40px;
     .custom-select-modal {
         background-color: #eaf7f6;
@@ -915,7 +915,7 @@ mat-chip-list {
     margin-left: 300px;
     width: calc(100% - 300px);
     background-color: #fff;
-    height: calc(100vh - 133px);
+    height: calc(100vh - 163px);
     margin-top: 60px;
     overflow-y: scroll;
     .bg-wrap-control{
