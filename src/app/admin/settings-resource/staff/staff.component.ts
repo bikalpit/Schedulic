@@ -1557,6 +1557,8 @@ export class StaffComponent implements OnInit {
           panelClass: ['green-snackbar']
         });
         this.selectedPostalCodeArr.length = 0;
+        console.log(this.selectedPostalCodeArr);
+        
         this.fnViewSingleStaff(this.selectedStaffId, this.singleStaffIndex)
         this.addPostalCodeId.length = 0;
         this.isLoaderAdmin = false;

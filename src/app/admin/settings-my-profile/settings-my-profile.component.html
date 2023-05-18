@@ -26,8 +26,8 @@
                             </div>
                             <span class="error-wrap d-flex" *ngIf="settingMyProfile.get('first_name').dirty || settingMyProfile.get('first_name').touched">
                                 <small *ngIf="settingMyProfile.get('first_name').hasError('required')" class="error">Firstname is required.</small>
-                                <small *ngIf="settingMyProfile.get('first_name').hasError('maxlength')" class="error">First Name maximum 8 character.</small>
-                                </span>
+                                <small *ngIf="settingMyProfile.get('first_name').hasError('maxlength')" class="error">First Name maximum 15 character.</small>
+                            </span>
                         </div>
                         <div class="common-input">
                             <div class="input-group form-group">
@@ -38,7 +38,7 @@
                             </div>
                             <span class="error-wrap d-flex" *ngIf="settingMyProfile.get('last_name').dirty || settingMyProfile.get('last_name').touched">
                                 <small *ngIf="settingMyProfile.get('last_name').hasError('required')" class="error">Lastname is required.</small>
-                                <small *ngIf="settingMyProfile.get('last_name').hasError('maxlength')" class="error">Last Name maximum 8 character.</small>
+                                <small *ngIf="settingMyProfile.get('last_name').hasError('maxlength')" class="error">Last Name maximum 15 character.</small>
                                 </span>
                         </div>
                         <div class="common-input">
@@ -46,7 +46,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/email.svg" /></span>
                                 </div>
-                                <input type="text" formControlName="email" class="form-control" placeholder="Email">
+                                <input type="text" disabled formControlName="email" class="form-control" placeholder="Email">
                             </div>
                             <span class="error-wrap d-flex" *ngIf="settingMyProfile.get('email').dirty || settingMyProfile.get('email').touched">
                                 <small *ngIf="settingMyProfile.get('email').hasError('required')" class="error">Email is required.</small>
@@ -82,24 +82,22 @@
                     <div class="row mx-0 mt-4">
                         <div class="col-12">
                             <div class="input-group form-group">
-                                <input type="text" matInput [type]="hide1 ? 'password' : 'text'" formControlName="oldPassword"
-                                class="form-control" placeholder="Old Password">
+                                <input type="text" matInput [type]="hide1 ? 'password' : 'text'" formControlName="oldPassword" class="form-control" placeholder="Old Password">
                                 <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
                                     <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                                   </button>
-                                  <span class="error-wrap" *ngIf="changePwd.get('oldPassword').touched || changePwd.get('oldPassword').dirty">
+                                <span class="error-wrap" *ngIf="changePwd.get('oldPassword').touched || changePwd.get('oldPassword').dirty">
                                     <small *ngIf="changePwd.get('oldPassword').hasError('required')" class="error">Old password is required.</small>
                                 </span>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="input-group form-group">
-                                <input type="text" matInput [type]="hide2 ? 'password' : 'text'" formControlName="newPassword" placeholder="New Password"
-                                class="form-control">
+                                <input type="text" matInput [type]="hide2 ? 'password' : 'text'" formControlName="newPassword" placeholder="New Password" class="form-control">
                                 <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
                                     <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                                   </button>
-                                  <span class="error-wrap" *ngIf="changePwd.get('newPassword').touched || changePwd.get('newPassword').dirty">
+                                <span class="error-wrap" *ngIf="changePwd.get('newPassword').touched || changePwd.get('newPassword').dirty">
                                     <small *ngIf="changePwd.get('newPassword').hasError('required')" class="error">New Password is required.</small>
                                     <small *ngIf="changePwd.get('newPassword').hasError('minlength')" class="error">New Password should be minimum 8 character.</small>
                                 </span>
@@ -107,8 +105,11 @@
                         </div>
                         <div class="col-12">
                             <div class="input-group form-group">
-                                <input type="password"  matInput formControlName="ReNewPassword" value="" placeholder="Confirm new password" class="form-control">
-                                  <span class="error-wrap" *ngIf="changePwd.get('ReNewPassword').dirty || changePwd.get('ReNewPassword').touched">
+                                <input [type]="hide3 ? 'password' : 'text'" matInput formControlName="ReNewPassword" value="" placeholder="Confirm new password" class="form-control">
+                                <button mat-icon-button matSuffix (click)="hide3 = !hide3" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide3">
+                                    <mat-icon>{{hide3 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                  </button>
+                                <span class="error-wrap" *ngIf="changePwd.get('ReNewPassword').dirty || changePwd.get('ReNewPassword').touched">
                                     <small *ngIf="changePwd.get('ReNewPassword').hasError('required') || (changePwd.get('ReNewPassword').hasError('required') && changePwd.hasError('notSame'))" class="error text-left">Confirm password is required.</small>
                                     <small *ngIf="!changePwd.get('ReNewPassword').hasError('required') && changePwd.hasError('notSame')" class="error text-left">Passwords do not match.</small>
                                 </span>

@@ -26,8 +26,8 @@
                                 <p class="mb-0 work-space-font" *ngIf="todayAppointmentData.timeToService < 0">Service Time Gone</p>
                                 <h5>{{todayAppointmentData.service.service_name}}</h5>
                             </div>
-                            <div  class="ml-auto">
-                                <p class="order-number mr-2 mt-3">(Order Id: 126)</p>
+                            <div class="ml-auto">
+                                <p class="order-number mr-2 mt-3">(Order Id: {{todayAppointmentData.id}})</p>
                             </div>
                         </div>
                         <div class="d-flex flex-wrap pl-3">

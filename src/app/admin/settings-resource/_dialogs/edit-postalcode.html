@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-notify modal-info" role="document">
     <div class="modal-content ">
         <div class="modal-header modal-bcolor-primary">
-            <p class="heading lead mb-0 work-content">New Postal Code</p>
+            <p class="heading lead mb-0 work-content">Edit Postal Code</p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onNoClick()">
                 <span aria-hidden="true" class="white-text">&times;</span>
             </button>
@@ -13,8 +13,7 @@
                     <div class="form-group">
                         <input class="form-control" placeholder="400101" formControlName="postalCode">
 
-                        <span class="error-wrap"
-                            *ngIf="formCreatePostalCode.get('postalCode').touched || formCreatePostalCode.get('postalCode').dirty">
+                        <span class="error-wrap" *ngIf="formCreatePostalCode.get('postalCode').touched || formCreatePostalCode.get('postalCode').dirty">
                             <small *ngIf="formCreatePostalCode.get('postalCode').hasError('required')"
                                 class="error">Postal
                                 code is required.</small>
@@ -28,8 +27,7 @@
                     <div class="form-group">
                         <input class="form-control" placeholder=" EKandivaliast" formControlName="postalCodeArea">
 
-                        <span class="error-wrap"
-                            *ngIf="formCreatePostalCode.get('postalCodeArea').touched || formCreatePostalCode.get('postalCodeArea').dirty">
+                        <span class="error-wrap" *ngIf="formCreatePostalCode.get('postalCodeArea').touched || formCreatePostalCode.get('postalCodeArea').dirty">
                             <small *ngIf="formCreatePostalCode.get('postalCodeArea').hasError('required')"
                                 class="error">Postal
                                 code area is required.</small>
@@ -42,14 +40,12 @@
                 <div class="common-input">
                     <div class="form-group">
                         <!-- <input matInput  placeholder="Kandivali East" formControlName="postalCodeStaff"> -->
-                        <mat-select class="form-control" [(ngModel)]="selectedStaff" formControlName="postalCodeStaff"
-                            multiple>
-                            <mat-option *ngFor="let staff of staffList" [value]="staff.id">{{staff.firstname}}
-                                {{staff.lastname}}</mat-option>
+                        <mat-select class="form-control" [(ngModel)]="selectedStaff" formControlName="postalCodeStaff" multiple>
+                            <mat-option *ngFor="let staff of staffList" [value]="staff.id">{{staff.firstname}} {{staff.lastname}}
+                            </mat-option>
                         </mat-select>
 
-                        <span class="error-wrap"
-                            *ngIf="formCreatePostalCode.get('postalCodeStaff').touched || formCreatePostalCode.get('postalCodeStaff').dirty">
+                        <span class="error-wrap" *ngIf="formCreatePostalCode.get('postalCodeStaff').touched || formCreatePostalCode.get('postalCodeStaff').dirty">
                             <small *ngIf="formCreatePostalCode.get('postalCodeStaff').hasError('required')"
                                 class="error">Postal
                                 code staff is required.</small>
@@ -58,9 +54,8 @@
                 </div>
             </form>
             <div class="mt-3">
-                <button mat-button appearance="fill" (click)="onNoClick()"
-                    class=" postal-cancel-btn ml-2 mr-2">Cancel</button>
-                <button class="d-block btn btn-primary addbtn" (click)="fnEditPostalCode()">Edit Postal Code</button>
+                <button mat-button appearance="fill" (click)="onNoClick()" class=" postal-cancel-btn ml-2 mr-2">Cancel</button>
+                <button class="d-block btn btn-primary addbtn" (click)="fnEditPostalCode()">Save</button>
             </div>
         </div>
     </div>

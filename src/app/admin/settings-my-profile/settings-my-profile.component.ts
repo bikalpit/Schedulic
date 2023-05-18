@@ -32,6 +32,7 @@ export class MyProfileComponent implements OnInit {
   onlynumeric = /^\+(?:[0-9] ?){6,14}[0-9]$/
   hide1 = true;
   hide2 = true;
+  hide3 = true;
   constructor(
     public dialog: MatDialog,
     private appComponent : AppComponent,
@@ -47,8 +48,8 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
     this.getMyProfileDetails();
     this.settingMyProfile = this._formBuilder.group({
-      first_name : ['', [Validators.required,Validators.maxLength(8)]],
-      last_name : ['', [Validators.required,Validators.maxLength(8)]],
+      first_name : ['', [Validators.required,Validators.maxLength(15)]],
+      last_name : ['', [Validators.required,Validators.maxLength(15)]],
       // email : new FormControl({ value: "", disabled: true }, [Validators.required]),
       email : ['', [Validators.required]],
       mobile : ['', [Validators.required,Validators.minLength(6),Validators.maxLength(15),Validators.pattern(this.onlynumeric)]],

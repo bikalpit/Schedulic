@@ -280,25 +280,26 @@
                        <small *ngIf="formAddNewAppointmentStaffStep2.get('customerTime').hasError('required')" class="error">Time is required.</small>
                     </span>
                 </div>
-                <div class="row common-input">
-                    <div class="col-8 form-group">
-                        <input class="form-control formcontrol" formControlName="customerCouponCode" placeholder="Coupon Code">
+                <div class="col-12 float-left px-0">
+                    <div class="row common-input">
+                        <div class="col-8 form-group">
+                            <input class="form-control formcontrol" formControlName="customerCouponCode" placeholder="Coupon Code">
+                        </div>
+                        <div class="col-4 pl-0">
+                            <button class="sc-light-green-btn mat-button" (click)="applyCoupon()">Apply Coupon</button>
+                        </div>
+                        <div class="col-4" *ngIf="appointmentSubTotal > 0">
+                            <span> Sub Total : {{currencySymbol| currencySymbol:'wide'}} {{ appointmentSubTotal | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
+                        </div>
+                        <div class="col-4" *ngIf="appointmentSubTotal > 0">
+                            <span> Discount : {{currencySymbol| currencySymbol:'wide'}} {{ discount_amount | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
+                        </div>
+                        <div class="col-12" *ngIf="appointmentSubTotal > 0">
+                            <span> Total : {{currencySymbol| currencySymbol:'wide'}} {{ appointmentAmountAfterDiscount | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
+                        </div>
+                        <div class="col-12 mb-3 ml-2"></div>
                     </div>
-                    <div class="col-4 pl-0">
-                        <button class="sc-light-green-btn mat-button" (click)="applyCoupon()">Apply Coupon</button>
-                    </div>
-                    <div class="col-4" *ngIf="appointmentSubTotal > 0">
-                        <span> Sub Total : {{currencySymbol| currencySymbol:'wide'}} {{ appointmentSubTotal | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
-                    </div>
-                    <div class="col-4" *ngIf="appointmentSubTotal > 0">
-                        <span> Discount : {{currencySymbol| currencySymbol:'wide'}} {{ discount_amount | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
-                    </div>
-                    <div class="col-12" *ngIf="appointmentSubTotal > 0">
-                        <span> Total : {{currencySymbol| currencySymbol:'wide'}} {{ appointmentAmountAfterDiscount | currency:selectedCurrency:'':'1.2-2':currencySymbolFormat }}</span>
-                    </div>
-                    <div class="col-12 mb-3 ml-2"></div>
                 </div>
-
                 <button class="d-block btn btn-primary addbtn ml-2" [disabled]="is_disabled" (click)="fnNewAppointmentStep2()">Create</button>
                 <button class="d-block btn btn-secondary back-btn addbtn float-right" (click)="onBackClick()">Back</button>
             </form>
