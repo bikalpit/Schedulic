@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject,ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Event, NavigationEnd } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -153,6 +153,22 @@ export class ServicesComponent implements OnInit {
         if (localStorage.getItem('business_id')) {
             this.businessId = localStorage.getItem('business_id');
         }
+
+        let addNewAction = window.location.search.split("?category")
+        if (addNewAction.length > 1) {
+            this.fnCreateNewCategory();
+        }
+        this.router.events.subscribe((event: Event) => {
+        if (event instanceof NavigationEnd) {
+            let addNewAction = event.url.split("?category")
+            if(addNewAction.length > 1){
+                this.fnCreateNewCategory(); 
+                this.allowedCat=true;
+                console.log('new cate');
+                
+            }
+        }
+        });
     }
 
     ngOnInit() {
@@ -274,7 +290,10 @@ export class ServicesComponent implements OnInit {
         this.createCategory.reset();
         this.editCategoryId = null;
         this.categoryImageUrl = '';
-
+        console.log(this.categoryServicesList);
+        this.router.navigate(['/admin/settings-resource']);
+        
+        // this.fnAllCategory();
     }
 
     arrayOne(n: number): any[] {
@@ -411,10 +430,10 @@ export class ServicesComponent implements OnInit {
                 this.isLoaderAdmin = false;
             }
             let addNewAction = window.location.search.split("?category")
-        if(addNewAction.length > 1 && action != 'not-new'){
-        // this.addNewEvents = false;
-            this.fnCreateNewCategory();
-        }
+            if(addNewAction.length > 1 && action != 'not-new'){
+            // this.addNewEvents = false;
+                this.fnCreateNewCategory();
+            }
         })
     }
 

@@ -17,6 +17,7 @@ import { environment } from "@environments/environment";
 import { ConfirmationDialogComponent } from '../../_components/confirmation-dialog/confirmation-dialog.component';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
+import { Router, Event, NavigationEnd} from '@angular/router';
 
 export interface DialogData {
   animal: string;
@@ -86,12 +87,21 @@ export class DiscountCouponComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private datePipe: DatePipe,
     public dialog: MatDialog,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private router: Router
   ) {
     localStorage.setItem("isBusiness", "false");
     if (localStorage.getItem("business_id")) {
       this.businessId = localStorage.getItem("business_id");
     }
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        let addNewAction = event.url.split("?coupon");
+        if (addNewAction.length > 1) {
+          this.fnNewCouponCode();
+        }
+      }
+    });
     let addNewAction = window.location.search.split("?coupon");
     if (addNewAction.length > 1) {
       this.fnNewCouponCode();
@@ -240,7 +250,7 @@ export class DiscountCouponComponent implements OnInit {
 
 
   fnCreateCouponSubmit() {
-    console.log('this.discountCoupon:', this.discountCoupon.valid);
+    console.log('this.discountCoupon:', this.discountCoupon);
     // debugger
     if (this.discountCoupon.valid) {
       this.valid_from = this.discountCoupon.get("valid_from").value;
@@ -694,6 +704,7 @@ export class DiscountCouponComponent implements OnInit {
     this.addNewCouponCode = false;
     this.discountCoupon.reset();
     this.singleCouponDetail = null;
+    this.router.navigate(['/admin/my-discountcoupon']);
   }
 
   fnCouponEdit(i) {

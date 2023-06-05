@@ -204,7 +204,7 @@ export class AppearanceComponent implements OnInit {
       widgetSecondaryText_color: '#2C2C2C',
       widgetButton_font: 'Poppins, sans-serif',
       widgetButton_textColor: '#fff',
-      widgetButton_backgroundColor: '#C4C4C4',
+      widgetButton_backgroundColor: '#3B31B9',
       widgetButton_style: 2,
       widgetButton_isBorder: false,
       widgetButton_isShadow: false,
@@ -213,7 +213,7 @@ export class AppearanceComponent implements OnInit {
       widgetButtonHover_isHover: true,
       widgetButtonHover_font: 'Poppins, sans-serif',
       widgetButtonHover_textColor: '#fff',
-      widgetButtonHover_backgroundColor: '#3B31B9',
+      widgetButtonHover_backgroundColor: '#C4C4C4',
       widgetButtonHover_isBorder: false,
       widgetButtonHover_isShadow: false,
       widgetButtonHover_borderColor: '',
@@ -527,18 +527,19 @@ export class AppearanceComponent implements OnInit {
     };
     this.AdminSettingsService.getThemeAppearance(requestObject).subscribe((response: any) => {
       if (response.data == true && response.response != '') {
-          let optionValue = response.response
-          if(this.defaultTheme == '1'){
-            this.appearanceObject = optionValue.theme1.new;
-          }else if(this.defaultTheme == '2'){
-            this.appearanceObject = optionValue.theme2.new;
-          }else if(this.defaultTheme == '3'){
-            this.appearanceObject = optionValue.theme3.new;
-          }else if(this.defaultTheme == '4'){
-            this.appearanceObject = optionValue.theme4.new;
-          }else if(this.defaultTheme == '5'){
-            this.appearanceObject = optionValue.theme5.new;
-          }
+          let optionValue = response.response;
+          this.appearanceObject = optionValue.new
+          // if(this.defaultTheme == '1'){
+          //   this.appearanceObject = optionValue.theme1.new;
+          // }else if(this.defaultTheme == '2'){
+          //   this.appearanceObject = optionValue.theme2.new;
+          // }else if(this.defaultTheme == '3'){
+          //   this.appearanceObject = optionValue.theme3.new;
+          // }else if(this.defaultTheme == '4'){
+          //   this.appearanceObject = optionValue.theme4.new;
+          // }else if(this.defaultTheme == '5'){
+          //   this.appearanceObject = optionValue.theme5.new;
+          // }
           this.update_SCSS_var();
       } else if (response.data == false && response.response !== 'api token or userid invaild') {
         this._snackBar.open(response.response, "X", {

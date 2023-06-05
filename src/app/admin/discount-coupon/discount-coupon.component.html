@@ -5,7 +5,7 @@
             <div class="common-page-heading">
                 <div>
                     <h5 class="page-title">Discount Coupon</h5>
-                    <p class="page-des">Create a discount coupon & allow customers to redeem it online while making their booking. 
+                    <p class="page-des">Create a discount coupon & allow customers to redeem it online while making their booking.
                         <br/>Choose the discount by percentage or fixed amount, coupon validity, & much more.</p>
                 </div>
                 <div>
@@ -75,7 +75,7 @@
                                         <p class="text-capitalize">{{allCouponCode.status}}</p>
                                     </div> -->
                                     <div class="text-left" fxFlex="10">
-                                        
+
                                         <div *ngIf="allCouponCode.status == 'Active' || allCouponCode.status == 'Inactive'">
                                             <mat-slide-toggle (change)="changeCouponStaus($event,allCouponCode.id)" [checked]="allCouponCode.status == 'Active'"></mat-slide-toggle>
                                         </div>
@@ -93,7 +93,7 @@
                                                 <span class=""><img src="/assets/images/icons/bin.svg" /></span>
                                             </button>
                                         </div>
-                                    
+
                                     </div>
                                 </div>
 
@@ -132,7 +132,7 @@
                         <h5 *ngIf="!singleCouponDetail">Create Discount Coupon</h5>
                         <h5 *ngIf="singleCouponDetail">Edit Discount Coupon</h5>
                     </div>
-                   
+
 
                     <div class="row mx-0">
                         <div class="common-input col-lg-6 col-12 col-sm-12 col-md-6">
@@ -141,7 +141,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/coupon.svg" /></span>
                                 </div>
-                               
+
                                 <input type="text" formControlName="coupan_name" class="form-control" placeholder="Enter Coupon Title">
                             </div>
                             <span class="error-wrap" *ngIf="discountCoupon.get('coupan_name').touched || discountCoupon.get('coupan_name').dirty">
@@ -169,11 +169,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><img src="/assets/images/icons/date-calendar.svg" /></span>
                                 </div>
-                                <input class="form-control" (dateChange)="fnvalideFrom()" (click)="valid_from_picker.open()" [min]="minDate" [matDatepicker]="valid_from_picker" formControlName="valid_from" placeholder="YYYY/MM/DD">
+                                <input class="form-control" (dateChange)="fnvalideFrom()" (click)="valid_from_picker.open()" [min]="!singleCouponDetail?minDate:null" [matDatepicker]="valid_from_picker" formControlName="valid_from" placeholder="YYYY/MM/DD">
                                 <mat-datepicker #valid_from_picker></mat-datepicker>
                             </div>
                             <span class="error-wrap" *ngIf="discountCoupon.get('valid_from').touched || discountCoupon.get('valid_from').dirty">
                                 <small *ngIf="discountCoupon.get('valid_from').hasError('required')" class="error">Valid from is required.</small>           
+                                <!-- <small *ngIf="discountCoupon.get('valid_from').hasError('matDatepickerMin')" class="error">Valid from is not valid.</small>            -->
                             </span>
                         </div>
                         <div class="common-input col-lg-6 col-12 col-sm-12 col-md-6">
@@ -187,9 +188,10 @@
                             </div>
                             <span class="error-wrap" *ngIf="discountCoupon.get('valid_till').touched || discountCoupon.get('valid_till').dirty">
                                 <small *ngIf="discountCoupon.get('valid_till').hasError('required')" class="error"> Till date is required.</small>           
+                                <small *ngIf="discountCoupon.get('valid_till').hasError('matDatepickerMin')" class="error"> Till date is not valid.</small>           
                               </span>
                         </div>
-                       
+
                         <div class="common-input col-lg-2 col-12 col-sm-12 col-md-3 pr-2 ">
                             <label>Discount</label>
                             <div class="form-group">
@@ -197,15 +199,15 @@
                                     <mat-option value="P"> Percentage</mat-option>
                                     <mat-option value="F"> Fixed Amount</mat-option>
                                 </mat-select>
-                             </div>
-                                <span class="error-wrap" *ngIf="discountCoupon.get('discount_type').touched || discountCoupon.get('discount_type').dirty">
+                            </div>
+                            <span class="error-wrap" *ngIf="discountCoupon.get('discount_type').touched || discountCoupon.get('discount_type').dirty">
                                 <small *ngIf="discountCoupon.get('discount_type').hasError('required')" class="error"> Discount type is required.</small>           
                                 </span>
                         </div>
                         <div class="common-input mt-2 col-lg-4 col-12 col-sm-12 col-md-3 pl-2">
-                           <div class="form-group mt-24">
-                            <input (keyup)="discount_check()" class="form-control" formControlName="discount_value" placeholder="Enter Discount">
-                           </div>
+                            <div class="form-group mt-24">
+                                <input (keyup)="discount_check()" class="form-control" formControlName="discount_value" placeholder="Enter Discount">
+                            </div>
                             <span class="error-wrap" *ngIf="discountCoupon.get('discount_value').touched || discountCoupon.get('discount_value').dirty">
                                 <small *ngIf="discountCoupon.get('discount_value').hasError('required')" class="error">Discount value is required.</small>
                                 <small *ngIf="discountCoupon.get('discount_value').hasError('pattern')" class="error">Discount value should be only in numbers.</small>
@@ -229,45 +231,45 @@
                 </div>
 
                 <div class="col-lg-3 col-12 col-md-4 select-service">
-                   
-                        <h6>Select Service</h6>
-                        <div class="searchbox mb-4">
-                            <form class="search_input-staff">
-                                <div class="form-group has-search">
-                                    <mat-icon class="form-control-feedback">search</mat-icon>
-                                    <!-- <input type="text" class="form-control searchbox_appointment " (keyup)="Search($event.target.value)" placeholder="Customer,Service Staff" placeholder="Search for items"> -->
-                                     <input (keyup)="fnsearchService($event);" class="form-control searchbox_appointment " placeholder="Search">
-                                </div>
-                            </form>
-                        </div>
 
-                        <mat-accordion class="select-service-accordian">
-                            <mat-expansion-panel [expanded]="searchedServices" *ngFor="let categoryServiceListval of categoryServiceListTemp; let i=index">
+                    <h6>Select Service</h6>
+                    <div class="searchbox mb-4">
+                        <form class="search_input-staff">
+                            <div class="form-group has-search">
+                                <mat-icon class="form-control-feedback">search</mat-icon>
+                                <!-- <input type="text" class="form-control searchbox_appointment " (keyup)="Search($event.target.value)" placeholder="Customer,Service Staff" placeholder="Search for items"> -->
+                                <input (keyup)="fnsearchService($event);" class="form-control searchbox_appointment " placeholder="Search">
+                            </div>
+                        </form>
+                    </div>
+
+                    <mat-accordion class="select-service-accordian">
+                        <mat-expansion-panel [expanded]="searchedServices" *ngFor="let categoryServiceListval of categoryServiceListTemp; let i=index">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="service-title">
+                                    <mat-checkbox (change)="checkServie($event,'category',i)" [checked]="categoryServiceListval.is_selected" *ngIf="categoryServiceListval.getservices.length == 0">{{categoryServiceListval.category_title}}</mat-checkbox>
+                                    <mat-checkbox (change)="checkCategoryServie($event.checked,i)" [checked]="categoryServiceListval.is_selected" *ngIf="categoryServiceListval.getservices.length > 0">{{categoryServiceListval.category_title}}</mat-checkbox>
+
+                                    <!-- <mat-checkbox (change)="checkServie($event,'category',i)" [checked]="categoryServiceListval.is_selected">{{categoryServiceListval.category_title}}</mat-checkbox> -->
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-expansion-panel [expanded]="searchedServices" class="my-3" *ngFor="let subcategoryList of categoryServiceListval.subcategory; let sub_index=index">
                                 <mat-expansion-panel-header>
-                                    <mat-panel-title class="service-title">
-                                        <mat-checkbox (change)="checkServie($event,'category',i)" [checked]="categoryServiceListval.is_selected" *ngIf="categoryServiceListval.getservices.length == 0">{{categoryServiceListval.category_title}}</mat-checkbox>
-                                        <mat-checkbox (change)="checkCategoryServie($event.checked,i)" [checked]="categoryServiceListval.is_selected" *ngIf="categoryServiceListval.getservices.length > 0">{{categoryServiceListval.category_title}}</mat-checkbox>
-
-                                        <!-- <mat-checkbox (change)="checkServie($event,'category',i)" [checked]="categoryServiceListval.is_selected">{{categoryServiceListval.category_title}}</mat-checkbox> -->
+                                    <mat-panel-title>
+                                        <mat-checkbox (change)="checkServie($event,'subcategory',i,sub_index)" [checked]="subcategoryList.is_selected">{{subcategoryList.sub_category_name}}</mat-checkbox>
                                     </mat-panel-title>
                                 </mat-expansion-panel-header>
-                                <mat-expansion-panel [expanded]="searchedServices" class="my-3" *ngFor="let subcategoryList of categoryServiceListval.subcategory; let sub_index=index">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            <mat-checkbox (change)="checkServie($event,'subcategory',i,sub_index)" [checked]="subcategoryList.is_selected">{{subcategoryList.sub_category_name}}</mat-checkbox>
-                                        </mat-panel-title>
-                                    </mat-expansion-panel-header>
-                                    <div *ngFor="let serviceList of subcategoryList.services; let service_index=index" class="py-3">
-                                        <mat-checkbox [checked]="serviceList.is_selected || categoryServiceCheckServiceId.indexOf(serviceList.id) > -1" (change)="checkServie($event,'service',i,sub_index,service_index)">{{serviceList.service_name}}</mat-checkbox>
-                                    </div>
-                                </mat-expansion-panel>
-                                <div *ngFor="let serviceList of categoryServiceListval.getservices; let service_index=index" class="py-3">
-                                    <mat-checkbox [checked]="serviceList.is_selected || categoryServiceCheckServiceId.indexOf(serviceList.id) > -1" (change)="fnNewCheckService($event.checked,serviceList.id,i,service_index)" *ngIf="categoryServiceCheckServiceId.indexOf(serviceList.id) > -1"
-                                        checked="true">{{serviceList.service_name}} </mat-checkbox>
-                                    <mat-checkbox [checked]="serviceList.is_selected || categoryServiceCheckServiceId.indexOf(serviceList.id) > -1" (change)="fnNewCheckService($event.checked,serviceList.id,i,service_index)" *ngIf="categoryServiceCheckServiceId.indexOf(serviceList.id) < 0">{{serviceList.service_name}}</mat-checkbox>
+                                <div *ngFor="let serviceList of subcategoryList.services; let service_index=index" class="py-3">
+                                    <mat-checkbox [checked]="serviceList.is_selected || categoryServiceCheckServiceId.indexOf(serviceList.id) > -1" (change)="checkServie($event,'service',i,sub_index,service_index)">{{serviceList.service_name}}</mat-checkbox>
                                 </div>
                             </mat-expansion-panel>
-                        </mat-accordion>
+                            <div *ngFor="let serviceList of categoryServiceListval.getservices; let service_index=index" class="py-3">
+                                <mat-checkbox [checked]="serviceList.is_selected || categoryServiceCheckServiceId.indexOf(serviceList.id) > -1" (change)="fnNewCheckService($event.checked,serviceList.id,i,service_index)" *ngIf="categoryServiceCheckServiceId.indexOf(serviceList.id) > -1"
+                                    checked="true">{{serviceList.service_name}} </mat-checkbox>
+                                <mat-checkbox [checked]="serviceList.is_selected || categoryServiceCheckServiceId.indexOf(serviceList.id) > -1" (change)="fnNewCheckService($event.checked,serviceList.id,i,service_index)" *ngIf="categoryServiceCheckServiceId.indexOf(serviceList.id) < 0">{{serviceList.service_name}}</mat-checkbox>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </div>
             </div>
             <mat-card class="footer-action-btn">

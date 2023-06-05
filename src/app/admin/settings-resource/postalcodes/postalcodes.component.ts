@@ -8,6 +8,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '@environments/environment';
+import { Router, Event, NavigationEnd} from '@angular/router';
 
 export interface DialogData {
 
@@ -39,17 +40,27 @@ export class PostalcodesComponent implements OnInit {
   constructor(public dialog: MatDialog,
     @Inject(AdminSettingsService) public adminSettingsService: AdminSettingsService,
     private _snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.fnGetPostalCodeList();
     if (localStorage.getItem('business_id')) {
       this.businessId = localStorage.getItem('business_id');
     }
     this.getSettingValue();
-    let addNewAction = window.location.search.split("?postalcode")
-    if (addNewAction.length > 1) {
-      // this.addNewEvents = false;
-      this.addPostalCode();
-    }
+    // let addNewAction = window.location.search.split("?postalcode")
+    // if (addNewAction.length > 1) {
+    //   // this.addNewEvents = false;
+    //   this.addPostalCode();
+    // }
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        let addNewAction = event.url.split("?postalcode")
+        if(addNewAction.length > 1){
+          this.addPostalCode();
+          console.log('new Postal');
+        }
+      }
+    });
   }
 
   ngOnInit() { }
@@ -81,6 +92,7 @@ export class PostalcodesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/admin/settings-resource/postalcode']);
       console.log(result);
       if (result) {
         this.fnGetPostalCodeList();

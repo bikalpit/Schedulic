@@ -19,6 +19,7 @@ import * as jspdf from 'jspdf';
 import { ConfirmationDialogComponent } from '../../_components/confirmation-dialog/confirmation-dialog.component';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
+import { Router, Event, NavigationEnd} from '@angular/router';
 
 export interface DialogData {
   fulldata: any;
@@ -174,12 +175,22 @@ export class CustomersComponent implements OnInit {
     private datePipe: DatePipe,
     //private excelExportService: IgxExcelExporterService,
     private appComponent : AppComponent,
+    private router: Router
     ) { 
       localStorage.setItem('isBusiness', 'false');
       if(localStorage.getItem('business_id')){
         this.businessId = localStorage.getItem('business_id');
       }
       this.gelAllCountry();
+      this.router.events.subscribe((event: Event) => {
+        if (event instanceof NavigationEnd) {
+          let addNewAction = event.url.split("?customer")
+          if(addNewAction.length > 1){
+            // this.addNewEvents = false; 
+            this.fnAddNewCustomer();
+          }
+        }
+      });
     }
     private handleError(error: HttpErrorResponse) {
       console.log(error);
@@ -681,6 +692,7 @@ customerUpdate(existingCustomerData){
     this.customerImageUrl = '';
     this.createNewCustomer.reset();
     this.fnSelectCustomer(this.allCustomers[0].id,'not-new');
+    this.router.navigate(['/admin/my-customer']);
   }
 
   
@@ -2050,6 +2062,7 @@ export class InterruptedReschedulecustomer {
           return true;
         }
       }
+
   }
 
   fnGetOffDays() {

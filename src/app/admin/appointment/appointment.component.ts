@@ -14,6 +14,7 @@ import { AdminSettingsService } from '../_services/admin-settings.service';
 import { _fixedSizeVirtualScrollStrategyFactory } from '@angular/cdk/scrolling';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
+import { Router, Event, NavigationEnd, NavigationStart} from '@angular/router';
 
 export interface DialogData {
   animal: string;
@@ -89,31 +90,38 @@ export class AppointmentComponent implements OnInit {
 
   selected: { CustomestartDate, CustomeendDate };
 
-
+newAppointmentOpened : boolean =false;
   constructor(
     public dialog: MatDialog,
     private adminService: AdminService,
     private datePipe: DatePipe,
     private _snackBar: MatSnackBar,
     private authenticationService: AuthenticationService,
-    private change: ChangeDetectorRef
+    private change: ChangeDetectorRef,
+    private router: Router
   ) {
     localStorage.setItem('isBusiness', 'false');
     this.businessId = localStorage.getItem('business_id');
     this.durationType = 'all';
     this.selectedServices = 'all';
-    let addNewAction = window.location.search.split("?appointment")
-    if (addNewAction.length > 1) {
-      this.addAppointment();
-    }
     this.fnGetSettingValue();
     this.getAllAppointments();
     this.getAllServices();
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
+   
   }
 
   ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+          let addNewAction = event.url.split("?appointment")
+          if (addNewAction.length > 1 && !this.newAppointmentOpened) {
+            this.addAppointment();
+            console.log('new Appo');
+            
+          }
+      }
+    });
   }
 
   dynamicSort(property) {
@@ -469,14 +477,18 @@ export class AppointmentComponent implements OnInit {
   }
 
   addAppointment() {
-    const dialogRef = this.dialog.open(DialogAddNewAppointment, {
-      width: '500px',
-      data: {},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.getAllAppointments();
-    });
+      this.newAppointmentOpened = true;
+      const dialogRef = this.dialog.open(DialogAddNewAppointment, {
+        width: '500px',
+        data: {},
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.newAppointmentOpened = false;
+        this.router.navigate(['/admin/my-appointment']);
+        this.getAllAppointments();
+      });
+    
   }
 
   fnEditAppointment(index) {

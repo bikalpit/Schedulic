@@ -14,6 +14,7 @@ import { ConfirmationDialogComponent } from '../../../_components/confirmation-d
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/my-date-formats';
+import { Router, Event, NavigationEnd} from '@angular/router';
 
 export interface DialogData {
   selectedStaffId: any;
@@ -327,6 +328,7 @@ export class StaffComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private http: HttpClient,
     private route: ActivatedRoute,
+    private router: Router,
     @Inject(AdminSettingsService) public adminSettingsService: AdminSettingsService,
     private datePipe: DatePipe,
   ) {
@@ -357,7 +359,8 @@ export class StaffComponent implements OnInit {
       sundayToggle: [false],
       sundayStartTime: [this.timeSlotList[0].long],
       sundayEndTime: [this.timeSlotList[this.timeSlotList.length - 1].long],
-    })
+    });
+   
   }
   
   
@@ -386,6 +389,19 @@ export class StaffComponent implements OnInit {
     if(newStaffAction.length > 1 && newStaffAction[1] == 'newstaff'){
       this.fnAddNewStaff();
     }
+     let addNewAction = window.location.search.split("?staff")
+    if (addNewAction.length > 1) {
+      // this.addNewEvents = false;
+      this.fnAddNewStaff();
+    }
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        let addNewAction = event.url.split("?staff")
+        if(addNewAction.length > 1){
+          this.fnAddNewStaff();
+        }
+      }
+    });
   }
 
   // private handleError(error: HttpErrorResponse) {
@@ -1556,10 +1572,20 @@ export class StaffComponent implements OnInit {
           verticalPosition: 'top',
           panelClass: ['green-snackbar']
         });
-        this.selectedPostalCodeArr.length = 0;
+        const selectedPostalCodeIndex = this.singleStaffDetail.postalCode.findIndex(x => x.id === postalCodeId);
+        let selectedPostalCodeIndex1 = this.selectedPostalCodeArr.indexOf(postalCodeId);
+        console.log(selectedPostalCodeIndex);
+        console.log(this.addPostalCodeId);
         console.log(this.selectedPostalCodeArr);
+        if (event == true) {
+          this.selectedPostalCodeArr.push(postalCodeId)
+        } else if (event == false) {
+          this.selectedPostalCodeArr.splice(selectedPostalCodeIndex1, 1)
+        }
+        // this.selectedPostalCodeArr.length = 0;
+        console.log(this.singleStaffDetail.postalCode);
         
-        this.fnViewSingleStaff(this.selectedStaffId, this.singleStaffIndex)
+        // this.fnViewSingleStaff(this.selectedStaffId, this.singleStaffIndex)
         this.addPostalCodeId.length = 0;
         this.isLoaderAdmin = false;
       }
@@ -2176,6 +2202,7 @@ export class StaffComponent implements OnInit {
     this.singleStaffView = false;
     this.StaffCreate.reset();
    }
+   this.router.navigate(['/admin/settings-resource/staff']);
    
  }
 
